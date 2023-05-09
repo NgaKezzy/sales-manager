@@ -72,7 +72,6 @@ class CreateShop extends StatelessWidget {
                               height: 45,
                               width: MediaQuery.of(context).size.width - 40,
                               child: TextField(
-                                obscureText: true,
                                 decoration: InputDecoration(
                                   labelText: 'Ví dụ : Quán phở cô Ba',
                                 ),

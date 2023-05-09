@@ -24,6 +24,7 @@ class LongInScreen extends StatelessWidget {
               child: const Align(
                 alignment: Alignment(0, 0.8),
                 child: Text(
+                  textAlign: TextAlign.center,
                   '"Ứng dụng miễn phí mà đầy đủ tính năng ghê luôn. Rất hài lòng"',
                   style: TextStyle(
                       color: Colors.white,

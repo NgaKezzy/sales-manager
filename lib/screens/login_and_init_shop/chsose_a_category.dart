@@ -58,7 +58,8 @@ class ChooseACategory extends StatelessWidget {
                               width: MediaQuery.of(context).size.width - 40,
                               child: Text(
                                 'Bạn đang kinh doanh ngành hàng nào?',
-                                style: TextStyle(fontSize: 25),
+                                style: TextStyle(
+                                    fontSize: 25, fontWeight: FontWeight.w600),
                               ),
                             ),
                           ],
