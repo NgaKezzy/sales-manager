@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sales_manager/config/app_color.dart';
+import 'package:sales_manager/config/app_size.dart';
 
 class Product extends StatelessWidget {
   const Product({super.key});
@@ -10,25 +12,26 @@ class Product extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 10),
-      height: 65,
+      height: AppDimens.dimens_65,
       width: MediaQuery.of(context).size.width - 40,
       decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
+          border: Border.all(color: AppColors.grey_8A8A8A),
           borderRadius: BorderRadius.circular(10)),
       child: Row(children: [
         SizedBox(
-          width: 20,
+          width: AppDimens.dimens_20,
         ),
         SvgPicture.asset(
           'assets/svg/food.svg',
-          height: 30,
+          height: AppDimens.dimens_30,
         ),
         SizedBox(
-          width: 10,
+          width: AppDimens.dimens_10,
         ),
         Text(
           'Đồ ăn',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+          style: TextStyle(
+              fontSize: AppDimens.dimens_20, fontWeight: FontWeight.w500),
         )
       ]),
     );

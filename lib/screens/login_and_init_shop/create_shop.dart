@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sales_manager/config/app_color.dart';
+import 'package:sales_manager/config/app_size.dart';
 
 import '../../widgets/bt_skip_and_continue.dart';
 
@@ -29,10 +31,10 @@ class CreateShop extends StatelessWidget {
                       children: [
                         Container(
                           margin: EdgeInsets.only(right: 4, left: 4),
-                          height: 5,
+                          height: AppDimens.dimens_5,
                           width: MediaQuery.of(context).size.width * 0.2,
                           decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: AppColors.green_006200,
                               borderRadius: BorderRadius.circular(3)),
                         ),
                       ],
@@ -41,7 +43,8 @@ class CreateShop extends StatelessWidget {
                       alignment: Alignment.center,
                       margin: EdgeInsets.only(top: 30, bottom: 25),
                       child: SvgPicture.asset('assets/svg/shop.svg',
-                          color: Colors.green, height: 80),
+                          color: AppColors.green_55b135,
+                          height: AppDimens.dimens_80),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +72,7 @@ class CreateShop extends StatelessWidget {
                           children: [
                             Container(
                               margin: EdgeInsets.only(top: 35),
-                              height: 45,
+                              height: AppDimens.dimens_45,
                               width: MediaQuery.of(context).size.width - 40,
                               child: TextField(
                                 decoration: InputDecoration(

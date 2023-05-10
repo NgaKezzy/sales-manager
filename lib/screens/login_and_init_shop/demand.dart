@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:sales_manager/config/app_color.dart';
+import 'package:sales_manager/config/app_size.dart';
 
 import '../../widgets/bt_continue.dart';
 import '../../widgets/bt_skip_and_continue.dart';
@@ -30,32 +32,32 @@ class Demand extends StatelessWidget {
                       children: [
                         Container(
                           margin: EdgeInsets.only(right: 4, left: 4),
-                          height: 5,
+                          height: AppDimens.dimens_5,
                           width: MediaQuery.of(context).size.width * 0.2,
                           decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: AppColors.green_006200,
                               borderRadius: BorderRadius.circular(3)),
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 4, left: 4),
-                          height: 5,
+                          height: AppDimens.dimens_5,
                           width: MediaQuery.of(context).size.width * 0.2,
                           decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: AppColors.green_006200,
                               borderRadius: BorderRadius.circular(3)),
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 4, left: 4),
-                          height: 5,
+                          height: AppDimens.dimens_5,
                           width: MediaQuery.of(context).size.width * 0.2,
                           decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: AppColors.green_006200,
                               borderRadius: BorderRadius.circular(3)),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 30,
+                      height: AppDimens.dimens_30,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,13 +69,14 @@ class Demand extends StatelessWidget {
                               child: Text(
                                 'Nhu cầu của bạn khi sử dụng sổ bán hàng?',
                                 style: TextStyle(
-                                    fontSize: 25, fontWeight: FontWeight.w600),
+                                    fontSize: AppDimens.dimens_25,
+                                    fontWeight: FontWeight.w600),
                               ),
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: 30,
+                          height: AppDimens.dimens_30,
                         ),
                         ItemDemand(),
                         ItemDemand(),
@@ -82,7 +85,7 @@ class Demand extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: AppDimens.dimens_20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +98,7 @@ class Demand extends StatelessWidget {
                               TextSpan(
                                   text: 'Nhập mã ngay!',
                                   style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: AppDimens.dimens_15,
                                       color: Colors.green,
                                       fontWeight: FontWeight.w500)),
                             ],

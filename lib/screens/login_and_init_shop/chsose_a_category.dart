@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sales_manager/config/app_color.dart';
+import 'package:sales_manager/config/app_size.dart';
 
 import '../../widgets/bt_skip_and_continue.dart';
 import '../../widgets/product.dart';
@@ -30,24 +32,24 @@ class ChooseACategory extends StatelessWidget {
                       children: [
                         Container(
                           margin: EdgeInsets.only(right: 4, left: 4),
-                          height: 5,
+                          height: AppDimens.dimens_5,
                           width: MediaQuery.of(context).size.width * 0.2,
                           decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: AppColors.green_006200,
                               borderRadius: BorderRadius.circular(3)),
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 4, left: 4),
-                          height: 5,
+                          height: AppDimens.dimens_5,
                           width: MediaQuery.of(context).size.width * 0.2,
                           decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: AppColors.green_006200,
                               borderRadius: BorderRadius.circular(3)),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 30,
+                      height: AppDimens.dimens_30,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +67,7 @@ class ChooseACategory extends StatelessWidget {
                           ],
                         ),
                         SizedBox(
-                          height: 30,
+                          height: AppDimens.dimens_30,
                         ),
                         Product(),
                         Product(),

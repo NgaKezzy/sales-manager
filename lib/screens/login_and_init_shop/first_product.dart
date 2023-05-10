@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:sales_manager/config/app_color.dart';
+import 'package:sales_manager/config/app_size.dart';
 
 import '../../widgets/bt_skip_and_complate.dart';
 import '../../widgets/bt_skip_and_continue.dart';
@@ -29,40 +31,40 @@ class FirstProduct extends StatelessWidget {
                       children: [
                         Container(
                           margin: EdgeInsets.only(right: 4, left: 4),
-                          height: 5,
+                          height: AppDimens.dimens_5,
                           width: MediaQuery.of(context).size.width * 0.2,
                           decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: AppColors.green_006200,
                               borderRadius: BorderRadius.circular(3)),
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 4, left: 4),
-                          height: 5,
+                          height: AppDimens.dimens_5,
                           width: MediaQuery.of(context).size.width * 0.2,
                           decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: AppColors.green_006200,
                               borderRadius: BorderRadius.circular(3)),
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 4, left: 4),
-                          height: 5,
+                          height: AppDimens.dimens_5,
                           width: MediaQuery.of(context).size.width * 0.2,
                           decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: AppColors.green_006200,
                               borderRadius: BorderRadius.circular(3)),
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 4, left: 4),
-                          height: 5,
+                          height: AppDimens.dimens_5,
                           width: MediaQuery.of(context).size.width * 0.2,
                           decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: AppColors.green_006200,
                               borderRadius: BorderRadius.circular(3)),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 30,
+                      height: AppDimens.dimens_30,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,17 +76,18 @@ class FirstProduct extends StatelessWidget {
                               child: const Text(
                                 'Tuyệt vời giờ hãy tạo sản phầm đầu tiên của cửa hàng nhé!',
                                 style: TextStyle(
-                                    fontSize: 25, fontWeight: FontWeight.w600),
+                                    fontSize: AppDimens.dimens_25,
+                                    fontWeight: FontWeight.w600),
                               ),
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: 40,
+                          height: AppDimens.dimens_40,
                         ),
                         Text('Tên sản phầm'),
                         const SizedBox(
-                          height: 40,
+                          height: AppDimens.dimens_40,
                           child: TextField(
                             decoration: InputDecoration(
                               hintText: 'Ví dụ : Mì Hảo Hảo',
@@ -92,11 +95,11 @@ class FirstProduct extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 30,
+                          height: AppDimens.dimens_30,
                         ),
                         Text('Giá bán'),
                         const SizedBox(
-                          height: 40,
+                          height: AppDimens.dimens_40,
                           child: TextField(
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
@@ -105,11 +108,11 @@ class FirstProduct extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          height: 30,
+                          height: AppDimens.dimens_30,
                         ),
                         Text('Giá vốn'),
                         const SizedBox(
-                          height: 40,
+                          height: AppDimens.dimens_40,
                           child: TextField(
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(

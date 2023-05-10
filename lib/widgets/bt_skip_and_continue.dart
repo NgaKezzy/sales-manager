@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:sales_manager/config/app_size.dart';
+
+import '../config/app_color.dart';
 
 class BtSkipAndContinue extends StatelessWidget {
   const BtSkipAndContinue({super.key});
@@ -18,16 +21,16 @@ class BtSkipAndContinue extends StatelessWidget {
             onPressed: () {},
             child: Text(
               'Bỏ qua',
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: AppColors.black),
             ),
           ),
         ),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.41,
-          height: 55,
+          height: AppDimens.dimens_55,
           child: ElevatedButton(
             onPressed: () {},
-            style: ElevatedButton.styleFrom(primary: Colors.green),
+            style: ElevatedButton.styleFrom(primary: AppColors.green_55b135),
             child: Text('Tiếp tục'),
           ),
         ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:sales_manager/config/app_color.dart';
+
+import '../config/app_size.dart';
 
 class BtSkipAndComplate extends StatelessWidget {
   const BtSkipAndComplate({super.key});
@@ -13,7 +16,7 @@ class BtSkipAndComplate extends StatelessWidget {
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.41,
-          height: 55,
+          height: AppDimens.dimens_55,
           child: OutlinedButton(
             onPressed: () {},
             child: Text(
@@ -24,10 +27,10 @@ class BtSkipAndComplate extends StatelessWidget {
         ),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.41,
-          height: 55,
+          height: AppDimens.dimens_55,
           child: ElevatedButton(
             onPressed: () {},
-            style: ElevatedButton.styleFrom(primary: Colors.green),
+            style: ElevatedButton.styleFrom(primary: AppColors.green_55b135),
             child: Text('Hoàn tất'),
           ),
         ),

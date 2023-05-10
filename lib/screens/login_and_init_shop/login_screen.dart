@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sales_manager/config/app_color.dart';
+
+import '../../config/app_size.dart';
 
 class LongInScreen extends StatelessWidget {
   const LongInScreen({super.key});
@@ -27,8 +30,8 @@ class LongInScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                   '"Ứng dụng miễn phí mà đầy đủ tính năng ghê luôn. Rất hài lòng"',
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
+                      color: AppColors.white,
+                      fontSize: AppDimens.dimens_16,
                       fontWeight: FontWeight.w700),
                   overflow: TextOverflow.visible,
                 ),
@@ -46,10 +49,11 @@ class LongInScreen extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
-                    height: 45,
+                    height: AppDimens.dimens_45,
                     child: ElevatedButton(
                       onPressed: () {},
-                      style: ElevatedButton.styleFrom(primary: Colors.green),
+                      style: ElevatedButton.styleFrom(
+                          primary: AppColors.green_55b135),
                       child: Text('Tiếp tục với số điện thoại'),
                     ),
                   ),
@@ -61,15 +65,15 @@ class LongInScreen extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.only(right: 5),
                           width: MediaQuery.of(context).size.width * 0.35,
-                          height: 1,
+                          height: AppDimens.dimens_1,
                           color: Colors.grey,
                         ),
                         Text('Hoặc'),
                         Container(
                           margin: EdgeInsets.only(left: 5),
                           width: MediaQuery.of(context).size.width * 0.35,
-                          height: 1,
-                          color: Colors.grey,
+                          height: AppDimens.dimens_1,
+                          color: AppColors.grey_8A8A8A,
                         )
                       ],
                     ),
@@ -80,27 +84,27 @@ class LongInScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          width: 50,
-                          height: 50,
+                          width: AppDimens.dimens_50,
+                          height: AppDimens.dimens_50,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
                               border: Border.all(color: Colors.grey)),
                           child: SvgPicture.asset("assets/svg/google.svg"),
                         ),
                         Container(
-                          width: 50,
-                          height: 50,
+                          width: AppDimens.dimens_50,
+                          height: AppDimens.dimens_50,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
                               border: Border.all(color: Colors.grey)),
                           child: SvgPicture.asset("assets/svg/fb.svg"),
                         ),
                         Container(
-                          width: 50,
-                          height: 50,
+                          width: AppDimens.dimens_50,
+                          height: AppDimens.dimens_50,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
-                              border: Border.all(color: Colors.grey)),
+                              border: Border.all(color: AppColors.grey_8A8A8A)),
                           child: SvgPicture.asset("assets/svg/zalo.svg"),
                         ),
                       ],

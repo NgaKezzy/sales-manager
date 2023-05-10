@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:sales_manager/config/app_color.dart';
 
 class BtContinue extends StatelessWidget {
   const BtContinue({super.key});
@@ -16,7 +17,7 @@ class BtContinue extends StatelessWidget {
           height: 55,
           child: ElevatedButton(
             onPressed: () {},
-            style: ElevatedButton.styleFrom(primary: Colors.green),
+            style: ElevatedButton.styleFrom(primary: AppColors.green_55b135),
             child: Text('Tiếp tục'),
           ),
         ),
