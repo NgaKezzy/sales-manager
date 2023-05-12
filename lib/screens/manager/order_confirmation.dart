@@ -274,9 +274,12 @@ class OrderConfirmation extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         height: AppDimens.dimens_70,
                         color: AppColors.white,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Ghi chú khách hàng',
+                        child: SizedBox(
+                          height: AppDimens.dimens_40,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Ghi chú khách hàng',
+                            ),
                           ),
                         ),
                       ),

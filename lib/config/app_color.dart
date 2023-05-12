@@ -21,10 +21,11 @@ class AppColors {
   static const Color grey_A49797 = Color(0xFFA49797);
   static const Color green_006200 = Color(0xFF006200);
   static const Color green_55b135 = Color(0xFF55b135);
+  static const Color green_7ab317 = Color(0xFF7ab317);
+
   static const Color green_04D0CA = Color(0xFF04D0CA);
   static const Color blue_0000ff = Color(0xFF0000FF);
   static const Color yellow_FAA810 = Color(0xFFffbc11);
   static const Color yellow_fbea80 = Color(0xFFfbea80);
-
   static const Color blue_028f76 = Color(0xFF028f76);
 }
