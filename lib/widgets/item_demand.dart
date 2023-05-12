@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
 
+import '../config/app.font.dart';
+
 class ItemDemand extends StatelessWidget {
   const ItemDemand({super.key});
 
@@ -24,7 +26,7 @@ class ItemDemand extends StatelessWidget {
           Text(
             'Nắm bắt doanh thu bán hàng',
             style: TextStyle(
-                fontSize: AppDimens.dimens_16, fontWeight: FontWeight.w600),
+                fontSize: AppDimens.dimens_16, fontWeight: FontFamily.semiBold),
           )
         ],
       ),

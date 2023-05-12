@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sales_manager/config/app_color.dart';
 
+import '../../config/app.font.dart';
 import '../../config/app_size.dart';
 
 class LongInScreen extends StatelessWidget {
@@ -32,7 +33,7 @@ class LongInScreen extends StatelessWidget {
                   style: TextStyle(
                       color: AppColors.white,
                       fontSize: AppDimens.dimens_16,
-                      fontWeight: FontWeight.w700),
+                      fontWeight: FontFamily.semiBold),
                   overflow: TextOverflow.visible,
                 ),
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
 
@@ -61,7 +62,7 @@ class ChooseACategory extends StatelessWidget {
                               child: Text(
                                 'Bạn đang kinh doanh ngành hàng nào?',
                                 style: TextStyle(
-                                    fontSize: 25, fontWeight: FontWeight.w600),
+                                    fontSize: 25, fontWeight: FontFamily.light),
                               ),
                             ),
                           ],

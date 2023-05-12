@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
 
@@ -70,7 +71,7 @@ class Demand extends StatelessWidget {
                                 'Nhu cầu của bạn khi sử dụng sổ bán hàng?',
                                 style: TextStyle(
                                     fontSize: AppDimens.dimens_25,
-                                    fontWeight: FontWeight.w600),
+                                    fontWeight: FontFamily.semiBold),
                               ),
                             ),
                           ],

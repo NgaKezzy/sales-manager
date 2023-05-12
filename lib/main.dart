@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:sales_manager/screens/login_and_init_shop/login_screen.dart';
+import 'package:sales_manager/screens/manager/order_confirmation.dart';
 import 'package:sales_manager/screens/manager/sell.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/login_and_init_shop/chsose_a_category.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Sell(),
+      home: OrderConfirmation(),
     );
   }
 }

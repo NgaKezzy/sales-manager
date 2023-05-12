@@ -6,6 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
 
+import '../../config/app.font.dart';
+
 class ManagerScreen extends StatefulWidget {
   const ManagerScreen({super.key});
 
@@ -51,7 +53,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                           'Tên shop',
                           style: TextStyle(
                               fontSize: AppDimens.dimens_20,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontFamily.semiBold,
                               color: Colors.white),
                         ),
                       ],
@@ -232,7 +234,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black.withOpacity(0.7),
-                                  fontWeight: FontWeight.w500),
+                                  fontWeight: FontFamily.medium),
                             ),
                           ),
                           Container(
@@ -273,7 +275,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                       'Chờ xác nhận',
                                       style: TextStyle(
                                           color: Colors.black.withOpacity(0.6),
-                                          fontWeight: FontWeight.w500),
+                                          fontWeight: FontFamily.medium),
                                     )
                                   ],
                                 ),
@@ -284,7 +286,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                   '0',
                                   style: TextStyle(
                                       fontSize: AppDimens.dimens_25,
-                                      fontWeight: FontWeight.w700),
+                                      fontWeight: FontFamily.semiBold),
                                 )
                               ],
                             ),
@@ -316,7 +318,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                       'Đang xử lý',
                                       style: TextStyle(
                                           color: Colors.black.withOpacity(0.6),
-                                          fontWeight: FontWeight.w500),
+                                          fontWeight: FontFamily.medium),
                                     )
                                   ],
                                 ),
@@ -327,7 +329,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                   '0',
                                   style: TextStyle(
                                       fontSize: AppDimens.dimens_25,
-                                      fontWeight: FontWeight.w700),
+                                      fontWeight: FontFamily.semiBold),
                                 )
                               ],
                             ),

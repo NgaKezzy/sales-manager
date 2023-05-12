@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
+import '../config/app.font.dart';
 import '../config/app_color.dart';
 
 class ItemListProduct extends StatelessWidget {
@@ -34,7 +35,7 @@ class ItemListProduct extends StatelessWidget {
             style: TextStyle(
                 fontSize: 13,
                 color: AppColors.white,
-                fontWeight: FontWeight.w500),
+                fontWeight: FontFamily.medium),
           ),
         ),
         Container(
@@ -55,7 +56,7 @@ class ItemListProduct extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 13,
                       color: AppColors.black,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontFamily.medium,
                       overflow: TextOverflow.ellipsis),
                 ),
                 Text(
@@ -63,7 +64,7 @@ class ItemListProduct extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 13,
                       color: AppColors.black,
-                      fontWeight: FontWeight.w500),
+                      fontWeight: FontFamily.medium),
                 ),
               ]),
         )

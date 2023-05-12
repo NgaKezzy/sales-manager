@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
+import '../config/app.font.dart';
 import '../config/app_color.dart';
 import '../config/app_size.dart';
 
@@ -28,7 +29,7 @@ class AddProduct extends StatelessWidget {
             'Thêm sản phẩm',
             style: TextStyle(
                 color: AppColors.green_55b135,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontFamily.medium,
                 fontSize: AppDimens.dimens_11),
           )
         ],

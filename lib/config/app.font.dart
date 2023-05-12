@@ -5,8 +5,8 @@ class FontFamily {
   static const String poppins = 'Poppins';
 
   // Khai báo độ đậm nhạt của font
-  static const normal = FontWeight.w400;
   static const light = FontWeight.w300;
+  static const normal = FontWeight.w400;
   static const medium = FontWeight.w500;
   static const semiBold = FontWeight.w600;
   static const bold = FontWeight.w700;

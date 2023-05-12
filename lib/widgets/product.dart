@@ -5,6 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
 
+import '../config/app.font.dart';
+
 class Product extends StatelessWidget {
   const Product({super.key});
 
@@ -31,7 +33,7 @@ class Product extends StatelessWidget {
         Text(
           'Đồ ăn',
           style: TextStyle(
-              fontSize: AppDimens.dimens_20, fontWeight: FontWeight.w500),
+              fontSize: AppDimens.dimens_20, fontWeight: FontFamily.medium),
         )
       ]),
     );
