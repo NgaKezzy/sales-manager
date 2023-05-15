@@ -20,18 +20,28 @@ class HeaderCenter extends StatelessWidget {
       height: AppDimens.dimens_80,
       decoration: BoxDecoration(color: AppColors.white),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(Icons.arrow_back_ios),
-          Text(
-            txt_header,
-            style: const TextStyle(
-              fontSize: 18,
-              color: AppColors.black,
-              fontWeight: FontFamily.medium,
+          Container(
+              margin: EdgeInsets.only(left: 10),
+              child: Icon(
+                Icons.arrow_back_ios,
+                size: 24,
+              )),
+          Container(
+            margin: EdgeInsets.only(right: 10),
+            child: Text(
+              txt_header,
+              style: const TextStyle(
+                fontSize: 18,
+                color: AppColors.black,
+                fontWeight: FontFamily.medium,
+              ),
             ),
           ),
-          SizedBox()
+          SizedBox(
+            width: AppDimens.dimens_24,
+          )
         ],
       ),
     );

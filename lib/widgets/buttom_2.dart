@@ -198,7 +198,7 @@ class Buttom_2 extends StatelessWidget {
                                       Image(
                                         image:
                                             AssetImage('assets/img/momo.png'),
-                                        height: AppDimens.dimens_40,
+                                        height: AppDimens.dimens_30,
                                       ),
                                       Text(
                                         'QR thanh toán',
