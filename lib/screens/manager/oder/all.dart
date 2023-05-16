@@ -5,7 +5,7 @@ import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
 
-import '../../widgets/item_oder.dart';
+import '../../../widgets/item_oder.dart';
 
 class All extends StatelessWidget {
   const All({super.key});

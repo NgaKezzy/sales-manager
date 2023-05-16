@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:sales_manager/screens/manager/all_oder.dart';
-import 'package:sales_manager/screens/manager/delivered.dart';
-import 'package:sales_manager/screens/manager/processing.dart';
-import 'package:sales_manager/screens/manager/returns.dart';
+import 'package:sales_manager/screens/manager/oder/all.dart';
+import 'package:sales_manager/screens/manager/oder/delivered.dart';
+import 'package:sales_manager/screens/manager/oder/processing.dart';
+import 'package:sales_manager/screens/manager/oder/returns.dart';
 
-import '../../config/app_color.dart';
-import '../../widgets/header_center.dart';
+import '../../../config/app_color.dart';
+import '../../../widgets/header_center.dart';
 
 class Oder extends StatefulWidget {
   const Oder({super.key});
@@ -29,11 +29,18 @@ class _OderState extends State<Oder> {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               height: 40,
-              child: TextField(
+              child: const TextField(
+                  cursorColor: AppColors.green_55b135,
                   textAlignVertical: TextAlignVertical(y: 0.9),
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.search),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: AppColors.green_55b135, width: 1)),
+                      suffixIcon: Icon(
+                        Icons.search,
+                        color: AppColors.green_55b135,
+                      ),
                       hintText: 'Tìm kiếm đơn hàng')),
             ),
             SizedBox(

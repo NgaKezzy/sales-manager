@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../../config/app_color.dart';
+import '../../../config/app_color.dart';
 
 class Delivered extends StatelessWidget {
   const Delivered({super.key});

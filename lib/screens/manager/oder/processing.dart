@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../../config/app_color.dart';
+import '../../../config/app_color.dart';
 
 class Processing extends StatelessWidget {
   const Processing({super.key});

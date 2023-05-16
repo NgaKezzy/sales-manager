@@ -5,11 +5,11 @@ import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
 import 'package:sales_manager/widgets/buttom_2.dart';
 
-import '../../config/app.font.dart';
-import '../../widgets/bt_skip_and_continue.dart';
-import '../../widgets/header_center.dart';
-import '../../widgets/passenger.dart';
-import '../../widgets/product_is_purcharsed.dart';
+import '../../../config/app.font.dart';
+import '../../../widgets/bt_skip_and_continue.dart';
+import '../../../widgets/header_center.dart';
+import '../../../widgets/passenger.dart';
+import '../../../widgets/product_is_purcharsed.dart';
 
 class OrderConfirmation extends StatelessWidget {
   OrderConfirmation({super.key});
