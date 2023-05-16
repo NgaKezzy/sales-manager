@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 
 import '../config/app.font.dart';
 import '../config/app_color.dart';
@@ -22,12 +23,17 @@ class HeaderCenter extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-              margin: EdgeInsets.only(left: 10),
-              child: Icon(
-                Icons.arrow_back_ios,
-                size: 24,
-              )),
+          InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: Container(
+                margin: EdgeInsets.only(left: 10),
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  size: 24,
+                )),
+          ),
           Container(
             margin: EdgeInsets.only(right: 10),
             child: Text(

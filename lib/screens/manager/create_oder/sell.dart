@@ -6,7 +6,7 @@ import 'package:sales_manager/config/app_size.dart';
 import 'package:sales_manager/widgets/add_product.dart';
 import 'package:sales_manager/widgets/header_center.dart';
 
-import '../../config/app.font.dart';
+import '../../../config/app.font.dart';
 
 // màn bán hàng
 
@@ -31,14 +31,17 @@ class Sell extends StatelessWidget {
                     textAlignVertical: TextAlignVertical(y: 0.9),
                     obscureText: false,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(
+                      suffixIcon: Icon(
                         Icons.search,
-                        color: AppColors.black,
+                        color: AppColors.green_55b135,
                       ),
                       border: OutlineInputBorder(),
                       hintText: 'Tìm theo tên sản phẩm',
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 10,
                 )
               ],
             ),
