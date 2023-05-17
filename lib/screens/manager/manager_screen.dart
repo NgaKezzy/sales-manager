@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
 import 'package:sales_manager/screens/manager/product/manage.dart';
+import 'package:sales_manager/screens/manager/report/report.dart';
 
 import '../../config/app.font.dart';
 import 'create_oder/sell.dart';
@@ -107,27 +108,32 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                           fontWeight: FontFamily.medium,
                                           fontSize: 16),
                                     ),
-                                    SizedBox(
-                                      child: Row(children: [
-                                        Icon(
-                                          Icons.bar_chart,
-                                          color: AppColors.blue_0000ff,
-                                          size: 15,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                          'Xem lãi lỗ',
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              color: AppColors.blue_0000ff),
-                                        ),
-                                        Icon(
-                                          Icons.navigate_next,
-                                          color: AppColors.blue_0000ff,
-                                        )
-                                      ]),
+                                    InkWell(
+                                      onTap: () {
+                                        Get.to(Report());
+                                      },
+                                      child: SizedBox(
+                                        child: Row(children: [
+                                          Icon(
+                                            Icons.bar_chart,
+                                            color: AppColors.blue_0000ff,
+                                            size: 15,
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text(
+                                            'Xem lãi lỗ',
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: AppColors.blue_0000ff),
+                                          ),
+                                          Icon(
+                                            Icons.navigate_next,
+                                            color: AppColors.blue_0000ff,
+                                          )
+                                        ]),
+                                      ),
                                     )
                                   ],
                                 ),
@@ -185,8 +191,8 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                         Row(
                                           children: [
                                             Icon(
-                                              Icons.bar_chart,
-                                              color: AppColors.yellow_FAA810,
+                                              Icons.wysiwyg,
+                                              color: AppColors.blue_0000ff,
                                               size: AppDimens.dimens_15,
                                             ),
                                             SizedBox(
@@ -225,7 +231,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                         Row(
                                           children: [
                                             Icon(
-                                              Icons.bar_chart,
+                                              Icons.monetization_on,
                                               color: AppColors.yellow_FAA810,
                                               size: AppDimens.dimens_15,
                                             ),
@@ -298,7 +304,9 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                       clIcon: AppColors.yellow_FAA810),
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Get.to(Report());
+                                  },
                                   child: ItemManager(
                                     nameManager: 'Báo cáo',
                                     icon: Icons.bar_chart,
@@ -432,11 +440,75 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                 )
                               ],
                             ),
-                          )
+                          ),
                         ],
                       )
                     ]),
                   ),
+                  SizedBox(
+                    height: AppDimens.dimens_10,
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                    height: AppDimens.dimens_90,
+                    width: MediaQuery.of(context).size.width,
+                    color: AppColors.white,
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          'assets/svg/boy.svg',
+                          height: 40,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 5),
+                          width: AppDimens.dimens_150,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Bạn cần hỗ trợ',
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontFamily.medium),
+                              ),
+                              Text(
+                                'Hướng dẫn, giải đáp thắc mắc hoặc báo cáo sự cố.',
+                                style: TextStyle(fontSize: AppDimens.dimens_13),
+                              )
+                            ],
+                          ),
+                        ),
+                        Expanded(child: SizedBox()),
+                        Container(
+                          alignment: Alignment.center,
+                          height: 35,
+                          width: 100,
+                          decoration: BoxDecoration(
+                              color: AppColors.blue_0000ff.withOpacity(0.7),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.sms,
+                                  color: AppColors.white,
+                                  size: 18,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  'Liên hệ',
+                                  style: TextStyle(
+                                      color: AppColors.white,
+                                      fontSize: AppDimens.dimens_15,
+                                      fontWeight: FontFamily.medium),
+                                )
+                              ]),
+                        )
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
@@ -469,6 +541,7 @@ class ItemManager extends StatelessWidget {
           BoxShadow(
             color: AppColors.grey_8A8A8A,
             blurRadius: 2,
+            // spreadRadius: 2,
             offset: Offset(0, 2),
           ),
         ],

@@ -70,6 +70,14 @@ class AppDimens {
   static const double dimens_137 = 137;
   static const double dimens_170 = 170;
   static const double dimens_200 = 200;
+  static const double dimens_210 = 210;
+
+  static const double dimens_230 = 230;
+  static const double dimens_240 = 240;
+
+  static const double dimens_280 = 280;
+
+  static const double dimens_300 = 300;
 
   static const double dimens_logo_height = 227;
   static const double dimens_logo_width = 156;
