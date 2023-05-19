@@ -34,7 +34,6 @@ class AppDimens {
   static const double dimens_30 = 30;
   static const double dimens_32 = 32;
   static const double dimens_33 = 33;
-
   static const double dimens_35 = 35;
   static const double dimens_36 = 36;
   static const double dimens_40 = 40;
@@ -44,41 +43,34 @@ class AppDimens {
   static const double dimens_46 = 46;
   static const double dimens_47 = 47;
   static const double dimens_48 = 48;
-
   static const double dimens_50 = 50;
   static const double dimens_54 = 54;
   static const double dimens_55 = 55;
-
   static const double dimens_65 = 65;
   static const double dimens_60 = 60;
   static const double dimens_64 = 64;
   static const double dimens_67 = 67;
   static const double dimens_70 = 70;
   static const double dimens_75 = 75;
-
   static const double dimens_80 = 80;
   static const double dimens_85 = 85;
-
   static const double dimens_90 = 90;
   static const double dimens_100 = 100;
   static const double dimens_110 = 110;
   static const double dimens_120 = 120;
-
   static const double dimens_130 = 130;
   static const double dimens_150 = 150;
-
   static const double dimens_137 = 137;
   static const double dimens_170 = 170;
   static const double dimens_200 = 200;
   static const double dimens_210 = 210;
-
+  static const double dimens_220 = 220;
   static const double dimens_230 = 230;
   static const double dimens_240 = 240;
+  static const double dimens_260 = 260;
 
   static const double dimens_280 = 280;
-
   static const double dimens_300 = 300;
-
   static const double dimens_logo_height = 227;
   static const double dimens_logo_width = 156;
   static const double dimens_bottom_bar = 87;
