@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 
 import '../config/app.font.dart';
 import '../config/app_color.dart';
@@ -65,7 +66,14 @@ class Buttom_2 extends StatelessWidget {
                                     color: AppColors.black,
                                     fontWeight: FontFamily.medium),
                               ),
-                              Icon(Icons.close)
+                              InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: Icon(
+                                    Icons.close,
+                                    size: 24,
+                                  ))
                             ],
                           ),
                           Row(

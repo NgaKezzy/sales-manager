@@ -6,7 +6,6 @@ import 'package:sales_manager/screens/manager/oder/all.dart';
 import 'package:sales_manager/screens/manager/product/manage.dart';
 import 'package:sales_manager/screens/manager/oder/oder.dart';
 import 'package:sales_manager/screens/manager/create_oder/order_confirmation.dart';
-import 'package:sales_manager/screens/manager/create_oder/payment_confirmation.dart';
 import 'package:sales_manager/screens/manager/create_oder/sell.dart';
 import 'package:sales_manager/screens/manager/report/report.dart';
 import 'screens/home/home_screen.dart';
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Report(),
+      home: OrderConfirmation(),
     );
   }
 }
