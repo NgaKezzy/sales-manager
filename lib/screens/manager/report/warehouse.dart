@@ -10,7 +10,7 @@ import '../../../config/app_color.dart';
 class Warehouse extends StatelessWidget {
   Warehouse({super.key});
 
-  String check = 'product is out';
+  String check = 'warehouse value';
 
   @override
   Widget build(BuildContext context) {
