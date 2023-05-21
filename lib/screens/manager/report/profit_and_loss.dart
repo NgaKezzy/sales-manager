@@ -21,14 +21,14 @@ class ProfitAndLoss extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(5),
             width: MediaQuery.of(context).size.width,
-            height: AppDimens.dimens_70,
+            height: AppDimens.dimens_60,
             color: AppColors.white,
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Container(
                 height: AppDimens.dimens_50,
                 width: MediaQuery.of(context).size.width * 0.8,
                 decoration: BoxDecoration(
-                    color: AppColors.grey_8A8A8A.withOpacity(0.6),
+                    color: AppColors.grey_8A8A8A.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
