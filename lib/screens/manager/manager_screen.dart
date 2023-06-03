@@ -68,7 +68,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
       body: Column(
         children: [
           Container(
-            color: AppColors.grey_8A8A8A.withOpacity(0.2),
+            color: AppColors.grey_8A8A8A.withOpacity(0.1),
             height: MediaQuery.of(context).size.height - 146,
             child: SingleChildScrollView(
               child: Column(
@@ -110,7 +110,11 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        Get.to(Report());
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Report()));
                                       },
                                       child: SizedBox(
                                         child: Row(children: [
@@ -269,7 +273,10 @@ class _ManagerScreenState extends State<ManagerScreen> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    Get.to(Sell());
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Sell()));
                                   },
                                   child: ItemManager(
                                       nameManager: 'Tạo đơn',
@@ -279,7 +286,10 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Get.to(Oder());
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Oder()));
                                   },
                                   child: ItemManager(
                                       nameManager: 'Đơn hàng',
@@ -296,7 +306,10 @@ class _ManagerScreenState extends State<ManagerScreen> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    Get.to(Menage());
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Menage()));
                                   },
                                   child: ItemManager(
                                       nameManager: 'Sản phầm',
@@ -305,7 +318,10 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Get.to(Report());
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Report()));
                                   },
                                   child: ItemManager(
                                     nameManager: 'Báo cáo',

@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:get/get.dart';
+import 'package:sales_manager/config/app.font.dart';
+import 'package:sales_manager/config/app_color.dart';
+import 'package:sales_manager/config/app_size.dart';
 
-import '../config/app.font.dart';
-import '../config/app_color.dart';
-import '../config/app_size.dart';
-
-class HeaderCenter extends StatelessWidget {
-  HeaderCenter({required String this.txt_header, super.key});
+class HeaderCenterNoBack extends StatelessWidget {
+  const HeaderCenterNoBack({required this.txt_header, super.key});
 
   final String txt_header;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,19 +18,8 @@ class HeaderCenter extends StatelessWidget {
       height: AppDimens.dimens_80,
       decoration: BoxDecoration(color: AppColors.white),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Container(
-                margin: EdgeInsets.only(left: 10),
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  size: 24,
-                )),
-          ),
           Container(
             margin: EdgeInsets.only(right: 10),
             child: Text(
@@ -45,9 +31,6 @@ class HeaderCenter extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            width: AppDimens.dimens_24,
-          )
         ],
       ),
     );

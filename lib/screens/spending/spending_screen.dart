@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
+import 'package:sales_manager/screens/spending/revenue.dart';
 
 import '../../config/app.font.dart';
 import '../../config/app_color.dart';
 import '../../config/app_size.dart';
+import 'expenses.dart';
 
 class SpendingScreen extends StatelessWidget {
   const SpendingScreen({super.key});
@@ -37,19 +40,67 @@ class SpendingScreen extends StatelessWidget {
         ],
       ),
       drawer: Drawer(
+        backgroundColor: AppColors.blue_028f76,
         child: ListView(children: [
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
+          SizedBox(
+            height: 130,
+            child: DrawerHeader(
+              decoration: BoxDecoration(
+                color: AppColors.blue_028f76,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        height: 80,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            color: AppColors.yellow_FAA810,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(40))),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Ngà kezzy',
+                            style: TextStyle(
+                                color: AppColors.white,
+                                fontSize: AppDimens.dimens_20,
+                                fontWeight: FontFamily.medium),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '00346846446',
+                            style: TextStyle(
+                              color: AppColors.white,
+                              fontSize: AppDimens.dimens_16,
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
-            child: Text('Drawer Header'),
           ),
-          ListTile(
-            title: Text('Item 1'),
-            onTap: () {
-              // Update the state of the app.
-              // ...
-            },
+          Container(
+            height: MediaQuery.of(context).size.height - 200,
+            color: AppColors.white,
+            child: ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
           ),
         ]),
       ),
@@ -291,7 +342,12 @@ class SpendingScreen extends StatelessWidget {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.red_FF5151),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Expenses()));
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -312,7 +368,12 @@ class SpendingScreen extends StatelessWidget {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.green_006200),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Revenue()));
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -344,58 +405,61 @@ class DayTrading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // margin: EdgeInsets.only(top: 5),
-      decoration: BoxDecoration(
-          color: AppColors.white,
-          border: Border(
-              bottom: BorderSide(
-                  width: 1, color: AppColors.grey_8A8A8A.withOpacity(0.3)))),
-      height: 50,
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      child: Row(
-        children: [
-          Container(
-            alignment: Alignment.center,
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-                color: AppColors.grey_8A8A8A,
-                borderRadius: BorderRadius.circular(5)),
-            child: Text(
-              '19',
-              style: TextStyle(fontWeight: FontFamily.medium),
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        // margin: EdgeInsets.only(top: 5),
+        decoration: BoxDecoration(
+            color: AppColors.white,
+            border: Border(
+                bottom: BorderSide(
+                    width: 1, color: AppColors.grey_8A8A8A.withOpacity(0.3)))),
+        height: 50,
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        child: Row(
+          children: [
+            Container(
+              alignment: Alignment.center,
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                  color: AppColors.grey_8A8A8A.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(5)),
+              child: Text(
+                '19',
+                style: TextStyle(fontWeight: FontFamily.medium),
+              ),
             ),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Thứ sáu',
-                style: TextStyle(fontSize: 16, fontWeight: FontFamily.medium),
-              ),
-              Text(
-                'Tháng 5/23',
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontFamily.light,
-                    color: AppColors.grey_8A8A8A),
-              ),
-            ],
-          ),
-          Expanded(child: SizedBox()),
-          Text(
-            '1.250.000',
-            style: TextStyle(
-                color: AppColors.green_55b135,
-                fontSize: 18,
-                fontWeight: FontFamily.semiBold),
-          )
-        ],
+            SizedBox(
+              width: 10,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Thứ sáu',
+                  style: TextStyle(fontSize: 16, fontWeight: FontFamily.medium),
+                ),
+                Text(
+                  'Tháng 5/23',
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontFamily.light,
+                      color: AppColors.grey_8A8A8A),
+                ),
+              ],
+            ),
+            Expanded(child: SizedBox()),
+            Text(
+              '1.250.000',
+              style: TextStyle(
+                  color: AppColors.green_55b135,
+                  fontSize: 18,
+                  fontWeight: FontFamily.semiBold),
+            )
+          ],
+        ),
       ),
     );
   }

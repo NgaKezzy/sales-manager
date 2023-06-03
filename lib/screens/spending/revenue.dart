@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:sales_manager/config/app.font.dart';
-import 'package:sales_manager/config/app_color.dart';
-import 'package:sales_manager/config/app_size.dart';
-import 'package:sales_manager/widgets/header_center.dart';
 
-class Expenses extends StatelessWidget {
-  const Expenses({super.key});
+import '../../config/app.font.dart';
+import '../../config/app_color.dart';
+import '../../config/app_size.dart';
+import '../../widgets/header_center.dart';
+
+class Revenue extends StatelessWidget {
+  const Revenue({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class Expenses extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HeaderCenter(txt_header: 'Khoản chi'),
+            HeaderCenter(txt_header: 'Khoản thu'),
             Container(
               height: 40,
               width: MediaQuery.of(context).size.width,
@@ -160,7 +161,7 @@ class Expenses extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * 0.5,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppColors.red_d31900),
+                                    backgroundColor: AppColors.green_006200),
                                 onPressed: () {},
                                 child: Text('Tạo'))),
                       ],

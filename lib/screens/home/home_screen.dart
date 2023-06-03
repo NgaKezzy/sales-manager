@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../extend/extend_screen.dart';
+import '../warehouse/warehouse_screen.dart';
 import '../manager/manager_screen.dart';
 import '../spending/spending_screen.dart';
 
@@ -18,7 +18,7 @@ int pageIndex = 0;
 List<Widget> pageList = <Widget>[
   const ManagerScreen(),
   const SpendingScreen(),
-  const ExtendScreen(),
+  const WareHouseScreen(),
 
   // const MeScreen(),
 ];
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.more_horiz),
-              label: 'Thêm',
+              label: 'Kho hàng',
             ),
           ]),
     );
