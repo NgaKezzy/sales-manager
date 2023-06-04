@@ -10,6 +10,7 @@ import 'package:sales_manager/screens/manager/product/manage.dart';
 import 'package:sales_manager/screens/manager/report/report.dart';
 
 import '../../config/app.font.dart';
+import '../../widgets/drawer_app.dart';
 import 'create_oder/sell.dart';
 import 'oder/oder.dart';
 
@@ -48,23 +49,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
           ),
         ],
       ),
-      drawer: Drawer(
-        child: ListView(children: [
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: Text('Drawer Header'),
-          ),
-          ListTile(
-            title: Text('Item 1'),
-            onTap: () {
-              // Update the state of the app.
-              // ...
-            },
-          ),
-        ]),
-      ),
+      drawer: DrawerApp(context),
       body: Column(
         children: [
           Container(

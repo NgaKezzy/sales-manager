@@ -7,6 +7,7 @@ import 'package:sales_manager/screens/spending/revenue.dart';
 import '../../config/app.font.dart';
 import '../../config/app_color.dart';
 import '../../config/app_size.dart';
+import '../../widgets/drawer_app.dart';
 import 'expenses.dart';
 
 class SpendingScreen extends StatelessWidget {
@@ -39,71 +40,7 @@ class SpendingScreen extends StatelessWidget {
           ),
         ],
       ),
-      drawer: Drawer(
-        backgroundColor: AppColors.blue_028f76,
-        child: ListView(children: [
-          SizedBox(
-            height: 130,
-            child: DrawerHeader(
-              decoration: BoxDecoration(
-                color: AppColors.blue_028f76,
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        height: 80,
-                        width: 80,
-                        decoration: BoxDecoration(
-                            color: AppColors.yellow_FAA810,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(40))),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Ngà kezzy',
-                            style: TextStyle(
-                                color: AppColors.white,
-                                fontSize: AppDimens.dimens_20,
-                                fontWeight: FontFamily.medium),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            '00346846446',
-                            style: TextStyle(
-                              color: AppColors.white,
-                              fontSize: AppDimens.dimens_16,
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height - 200,
-            color: AppColors.white,
-            child: ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-          ),
-        ]),
-      ),
+      drawer: DrawerApp(context),
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
