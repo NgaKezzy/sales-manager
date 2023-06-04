@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:sales_manager/screens/login_and_init_shop/login_screen.dart';
@@ -16,7 +17,14 @@ import 'screens/login_and_init_shop/create_shop.dart';
 import 'screens/login_and_init_shop/demand.dart';
 import 'screens/login_and_init_shop/first_product.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent, // status bar color
+    ),
+  );
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
