@@ -34,13 +34,7 @@ class CreateImportGoods extends StatelessWidget {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.green_006200),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            CreateImportGoods()));
-                              },
+                              onPressed: () {},
                               child: Text('Thanh toán'),
                             ),
                           ),

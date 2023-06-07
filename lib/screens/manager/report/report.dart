@@ -24,6 +24,7 @@ class Report extends StatelessWidget {
                 child: Column(
                   children: [
                     TabBar(
+                        physics: const NeverScrollableScrollPhysics(),
                         isScrollable: true,
                         labelColor: AppColors.green_55b135,
                         unselectedLabelColor: AppColors.black,
