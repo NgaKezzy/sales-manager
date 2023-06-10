@@ -75,6 +75,7 @@ class WareHouseScreen extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 width: MediaQuery.of(context).size.width,
+                color: AppColors.white,
                 height: 50,
                 // color: AppColors.white,
                 child: Row(

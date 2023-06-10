@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:sales_manager/config/app_color.dart';
+import 'package:sales_manager/screens/manager/product/create_product.dart';
 import 'package:sales_manager/screens/manager/product/product_manager.dart';
 import 'package:sales_manager/widgets/header_center.dart';
 
@@ -13,6 +14,16 @@ class Menage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CreateProduct(),
+              ));
+        },
+        child: Icon(Icons.add),
+      ),
       body: SingleChildScrollView(
         // physics: const BouncingScrollPhysics(),
         child: Column(

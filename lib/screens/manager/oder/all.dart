@@ -12,11 +12,7 @@ class All extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.grey_8A8A8A.withOpacity(0.2),
-      // padding: EdgeInsets.symmetric(
-      //   horizontal: 10,
-      // ),
+    return Expanded(
       child: SingleChildScrollView(
         child: Column(
           children: [

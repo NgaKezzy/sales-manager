@@ -6,8 +6,8 @@ import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
 import 'package:sales_manager/widgets/header_center.dart';
 
-class ProductDetail extends StatelessWidget {
-  const ProductDetail({super.key});
+class CreateProduct extends StatelessWidget {
+  const CreateProduct({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class ProductDetail extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  HeaderCenter(txt_header: 'Chi tiết sản phẩm'),
+                  HeaderCenter(txt_header: 'Tạo sản phẩm'),
                   Container(
                     height: AppDimens.dimens_120,
                     width: MediaQuery.of(context).size.width,

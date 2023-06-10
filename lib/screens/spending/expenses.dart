@@ -124,7 +124,7 @@ class Expenses extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     Text(
                       'Ghi chú',
@@ -133,22 +133,8 @@ class Expenses extends StatelessWidget {
                         fontWeight: FontFamily.medium,
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      height: 45,
-                      child: TextField(
-                        maxLines: 2,
-                        decoration: InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                            //<-- SEE HERE
-                            borderSide: BorderSide(
-                                width: 1, color: AppColors.green_55b135),
-                          ),
-                        ),
-                      ),
-                    ),
+                    SizedBox(height: 5),
+                    TextField(),
                     SizedBox(
                       height: 20,
                     ),

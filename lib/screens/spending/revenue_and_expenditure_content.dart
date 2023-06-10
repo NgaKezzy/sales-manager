@@ -6,6 +6,7 @@ import 'package:sales_manager/screens/spending/spending_screen.dart';
 import '../../config/app.font.dart';
 import '../../config/app_color.dart';
 import '../../config/app_size.dart';
+import '../warehouse/day_tra_ding.dart';
 
 class RevenueAndExpenditureContent extends StatelessWidget {
   const RevenueAndExpenditureContent({super.key});
