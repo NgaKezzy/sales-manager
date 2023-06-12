@@ -3,8 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/models/data_app.dart';
+import 'package:sales_manager/screens/login_and_init_shop/controller/auth_controller.dart';
+import 'package:sales_manager/screens/login_and_init_shop/login.dart';
 
 import 'package:sales_manager/screens/login_and_init_shop/login_screen.dart';
+import 'package:sales_manager/screens/login_and_init_shop/register.dart';
 import 'package:sales_manager/screens/manager/oder/all.dart';
 import 'package:sales_manager/screens/manager/create_oder/order_confirmation.dart';
 import 'package:sales_manager/screens/manager/product/manage.dart';
@@ -31,6 +34,9 @@ void main() {
       providers: [
         ChangeNotifierProvider(
           create: (_) => DataApp(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AuthController(),
         )
       ],
       child: MyApp(),
@@ -38,17 +44,29 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void didChangeDependencies() {
+    context.read<AuthController>().checkLogin();
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    AuthController authController = context.watch<AuthController>();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: authController.isLogin ? HomeScreen() : Login(),
     );
   }
 }

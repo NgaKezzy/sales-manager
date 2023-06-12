@@ -131,7 +131,7 @@ class ProductDetail extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.green_006200),
                       onPressed: () {},
-                      child: Text('Xác nhận'))))
+                      child: Text('Cập nhật'))))
         ],
       ),
     );

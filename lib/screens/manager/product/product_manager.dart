@@ -5,6 +5,8 @@ import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_size.dart';
 
 import '../../../config/app_color.dart';
+import '../../warehouse/product_details.dart';
+import '../oder/widget/order_details.dart';
 
 class ProductManager extends StatelessWidget {
   const ProductManager({super.key});
@@ -64,51 +66,57 @@ class ItemProductManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: AppDimens.dimens_10),
-      height: AppDimens.dimens_80,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          color: AppColors.white, borderRadius: BorderRadius.circular(10)),
-      padding: EdgeInsets.all(8),
-      child: Row(
-        children: [
-          Container(
-            height: AppDimens.dimens_60,
-            width: AppDimens.dimens_60,
-            decoration: BoxDecoration(
-                color: AppColors.green_006200,
-                borderRadius: BorderRadius.circular(8)),
-          ),
-          SizedBox(
-            width: AppDimens.dimens_15,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                'Quạt',
-                style: TextStyle(
-                    fontSize: AppDimens.dimens_16,
-                    fontWeight: FontFamily.medium),
-              ),
-              Text(
-                'Có thể bán : 95',
-                style: TextStyle(
-                  fontSize: AppDimens.dimens_13,
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ProductDetail()));
+      },
+      child: Container(
+        margin: EdgeInsets.only(top: AppDimens.dimens_10),
+        height: AppDimens.dimens_80,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+            color: AppColors.white, borderRadius: BorderRadius.circular(10)),
+        padding: EdgeInsets.all(8),
+        child: Row(
+          children: [
+            Container(
+              height: AppDimens.dimens_60,
+              width: AppDimens.dimens_60,
+              decoration: BoxDecoration(
+                  color: AppColors.green_006200,
+                  borderRadius: BorderRadius.circular(8)),
+            ),
+            SizedBox(
+              width: AppDimens.dimens_15,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  'Quạt',
+                  style: TextStyle(
+                      fontSize: AppDimens.dimens_16,
+                      fontWeight: FontFamily.medium),
                 ),
-              ),
-              Text(
-                '300.000',
-                style: TextStyle(
-                    fontSize: AppDimens.dimens_16,
-                    fontWeight: FontFamily.medium,
-                    color: AppColors.red_FC0000),
-              ),
-            ],
-          )
-        ],
+                Text(
+                  'Có thể bán : 95',
+                  style: TextStyle(
+                    fontSize: AppDimens.dimens_13,
+                  ),
+                ),
+                Text(
+                  '300.000',
+                  style: TextStyle(
+                      fontSize: AppDimens.dimens_16,
+                      fontWeight: FontFamily.medium,
+                      color: AppColors.red_FC0000),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
