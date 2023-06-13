@@ -57,7 +57,8 @@ class _LoginState extends State<Login> {
                       controller: authController.userNameController,
                       validator: authController.validator,
                       decoration: InputDecoration(
-                        hintText: 'User name',
+                        hintText: 'Tên đăng nhập',
+                        hintStyle: TextStyle(fontSize: 13),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 2,
@@ -96,7 +97,8 @@ class _LoginState extends State<Login> {
                       validator: authController.validator,
                       obscureText: true,
                       decoration: InputDecoration(
-                        hintText: 'Password',
+                        hintText: 'Mật khẩu',
+                        hintStyle: TextStyle(fontSize: 13),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 2,
@@ -130,12 +132,16 @@ class _LoginState extends State<Login> {
                 height: 20,
               ),
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.5,
+                height: 40,
+                width: MediaQuery.of(context).size.width * 0.6,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.green_006200),
                     onPressed: () => authController.logIn(context),
-                    child: Text('Đăng nhập')),
+                    child: Text(
+                      'Đăng nhập',
+                      style: TextStyle(fontSize: AppDimens.dimens_16),
+                    )),
               ),
               SizedBox(
                 height: 40,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
+import 'package:sales_manager/config/app_size.dart';
 import 'package:sales_manager/screens/login_and_init_shop/login.dart';
 
 import '../../config/app.font.dart';
@@ -57,9 +58,9 @@ class _RegisterState extends State<Register> {
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: TextFormField(
                       validator: authController.validator,
-                      maxLength: 24,
                       decoration: InputDecoration(
-                        hintText: 'User name',
+                        hintText: 'Tên đăng nhập',
+                        hintStyle: TextStyle(fontSize: 13),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 2,
@@ -95,9 +96,47 @@ class _RegisterState extends State<Register> {
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: TextFormField(
                       validator: authController.validator,
-                      maxLength: 8,
                       decoration: InputDecoration(
-                        hintText: 'Password',
+                        hintText: 'Mật khẩu',
+                        hintStyle: TextStyle(fontSize: 13),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: AppDimens.dimens_20,
+                  ),
+                  SizedBox(
+                    height: 70,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: TextFormField(
+                      validator: authController.validator,
+                      decoration: InputDecoration(
+                        hintText: 'Nhập lại mật khẩu',
+                        hintStyle: TextStyle(fontSize: 13),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 2,
@@ -131,7 +170,8 @@ class _RegisterState extends State<Register> {
                 height: 20,
               ),
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.5,
+                width: MediaQuery.of(context).size.width * 0.6,
+                height: AppDimens.dimens_40,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.green_006200),
@@ -144,7 +184,10 @@ class _RegisterState extends State<Register> {
                         );
                       }
                     },
-                    child: Text('Đăng ký')),
+                    child: Text(
+                      'Đăng ký',
+                      style: TextStyle(fontSize: AppDimens.dimens_16),
+                    )),
               ),
               SizedBox(
                 height: 40,

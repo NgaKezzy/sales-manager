@@ -70,6 +70,7 @@ class AuthController extends ChangeNotifier {
 
   void LogOut() async {
     _isLogin = false;
+
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     await prefs.remove(AppDomains.ACCESS_TOKEN);
