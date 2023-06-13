@@ -149,8 +149,10 @@ class _LoginState extends State<Login> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(
-                      height: 30,
+                  Container(
+                      padding: EdgeInsets.all(10),
+                      alignment: Alignment.center,
+                      height: 40,
                       child: Text(
                         "Quên mật khẩu ?",
                         style: TextStyle(
@@ -163,8 +165,11 @@ class _LoginState extends State<Login> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Register()));
                     },
-                    child: SizedBox(
-                      height: 30,
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      alignment: Alignment.center,
+                      // color: AppColors.red_FC0000,
+                      height: 40,
                       child: Text(
                         "Đăng ký",
                         style: TextStyle(

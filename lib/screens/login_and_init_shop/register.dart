@@ -10,210 +10,216 @@ import '../../config/app.font.dart';
 import '../../config/app_color.dart';
 import 'controller/auth_controller.dart';
 
-class Register extends StatefulWidget {
+class Register extends StatelessWidget {
   const Register({super.key});
 
   @override
-  State<Register> createState() => _RegisterState();
-}
-
-class _RegisterState extends State<Register> {
-  @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => RegisterController(),
-      child: Scaffold(
-        body: ContentRegister(),
-      ),
-    );
-  }
-}
+    AuthController authController = context.read<AuthController>();
 
-class ContentRegister extends StatefulWidget {
-  const ContentRegister({
-    super.key,
-  });
-
-  @override
-  State<ContentRegister> createState() => _ContentRegisterState();
-}
-
-class _ContentRegisterState extends State<ContentRegister> {
-  @override
-  Widget build(BuildContext context) {
-    RegisterController registerController = context.read<RegisterController>();
-    return SingleChildScrollView(
-      child: Form(
-        key: registerController.formKeyRegister,
-        child: Column(
-          children: [
-            SizedBox(
-              height: 50,
-            ),
-            Container(
-              width: 80,
-              height: 130,
-              child: Image.asset('assets/img/appstore.png'),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Đăng ký',
-                  style: TextStyle(
-                      color: AppColors.black,
-                      fontSize: 30,
-                      fontWeight: FontFamily.medium),
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                SizedBox(
-                  height: 40,
-                ),
-                SizedBox(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: TextFormField(
-                    controller: registerController.userName,
-                    validator: registerController.validatorRegister,
-                    decoration: InputDecoration(
-                      hintText: 'Tên đăng nhập',
-                      hintStyle: TextStyle(fontSize: 13),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 2, color: Colors.greenAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 2, color: Colors.greenAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 2, color: Colors.greenAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 2, color: Colors.greenAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: TextFormField(
-                    controller: registerController.passOne,
-                    validator: registerController.validatorRegister,
-                    decoration: InputDecoration(
-                      hintText: 'Mật khẩu',
-                      hintStyle: TextStyle(fontSize: 13),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 2, color: Colors.greenAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 2, color: Colors.greenAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 2, color: Colors.greenAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 2, color: Colors.greenAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: AppDimens.dimens_20,
-                ),
-                SizedBox(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: TextFormField(
-                    controller: registerController.PassTwo,
-                    validator: registerController.validatorRegister,
-                    decoration: InputDecoration(
-                      hintText: 'Nhập lại mật khẩu',
-                      hintStyle: TextStyle(fontSize: 13),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 2, color: Colors.greenAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 2, color: Colors.greenAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 2, color: Colors.greenAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 2, color: Colors.greenAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.6,
-              height: AppDimens.dimens_40,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.green_006200),
-                  onPressed: () => registerController.submitRegister(context),
-                  child: Text(
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Form(
+          key: authController.formKeyRegister,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 50,
+              ),
+              Container(
+                width: 80,
+                height: 130,
+                child: Image.asset('assets/img/appstore.png'),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
                     'Đăng ký',
-                    style: TextStyle(fontSize: AppDimens.dimens_16),
-                  )),
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(height: 30, child: Text("Đã có tài khoản ?")),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Login()));
-                  },
-                  child: SizedBox(
-                    height: 30,
-                    child: Text(
-                      "Đăng nhập",
-                      style: TextStyle(color: AppColors.blue_0000ff),
+                    style: TextStyle(
+                        color: AppColors.black,
+                        fontSize: 30,
+                        fontWeight: FontFamily.medium),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  SizedBox(
+                    height: 40,
+                  ),
+                  SizedBox(
+                    height: 70,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: TextFormField(
+                      controller: authController.userName,
+                      validator: authController.validator,
+                      decoration: InputDecoration(
+                        hintText: 'Tên đăng nhập',
+                        hintStyle: TextStyle(fontSize: 13),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            )
-          ],
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 70,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: TextFormField(
+                      controller: authController.passOne,
+                      validator: authController.validator,
+                      decoration: InputDecoration(
+                        hintText: 'Mật khẩu',
+                        hintStyle: TextStyle(fontSize: 13),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: AppDimens.dimens_20,
+                  ),
+                  SizedBox(
+                    height: 70,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: TextFormField(
+                      controller: authController.PassTwo,
+                      validator: authController.validator,
+                      decoration: InputDecoration(
+                        hintText: 'Nhập lại mật khẩu',
+                        hintStyle: TextStyle(fontSize: 13),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.greenAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.6,
+                height: AppDimens.dimens_40,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.green_006200),
+                    onPressed: () => authController.submitRegister(context),
+                    child: Text(
+                      'Đăng ký',
+                      style: TextStyle(fontSize: AppDimens.dimens_16),
+                    )),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(10),
+                      height: 40,
+                      child: Text(
+                        "Bạn dã có tài khoản ?",
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      )),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => Login()),
+                        ModalRoute.withName('/late'),
+                      );
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(10),
+                      height: 40,
+                      child: Text(
+                        "Đăng nhập",
+                        style: TextStyle(
+                            color: AppColors.blue_0000ff,
+                            fontSize: 16,
+                            fontWeight: FontFamily.medium),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

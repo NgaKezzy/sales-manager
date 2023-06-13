@@ -8,10 +8,17 @@ import 'package:sales_manager/network/fetch_api.dart';
 import 'package:sales_manager/screens/home/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../config/print_color.dart';
+
 class AuthController extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
+  final formKeyRegister = GlobalKey<FormState>();
+
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
+  final userName = TextEditingController();
+  final passOne = TextEditingController();
+  final PassTwo = TextEditingController();
 
   UserLogin? _userLogin;
   UserLogin? get userLogin => _userLogin;
@@ -60,8 +67,11 @@ class AuthController extends ChangeNotifier {
             UserLogin.fromJson(dataLogin['data']['dataUser']);
         _userLogin = userLogin;
         _isLogin = true;
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+          ModalRoute.withName('/first'),
+        );
       }
       if (dataLogin['status'] == 'error') {
         Fluttertoast.showToast(msg: dataLogin['message']);
@@ -80,5 +90,28 @@ class AuthController extends ChangeNotifier {
     await prefs.remove(AppDomains.REFRESH_TOKEN);
 
     notifyListeners();
+  }
+
+  void submitRegister(BuildContext context) async {
+    if (formKey.currentState!.validate()) {
+      if (passOne.text != PassTwo.text) {
+        log(passOne.text);
+        log(PassTwo.text);
+        Fluttertoast.showToast(msg: 'Mật khẩu không trùng nhau');
+        printRed('Mật khẩu không khớp nhau');
+      }
+    }
+    if (passOne.text == PassTwo.text) {
+      printRed('hi');
+      final userNameRegister = userName.text.trim();
+      final passwordRegister = passOne.text;
+
+      final dataRegister =
+          await NetworkApi.registerApi(userNameRegister, passwordRegister);
+      log(dataRegister.toString());
+      if (dataRegister['status'] == 'success') {
+        Fluttertoast.showToast(msg: dataRegister['message']);
+      }
+    }
   }
 }
