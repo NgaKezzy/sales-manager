@@ -63,6 +63,9 @@ class AuthController extends ChangeNotifier {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => HomeScreen()));
       }
+      if (dataLogin['status'] == 'error') {
+        Fluttertoast.showToast(msg: dataLogin['message']);
+      }
     }
 
     notifyListeners();

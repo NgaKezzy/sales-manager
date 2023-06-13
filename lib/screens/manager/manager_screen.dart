@@ -28,26 +28,26 @@ class _ManagerScreenState extends State<ManagerScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.green_006200,
         title: Text('Tên shop'),
-        actions: [
-          Row(
-            children: const [
-              Icon(
-                Icons.qr_code_scanner,
-                color: Colors.white,
-              ),
-              SizedBox(
-                width: AppDimens.dimens_20,
-              ),
-              Icon(
-                Icons.messenger,
-                color: Colors.white,
-              ),
-              SizedBox(
-                width: 10,
-              )
-            ],
-          ),
-        ],
+        // actions: [
+        //   Row(
+        //     children: const [
+        //       Icon(
+        //         Icons.qr_code_scanner,
+        //         color: Colors.white,
+        //       ),
+        //       SizedBox(
+        //         width: AppDimens.dimens_20,
+        //       ),
+        //       Icon(
+        //         Icons.messenger,
+        //         color: Colors.white,
+        //       ),
+        //       SizedBox(
+        //         width: 10,
+        //       )
+        //     ],
+        //   ),
+        // ],
       ),
       drawer: DrawerApp(context),
       body: SingleChildScrollView(

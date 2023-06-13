@@ -33,26 +33,26 @@ class _SpendingScreenState extends State<SpendingScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.green_006200,
         title: Text('Tên shop'),
-        actions: [
-          Row(
-            children: const [
-              Icon(
-                Icons.qr_code_scanner,
-                color: Colors.white,
-              ),
-              SizedBox(
-                width: AppDimens.dimens_20,
-              ),
-              Icon(
-                Icons.messenger,
-                color: Colors.white,
-              ),
-              SizedBox(
-                width: 10,
-              )
-            ],
-          ),
-        ],
+        // actions: [
+        // Row(
+        //   children: const [
+        //     Icon(
+        //       Icons.qr_code_scanner,
+        //       color: Colors.white,
+        //     ),
+        //     SizedBox(
+        //       width: AppDimens.dimens_20,
+        //     ),
+        //     Icon(
+        //       Icons.messenger,
+        //       color: Colors.white,
+        //     ),
+        //     SizedBox(
+        //       width: 10,
+        //     )
+        //   ],
+        // ),
+        // ],
       ),
       drawer: DrawerApp(context),
       body: Stack(
@@ -197,9 +197,12 @@ class _SpendingScreenState extends State<SpendingScreen> {
           Positioned(
             child: Container(
               color: AppColors.white,
-              padding: EdgeInsets.only(left: 10, right: 10, bottom: 20),
+              padding: EdgeInsets.only(
+                left: 10,
+                right: 10,
+              ),
               width: MediaQuery.of(context).size.width,
-              height: 60,
+              height: 50,
               // color: AppColors.white,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -149,7 +149,15 @@ class _LoginState extends State<Login> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(height: 30, child: Text("Bạn chưa có tài khoản ?")),
+                  SizedBox(
+                      height: 30,
+                      child: Text(
+                        "Quên mật khẩu ?",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: AppColors.red_d31900,
+                            fontWeight: FontFamily.medium),
+                      )),
                   InkWell(
                     onTap: () {
                       Navigator.push(context,
@@ -159,7 +167,10 @@ class _LoginState extends State<Login> {
                       height: 30,
                       child: Text(
                         "Đăng ký",
-                        style: TextStyle(color: AppColors.blue_0000ff),
+                        style: TextStyle(
+                            color: AppColors.blue_0000ff,
+                            fontSize: 16,
+                            fontWeight: FontFamily.medium),
                       ),
                     ),
                   ),

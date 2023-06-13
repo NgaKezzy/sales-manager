@@ -21,10 +21,31 @@ class NetworkApi {
         var data = jsonDecode(response.body);
         result = data;
       }
+
       return result;
     } catch (e) {
       print(e);
       return result;
+    }
+  }
+
+  static Future<Map> registerApi(String userName, String password) async {
+    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.AUTH_REGISTER);
+    Map resultRegister = {};
+    try {
+      final response = await http.post(uri, body: {
+        "username": userName,
+        "password": password,
+      });
+
+      if (response.statusCode == 201) {
+        var data = jsonDecode(response.body);
+        resultRegister = data;
+      }
+      return resultRegister;
+    } catch (e) {
+      print('Đây là lỗi : $e');
+      return resultRegister;
     }
   }
 }
