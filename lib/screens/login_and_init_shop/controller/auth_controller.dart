@@ -88,6 +88,7 @@ class AuthController extends ChangeNotifier {
 
     await prefs.remove(AppDomains.ACCESS_TOKEN);
     await prefs.remove(AppDomains.REFRESH_TOKEN);
+    Fluttertoast.showToast(msg: 'Đăng xuất thành công !');
 
     notifyListeners();
   }
