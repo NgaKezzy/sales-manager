@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:sales_manager/config/app_api_path.dart';
+import 'package:sales_manager/config/app_domain.dart';
 import 'package:sales_manager/models/user_login.dart';
 import 'package:sales_manager/network/fetch_api.dart';
 import 'package:sales_manager/screens/home/home_screen.dart';
@@ -44,9 +44,12 @@ class AuthController extends ChangeNotifier {
       final String password = passwordController.text;
 
       final dataLogin = await NetworkApi.logInApi(userName, password);
+
       log(dataLogin.toString());
+
       if (dataLogin['status'] == 'success') {
         Fluttertoast.showToast(msg: dataLogin['message']);
+
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString(
             AppDomains.ACCESS_TOKEN, dataLogin['data']['accessToken']);
@@ -61,6 +64,16 @@ class AuthController extends ChangeNotifier {
             context, MaterialPageRoute(builder: (context) => HomeScreen()));
       }
     }
+
+    notifyListeners();
+  }
+
+  void LogOut() async {
+    _isLogin = false;
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    await prefs.remove(AppDomains.ACCESS_TOKEN);
+    await prefs.remove(AppDomains.REFRESH_TOKEN);
 
     notifyListeners();
   }

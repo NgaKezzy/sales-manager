@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sales_manager/config/print_color.dart';
+import 'package:sales_manager/screens/login_and_init_shop/controller/auth_controller.dart';
 
 import '../config/app.font.dart';
 import '../config/app_color.dart';
 import '../config/app_size.dart';
 
 Drawer DrawerApp(BuildContext context) {
+  AuthController authController = context.read<AuthController>();
+
   return Drawer(
     backgroundColor: AppColors.blue_028f76,
     child: ListView(children: [
@@ -81,13 +86,44 @@ Drawer DrawerApp(BuildContext context) {
                 icon: Icons.contact_support,
                 txt: 'Hỗ trợ',
               ),
-              ItemDrawer(
-                icon: Icons.logout,
-                txt: 'Đăng xuất',
+              InkWell(
+                onTap: () {
+                  authController.LogOut();
+                  // () => _showAlertDialog(context);
+                  printRed('Bật xác thực đang xuất');
+                },
+                child: ItemDrawer(
+                  icon: Icons.logout,
+                  txt: 'Đăng xuất',
+                ),
               ),
             ],
           )),
     ]),
+  );
+}
+
+Future<void> _showAlertDialog(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Đăng xuất tài khoản ?'),
+        content: Text('Bạn có chắc rằng muốn đăng xuất tài khoản ?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('Hủy'),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Text('Đăng xuất'),
+          ),
+        ],
+      );
+    },
   );
 }
 

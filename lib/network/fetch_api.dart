@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../config/app_api_path.dart';
+import '../config/app_domain.dart';
 import '../models/user_login.dart';
 
 class NetworkApi {
