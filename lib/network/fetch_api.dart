@@ -21,6 +21,10 @@ class NetworkApi {
         var data = jsonDecode(response.body);
         result = data;
       }
+      if (response.statusCode == 401) {
+        var data = jsonDecode(response.body);
+        result = data;
+      }
 
       return result;
     } catch (e) {
@@ -39,6 +43,10 @@ class NetworkApi {
       });
 
       if (response.statusCode == 201) {
+        var data = jsonDecode(response.body);
+        resultRegister = data;
+      }
+      if (response.statusCode == 409) {
         var data = jsonDecode(response.body);
         resultRegister = data;
       }

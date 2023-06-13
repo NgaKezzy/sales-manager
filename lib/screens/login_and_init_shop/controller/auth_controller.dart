@@ -93,23 +93,26 @@ class AuthController extends ChangeNotifier {
   }
 
   void submitRegister(BuildContext context) async {
+    final userNameRegister = userName.text.trim();
+    final passwordRegister = passOne.text;
+    final passwordTwoRegister = PassTwo.text;
     if (formKey.currentState!.validate()) {
-      if (passOne.text != PassTwo.text) {
-        log(passOne.text);
-        log(PassTwo.text);
-        Fluttertoast.showToast(msg: 'Mật khẩu không trùng nhau');
+      if (passwordRegister != passwordTwoRegister) {
         printRed('Mật khẩu không khớp nhau');
+
+        Fluttertoast.showToast(msg: 'Mật khẩu không trùng nhau');
       }
     }
     if (passOne.text == PassTwo.text) {
-      printRed('hi');
-      final userNameRegister = userName.text.trim();
-      final passwordRegister = passOne.text;
+      printYellow('Mật khẩu giống nhau');
 
       final dataRegister =
           await NetworkApi.registerApi(userNameRegister, passwordRegister);
       log(dataRegister.toString());
       if (dataRegister['status'] == 'success') {
+        Fluttertoast.showToast(msg: dataRegister['message']);
+      }
+      if (dataRegister['status'] == 'error') {
         Fluttertoast.showToast(msg: dataRegister['message']);
       }
     }

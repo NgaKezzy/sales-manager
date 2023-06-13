@@ -3,7 +3,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app_size.dart';
-import 'package:sales_manager/screens/login_and_init_shop/controller/register_controller.dart';
 import 'package:sales_manager/screens/login_and_init_shop/login.dart';
 
 import '../../config/app.font.dart';
