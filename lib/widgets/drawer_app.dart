@@ -13,14 +13,15 @@ Drawer DrawerApp(BuildContext context) {
 
   return Drawer(
     backgroundColor: AppColors.blue_028f76,
-    child: ListView(children: [
-      SizedBox(
-        height: 130,
+    child: Column(children: [
+      Container(
+        height: 180,
         child: DrawerHeader(
           decoration: BoxDecoration(
             color: AppColors.blue_028f76,
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Row(
                 children: [
@@ -63,7 +64,7 @@ Drawer DrawerApp(BuildContext context) {
         ),
       ),
       Container(
-          height: MediaQuery.of(context).size.height - 200,
+          height: MediaQuery.of(context).size.height - 236,
           color: AppColors.white,
           child: Column(
             children: [
