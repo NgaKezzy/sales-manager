@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
@@ -25,6 +26,23 @@ class InofmationShop extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      CircleAvatar(
+                          minRadius: AppDimens.dimens_40,
+                          backgroundColor: AppColors.violet_ac4147),
+                      SvgPicture.asset(
+                        "assets/svg/upload.svg",
+                        color: AppColors.green_55b135,
+                        height: 30,
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: AppDimens.dimens_10,
+                  ),
                   Text(
                     'Tên cửa hàng',
                     style: TextStyle(
