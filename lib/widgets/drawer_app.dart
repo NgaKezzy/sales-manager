@@ -97,8 +97,7 @@ Drawer DrawerApp(BuildContext context) {
               ),
               InkWell(
                 onTap: () {
-                  authController.LogOut();
-                  // () => _showAlertDialog(context);
+                  _showAlertDialog(context);
                   printRed('Bật xác thực đang xuất');
                 },
                 child: ItemDrawer(
@@ -113,6 +112,7 @@ Drawer DrawerApp(BuildContext context) {
 }
 
 Future<void> _showAlertDialog(BuildContext context) {
+  AuthController authController = context.read<AuthController>();
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
@@ -127,7 +127,10 @@ Future<void> _showAlertDialog(BuildContext context) {
             child: Text('Hủy'),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              authController.LogOut();
+              Navigator.pop(context);
+            },
             child: Text('Đăng xuất'),
           ),
         ],
