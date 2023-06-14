@@ -6,6 +6,7 @@ import 'package:sales_manager/screens/login_and_init_shop/controller/auth_contro
 import '../config/app.font.dart';
 import '../config/app_color.dart';
 import '../config/app_size.dart';
+import '../screens/login_and_init_shop/infomation_shop.dart';
 
 Drawer DrawerApp(BuildContext context) {
   AuthController authController = context.read<AuthController>();
@@ -66,9 +67,17 @@ Drawer DrawerApp(BuildContext context) {
           color: AppColors.white,
           child: Column(
             children: [
-              ItemDrawer(
-                icon: Icons.manage_accounts,
-                txt: 'Cài đặt cửa hàng',
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => InofmationShop()));
+                },
+                child: ItemDrawer(
+                  icon: Icons.manage_accounts,
+                  txt: 'Cài đặt cửa hàng',
+                ),
               ),
               ItemDrawer(
                 icon: Icons.redeem,
