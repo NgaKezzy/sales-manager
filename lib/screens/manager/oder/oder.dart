@@ -30,6 +30,7 @@ class _OderState extends State<Oder> {
               padding: EdgeInsets.symmetric(horizontal: 20),
               height: 40,
               child: const TextField(
+                  textCapitalization: TextCapitalization.sentences,
                   cursorColor: AppColors.green_55b135,
                   textAlignVertical: TextAlignVertical(y: 0.9),
                   decoration: InputDecoration(

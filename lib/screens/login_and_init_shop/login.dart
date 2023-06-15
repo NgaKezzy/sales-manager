@@ -55,6 +55,7 @@ class _LoginState extends State<Login> {
                     height: AppDimens.dimens_70,
                     width: MediaQuery.of(context).size.width * 0.85,
                     child: TextFormField(
+                      autofocus: true,
                       controller: authController.userNameController,
                       validator: authController.validator,
                       decoration: InputDecoration(

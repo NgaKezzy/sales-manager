@@ -51,6 +51,7 @@ class InofmationShop extends StatelessWidget {
                         color: AppColors.grey_808080),
                   ),
                   TextField(
+                    textCapitalization: TextCapitalization.sentences,
                     decoration: InputDecoration(
                       isDense: true,
                     ),
@@ -84,6 +85,7 @@ class InofmationShop extends StatelessWidget {
                         color: AppColors.grey_808080),
                   ),
                   TextField(
+                    textCapitalization: TextCapitalization.sentences,
                     decoration: InputDecoration(
                         isDense: true,
                         hintText: 'Nhập địa chỉ',
@@ -102,6 +104,7 @@ class InofmationShop extends StatelessWidget {
                         color: AppColors.grey_808080),
                   ),
                   TextField(
+                    textCapitalization: TextCapitalization.sentences,
                     decoration: InputDecoration(
                         isDense: true,
                         hintText: 'Ví dụ: Chuyên bán các mặt hàng gia dụng',

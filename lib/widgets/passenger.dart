@@ -32,6 +32,7 @@ class Passenger extends StatelessWidget {
                   width: MediaQuery.of(context).size.width - 40,
                   height: AppDimens.dimens_40,
                   child: TextField(
+                    textCapitalization: TextCapitalization.sentences,
                     decoration: InputDecoration(
                       hintText: 'Chọn khách hàng',
                       suffixIcon: Icon(Icons.account_circle),

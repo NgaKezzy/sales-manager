@@ -93,6 +93,8 @@ class FirstProduct extends StatelessWidget {
                             const SizedBox(
                               height: AppDimens.dimens_40,
                               child: TextField(
+                                textCapitalization:
+                                    TextCapitalization.sentences,
                                 decoration: InputDecoration(
                                   hintText: 'Ví dụ : Mì Hảo Hảo',
                                 ),

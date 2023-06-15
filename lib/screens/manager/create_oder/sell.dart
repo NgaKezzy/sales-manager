@@ -32,6 +32,7 @@ class Sell extends StatelessWidget {
                   height: AppDimens.dimens_45,
                   width: MediaQuery.of(context).size.width,
                   child: const TextField(
+                    textCapitalization: TextCapitalization.sentences,
                     textAlignVertical: TextAlignVertical(y: 0.9),
                     obscureText: false,
                     decoration: InputDecoration(

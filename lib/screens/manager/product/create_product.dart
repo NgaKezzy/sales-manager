@@ -47,7 +47,11 @@ class CreateProduct extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontFamily.medium),
                         ),
-                        SizedBox(height: 30, child: TextField()),
+                        SizedBox(
+                            height: 30,
+                            child: TextField(
+                              textCapitalization: TextCapitalization.sentences,
+                            )),
                         SizedBox(
                           height: 20,
                         ),
@@ -64,7 +68,11 @@ class CreateProduct extends StatelessWidget {
                                       fontWeight: FontFamily.medium,
                                       color: AppColors.grey_8A8A8A),
                                 ),
-                                SizedBox(height: 30, child: TextField()),
+                                SizedBox(
+                                    height: 30,
+                                    child: TextField(
+                                      keyboardType: TextInputType.number,
+                                    )),
                               ]),
                             ),
                             Container(
@@ -77,7 +85,11 @@ class CreateProduct extends StatelessWidget {
                                       fontWeight: FontFamily.medium,
                                       color: AppColors.grey_8A8A8A),
                                 ),
-                                SizedBox(height: 30, child: TextField()),
+                                SizedBox(
+                                    height: 30,
+                                    child: TextField(
+                                      keyboardType: TextInputType.number,
+                                    )),
                               ]),
                             ),
                           ],
@@ -98,7 +110,11 @@ class CreateProduct extends StatelessWidget {
                                       fontWeight: FontFamily.medium,
                                       color: AppColors.grey_8A8A8A),
                                 ),
-                                SizedBox(height: 30, child: TextField()),
+                                SizedBox(
+                                    height: 30,
+                                    child: TextField(
+                                      keyboardType: TextInputType.number,
+                                    )),
                               ]),
                             ),
                             Container(
@@ -111,7 +127,12 @@ class CreateProduct extends StatelessWidget {
                                       fontWeight: FontFamily.medium,
                                       color: AppColors.grey_8A8A8A),
                                 ),
-                                SizedBox(height: 30, child: TextField()),
+                                SizedBox(
+                                    height: 30,
+                                    child: TextField(
+                                      textCapitalization:
+                                          TextCapitalization.sentences,
+                                    )),
                               ]),
                             ),
                           ],

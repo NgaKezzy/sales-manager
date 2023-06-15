@@ -51,6 +51,7 @@ class Register extends StatelessWidget {
                     height: 70,
                     width: MediaQuery.of(context).size.width * 0.85,
                     child: TextFormField(
+                      autofocus: true,
                       controller: authController.userName,
                       validator: authController.validator,
                       decoration: InputDecoration(

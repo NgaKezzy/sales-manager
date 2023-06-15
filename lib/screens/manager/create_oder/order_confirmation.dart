@@ -277,6 +277,7 @@ class OrderConfirmation extends StatelessWidget {
                         child: SizedBox(
                           height: AppDimens.dimens_40,
                           child: TextField(
+                            textCapitalization: TextCapitalization.sentences,
                             decoration: InputDecoration(
                               hintText: 'Ghi chú khách hàng',
                             ),
