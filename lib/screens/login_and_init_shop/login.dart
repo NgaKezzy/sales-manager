@@ -46,85 +46,89 @@ class _LoginState extends State<Login> {
                 ],
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
                     height: 40,
                   ),
                   SizedBox(
                     height: AppDimens.dimens_70,
-                    width: MediaQuery.of(context).size.width * 0.8,
+                    width: MediaQuery.of(context).size.width * 0.85,
                     child: TextFormField(
                       controller: authController.userNameController,
                       validator: authController.validator,
                       decoration: InputDecoration(
+                        isDense: true,
                         hintText: 'Tên đăng nhập',
                         hintStyle: TextStyle(fontSize: 13),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1,
+                              color: AppColors.grey_808080
+                                  .withOpacity(0.6)), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1,
+                              color: AppColors.grey_808080), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1,
+                              color: AppColors.red_FF5151), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1, color: AppColors.black), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
                     height: AppDimens.dimens_70,
-                    width: MediaQuery.of(context).size.width * 0.8,
+                    width: MediaQuery.of(context).size.width * 0.85,
                     child: TextFormField(
                       controller: authController.passwordController,
                       validator: authController.validator,
                       obscureText: true,
                       decoration: InputDecoration(
+                        isDense: true,
                         hintText: 'Mật khẩu',
                         hintStyle: TextStyle(fontSize: 13),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1,
+                              color: AppColors.grey_808080
+                                  .withOpacity(0.6)), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1,
+                              color: AppColors.grey_808080), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1,
+                              color: AppColors.red_FF5151), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1, color: AppColors.black), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
                     ),
+                  ),
+                  Text(
+                    'Quên mật khẩu ?',
+                    style: TextStyle(fontSize: AppDimens.dimens_16),
                   ),
                 ],
               ),
@@ -132,8 +136,8 @@ class _LoginState extends State<Login> {
                 height: 20,
               ),
               SizedBox(
-                height: 40,
-                width: MediaQuery.of(context).size.width * 0.6,
+                height: AppDimens.dimens_45,
+                width: MediaQuery.of(context).size.width * 0.85,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.green_006200),
@@ -154,16 +158,17 @@ class _LoginState extends State<Login> {
                       alignment: Alignment.center,
                       height: 40,
                       child: Text(
-                        "Quên mật khẩu ?",
+                        "Bạn chưa có tài khoản ?",
                         style: TextStyle(
-                            fontSize: 16,
-                            color: AppColors.red_d31900,
-                            fontWeight: FontFamily.medium),
+                          fontSize: 16,
+                        ),
                       )),
                   InkWell(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Register()));
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => Register()),
+                          ModalRoute.withName('/firs'));
                     },
                     child: Container(
                       padding: EdgeInsets.all(10),

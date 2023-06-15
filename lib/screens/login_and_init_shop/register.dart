@@ -49,114 +49,111 @@ class Register extends StatelessWidget {
                   ),
                   SizedBox(
                     height: 70,
-                    width: MediaQuery.of(context).size.width * 0.8,
+                    width: MediaQuery.of(context).size.width * 0.85,
                     child: TextFormField(
                       controller: authController.userName,
                       validator: authController.validator,
                       decoration: InputDecoration(
+                        isDense: true,
                         hintText: 'Tên đăng nhập',
                         hintStyle: TextStyle(fontSize: 13),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1,
+                              color: AppColors.grey_808080
+                                  .withOpacity(0.6)), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1,
+                              color: AppColors.grey_808080), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 1,
+                              color: AppColors.red_FF5151), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1, color: AppColors.black), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
                     height: 70,
-                    width: MediaQuery.of(context).size.width * 0.8,
+                    width: MediaQuery.of(context).size.width * 0.85,
                     child: TextFormField(
                       controller: authController.passOne,
                       validator: authController.validator,
                       decoration: InputDecoration(
+                        isDense: true,
                         hintText: 'Mật khẩu',
                         hintStyle: TextStyle(fontSize: 13),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1,
+                              color: AppColors.grey_808080
+                                  .withOpacity(0.6)), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1,
+                              color: AppColors.grey_808080), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1,
+                              color: AppColors.red_FF5151), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1, color: AppColors.black), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: AppDimens.dimens_20,
-                  ),
-                  SizedBox(
                     height: 70,
-                    width: MediaQuery.of(context).size.width * 0.8,
+                    width: MediaQuery.of(context).size.width * 0.85,
                     child: TextFormField(
                       controller: authController.PassTwo,
                       validator: authController.validator,
                       decoration: InputDecoration(
+                        isDense: true,
                         hintText: 'Nhập lại mật khẩu',
                         hintStyle: TextStyle(fontSize: 13),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1,
+                              color: AppColors.grey_808080
+                                  .withOpacity(0.6)), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1,
+                              color: AppColors.grey_808080), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1,
+                              color: AppColors.red_FF5151), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.greenAccent), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
+                              width: 1, color: AppColors.black), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
                     ),
@@ -167,8 +164,8 @@ class Register extends StatelessWidget {
                 height: 20,
               ),
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.6,
-                height: AppDimens.dimens_40,
+                width: MediaQuery.of(context).size.width * 0.85,
+                height: AppDimens.dimens_45,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.green_006200),

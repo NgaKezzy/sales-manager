@@ -97,7 +97,8 @@ class AuthController extends ChangeNotifier {
     final userNameRegister = userName.text.trim();
     final passwordRegister = passOne.text;
     final passwordTwoRegister = PassTwo.text;
-    if (formKey.currentState!.validate()) {
+
+    if (formKeyRegister.currentState!.validate()) {
       if (passwordRegister != passwordTwoRegister) {
         printRed('Mật khẩu không khớp nhau');
 
