@@ -96,6 +96,7 @@ class _LoginState extends State<Login> {
                       controller: authController.passwordController,
                       validator: authController.validator,
                       obscureText: true,
+                      autofocus: true,
                       decoration: InputDecoration(
                         isDense: true,
                         hintText: 'Mật khẩu',

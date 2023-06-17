@@ -37,7 +37,7 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (_) => AuthController(),
-        )
+        ),
       ],
       child: MyApp(),
     ),
@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: authController.isLogin ? HomeScreen() : Login(),
     );

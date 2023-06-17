@@ -238,7 +238,7 @@ class Buttom_2 extends StatelessWidget {
                     );
                   });
             },
-            style: ElevatedButton.styleFrom(primary: AppColors.green_55b135),
+            style: ElevatedButton.styleFrom(primary: AppColors.green_006200),
             child: Text(txt_rightt),
           ),
         ),
