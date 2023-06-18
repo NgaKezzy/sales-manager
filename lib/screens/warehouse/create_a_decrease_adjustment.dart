@@ -44,7 +44,7 @@ class CreateADecreaseAdjustment extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                padding: EdgeInsets.only(top: 10),
+                                padding: EdgeInsets.only(top: 10, left: 10),
                                 width: MediaQuery.of(context).size.width,
                                 color: AppColors.white,
                                 child: Text(

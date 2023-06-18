@@ -8,6 +8,7 @@ import 'package:sales_manager/screens/manager/oder/returns.dart';
 
 import '../../../config/app_color.dart';
 import '../../../widgets/header_center.dart';
+import '../create_oder/sell.dart';
 
 class Oder extends StatefulWidget {
   const Oder({super.key});
@@ -20,6 +21,13 @@ class _OderState extends State<Oder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Sell()));
+        },
+        child: Icon(Icons.add),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

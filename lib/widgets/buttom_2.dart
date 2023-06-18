@@ -70,9 +70,14 @@ class Buttom_2 extends StatelessWidget {
                                   onTap: () {
                                     Get.back();
                                   },
-                                  child: Icon(
-                                    Icons.close,
-                                    size: 24,
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Icon(
+                                      Icons.close,
+                                      size: 24,
+                                    ),
                                   ))
                             ],
                           ),

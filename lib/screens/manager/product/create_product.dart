@@ -12,15 +12,14 @@ class CreateProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.bottomCenter,
+      body: Column(
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height - 20,
+          HeaderCenter(txt_header: 'Tạo sản phẩm'),
+          Expanded(
             child: SingleChildScrollView(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  HeaderCenter(txt_header: 'Tạo sản phẩm'),
                   Container(
                     height: AppDimens.dimens_120,
                     width: MediaQuery.of(context).size.width,
@@ -53,7 +52,7 @@ class CreateProduct extends StatelessWidget {
                               textCapitalization: TextCapitalization.sentences,
                             )),
                         SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,6 +70,7 @@ class CreateProduct extends StatelessWidget {
                                 SizedBox(
                                     height: 30,
                                     child: TextField(
+                                      textAlign: TextAlign.center,
                                       keyboardType: TextInputType.number,
                                     )),
                               ]),
@@ -88,6 +88,7 @@ class CreateProduct extends StatelessWidget {
                                 SizedBox(
                                     height: 30,
                                     child: TextField(
+                                      textAlign: TextAlign.center,
                                       keyboardType: TextInputType.number,
                                     )),
                               ]),
@@ -104,7 +105,7 @@ class CreateProduct extends StatelessWidget {
                               width: MediaQuery.of(context).size.width * 0.4,
                               child: Column(children: [
                                 Text(
-                                  'Tồn kho',
+                                  'Số lượng',
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontFamily.medium,
@@ -113,6 +114,7 @@ class CreateProduct extends StatelessWidget {
                                 SizedBox(
                                     height: 30,
                                     child: TextField(
+                                      textAlign: TextAlign.center,
                                       keyboardType: TextInputType.number,
                                     )),
                               ]),
@@ -130,13 +132,28 @@ class CreateProduct extends StatelessWidget {
                                 SizedBox(
                                     height: 30,
                                     child: TextField(
-                                      textCapitalization:
-                                          TextCapitalization.sentences,
+                                      textAlign: TextAlign.center,
                                     )),
                               ]),
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: AppDimens.dimens_30,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.5,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            AppColors.green_006200),
+                                    onPressed: () {},
+                                    child: Text('Xác nhận'))),
+                          ],
+                        )
                       ],
                     ),
                   )
@@ -144,15 +161,6 @@ class CreateProduct extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-              child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: 50,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.green_006200),
-                      onPressed: () {},
-                      child: Text('Xác nhận'))))
         ],
       ),
     );

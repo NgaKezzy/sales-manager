@@ -13,55 +13,64 @@ class Report extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            HeaderCenter(txt_header: 'Báo cáo'),
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: DefaultTabController(
-                length: 3,
-                child: Column(
-                  children: [
-                    TabBar(
-                        physics: const NeverScrollableScrollPhysics(),
-                        isScrollable: true,
-                        labelColor: AppColors.green_55b135,
-                        unselectedLabelColor: AppColors.black,
-                        indicatorColor: AppColors.green_55b135,
-                        tabs: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.24,
-                            child: Tab(
-                              text: 'Lãi lỗ',
-                            ),
+      body: Column(
+        children: [
+          HeaderCenter(txt_header: 'Báo cáo'),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    child: DefaultTabController(
+                      length: 3,
+                      child: Column(
+                        children: [
+                          TabBar(
+                              physics: const NeverScrollableScrollPhysics(),
+                              isScrollable: true,
+                              labelColor: AppColors.green_55b135,
+                              unselectedLabelColor: AppColors.black,
+                              indicatorColor: AppColors.green_55b135,
+                              tabs: [
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.24,
+                                  child: Tab(
+                                    text: 'Lãi lỗ',
+                                  ),
+                                ),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.24,
+                                  child: Tab(
+                                    text: 'Kho hàng',
+                                  ),
+                                ),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.24,
+                                  child: Tab(
+                                    text: 'Thu chi',
+                                  ),
+                                ),
+                              ]),
+                          Expanded(
+                            child: TabBarView(children: [
+                              ProfitAndLoss(),
+                              Warehouse(),
+                              RevenueAndExpenditure(),
+                            ]),
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.24,
-                            child: Tab(
-                              text: 'Kho hàng',
-                            ),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.24,
-                            child: Tab(
-                              text: 'Thu chi',
-                            ),
-                          ),
-                        ]),
-                    Expanded(
-                      child: TabBarView(children: [
-                        ProfitAndLoss(),
-                        Warehouse(),
-                        RevenueAndExpenditure(),
-                      ]),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
+                  )
+                ],
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }

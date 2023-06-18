@@ -25,15 +25,15 @@ class _WarehouseState extends State<Warehouse> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => WarehouseReportController(),
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: AppDimens.dimens_10,
-          vertical: AppDimens.dimens_10,
-        ),
-        color: AppColors.grey_8A8A8A.withOpacity(0.2),
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: SingleChildScrollView(
+      child: Expanded(
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: AppDimens.dimens_10,
+            vertical: AppDimens.dimens_10,
+          ),
+          color: AppColors.grey_8A8A8A.withOpacity(0.2),
+          // height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
               HeaderWarehouseReport(),
@@ -41,10 +41,10 @@ class _WarehouseState extends State<Warehouse> {
                 height: 10,
               ),
               ContentWarehouseReport(),
-              SizedBox(
-                // để cuộn hết đc trang
-                height: 80,
-              )
+              // SizedBox(
+              //   // để cuộn hết đc trang
+              //   height: 80,
+              // )
             ],
           ),
         ),
@@ -60,186 +60,190 @@ class HeaderWarehouseReport extends StatelessWidget {
   Widget build(BuildContext context) {
     WarehouseReportController warehouseReportController =
         context.read<WarehouseReportController>();
-    return Container(
-      padding: EdgeInsets.all(10),
-      height: AppDimens.dimens_260,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(10),
-        // boxShadow: [
-        //   BoxShadow(
-        //       color: AppColors.grey_8A8A8A,
-        //       offset: Offset(0, 2),
-        //       blurRadius: 2)
-        // ]
-      ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Expanded(
+      child: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(10),
+          height: AppDimens.dimens_260,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(10),
+            // boxShadow: [
+            //   BoxShadow(
+            //       color: AppColors.grey_8A8A8A,
+            //       offset: Offset(0, 2),
+            //       blurRadius: 2)
+            // ]
+          ),
+          child: Column(
             children: [
-              InkWell(
-                onTap: () {
-                  warehouseReportController.setCheck('warehouse value');
-                },
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  height: AppDimens.dimens_100,
-                  width: MediaQuery.of(context).size.width * 0.43,
-                  decoration: BoxDecoration(
-                    color: AppColors.grey_8A8A8A.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset('assets/svg/money.svg',
-                          height: 25, color: AppColors.green_55b135),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            '100.000.000',
-                            style: TextStyle(
-                                fontSize: AppDimens.dimens_18,
-                                fontWeight: FontFamily.semiBold),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      warehouseReportController.setCheck('warehouse value');
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      height: AppDimens.dimens_100,
+                      width: MediaQuery.of(context).size.width * 0.43,
+                      decoration: BoxDecoration(
+                        color: AppColors.grey_8A8A8A.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('assets/svg/money.svg',
+                              height: 25, color: AppColors.green_55b135),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Text(
+                                '100.000.000',
+                                style: TextStyle(
+                                    fontSize: AppDimens.dimens_18,
+                                    fontWeight: FontFamily.semiBold),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                'đ',
+                                style: TextStyle(
+                                    fontSize: AppDimens.dimens_18,
+                                    fontWeight: FontFamily.semiBold),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            width: 5,
-                          ),
                           Text(
-                            'đ',
+                            'Giá trị kho',
                             style: TextStyle(
-                                fontSize: AppDimens.dimens_18,
-                                fontWeight: FontFamily.semiBold),
+                                fontSize: AppDimens.dimens_15,
+                                color: AppColors.grey_8A8A8A),
                           ),
                         ],
                       ),
-                      Text(
-                        'Giá trị kho',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_15,
-                            color: AppColors.grey_8A8A8A),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                  InkWell(
+                    onTap: () {
+                      warehouseReportController.setCheck('quantity');
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      height: AppDimens.dimens_100,
+                      width: MediaQuery.of(context).size.width * 0.43,
+                      decoration: BoxDecoration(
+                        color: AppColors.grey_8A8A8A.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('assets/svg/container.svg',
+                              height: 25, color: AppColors.red_FF5151),
+                          Text(
+                            '105',
+                            style: TextStyle(
+                                fontSize: AppDimens.dimens_18,
+                                fontWeight: FontFamily.semiBold),
+                          ),
+                          Text(
+                            'Số lượng',
+                            style: TextStyle(
+                                fontSize: AppDimens.dimens_15,
+                                color: AppColors.grey_8A8A8A),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              InkWell(
-                onTap: () {
-                  warehouseReportController.setCheck('quantity');
-                },
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  height: AppDimens.dimens_100,
-                  width: MediaQuery.of(context).size.width * 0.43,
-                  decoration: BoxDecoration(
-                    color: AppColors.grey_8A8A8A.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset('assets/svg/container.svg',
-                          height: 25, color: AppColors.red_FF5151),
-                      Text(
-                        '105',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_18,
-                            fontWeight: FontFamily.semiBold),
-                      ),
-                      Text(
-                        'Số lượng',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_15,
-                            color: AppColors.grey_8A8A8A),
-                      ),
-                    ],
-                  ),
-                ),
+              SizedBox(
+                height: 10,
               ),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                onTap: () {
-                  warehouseReportController.setCheck('remaining products');
-                },
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  height: AppDimens.dimens_100,
-                  width: MediaQuery.of(context).size.width * 0.43,
-                  decoration: BoxDecoration(
-                    color: AppColors.grey_8A8A8A.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset('assets/svg/cart-check.svg',
-                          height: 25, color: AppColors.blue_0000ff),
-                      Text(
-                        '15',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_18,
-                            fontWeight: FontFamily.semiBold),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      warehouseReportController.setCheck('remaining products');
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      height: AppDimens.dimens_100,
+                      width: MediaQuery.of(context).size.width * 0.43,
+                      decoration: BoxDecoration(
+                        color: AppColors.grey_8A8A8A.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      Text(
-                        'Sản phẩm còn bán',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_15,
-                            color: AppColors.grey_8A8A8A),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('assets/svg/cart-check.svg',
+                              height: 25, color: AppColors.blue_0000ff),
+                          Text(
+                            '15',
+                            style: TextStyle(
+                                fontSize: AppDimens.dimens_18,
+                                fontWeight: FontFamily.semiBold),
+                          ),
+                          Text(
+                            'Sản phẩm còn bán',
+                            style: TextStyle(
+                                fontSize: AppDimens.dimens_15,
+                                color: AppColors.grey_8A8A8A),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  warehouseReportController.setCheck('product is out');
-                },
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  height: AppDimens.dimens_100,
-                  width: MediaQuery.of(context).size.width * 0.43,
-                  decoration: BoxDecoration(
-                    color: AppColors.grey_8A8A8A.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset('assets/svg/cart-close.svg',
-                          height: 25, color: AppColors.red_d31900),
-                      Text(
-                        '105',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_18,
-                            fontWeight: FontFamily.semiBold),
+                  InkWell(
+                    onTap: () {
+                      warehouseReportController.setCheck('product is out');
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      height: AppDimens.dimens_100,
+                      width: MediaQuery.of(context).size.width * 0.43,
+                      decoration: BoxDecoration(
+                        color: AppColors.grey_8A8A8A.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      Text(
-                        'Sản phẩm hết hàng',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_15,
-                            color: AppColors.grey_8A8A8A),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('assets/svg/cart-close.svg',
+                              height: 25, color: AppColors.red_d31900),
+                          Text(
+                            '105',
+                            style: TextStyle(
+                                fontSize: AppDimens.dimens_18,
+                                fontWeight: FontFamily.semiBold),
+                          ),
+                          Text(
+                            'Sản phẩm hết hàng',
+                            style: TextStyle(
+                                fontSize: AppDimens.dimens_15,
+                                color: AppColors.grey_8A8A8A),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }

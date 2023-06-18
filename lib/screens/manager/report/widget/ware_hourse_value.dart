@@ -15,7 +15,7 @@ class WarehouseValue extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-      width: MediaQuery.of(context).size.width,
+      // width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           color: AppColors.white, borderRadius: BorderRadius.circular(10)),
       child: Column(
