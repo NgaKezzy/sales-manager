@@ -30,7 +30,7 @@ class _ExpensesState extends State<Expenses> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HeaderCenter(txt_header: 'Khoản thu'),
+              HeaderCenter(txt_header: 'Khoản chi'),
               Consumer<SpendingController>(
                 builder: (context, spendingController, child) {
                   return InkWell(

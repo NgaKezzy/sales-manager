@@ -6,6 +6,7 @@ import 'package:sales_manager/widgets/header_center.dart';
 import '../../config/app.font.dart';
 import '../../config/app_color.dart';
 import '../../config/app_size.dart';
+import '../manager/product/create_product.dart';
 import 'create_import_goods.dart';
 
 class MoreGoods extends StatelessWidget {
@@ -16,7 +17,60 @@ class MoreGoods extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          HeaderCenter(txt_header: 'Nhập hàng'),
+          Container(
+            alignment: Alignment.bottomCenter,
+            padding: EdgeInsets.all(10),
+            width: MediaQuery.of(context).size.width,
+            height: AppDimens.dimens_80,
+            decoration: BoxDecoration(color: AppColors.white),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                      margin: EdgeInsets.only(left: 10),
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        size: 24,
+                      )),
+                ),
+                Container(
+                  // margin: EdgeInsets.only(right: 10),
+                  child: Text(
+                    'Nhập hàng',
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: AppColors.black,
+                      fontWeight: FontFamily.medium,
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CreateProduct()));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: AppColors.green_55b135,
+                    ),
+                    width: AppDimens.dimens_24,
+                    child: Icon(
+                      Icons.add,
+                      color: AppColors.white,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
           Expanded(
             child: Stack(
               children: [

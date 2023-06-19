@@ -52,7 +52,7 @@ class Sell extends StatelessWidget {
             ),
             Container(
               padding: EdgeInsets.all(10),
-              color: AppColors.grey_8A8A8A.withOpacity(0.3),
+              color: AppColors.grey_8A8A8A.withOpacity(0.2),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height - 120,
               child: SingleChildScrollView(
@@ -71,7 +71,6 @@ class Sell extends StatelessWidget {
                                   builder: (context) => CreateProduct(),
                                 ));
                           },
-                          child: AddProduct(),
                         ),
                       ],
                     )

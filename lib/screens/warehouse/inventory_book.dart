@@ -104,7 +104,7 @@ class InventoryBook extends StatelessWidget {
               decoration: BoxDecoration(
                   border: Border(
                 bottom: BorderSide(
-                  color: AppColors.grey_8A8A8A.withOpacity(0.3),
+                  color: AppColors.grey_8A8A8A.withOpacity(0.2),
                   width: 1,
                 ),
               )),

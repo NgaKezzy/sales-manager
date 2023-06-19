@@ -154,7 +154,7 @@ class ProfitAndLossContent extends StatelessWidget {
               height: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: AppColors.grey_8A8A8A.withOpacity(0.3),
+                color: AppColors.grey_8A8A8A.withOpacity(0.2),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
