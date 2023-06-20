@@ -26,39 +26,9 @@ class _ProductManagerState extends State<ProductManager> {
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Column(
         children: [
-          SizedBox(
-            height: 50,
-            width: MediaQuery.of(context).size.width,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Row(
-                  children: [
-                    DisplayList(
-                      nameDisplay: 'Tất cả',
-                    ),
-                    DisplayList(
-                      nameDisplay: 'Điện tử',
-                    ),
-                    DisplayList(
-                      nameDisplay: 'Dân dụng',
-                    ),
-                    DisplayList(
-                      nameDisplay: 'Tất cả',
-                    ),
-                    DisplayList(
-                      nameDisplay: 'Tất cả',
-                    ),
-                    DisplayList(
-                      nameDisplay: 'Tất cả',
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
           Expanded(
             child: ListView.builder(
+              physics: BouncingScrollPhysics(),
               padding: EdgeInsets.all(0),
               itemCount:
                   context.watch<ProductsController>().resultProducts.length,

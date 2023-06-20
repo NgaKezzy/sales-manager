@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:ffi';
 
 class Product {
+  String id;
   String idWarehouse;
   String productName;
   String productImage;
@@ -13,7 +14,8 @@ class Product {
   String updatedAt;
 
   Product(
-      {required this.idWarehouse,
+      {required this.id,
+      required this.idWarehouse,
       required this.productName,
       required this.productImage,
       required this.importPrice,
@@ -25,6 +27,7 @@ class Product {
 
   factory Product.formJson(Map<String, dynamic> json) {
     return Product(
+        id: json['_id'],
         idWarehouse: json['idWarehouse'],
         productName: json['productName'],
         productImage: json['productImage'],

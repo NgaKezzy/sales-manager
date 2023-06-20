@@ -6,6 +6,7 @@ import 'package:sales_manager/network/fetch_api.dart';
 
 class ProductsController extends ChangeNotifier {
   List resultProducts = [];
+
   bool isLoading = false;
   void getdataProducts(String idWarehouse) async {
     final dataProducts = await NetworkApi.getProdcut(idWarehouse);
@@ -15,5 +16,13 @@ class ProductsController extends ChangeNotifier {
     resultProducts = product;
     isLoading = true;
     notifyListeners();
+  }
+
+  double totalValue() {
+    double sum = 0;
+    for (int i = 0; i < resultProducts.length; i++) {
+      sum += (resultProducts[i].price * resultProducts[i].quantity);
+    }
+    return sum;
   }
 }
