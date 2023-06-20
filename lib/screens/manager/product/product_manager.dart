@@ -1,26 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_size.dart';
-import 'package:sales_manager/screens/manager/report/controller/products_controller.dart';
 
 import '../../../config/app_color.dart';
 import '../../warehouse/product_details.dart';
 import '../oder/widget/order_details.dart';
 
-class ProductManager extends StatefulWidget {
+class ProductManager extends StatelessWidget {
   const ProductManager({super.key});
 
   @override
-  State<ProductManager> createState() => _ProductManagerState();
-}
-
-class _ProductManagerState extends State<ProductManager> {
-  @override
   Widget build(BuildContext context) {
-    ProductsController productsController = context.read<ProductsController>();
     return Container(
       color: AppColors.grey_8A8A8A.withOpacity(0.2),
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -57,20 +49,10 @@ class _ProductManagerState extends State<ProductManager> {
               ],
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.all(0),
-              itemCount:
-                  context.watch<ProductsController>().resultProducts.length,
-              itemBuilder: (context, index) {
-                return productsController.isLoading
-                    ? ItemProductManager(ele: index)
-                    : Center(
-                        child: CircularProgressIndicator(),
-                      );
-              },
-            ),
-          )
+          ItemProductManager(),
+          ItemProductManager(),
+          ItemProductManager(),
+          ItemProductManager(),
         ],
       ),
     );
@@ -79,15 +61,11 @@ class _ProductManagerState extends State<ProductManager> {
 
 class ItemProductManager extends StatelessWidget {
   const ItemProductManager({
-    required this.ele,
     super.key,
   });
-  final int ele;
 
   @override
   Widget build(BuildContext context) {
-    ProductsController productsController = context.read<ProductsController>();
-
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -115,21 +93,21 @@ class ItemProductManager extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
-                  productsController.resultProducts[ele].productName,
+                  'Quạt',
                   style: TextStyle(
                       fontSize: AppDimens.dimens_16,
                       fontWeight: FontFamily.medium),
                 ),
                 Text(
-                  'Có thể bán : ${productsController.resultProducts[ele].quantity}',
+                  'Có thể bán : 95',
                   style: TextStyle(
                     fontSize: AppDimens.dimens_13,
                   ),
                 ),
                 Text(
-                  productsController.resultProducts[ele].price.toString(),
+                  '300.000',
                   style: TextStyle(
                       fontSize: AppDimens.dimens_16,
                       fontWeight: FontFamily.medium,
