@@ -87,8 +87,14 @@ class NetworkApi {
   }
 
   // gọi api để tạo sản phẩm
-  static Future<Map> createProduct(String idWarehouse, String productName,
-      int importPrice, int price, int quantity) async {
+  static Future<Map> createProduct(
+      String idWarehouse,
+      String productName,
+      String productImage,
+      int importPrice,
+      int price,
+      int inventoryNumber,
+      int quantity) async {
     Map resultCreateProduct = {};
     var uri = Uri.https(AppDomains.BASE_URL, AppDomains.WAREHOUSE);
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -99,11 +105,13 @@ class NetworkApi {
       final response = await http.post(uri, headers: {
         'token_access_authorization': accessToken ?? '',
       }, body: {
-        "idWarehouse": idWarehouse,
+        "warehouseId": idWarehouse,
         "productName": productName,
-        "importPrice": importPrice,
-        "price": price,
-        "quantity": quantity,
+        "productImage": productImage,
+        "importPrice": importPrice.toString(),
+        "price": price.toString(),
+        "inventoryNumber": inventoryNumber.toString(),
+        "quantity": quantity.toString(),
       });
       if (response.statusCode == 201) {
         var data = jsonDecode(response.body);

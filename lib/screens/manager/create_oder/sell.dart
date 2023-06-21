@@ -1,24 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
 import 'package:sales_manager/config/print_color.dart';
+import 'package:sales_manager/screens/manager/report/controller/products_controller.dart';
 import 'package:sales_manager/widgets/add_product.dart';
 import 'package:sales_manager/widgets/header_center.dart';
 
 import '../../../config/app.font.dart';
+import '../../login_and_init_shop/controller/auth_controller.dart';
 import '../../warehouse/product_details.dart';
 import '../product/create_product.dart';
 import 'order_confirmation.dart';
 
 // màn bán hàng
 
-class Sell extends StatelessWidget {
+class Sell extends StatefulWidget {
   const Sell({super.key});
 
   @override
+  State<Sell> createState() => _SellState();
+}
+
+class _SellState extends State<Sell> {
+  late ProductsController productsController;
+  late AuthController authController;
+  @override
+  void didChangeDependencies() {
+    authController = context.read<AuthController>();
+    productsController = context.read<ProductsController>();
+    productsController
+        .getdataProducts(authController.userLogin?.idWarehouse ?? '');
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    ProductsController productsController = context.read<ProductsController>();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -51,33 +71,26 @@ class Sell extends StatelessWidget {
               ],
             ),
             Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.only(bottom: 30),
               color: AppColors.grey_8A8A8A.withOpacity(0.2),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height - 120,
               child: SingleChildScrollView(
-                child: Column(
+                child: Wrap(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ItemListProduct(),
-                        InkWell(
-                          onTap: () {
-                            print('123');
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => CreateProduct(),
-                                ));
-                          },
-                        ),
-                      ],
+                    ...List.generate(productsController.resultProducts.length,
+                        (index) {
+                      return ItemListProduct(
+                        element: index,
+                      );
+                    }),
+                    SizedBox(
+                      height: 80,
                     )
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -86,15 +99,18 @@ class Sell extends StatelessWidget {
 }
 
 class ItemListProduct extends StatelessWidget {
-  const ItemListProduct({
+  ItemListProduct({
+    required this.element,
     super.key,
   });
 
+  int element;
+
   @override
   Widget build(BuildContext context) {
+    ProductsController productsController = context.read<ProductsController>();
     return InkWell(
       onTap: () {
-        printRed('1');
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -103,6 +119,7 @@ class ItemListProduct extends StatelessWidget {
       },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.3,
+        margin: EdgeInsets.all(5),
         height: 130,
         decoration: BoxDecoration(
           color: AppColors.white,
@@ -121,7 +138,7 @@ class ItemListProduct extends StatelessWidget {
               color: Colors.green,
             ),
             child: Text(
-              'Còn: 100',
+              '${productsController.resultProducts[element].quantity}',
               style: TextStyle(
                   fontSize: 13,
                   color: AppColors.white,
@@ -142,7 +159,7 @@ class ItemListProduct extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Loa ',
+                    '${productsController.resultProducts[element].productName}',
                     style: TextStyle(
                         fontSize: 13,
                         color: AppColors.black,
@@ -150,7 +167,7 @@ class ItemListProduct extends StatelessWidget {
                         overflow: TextOverflow.ellipsis),
                   ),
                   Text(
-                    '600.000',
+                    '${productsController.resultProducts[element].price}',
                     style: TextStyle(
                         fontSize: 13,
                         color: AppColors.black,
