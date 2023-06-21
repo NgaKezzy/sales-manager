@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:sales_manager/config/print_color.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../config/app_domain.dart';
 import '../models/user_login.dart';
@@ -64,8 +66,9 @@ class NetworkApi {
   }
 
 // gọi api để lấy ra tất cả sản phẩm
-  static Future<Map> getProdcut(String idWarehose) async {
-    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.WAREHOUSE + idWarehose);
+  static Future<Map> getProdcut(String idWarehouse) async {
+    var uri =
+        Uri.https(AppDomains.BASE_URL, AppDomains.WAREHOUSE + idWarehouse);
     Map resultProducts = {};
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
@@ -81,5 +84,38 @@ class NetworkApi {
       print(e);
     }
     return resultProducts;
+  }
+
+  // gọi api để tạo sản phẩm
+  static Future<Map> createProduct(String idWarehouse, String productName,
+      int importPrice, int price, int quantity) async {
+    Map resultCreateProduct = {};
+    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.WAREHOUSE);
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+
+    try {
+      final response = await http.post(uri, headers: {
+        'token_access_authorization': accessToken ?? '',
+      }, body: {
+        "idWarehouse": idWarehouse,
+        "productName": productName,
+        "importPrice": importPrice,
+        "price": price,
+        "quantity": quantity,
+      });
+      if (response.statusCode == 201) {
+        var data = jsonDecode(response.body);
+        resultCreateProduct = data;
+      }
+      if (response.statusCode == 401) {
+        var data = jsonDecode(response.body);
+        resultCreateProduct = data;
+      }
+    } catch (e) {
+      printRed('Bắt lỗi khi gọi api : ' + e.toString());
+    }
+    return resultCreateProduct;
   }
 }

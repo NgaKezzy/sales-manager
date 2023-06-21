@@ -62,6 +62,8 @@ class AuthController extends ChangeNotifier {
             AppDomains.ACCESS_TOKEN, dataLogin['data']['accessToken']);
         await prefs.setString(
             AppDomains.REFRESH_TOKEN, dataLogin['data']['refreshToken']);
+        await prefs.setString(AppDomains.ID_WAREHOUSE,
+            dataLogin['data']['dataUser']['idWarehouse']);
 
         final UserLogin userLogin =
             UserLogin.fromJson(dataLogin['data']['dataUser']);
@@ -88,6 +90,7 @@ class AuthController extends ChangeNotifier {
 
     await prefs.remove(AppDomains.ACCESS_TOKEN);
     await prefs.remove(AppDomains.REFRESH_TOKEN);
+    await prefs.remove(AppDomains.ID_WAREHOUSE);
     Fluttertoast.showToast(msg: 'Đăng xuất thành công !');
 
     notifyListeners();
@@ -116,6 +119,8 @@ class AuthController extends ChangeNotifier {
       }
       if (dataRegister['status'] == 'error') {
         Fluttertoast.showToast(msg: dataRegister['message']);
+      } else {
+        Fluttertoast.showToast(msg: 'Đăng ký thất bại !');
       }
     }
   }
