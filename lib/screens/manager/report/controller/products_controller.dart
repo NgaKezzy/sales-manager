@@ -18,6 +18,7 @@ class ProductsController extends ChangeNotifier {
   final importPriceProdcutController = TextEditingController();
 
   bool isLoading = false;
+
   void getdataProducts(String idWarehouse) async {
     final dataProducts = await NetworkApi.getProdcut(idWarehouse);
 
@@ -52,12 +53,14 @@ class ProductsController extends ChangeNotifier {
 
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
+
       log('Đây là id warehouse : ' + idWarehouse.toString());
 
       final createOneProduct = await NetworkApi.createProduct(
           idWarehouse ?? '', productName, '', importPrice, price, 0, quantity);
       if (createOneProduct['status'] == 'success') {
         Fluttertoast.showToast(msg: 'Tạo thành công sản phẩm.');
+        getdataProducts(idWarehouse!);
       } else {
         Fluttertoast.showToast(msg: 'Tạo sản phẩm thất bại!');
       }

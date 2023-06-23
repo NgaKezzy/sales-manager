@@ -193,6 +193,7 @@ class ItemMoreGoods extends StatelessWidget {
                       width: 30,
                       height: 30,
                       child: TextField(
+                        keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
                         decoration: InputDecoration(
                           border: InputBorder.none,

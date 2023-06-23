@@ -84,9 +84,6 @@ class _SellState extends State<Sell> {
                         element: index,
                       );
                     }),
-                    SizedBox(
-                      height: 80,
-                    )
                   ],
                 ),
               ),
