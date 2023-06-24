@@ -11,7 +11,7 @@ import 'package:sales_manager/screens/manager/report/widget/quantity.dart';
 import 'package:sales_manager/screens/manager/report/widget/remaing_product.dart';
 import 'package:sales_manager/screens/manager/report/widget/ware_hourse_value.dart';
 import '../../../config/app_color.dart';
-import 'controller/warehouse_report_controller.dart';
+import '../controller/warehouse_report_controller.dart';
 
 class Warehouse extends StatefulWidget {
   Warehouse({super.key});

@@ -4,7 +4,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_size.dart';
-import 'package:sales_manager/screens/manager/report/controller/products_controller.dart';
+import 'package:sales_manager/config/print_color.dart';
+import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 
 import '../../../config/app_color.dart';
 import '../../warehouse/product_details.dart';
@@ -23,7 +24,7 @@ class _ProductManagerState extends State<ProductManager> {
     ProductsController productsController = context.read<ProductsController>();
     return Container(
       color: AppColors.grey_8A8A8A.withOpacity(0.2),
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
           Expanded(
@@ -62,6 +63,9 @@ class ItemProductManager extends StatelessWidget {
       onTap: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => ProductDetail()));
+        productsController.idProduct =
+            productsController.resultProducts[ele].id;
+        printRed('${productsController.idProduct}');
       },
       child: Container(
         margin: EdgeInsets.only(top: AppDimens.dimens_10),
@@ -82,30 +86,42 @@ class ItemProductManager extends StatelessWidget {
             SizedBox(
               width: AppDimens.dimens_15,
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  productsController.resultProducts[ele].productName,
-                  style: TextStyle(
-                      fontSize: AppDimens.dimens_16,
-                      fontWeight: FontFamily.medium),
-                ),
-                Text(
-                  'Có thể bán : ${productsController.resultProducts[ele].quantity}',
-                  style: TextStyle(
-                    fontSize: AppDimens.dimens_13,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    productsController.resultProducts[ele].productName,
+                    style: TextStyle(
+                        overflow: TextOverflow.clip,
+                        fontSize: AppDimens.dimens_16,
+                        fontWeight: FontFamily.medium),
                   ),
-                ),
-                Text(
-                  productsController.resultProducts[ele].price.toString(),
-                  style: TextStyle(
-                      fontSize: AppDimens.dimens_16,
-                      fontWeight: FontFamily.medium,
-                      color: AppColors.red_FC0000),
-                ),
-              ],
+                  Text(
+                    'Có thể bán : ${productsController.resultProducts[ele].quantity}',
+                    style: TextStyle(
+                      fontSize: AppDimens.dimens_13,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              alignment: Alignment.centerRight,
+              width: MediaQuery.of(context).size.width * 0.3,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '${productsController.resultProducts[ele].price}  đ',
+                    style: TextStyle(
+                        fontSize: AppDimens.dimens_16,
+                        fontWeight: FontFamily.medium,
+                        color: AppColors.red_FC0000),
+                  ),
+                ],
+              ),
             )
           ],
         ),

@@ -13,7 +13,7 @@ import 'package:sales_manager/screens/manager/create_oder/order_confirmation.dar
 import 'package:sales_manager/screens/manager/product/manage.dart';
 import 'package:sales_manager/screens/manager/oder/oder.dart';
 import 'package:sales_manager/screens/manager/create_oder/sell.dart';
-import 'package:sales_manager/screens/manager/report/controller/products_controller.dart';
+import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 import 'package:sales_manager/screens/manager/report/report.dart';
 import 'package:sales_manager/screens/spending/expenses.dart';
 import 'package:sales_manager/screens/spending/spending_screen.dart';

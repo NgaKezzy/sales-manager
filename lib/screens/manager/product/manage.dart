@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/screens/login_and_init_shop/controller/auth_controller.dart';
 import 'package:sales_manager/screens/manager/product/create_product.dart';
-import 'package:sales_manager/screens/manager/controller/product_manager.dart';
-import 'package:sales_manager/screens/manager/report/controller/products_controller.dart';
+import 'package:sales_manager/screens/manager/create_oder/product_manager.dart';
+import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 import 'package:sales_manager/widgets/header_center.dart';
 
 import 'catalog_manager.dart';

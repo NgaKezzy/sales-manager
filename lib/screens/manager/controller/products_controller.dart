@@ -6,9 +6,10 @@ import 'package:sales_manager/models/product_model.dart';
 import 'package:sales_manager/network/fetch_api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../config/app_domain.dart';
+import '../../../config/app_domain.dart';
 
 class ProductsController extends ChangeNotifier {
+  String idProduct = "";
   List resultProducts = [];
   final keyCreateProduct = GlobalKey<FormState>();
 
@@ -25,6 +26,7 @@ class ProductsController extends ChangeNotifier {
     final List<Product> product =
         Product.convertToProduct(dataProducts['data']);
     resultProducts = product;
+    log('Đây là số lượng sản phẩm :' + resultProducts.length.toString());
     isLoading = true;
     notifyListeners();
   }
@@ -64,6 +66,20 @@ class ProductsController extends ChangeNotifier {
       } else {
         Fluttertoast.showToast(msg: 'Tạo sản phẩm thất bại!');
       }
+    }
+  }
+
+  void deleteProduct() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
+
+    final deleteProduct = await NetworkApi.deleteProduct(idProduct);
+
+    if (deleteProduct['status'] == 'success') {
+      getdataProducts(idWarehouse!);
+      Fluttertoast.showToast(msg: '${deleteProduct['message']}');
+    } else {
+      Fluttertoast.showToast(msg: '${deleteProduct['message']}');
     }
   }
 }

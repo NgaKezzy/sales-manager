@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
-import 'package:sales_manager/screens/manager/report/controller/products_controller.dart';
+import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 import 'package:sales_manager/widgets/header_center.dart';
 
 class CreateProduct extends StatefulWidget {

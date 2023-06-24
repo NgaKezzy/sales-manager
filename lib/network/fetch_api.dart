@@ -126,4 +126,32 @@ class NetworkApi {
     }
     return resultCreateProduct;
   }
+
+  // gọi api để xóa sản phẩm
+  static Future<Map> deleteProduct(String productId) async {
+    Map resultDeleteProduct = {};
+    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.DELETE);
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+
+    try {
+      final response = await http.post(uri, headers: {
+        'token_access_authorization': accessToken ?? '',
+      }, body: {
+        "productId": productId,
+      });
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        resultDeleteProduct = data;
+      }
+      if (response.statusCode == 401) {
+        var data = jsonDecode(response.body);
+        resultDeleteProduct = data;
+      }
+    } catch (e) {
+      printBlue('Đây là lỗi bắt ngoại lệ xóa sản phẩm: + ${e}');
+    }
+    return resultDeleteProduct;
+  }
 }

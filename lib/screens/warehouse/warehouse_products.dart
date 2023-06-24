@@ -9,7 +9,7 @@ import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
 import 'package:sales_manager/screens/warehouse/product_details.dart';
 
-import '../manager/report/controller/products_controller.dart';
+import '../manager/controller/products_controller.dart';
 import '../spending/expenses.dart';
 import '../spending/revenue.dart';
 

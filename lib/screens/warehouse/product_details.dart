@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
+import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 import 'package:sales_manager/widgets/header_center.dart';
 
-class ProductDetail extends StatelessWidget {
+class ProductDetail extends StatefulWidget {
   const ProductDetail({super.key});
 
   @override
+  State<ProductDetail> createState() => _ProductDetailState();
+}
+
+class _ProductDetailState extends State<ProductDetail> {
+  @override
   Widget build(BuildContext context) {
+    ProductsController productsController = context.read<ProductsController>();
     return Scaffold(
       body: Stack(
         alignment: Alignment.bottomCenter,
@@ -20,7 +28,50 @@ class ProductDetail extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  HeaderCenter(txt_header: 'Chi tiết sản phẩm'),
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    padding: EdgeInsets.all(10),
+                    width: MediaQuery.of(context).size.width,
+                    height: AppDimens.dimens_80,
+                    decoration: BoxDecoration(color: AppColors.white),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                              margin: EdgeInsets.only(left: 10),
+                              child: Icon(
+                                Icons.arrow_back_ios,
+                                size: 24,
+                              )),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(right: 10),
+                          child: Text(
+                            'Chi tiết sản phẩm',
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: AppColors.black,
+                              fontWeight: FontFamily.medium,
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            _showAlertDialog(context);
+                          },
+                          child: Icon(
+                            Icons.delete,
+                            size: AppDimens.dimens_24,
+                            color: AppColors.red_FC0000,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                   Container(
                     height: AppDimens.dimens_120,
                     width: MediaQuery.of(context).size.width,
@@ -157,4 +208,32 @@ class ProductDetail extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<void> _showAlertDialog(BuildContext context) {
+  ProductsController productsController = context.read<ProductsController>();
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Xóa sản phẩm ?'),
+        content: Text('Bạn có chắc rằng muốn xóa sản phẩm ?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('Hủy'),
+          ),
+          TextButton(
+            onPressed: () {
+              productsController.deleteProduct();
+              Navigator.pop(context);
+            },
+            child: Text('Xóa'),
+          ),
+        ],
+      );
+    },
+  );
 }

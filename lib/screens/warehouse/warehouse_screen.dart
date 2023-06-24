@@ -13,7 +13,7 @@ import 'package:sales_manager/widgets/header_center_no_back.dart';
 
 import '../../config/app_color.dart';
 import '../login_and_init_shop/controller/auth_controller.dart';
-import '../manager/report/controller/products_controller.dart';
+import '../manager/controller/products_controller.dart';
 import '../spending/expenses.dart';
 import 'create_corrections.dart';
 import 'inventory_book.dart';

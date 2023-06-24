@@ -8,7 +8,7 @@ class Product {
   String productImage;
   int importPrice;
   int price;
-  String inventoryNumber;
+  int inventoryNumber;
   int quantity;
   String created_at;
   String updatedAt;

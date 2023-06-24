@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
 import 'package:sales_manager/config/print_color.dart';
-import 'package:sales_manager/screens/manager/report/controller/products_controller.dart';
+import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 import 'package:sales_manager/widgets/add_product.dart';
 import 'package:sales_manager/widgets/header_center.dart';
 
