@@ -343,9 +343,9 @@ class _ManagerScreenState extends State<ManagerScreen> {
                               child: Text(
                                 'Đơn hàng',
                                 style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black.withOpacity(0.7),
-                                    fontWeight: FontFamily.medium),
+                                  fontSize: 16,
+                                  color: Colors.black.withOpacity(0.7),
+                                ),
                               ),
                             ),
                             Container(
@@ -564,10 +564,14 @@ class ItemManager extends StatelessWidget {
         children: [
           Icon(
             icon,
-            size: AppDimens.dimens_50,
+            size: AppDimens.dimens_40,
             color: clIcon,
           ),
-          Text(nameManager)
+          Text(
+            nameManager,
+            style: TextStyle(
+                fontWeight: FontFamily.medium, fontSize: AppDimens.dimens_16),
+          )
         ],
       ),
     );

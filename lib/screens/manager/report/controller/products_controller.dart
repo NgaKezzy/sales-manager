@@ -59,8 +59,8 @@ class ProductsController extends ChangeNotifier {
       final createOneProduct = await NetworkApi.createProduct(
           idWarehouse ?? '', productName, '', importPrice, price, 0, quantity);
       if (createOneProduct['status'] == 'success') {
-        Fluttertoast.showToast(msg: 'Tạo thành công sản phẩm.');
         getdataProducts(idWarehouse!);
+        Fluttertoast.showToast(msg: 'Tạo thành công sản phẩm.');
       } else {
         Fluttertoast.showToast(msg: 'Tạo sản phẩm thất bại!');
       }

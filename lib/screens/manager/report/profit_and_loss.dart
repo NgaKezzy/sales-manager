@@ -41,7 +41,7 @@ class _ProfitAndLossState extends State<ProfitAndLoss> {
             color: AppColors.white,
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Container(
-                height: AppDimens.dimens_50,
+                height: AppDimens.dimens_40,
                 width: MediaQuery.of(context).size.width * 0.8,
                 decoration: BoxDecoration(
                   color: AppColors.grey_8A8A8A.withOpacity(0.2),
@@ -61,7 +61,7 @@ class _ProfitAndLossState extends State<ProfitAndLoss> {
                       child: Container(
                         alignment: Alignment.center,
                         width: MediaQuery.of(context).size.width * 0.23,
-                        height: AppDimens.dimens_40,
+                        height: AppDimens.dimens_30,
                         decoration: BoxDecoration(
                           color: _index == 0
                               ? AppColors.white
@@ -90,7 +90,7 @@ class _ProfitAndLossState extends State<ProfitAndLoss> {
                       child: Container(
                         alignment: Alignment.center,
                         width: MediaQuery.of(context).size.width * 0.23,
-                        height: AppDimens.dimens_40,
+                        height: AppDimens.dimens_30,
                         decoration: BoxDecoration(
                           color: _index == 1
                               ? AppColors.white
@@ -119,7 +119,7 @@ class _ProfitAndLossState extends State<ProfitAndLoss> {
                       child: Container(
                         alignment: Alignment.center,
                         width: MediaQuery.of(context).size.width * 0.23,
-                        height: AppDimens.dimens_40,
+                        height: AppDimens.dimens_30,
                         decoration: BoxDecoration(
                           color: _index == 2
                               ? AppColors.white
