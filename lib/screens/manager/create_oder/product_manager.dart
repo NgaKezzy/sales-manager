@@ -99,7 +99,7 @@ class ItemProductManager extends StatelessWidget {
                         fontWeight: FontFamily.medium),
                   ),
                   Text(
-                    'Có thể bán : ${productsController.resultProducts[ele].quantity}',
+                    'Có thể bán : ${productsController.resultProducts[ele].inventoryNumber}',
                     style: TextStyle(
                       fontSize: AppDimens.dimens_13,
                     ),

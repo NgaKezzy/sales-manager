@@ -135,7 +135,7 @@ class ItemListProduct extends StatelessWidget {
               color: Colors.green,
             ),
             child: Text(
-              '${productsController.resultProducts[element].quantity}',
+              'Còn : ${productsController.resultProducts[element].inventoryNumber}',
               style: TextStyle(
                   fontSize: 13,
                   color: AppColors.white,

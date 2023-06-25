@@ -148,10 +148,33 @@ class NetworkApi {
       if (response.statusCode == 401) {
         var data = jsonDecode(response.body);
         resultDeleteProduct = data;
+      } else {
+        var data = jsonDecode(response.body);
+        resultDeleteProduct = data;
       }
     } catch (e) {
       printBlue('Đây là lỗi bắt ngoại lệ xóa sản phẩm: + ${e}');
     }
     return resultDeleteProduct;
   }
+
+//   // gọi api để cập nhật sản phẩm
+//   static Future<Map> updateProduct()async {
+//     Map resultUpdateProduct = {};
+
+//     var uri = Uri.https(AppDomains.BASE_URL, AppDomains.UPDATE_PRODUCT);
+
+//     final SharedPreferences prefs = await SharedPreferences.getInstance();
+//     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+
+//     try {
+//       final response = await http.post(uri, headers: {
+//         'token_access_authorization': accessToken ?? '',
+
+//       }, body: {
+//         "productId":productId,
+
+//       });
+//   }
+// }
 }

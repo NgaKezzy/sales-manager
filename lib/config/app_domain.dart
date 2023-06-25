@@ -11,6 +11,8 @@ class AppDomains {
   static const String REFRESH_TOKEN = 'refresh_token';
   static const String WAREHOUSE = '/warehouse/';
   static const String DELETE = '/warehouse/delete';
+  static const String UPDATE_PRODUCT = '/warehouse/modifier';
+  static const String ORDER = '/order';
 
   static const String ID_WAREHOUSE = 'id_warehouse';
 }

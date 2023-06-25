@@ -51,15 +51,15 @@ class ProductsController extends ChangeNotifier {
       final String productName = nameProdcutController.text;
       final int importPrice = int.parse(importPriceProdcutController.text);
       final int price = int.parse(priceProdcutController.text);
-      final int quantity = int.parse(quantityProdcutController.text);
+      final int inventoryNumber = int.parse(quantityProdcutController.text);
 
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
 
       log('Đây là id warehouse : ' + idWarehouse.toString());
 
-      final createOneProduct = await NetworkApi.createProduct(
-          idWarehouse ?? '', productName, '', importPrice, price, 0, quantity);
+      final createOneProduct = await NetworkApi.createProduct(idWarehouse ?? '',
+          productName, '', importPrice, price, inventoryNumber, 0);
       if (createOneProduct['status'] == 'success') {
         getdataProducts(idWarehouse!);
         Fluttertoast.showToast(msg: 'Tạo thành công sản phẩm.');

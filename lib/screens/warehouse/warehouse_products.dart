@@ -198,12 +198,12 @@ class ItemWareHouseProduct extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  "Tồn kho : ${productsController.resultProducts[element].quantity}",
+                  "Tồn kho : ${productsController.resultProducts[element].inventoryNumber}",
                   style: TextStyle(
                       fontSize: AppDimens.dimens_14, color: AppColors.black),
                 ),
                 Text(
-                  "${productsController.resultProducts[element].quantity * productsController.resultProducts[element].price} đ",
+                  "${productsController.resultProducts[element].inventoryNumber * productsController.resultProducts[element].price} đ",
                   style: TextStyle(
                       fontSize: AppDimens.dimens_14,
                       color: AppColors.red_FF5151),
