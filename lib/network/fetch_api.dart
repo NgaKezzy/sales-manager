@@ -158,23 +158,55 @@ class NetworkApi {
     return resultDeleteProduct;
   }
 
-//   // gọi api để cập nhật sản phẩm
-//   static Future<Map> updateProduct()async {
-//     Map resultUpdateProduct = {};
+  // gọi api để cập nhật sản phẩm
+  static Future<Map> updateProduct(
+      String productId,
+      String productName,
+      String productImage,
+      int importPrice,
+      int price,
+      int inventoryNumber) async {
+    Map resultUpdateProduct = {};
 
-//     var uri = Uri.https(AppDomains.BASE_URL, AppDomains.UPDATE_PRODUCT);
+    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.UPDATE_PRODUCT);
 
-//     final SharedPreferences prefs = await SharedPreferences.getInstance();
-//     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
 
-//     try {
-//       final response = await http.post(uri, headers: {
-//         'token_access_authorization': accessToken ?? '',
-
-//       }, body: {
-//         "productId":productId,
-
-//       });
-//   }
-// }
+    try {
+      final response = await http.post(uri, headers: {
+        'token_access_authorization': accessToken ?? '',
+      }, body: {
+        "productId": productId,
+        "productName": productName,
+        "productImage": productImage,
+        "importPrice": importPrice.toString(),
+        "price": price.toString(),
+        "inventoryNumber": inventoryNumber.toString(),
+      });
+      switch (response.statusCode) {
+        case 200:
+          {
+            var data = jsonDecode(response.body);
+            resultUpdateProduct = data;
+          }
+          break;
+        case 401:
+          {
+            var data = jsonDecode(response.body);
+            resultUpdateProduct = data;
+          }
+          break;
+        default:
+          {
+            var data = jsonDecode(response.body);
+            resultUpdateProduct = data;
+          }
+          break;
+      }
+    } catch (e) {
+      printCyan('Đây là lỗi bắt ngoại lệ khi cập nhật sản phẩm ${e}');
+    }
+    return resultUpdateProduct;
+  }
 }

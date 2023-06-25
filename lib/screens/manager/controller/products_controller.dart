@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sales_manager/models/product_model.dart';
 import 'package:sales_manager/network/fetch_api.dart';
+import 'package:sales_manager/screens/warehouse/inventory_book.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../config/app_domain.dart';
@@ -12,11 +13,17 @@ class ProductsController extends ChangeNotifier {
   String idProduct = "";
   List resultProducts = [];
   final keyCreateProduct = GlobalKey<FormState>();
+  final keyUpdateProduct = GlobalKey<FormState>();
 
   final nameProdcutController = TextEditingController();
   final quantityProdcutController = TextEditingController();
   final priceProdcutController = TextEditingController();
   final importPriceProdcutController = TextEditingController();
+
+  final nameUpdateController = TextEditingController();
+  final priceUpdateController = TextEditingController();
+  final importPriceUpdateController = TextEditingController();
+  final inventoryNumberUpdateController = TextEditingController();
 
   bool isLoading = false;
 
@@ -64,7 +71,7 @@ class ProductsController extends ChangeNotifier {
         getdataProducts(idWarehouse!);
         Fluttertoast.showToast(msg: 'Tạo thành công sản phẩm.');
       } else {
-        Fluttertoast.showToast(msg: 'Tạo sản phẩm thất bại!');
+        Fluttertoast.showToast(msg: 'Tạo sản phẩm thất bại !');
       }
     }
   }
@@ -80,6 +87,25 @@ class ProductsController extends ChangeNotifier {
       Fluttertoast.showToast(msg: '${deleteProduct['message']}');
     } else {
       Fluttertoast.showToast(msg: '${deleteProduct['message']}');
+    }
+  }
+
+  void updateProduct() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
+
+    final String productName = nameUpdateController.text;
+    final int importPrice = int.parse(importPriceUpdateController.text);
+    final int price = int.parse(priceUpdateController.text);
+    final int inventoryNumber = int.parse(inventoryNumberUpdateController.text);
+
+    final updateProduct = await NetworkApi.updateProduct(
+        idProduct, productName, '', importPrice, price, inventoryNumber);
+    if (updateProduct['status'] == 'success') {
+      getdataProducts(idWarehouse!);
+      Fluttertoast.showToast(msg: '${updateProduct['message']}');
+    } else {
+      Fluttertoast.showToast(msg: 'Cập nhật sản phẩm thất bại !');
     }
   }
 }

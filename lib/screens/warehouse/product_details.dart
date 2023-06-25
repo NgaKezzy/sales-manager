@@ -20,58 +20,56 @@ class _ProductDetailState extends State<ProductDetail> {
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.bottomCenter,
+      body: Column(
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height - 20,
+          Container(
+            alignment: Alignment.bottomCenter,
+            padding: EdgeInsets.all(10),
+            width: MediaQuery.of(context).size.width,
+            height: AppDimens.dimens_80,
+            decoration: BoxDecoration(color: AppColors.white),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                      margin: EdgeInsets.only(left: 10),
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        size: 24,
+                      )),
+                ),
+                Container(
+                  margin: EdgeInsets.only(right: 10),
+                  child: Text(
+                    'Chi tiết sản phẩm',
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: AppColors.black,
+                      fontWeight: FontFamily.medium,
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    _showAlertDialog(context);
+                  },
+                  child: Icon(
+                    Icons.delete,
+                    size: AppDimens.dimens_24,
+                    color: AppColors.red_FC0000,
+                  ),
+                )
+              ],
+            ),
+          ),
+          Expanded(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Container(
-                    alignment: Alignment.bottomCenter,
-                    padding: EdgeInsets.all(10),
-                    width: MediaQuery.of(context).size.width,
-                    height: AppDimens.dimens_80,
-                    decoration: BoxDecoration(color: AppColors.white),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                              margin: EdgeInsets.only(left: 10),
-                              child: Icon(
-                                Icons.arrow_back_ios,
-                                size: 24,
-                              )),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(right: 10),
-                          child: Text(
-                            'Chi tiết sản phẩm',
-                            style: const TextStyle(
-                              fontSize: 18,
-                              color: AppColors.black,
-                              fontWeight: FontFamily.medium,
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            _showAlertDialog(context);
-                          },
-                          child: Icon(
-                            Icons.delete,
-                            size: AppDimens.dimens_24,
-                            color: AppColors.red_FC0000,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
                   Container(
                     height: AppDimens.dimens_120,
                     width: MediaQuery.of(context).size.width,
@@ -99,95 +97,233 @@ class _ProductDetailState extends State<ProductDetail> {
                               fontSize: 16, fontWeight: FontFamily.medium),
                         ),
                         SizedBox(
-                            height: 30,
-                            child: TextField(
-                              textCapitalization: TextCapitalization.sentences,
-                            )),
+                          height: 40,
+                          child: TextFormField(
+                            controller: productsController.nameUpdateController,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 1,
+                                    color: AppColors.grey_808080
+                                        .withOpacity(0.6)), //<-- SEE HERE
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 1,
+                                    color:
+                                        AppColors.grey_808080), //<-- SEE HERE
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 1,
+                                    color: AppColors.red_FF5151), //<-- SEE HERE
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 1,
+                                    color: AppColors.black), //<-- SEE HERE
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                          ),
+                        ),
                         SizedBox(
                           height: 20,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.4,
-                              child: Column(children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width - 20,
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
                                 Text(
                                   'Giá bán',
                                   style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontFamily.medium,
-                                      color: AppColors.grey_8A8A8A),
+                                    fontSize: 16,
+                                    fontWeight: FontFamily.medium,
+                                  ),
                                 ),
                                 SizedBox(
-                                    height: 30,
-                                    child: TextField(
-                                      keyboardType: TextInputType.number,
-                                    )),
-                              ]),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.4,
-                              child: Column(children: [
-                                Text(
-                                  'Giá vốn',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontFamily.medium,
-                                      color: AppColors.grey_8A8A8A),
+                                  height: 40,
+                                  child: TextFormField(
+                                    controller: productsController
+                                        .priceUpdateController,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color: AppColors.grey_808080
+                                                .withOpacity(
+                                                    0.6)), //<-- SEE HERE
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color: AppColors
+                                                .grey_808080), //<-- SEE HERE
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color: AppColors
+                                                .red_FF5151), //<-- SEE HERE
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color:
+                                                AppColors.black), //<-- SEE HERE
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                                SizedBox(
-                                    height: 30,
-                                    child: TextField(
-                                      keyboardType: TextInputType.number,
-                                    )),
                               ]),
-                            ),
-                          ],
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.4,
-                              child: Column(children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width - 20,
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Giá vốn',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontFamily.medium,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 40,
+                                  child: TextFormField(
+                                    controller: productsController
+                                        .importPriceUpdateController,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color: AppColors.grey_808080
+                                                .withOpacity(
+                                                    0.6)), //<-- SEE HERE
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color: AppColors
+                                                .grey_808080), //<-- SEE HERE
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color: AppColors
+                                                .red_FF5151), //<-- SEE HERE
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color:
+                                                AppColors.black), //<-- SEE HERE
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width - 20,
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
                                 Text(
                                   'Tồn kho',
                                   style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontFamily.medium,
-                                      color: AppColors.grey_8A8A8A),
+                                    fontSize: 16,
+                                    fontWeight: FontFamily.medium,
+                                  ),
                                 ),
                                 SizedBox(
-                                    height: 30,
-                                    child: TextField(
-                                      keyboardType: TextInputType.number,
-                                    )),
-                              ]),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.4,
-                              child: Column(children: [
-                                Text(
-                                  'Mã sản phẩm',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontFamily.medium,
-                                      color: AppColors.grey_8A8A8A),
+                                  height: 40,
+                                  child: TextFormField(
+                                    controller: productsController
+                                        .inventoryNumberUpdateController,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color: AppColors.grey_808080
+                                                .withOpacity(
+                                                    0.6)), //<-- SEE HERE
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color: AppColors
+                                                .grey_808080), //<-- SEE HERE
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color: AppColors
+                                                .red_FF5151), //<-- SEE HERE
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1,
+                                            color:
+                                                AppColors.black), //<-- SEE HERE
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                                SizedBox(
-                                    height: 30,
-                                    child: TextField(
-                                      textCapitalization:
-                                          TextCapitalization.sentences,
-                                    )),
                               ]),
-                            ),
-                          ],
                         ),
+                        SizedBox(
+                          height: AppDimens.dimens_30,
+                        ),
+                        SizedBox(
+                          height: 40,
+                          width: MediaQuery.of(context).size.width,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.green_006200),
+                              onPressed: () =>
+                                  productsController.updateProduct(),
+                              child: Text('Cập nhật')),
+                        )
                       ],
                     ),
                   )
@@ -195,15 +331,6 @@ class _ProductDetailState extends State<ProductDetail> {
               ),
             ),
           ),
-          Positioned(
-              child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: 50,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.green_006200),
-                      onPressed: () {},
-                      child: Text('Cập nhật'))))
         ],
       ),
     );
