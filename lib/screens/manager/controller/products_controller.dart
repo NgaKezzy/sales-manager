@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sales_manager/config/print_color.dart';
 import 'package:sales_manager/models/product_model.dart';
 import 'package:sales_manager/network/fetch_api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,10 +19,10 @@ class ProductsController extends ChangeNotifier {
   final keyCreateProduct = GlobalKey<FormState>();
   final keyUpdateProduct = GlobalKey<FormState>();
 
-  final nameProdcutController = TextEditingController();
-  final quantityProdcutController = TextEditingController();
-  final priceProdcutController = TextEditingController();
-  final importPriceProdcutController = TextEditingController();
+  final nameProductController = TextEditingController();
+  final quantityProductController = TextEditingController();
+  final priceProductController = TextEditingController();
+  final importPriceProductController = TextEditingController();
 
   var nameUpdateController = TextEditingController();
   var priceUpdateController = TextEditingController();
@@ -61,10 +62,10 @@ class ProductsController extends ChangeNotifier {
 
   void createProduct() async {
     if (keyCreateProduct.currentState!.validate()) {
-      final String productName = nameProdcutController.text;
-      final int importPrice = int.parse(importPriceProdcutController.text);
-      final int price = int.parse(priceProdcutController.text);
-      final int inventoryNumber = int.parse(quantityProdcutController.text);
+      final String productName = nameProductController.text;
+      final int importPrice = int.parse(importPriceProductController.text);
+      final int price = int.parse(priceProductController.text);
+      final int inventoryNumber = int.parse(quantityProductController.text);
 
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);

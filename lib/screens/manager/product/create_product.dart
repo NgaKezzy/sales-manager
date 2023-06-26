@@ -60,7 +60,7 @@ class _CreateProductState extends State<CreateProduct> {
                               height: 50,
                               child: TextFormField(
                                 controller:
-                                    productsController.nameProdcutController,
+                                    productsController.nameProductController,
                                 validator: productsController.validator,
                                 decoration: InputDecoration(isDense: true),
                                 textAlign: TextAlign.center,
@@ -88,7 +88,7 @@ class _CreateProductState extends State<CreateProduct> {
                                       height: 50,
                                       child: TextFormField(
                                         controller: productsController
-                                            .quantityProdcutController,
+                                            .quantityProductController,
                                         decoration:
                                             InputDecoration(isDense: true),
                                         validator: productsController.validator,
@@ -119,7 +119,7 @@ class _CreateProductState extends State<CreateProduct> {
                                       height: 50,
                                       child: TextFormField(
                                         controller: productsController
-                                            .priceProdcutController,
+                                            .priceProductController,
                                         decoration:
                                             InputDecoration(isDense: true),
                                         validator: productsController.validator,
@@ -144,7 +144,7 @@ class _CreateProductState extends State<CreateProduct> {
                                         decoration:
                                             InputDecoration(isDense: true),
                                         controller: productsController
-                                            .importPriceProdcutController,
+                                            .importPriceProductController,
                                         validator: productsController.validator,
                                         textAlign: TextAlign.center,
                                         keyboardType: TextInputType.number,

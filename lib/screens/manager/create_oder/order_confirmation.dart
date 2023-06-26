@@ -43,7 +43,14 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
                               width: MediaQuery.of(context).size.width,
                               child: Column(
                                 children: [
-                                  ProductIsPurcharsed(),
+                                  for (int i = 0;
+                                      i <
+                                          orderController
+                                              .selectedItemList.length;
+                                      i++)
+                                    ProductIsPurcharsed(
+                                      index: i,
+                                    ),
                                   Container(
                                     alignment: Alignment.center,
                                     margin: EdgeInsets.all(5),
@@ -57,7 +64,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: [
+                                      children: const [
                                         Icon(
                                           Icons.add,
                                           color: AppColors.green_006200,

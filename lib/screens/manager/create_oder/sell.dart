@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app_color.dart';
@@ -61,8 +62,15 @@ class _SellState extends State<Sell> {
                     children: [
                       InkWell(
                         onTap: () {
+                          for (var i = 0;
+                              i < productsController.checkProducts.length;
+                              i++) {
+                            productsController.checkProducts[i] = false;
+                          }
                           orderController.selectedItemList.clear();
+
                           orderController.checkSelected = false;
+                          orderController.totalMoney = 0;
                           Navigator.pop(context);
                         },
                         child: Container(
@@ -133,6 +141,7 @@ class _SellState extends State<Sell> {
                     ),
                   ),
                 ),
+
                 // orderController.checkSelected == true
 
                 for (int i = 0;
@@ -151,11 +160,14 @@ class _SellState extends State<Sell> {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.green_006200),
                             onPressed: () {
+                              orderController.addQuantityController();
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => OrderConfirmation(),
                                   ));
+                              printRed(
+                                  '${orderController.totalMoney.toString()}');
                             },
                             child: Text('Xác nhận'),
                           ),
@@ -185,12 +197,14 @@ class ItemListProduct extends StatelessWidget {
     OrderController orderController = context.read<OrderController>();
     return InkWell(
       onTap: () {
+        if (productsController.checkProducts[element] == false) {
+          orderController.selectedItemList
+              .add(productsController.resultProducts[element]);
+        } else {
+          orderController.selectedItemList
+              .remove(productsController.resultProducts[element]);
+        }
         productsController.checkHide(element);
-        orderController.checkSelected = true;
-
-        orderController.selectedItemList
-            .add(productsController.resultProducts[element]);
-        printRed('${orderController.selectedItemList}');
       },
       child: Stack(
         alignment: Alignment(0, -0.6),

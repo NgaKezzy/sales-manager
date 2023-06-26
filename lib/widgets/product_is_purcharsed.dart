@@ -11,7 +11,8 @@ import '../config/app_size.dart';
 import '../screens/manager/controller/order_controller.dart';
 
 class ProductIsPurcharsed extends StatefulWidget {
-  const ProductIsPurcharsed({super.key});
+  ProductIsPurcharsed({required this.index, super.key});
+  final int index;
 
   @override
   State<ProductIsPurcharsed> createState() => _ProductIsPurcharsedState();
@@ -57,10 +58,12 @@ class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.grey_8A8A8A),
-                    child: Icon(
-                      Icons.close,
-                      color: AppColors.white,
-                      size: 15,
+                    child: InkWell(
+                      child: Icon(
+                        Icons.close,
+                        color: AppColors.white,
+                        size: 15,
+                      ),
                     ),
                   ))
             ],
@@ -73,7 +76,7 @@ class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                orderController.selectedItemList[0].productName,
+                orderController.selectedItemList[widget.index].productName,
                 style: TextStyle(
                     fontWeight: FontFamily.medium,
                     fontSize: AppDimens.dimens_15,
@@ -90,13 +93,8 @@ class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      onTap: () {
-                        int.parse(orderController.quantityController.text) + 1;
-                        print('${orderController.quantityController.text}');
-                        orderController.sumPrice(
-                            int.parse(orderController.quantityController.text),
-                            orderController.selectedItemList[0].price);
-                      },
+                      onTap: () =>
+                          orderController.changeQuantityDown(widget.index),
                       child: SizedBox(
                         width: AppDimens.dimens_33,
                         height: AppDimens.dimens_35,
@@ -109,22 +107,20 @@ class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
                     ),
                     Expanded(
                         child: TextField(
+                      controller:
+                          orderController.listQuantityController[widget.index],
                       keyboardType: TextInputType.number,
                       style: TextStyle(
                           fontWeight: FontFamily.medium,
                           fontSize: AppDimens.dimens_13),
                       textAlign: TextAlign.center,
-                      controller: orderController.quantityController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                       ),
                     )),
                     InkWell(
-                      onTap: () {
-                        orderController.sumPrice(
-                            int.parse(orderController.quantityController.text),
-                            orderController.selectedItemList[0].price);
-                      },
+                      onTap: () =>
+                          orderController.changeQuantityUp(widget.index),
                       child: SizedBox(
                         width: AppDimens.dimens_33,
                         height: AppDimens.dimens_35,
@@ -145,7 +141,7 @@ class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
             alignment: Alignment.bottomRight,
             child: Text(
               NumberFormat.decimalPattern()
-                  .format(orderController.selectedItemList[0].price),
+                  .format(orderController.selectedItemList[widget.index].price),
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontFamily.medium,

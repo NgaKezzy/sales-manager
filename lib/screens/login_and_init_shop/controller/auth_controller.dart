@@ -69,11 +69,6 @@ class AuthController extends ChangeNotifier {
             UserLogin.fromJson(dataLogin['data']['dataUser']);
         _userLogin = userLogin;
         _isLogin = true;
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
-          ModalRoute.withName('/first'),
-        );
       }
       if (dataLogin['status'] == 'error') {
         Fluttertoast.showToast(msg: dataLogin['message']);

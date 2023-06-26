@@ -3,6 +3,8 @@ import 'package:sales_manager/models/product_model.dart';
 
 class OrderController extends ChangeNotifier {
   List selectedItemList = [];
+  List<TextEditingController> listQuantityController = [];
+
   var quantityController = TextEditingController();
   var customersOrderController = TextEditingController();
   var noteOrderController = TextEditingController();
@@ -13,22 +15,31 @@ class OrderController extends ChangeNotifier {
 
   int totalMoney = 0;
 
-  int sumPrice(int quantity, int price) {
-    totalMoney = quantity * price;
+  int sumPrice() {
+    for (var i = 0; i < selectedItemList.length; i++) {
+      totalMoney = totalMoney + int.parse(selectedItemList[i].price);
+    }
     return totalMoney;
   }
 
-  void changeQuantityUp() {
-    if (int.parse(quantityController.text) >= 1) {
-      int.parse(quantityController.text) + 1;
-    }
+  void changeQuantityUp(int index) {
+    listQuantityController[index].text =
+        (int.parse(listQuantityController[index].text) + 1).toString();
     notifyListeners();
   }
 
-  void changeQuantityDown() {
-    if (int.parse(quantityController.text) > 1) {
-      int.parse(quantityController.text) - 1;
-    }
+  void changeQuantityDown(int index) {
+    listQuantityController[index].text =
+        (int.parse(listQuantityController[index].text) - 1).toString();
     notifyListeners();
+  }
+
+  void addQuantityController() {
+    listQuantityController.clear();
+    for (var i = 0; i < selectedItemList.length; i++) {
+      TextEditingController textEditingController = TextEditingController();
+      textEditingController.text = 1.toString();
+      listQuantityController.add(textEditingController);
+    }
   }
 }

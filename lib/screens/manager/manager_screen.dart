@@ -4,12 +4,16 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
+import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 import 'package:sales_manager/screens/manager/product/manage.dart';
 import 'package:sales_manager/screens/manager/report/report.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../config/app.font.dart';
+import '../../config/app_domain.dart';
 import '../../widgets/drawer_app.dart';
 import 'create_oder/sell.dart';
 import 'oder/oder.dart';
@@ -24,6 +28,7 @@ class ManagerScreen extends StatefulWidget {
 class _ManagerScreenState extends State<ManagerScreen> {
   @override
   Widget build(BuildContext context) {
+    ProductsController productsController = context.read<ProductsController>();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.green_006200,

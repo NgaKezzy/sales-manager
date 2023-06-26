@@ -29,20 +29,21 @@ class _ProductManagerState extends State<ProductManager> {
       child: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              physics: BouncingScrollPhysics(),
-              padding: EdgeInsets.all(0),
-              itemCount:
-                  context.watch<ProductsController>().resultProducts.length,
-              itemBuilder: (context, index) {
-                return productsController.isLoading
-                    ? ItemProductManager(ele: index)
-                    : Center(
-                        child: CircularProgressIndicator(),
-                      );
-              },
-            ),
-          )
+              child: productsController.isLoading
+                  ? ListView.builder(
+                      physics: BouncingScrollPhysics(),
+                      padding: EdgeInsets.all(0),
+                      itemCount: context
+                          .watch<ProductsController>()
+                          .resultProducts
+                          .length,
+                      itemBuilder: (context, index) {
+                        return ItemProductManager(ele: index);
+                      },
+                    )
+                  : Center(
+                      child: CircularProgressIndicator(),
+                    ))
         ],
       ),
     );
