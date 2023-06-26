@@ -209,4 +209,56 @@ class NetworkApi {
     }
     return resultUpdateProduct;
   }
+
+  // gọi API tạo đơn hàng
+  static Future<Map> createOrder(
+      String idWarehouse,
+      String purchaseDate,
+      String funds,
+      String customerName,
+      String bill,
+      String noteOrder,
+      Map listProduct) async {
+    Map resultCreateOrder = {};
+    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.ORDER);
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+
+    try {
+      final response = await http.post(uri, headers: {
+        'token_access_authorization': accessToken ?? '',
+      }, body: {
+        "idWarehouse": idWarehouse,
+        "purchaseDate": purchaseDate,
+        "funds": funds,
+        "customerName": customerName,
+        "bill": bill,
+        "noteOrder": noteOrder,
+        "listProduct": listProduct,
+      });
+      switch (response.statusCode) {
+        case 200:
+          {
+            var data = jsonDecode(response.body);
+            resultCreateOrder = data;
+          }
+          break;
+        case 401:
+          {
+            var data = jsonDecode(response.body);
+            resultCreateOrder = data;
+          }
+          break;
+        default:
+          {
+            var data = jsonDecode(response.body);
+            resultCreateOrder = data;
+          }
+      }
+    } catch (e) {
+      printCyan('Đây là lỗi bắt ngoại lệ khi tạo đơn hàng${e}');
+    }
+    return resultCreateOrder;
+  }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
+import 'package:sales_manager/screens/manager/controller/order_controller.dart';
 import 'package:sales_manager/widgets/buttom_2.dart';
 
 import '../../../config/app.font.dart';
@@ -21,10 +22,9 @@ class OrderConfirmation extends StatefulWidget {
 }
 
 class _OrderConfirmationState extends State<OrderConfirmation> {
-  bool outstanding = true;
-
   @override
   Widget build(BuildContext context) {
+    OrderController orderController = context.read<OrderController>();
     return ChangeNotifierProvider(
       create: (context) => ManagerController(),
       child: Consumer<ManagerController>(
@@ -43,106 +43,35 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
                               width: MediaQuery.of(context).size.width,
                               child: Column(
                                 children: [
+                                  ProductIsPurcharsed(),
                                   Container(
-                                    margin: EdgeInsets.only(top: 10),
                                     alignment: Alignment.center,
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 10, horizontal: 20),
+                                    margin: EdgeInsets.all(5),
+                                    height: 40,
                                     width: MediaQuery.of(context).size.width,
-                                    height: AppDimens.dimens_60,
-                                    color: AppColors.white,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                            color: AppColors.green_006200,
+                                            width: 1)),
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.center,
                                       children: [
-                                        Container(
-                                          height: AppDimens.dimens_35,
-                                          width: AppDimens.dimens_150,
-                                          decoration: BoxDecoration(
-                                              color: AppColors.grey_8A8A8A,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                InkWell(
-                                                  onTap: () {
-                                                    outstanding = true;
-                                                    print("outstanding = " +
-                                                        outstanding.toString());
-                                                  },
-                                                  child: Container(
-                                                    alignment: Alignment.center,
-                                                    height: AppDimens.dimens_30,
-                                                    width: AppDimens.dimens_60,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      color: outstanding == true
-                                                          ? AppColors.white
-                                                          : AppColors
-                                                              .grey_8A8A8A,
-                                                    ),
-                                                    child: const Text(
-                                                      'Giá bán',
-                                                      style: TextStyle(
-                                                          color: AppColors
-                                                              .green_55b135,
-                                                          fontSize: AppDimens
-                                                              .dimens_13,
-                                                          fontWeight: FontFamily
-                                                              .medium),
-                                                    ),
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  width: AppDimens.dimens_5,
-                                                ),
-                                                InkWell(
-                                                  onTap: () {
-                                                    outstanding = false;
-                                                    print("outstanding = " +
-                                                        outstanding.toString());
-                                                  },
-                                                  child: Container(
-                                                    alignment: Alignment.center,
-                                                    height: AppDimens.dimens_30,
-                                                    width: AppDimens.dimens_60,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      color:
-                                                          outstanding == false
-                                                              ? AppColors.white
-                                                              : AppColors
-                                                                  .grey_8A8A8A,
-                                                    ),
-                                                    child: const Text(
-                                                      'Giá sỉ',
-                                                      style: TextStyle(
-                                                          color:
-                                                              AppColors.black,
-                                                          fontSize: 13,
-                                                          fontWeight: FontFamily
-                                                              .medium),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ]),
+                                        Icon(
+                                          Icons.add,
+                                          color: AppColors.green_006200,
                                         ),
-                                        const Text(
-                                          '+ Thêm sản phầm',
+                                        Text(
+                                          'Thêm sản phẩm',
                                           style: TextStyle(
-                                              fontSize: AppDimens.dimens_15,
-                                              color: AppColors.blue_0000ff),
-                                        )
+                                              color: AppColors.green_006200,
+                                              fontSize: AppDimens.dimens_16,
+                                              fontWeight: FontFamily.medium),
+                                        ),
                                       ],
                                     ),
                                   ),
-                                  ProductIsPurcharsed(),
                                   Passenger(),
                                   Container(
                                     padding: EdgeInsets.symmetric(
@@ -269,7 +198,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
-                                          children: const [
+                                          children: [
                                             Text(
                                               'Tổng cộng',
                                               style: TextStyle(
@@ -279,10 +208,10 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
                                                       FontFamily.medium),
                                             ),
                                             Text(
-                                              '1.200.000',
+                                              '${orderController.totalMoney} đ',
                                               style: TextStyle(
                                                   color: AppColors.red_FC0000,
-                                                  fontSize: AppDimens.dimens_13,
+                                                  fontSize: AppDimens.dimens_20,
                                                   fontWeight:
                                                       FontFamily.medium),
                                             )
@@ -324,6 +253,8 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
                                     child: SizedBox(
                                       height: AppDimens.dimens_40,
                                       child: TextField(
+                                        controller:
+                                            orderController.noteOrderController,
                                         textCapitalization:
                                             TextCapitalization.sentences,
                                         decoration: InputDecoration(

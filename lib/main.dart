@@ -8,6 +8,7 @@ import 'package:sales_manager/screens/login_and_init_shop/login.dart';
 
 import 'package:sales_manager/screens/login_and_init_shop/login_screen.dart';
 import 'package:sales_manager/screens/login_and_init_shop/register.dart';
+import 'package:sales_manager/screens/manager/controller/order_controller.dart';
 import 'package:sales_manager/screens/manager/oder/all.dart';
 import 'package:sales_manager/screens/manager/create_oder/order_confirmation.dart';
 import 'package:sales_manager/screens/manager/product/manage.dart';
@@ -41,6 +42,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (_) => ProductsController(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => OrderController(),
         ),
       ],
       child: MyApp(),

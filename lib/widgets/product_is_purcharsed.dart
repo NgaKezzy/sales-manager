@@ -1,16 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:sales_manager/config/print_color.dart';
 
 import '../config/app.font.dart';
 import '../config/app_color.dart';
 import '../config/app_size.dart';
+import '../screens/manager/controller/order_controller.dart';
 
-class ProductIsPurcharsed extends StatelessWidget {
+class ProductIsPurcharsed extends StatefulWidget {
   const ProductIsPurcharsed({super.key});
 
   @override
+  State<ProductIsPurcharsed> createState() => _ProductIsPurcharsedState();
+}
+
+class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
+  @override
+  void initState() {
+    OrderController orderController = context.read<OrderController>();
+    orderController.quantityController.text = 1.toString();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    OrderController orderController = context.watch<OrderController>();
+
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       width: MediaQuery.of(context).size.width,
@@ -51,46 +69,70 @@ class ProductIsPurcharsed extends StatelessWidget {
             width: AppDimens.dimens_10,
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Name',
+                orderController.selectedItemList[0].productName,
                 style: TextStyle(
+                    fontWeight: FontFamily.medium,
                     fontSize: AppDimens.dimens_15,
                     overflow: TextOverflow.ellipsis),
               ),
               Container(
+                alignment: Alignment.center,
                 width: AppDimens.dimens_100,
-                height: AppDimens.dimens_35,
+                height: AppDimens.dimens_25,
                 decoration: BoxDecoration(
                     border: Border.all(color: AppColors.grey_8A8A8A),
                     borderRadius: BorderRadius.circular(5)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      width: AppDimens.dimens_33,
-                      height: AppDimens.dimens_35,
-                      child: Icon(
-                        Icons.remove,
-                        size: 20,
-                        color: AppColors.black,
+                    InkWell(
+                      onTap: () {
+                        int.parse(orderController.quantityController.text) + 1;
+                        print('${orderController.quantityController.text}');
+                        orderController.sumPrice(
+                            int.parse(orderController.quantityController.text),
+                            orderController.selectedItemList[0].price);
+                      },
+                      child: SizedBox(
+                        width: AppDimens.dimens_33,
+                        height: AppDimens.dimens_35,
+                        child: Icon(
+                          Icons.remove,
+                          size: 18,
+                          color: AppColors.black,
+                        ),
                       ),
                     ),
-                    Text(
-                      '1',
+                    Expanded(
+                        child: TextField(
+                      keyboardType: TextInputType.number,
                       style: TextStyle(
-                          fontSize: 20,
+                          fontWeight: FontFamily.medium,
+                          fontSize: AppDimens.dimens_13),
+                      textAlign: TextAlign.center,
+                      controller: orderController.quantityController,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                      ),
+                    )),
+                    InkWell(
+                      onTap: () {
+                        orderController.sumPrice(
+                            int.parse(orderController.quantityController.text),
+                            orderController.selectedItemList[0].price);
+                      },
+                      child: SizedBox(
+                        width: AppDimens.dimens_33,
+                        height: AppDimens.dimens_35,
+                        child: Icon(
+                          Icons.add,
+                          size: 18,
                           color: AppColors.black,
-                          fontWeight: FontFamily.medium),
-                    ),
-                    SizedBox(
-                      width: AppDimens.dimens_33,
-                      height: AppDimens.dimens_35,
-                      child: Icon(
-                        Icons.add,
-                        size: 20,
-                        color: AppColors.black,
+                        ),
                       ),
                     ),
                   ],
@@ -102,7 +144,8 @@ class ProductIsPurcharsed extends StatelessWidget {
               child: Container(
             alignment: Alignment.bottomRight,
             child: Text(
-              '300.000',
+              NumberFormat.decimalPattern()
+                  .format(orderController.selectedItemList[0].price),
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontFamily.medium,

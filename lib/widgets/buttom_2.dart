@@ -2,19 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:sales_manager/screens/manager/controller/order_controller.dart';
 
 import '../config/app.font.dart';
 import '../config/app_color.dart';
 import '../config/app_size.dart';
 
-class Buttom_2 extends StatelessWidget {
+class Buttom_2 extends StatefulWidget {
   Buttom_2({required this.txt_left, required this.txt_rightt, super.key});
 
   final String txt_left;
   final String txt_rightt;
 
   @override
+  State<Buttom_2> createState() => _Buttom_2State();
+}
+
+class _Buttom_2State extends State<Buttom_2> {
+  @override
   Widget build(BuildContext context) {
+    OrderController orderController = context.read<OrderController>();
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       margin: EdgeInsets.only(top: 10, bottom: 20),
@@ -22,18 +30,18 @@ class Buttom_2 extends StatelessWidget {
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.41,
-          height: 55,
+          height: AppDimens.dimens_45,
           child: OutlinedButton(
             onPressed: () {},
             child: Text(
-              txt_left,
+              widget.txt_left,
               style: TextStyle(color: AppColors.black),
             ),
           ),
         ),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.41,
-          height: AppDimens.dimens_55,
+          height: AppDimens.dimens_45,
           child: ElevatedButton(
             onPressed: () {
               showModalBottomSheet(
@@ -48,7 +56,6 @@ class Buttom_2 extends StatelessWidget {
                   builder: (context) {
                     return Container(
                       padding: EdgeInsets.all(20),
-                      height: MediaQuery.of(context).size.height,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
@@ -67,25 +74,21 @@ class Buttom_2 extends StatelessWidget {
                                     fontWeight: FontFamily.medium),
                               ),
                               InkWell(
-                                  onTap: () {
-                                    Get.back();
-                                  },
-                                  child: InkWell(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Icon(
-                                      Icons.close,
-                                      size: 24,
-                                    ),
-                                  ))
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Icon(
+                                  Icons.close,
+                                  size: 24,
+                                ),
+                              )
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                '300.000',
+                                orderController.totalMoney.toString(),
                                 style: TextStyle(
                                     fontSize: AppDimens.dimens_25,
                                     color: AppColors.red_FC0000,
@@ -96,15 +99,6 @@ class Buttom_2 extends StatelessWidget {
                           SizedBox(
                             height: AppDimens.dimens_20,
                           ),
-                          Text('Khách trả'),
-                          Container(
-                            margin: EdgeInsets.only(top: 10, bottom: 10),
-                            height: AppDimens.dimens_30,
-                            child: TextField(
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(hintText: '300.000'),
-                            ),
-                          ),
                           Text('Nguồn tiền'),
                           SizedBox(
                             height: AppDimens.dimens_10,
@@ -112,49 +106,88 @@ class Buttom_2 extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                alignment: Alignment.center,
-                                width: AppDimens.dimens_100,
-                                height: AppDimens.dimens_35,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: AppColors.blue_0000ff, width: 1),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Text(
-                                  'Tiền mặt',
-                                  style:
-                                      TextStyle(color: AppColors.blue_0000ff),
-                                ),
-                              ),
-                              Container(
-                                alignment: Alignment.center,
-                                width: AppDimens.dimens_100,
-                                height: AppDimens.dimens_35,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: AppColors.grey_8A8A8A, width: 1),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Text(
-                                  'Ví điện tử',
-                                  style:
-                                      TextStyle(color: AppColors.grey_8A8A8A),
+                              InkWell(
+                                onTap: () {
+                                  orderController.funds = "Tiền mặt";
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  width: AppDimens.dimens_100,
+                                  height: AppDimens.dimens_35,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color:
+                                            orderController.funds == "Tiền mặt"
+                                                ? AppColors.blue_0000ff
+                                                : AppColors.grey_808080,
+                                        width: 1),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Text(
+                                    'Tiền mặt',
+                                    style: TextStyle(
+                                      fontWeight: FontFamily.medium,
+                                      color: orderController.funds == "Tiền mặt"
+                                          ? AppColors.blue_0000ff
+                                          : AppColors.grey_808080,
+                                    ),
+                                  ),
                                 ),
                               ),
-                              Container(
-                                alignment: Alignment.center,
-                                width: AppDimens.dimens_100,
-                                height: AppDimens.dimens_35,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: AppColors.grey_8A8A8A, width: 1),
-                                  borderRadius: BorderRadius.circular(10),
+                              InkWell(
+                                onTap: () {
+                                  orderController.funds = "Ví điện tử";
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  width: AppDimens.dimens_100,
+                                  height: AppDimens.dimens_35,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: orderController.funds ==
+                                                "Ví điện tử"
+                                            ? AppColors.blue_0000ff
+                                            : AppColors.grey_808080,
+                                        width: 1),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Text(
+                                    'Ví điện tử',
+                                    style: TextStyle(
+                                        fontWeight: FontFamily.medium,
+                                        color: orderController.funds ==
+                                                "Ví điện tử"
+                                            ? AppColors.blue_0000ff
+                                            : AppColors.grey_808080),
+                                  ),
                                 ),
-                                child: Text(
-                                  'Ngân hàng',
-                                  style:
-                                      TextStyle(color: AppColors.grey_8A8A8A),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  orderController.funds = "Ngân hàng";
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  width: AppDimens.dimens_100,
+                                  height: AppDimens.dimens_35,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color:
+                                            orderController.funds == "Ngân hàng"
+                                                ? AppColors.blue_0000ff
+                                                : AppColors.grey_808080,
+                                        width: 1),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Text(
+                                    'Ngân hàng',
+                                    style: TextStyle(
+                                        fontWeight: FontFamily.medium,
+                                        color:
+                                            orderController.funds == "Ngân hàng"
+                                                ? AppColors.blue_0000ff
+                                                : AppColors.grey_808080),
+                                  ),
                                 ),
                               )
                             ],
@@ -226,10 +259,10 @@ class Buttom_2 extends StatelessWidget {
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width,
-                            height: AppDimens.dimens_55,
+                            height: AppDimens.dimens_45,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppColors.green_55b135),
+                                    backgroundColor: AppColors.green_006200),
                                 onPressed: () {},
                                 child: Text(
                                   'Xác nhận',
@@ -244,7 +277,7 @@ class Buttom_2 extends StatelessWidget {
                   });
             },
             style: ElevatedButton.styleFrom(primary: AppColors.green_006200),
-            child: Text(txt_rightt),
+            child: Text(widget.txt_rightt),
           ),
         ),
       ]),

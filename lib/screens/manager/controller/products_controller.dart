@@ -13,6 +13,8 @@ class ProductsController extends ChangeNotifier {
   String nameProduct = "";
   int indexProduct = 0;
   List<Product> resultProducts = [];
+  List<bool> checkProducts = [];
+
   final keyCreateProduct = GlobalKey<FormState>();
   final keyUpdateProduct = GlobalKey<FormState>();
 
@@ -34,6 +36,9 @@ class ProductsController extends ChangeNotifier {
     final List<Product> product =
         Product.convertToProduct(dataProducts['data']);
     resultProducts = product;
+    for (var i = 0; i < resultProducts.length; i++) {
+      checkProducts.add(false);
+    }
     log('Đây là số lượng sản phẩm :' + resultProducts.length.toString());
     isLoading = true;
     notifyListeners();
@@ -114,5 +119,14 @@ class ProductsController extends ChangeNotifier {
     }
 
     notifyListeners();
+  }
+
+  void checkHide(int index) {
+    // if (checkProducts[index] == false) {
+    //   checkProducts[index] = true;
+    // } else {
+    //   checkProducts[index] = false;
+    // }
+    checkProducts[index] = !checkProducts[index];
   }
 }
