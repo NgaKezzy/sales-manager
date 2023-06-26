@@ -34,7 +34,7 @@ class _WareHouseScreenState extends State<WareHouseScreen> {
     authController = context.read<AuthController>();
     productsController = context.read<ProductsController>();
     productsController
-        .getdataProducts(authController.userLogin?.idWarehouse ?? '');
+        .getDataProducts(authController.userLogin?.idWarehouse ?? '');
     super.didChangeDependencies();
   }
 

@@ -26,7 +26,7 @@ class _MenageState extends State<Menage> {
     authController = context.read<AuthController>();
     productsController = context.read<ProductsController>();
     productsController
-        .getdataProducts(authController.userLogin?.idWarehouse ?? '');
+        .getDataProducts(authController.userLogin?.idWarehouse ?? '');
     super.didChangeDependencies();
   }
 

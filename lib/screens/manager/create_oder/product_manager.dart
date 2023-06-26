@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_size.dart';
@@ -65,6 +66,9 @@ class ItemProductManager extends StatelessWidget {
             context, MaterialPageRoute(builder: (context) => ProductDetail()));
         productsController.idProduct =
             productsController.resultProducts[ele].id;
+        productsController.indexProduct = ele;
+
+        printGreen('đây là vị trí số : ${productsController.indexProduct}');
         printRed('${productsController.idProduct}');
       },
       child: Container(
@@ -99,7 +103,7 @@ class ItemProductManager extends StatelessWidget {
                         fontWeight: FontFamily.medium),
                   ),
                   Text(
-                    'Có thể bán : ${productsController.resultProducts[ele].inventoryNumber}',
+                    'Có thể bán : ${NumberFormat.decimalPattern().format(productsController.resultProducts[ele].inventoryNumber)}',
                     style: TextStyle(
                       fontSize: AppDimens.dimens_13,
                     ),
@@ -114,7 +118,7 @@ class ItemProductManager extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    '${productsController.resultProducts[ele].price}  đ',
+                    '${NumberFormat.decimalPattern().format(productsController.resultProducts[ele].price)}  đ',
                     style: TextStyle(
                         fontSize: AppDimens.dimens_16,
                         fontWeight: FontFamily.medium,

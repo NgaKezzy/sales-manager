@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
@@ -32,7 +33,7 @@ class _SellState extends State<Sell> {
     authController = context.read<AuthController>();
     productsController = context.read<ProductsController>();
     productsController
-        .getdataProducts(authController.userLogin?.idWarehouse ?? '');
+        .getDataProducts(authController.userLogin?.idWarehouse ?? '');
     super.didChangeDependencies();
   }
 
@@ -164,7 +165,8 @@ class ItemListProduct extends StatelessWidget {
                         overflow: TextOverflow.ellipsis),
                   ),
                   Text(
-                    '${productsController.resultProducts[element].price}',
+                    NumberFormat.decimalPattern().format(
+                        productsController.resultProducts[element].price),
                     style: TextStyle(
                         fontSize: 13,
                         color: AppColors.black,

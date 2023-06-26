@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_color.dart';
@@ -72,14 +73,13 @@ class _WarehouseProductsState extends State<WarehouseProducts> {
                             ],
                           ),
                           Text(
-                            context
-                                .watch<ProductsController>()
-                                .totalValue()
-                                .toString(),
+                            NumberFormat.decimalPattern().format(
+                              context.watch<ProductsController>().totalValue(),
+                            ),
                             style: TextStyle(
                                 color: AppColors.green_55b135,
                                 fontWeight: FontFamily.semiBold,
-                                fontSize: AppDimens.dimens_16),
+                                fontSize: AppDimens.dimens_20),
                           )
                         ],
                       ),
@@ -183,13 +183,6 @@ class ItemWareHouseProduct extends StatelessWidget {
                   style: TextStyle(
                       fontSize: AppDimens.dimens_14, color: AppColors.black),
                 ),
-                // Text(
-                //   'SP ${productsController.resultProducts[element].id.split('').reversed.join()}',
-                //   style: TextStyle(
-                //       overflow: TextOverflow.ellipsis,
-                //       fontSize: AppDimens.dimens_14,
-                //       color: AppColors.grey_8A8A8A),
-                // ),
               ],
             ),
             Expanded(child: SizedBox()),
@@ -203,9 +196,10 @@ class ItemWareHouseProduct extends StatelessWidget {
                       fontSize: AppDimens.dimens_14, color: AppColors.black),
                 ),
                 Text(
-                  "${productsController.resultProducts[element].inventoryNumber * productsController.resultProducts[element].price} đ",
+                  '${NumberFormat.decimalPattern().format(productsController.resultProducts[element].inventoryNumber * productsController.resultProducts[element].price)} đ',
                   style: TextStyle(
-                      fontSize: AppDimens.dimens_14,
+                      fontWeight: FontFamily.medium,
+                      fontSize: AppDimens.dimens_16,
                       color: AppColors.red_FF5151),
                 ),
               ],

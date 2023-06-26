@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_color.dart';
@@ -9,13 +10,33 @@ import 'package:sales_manager/screens/manager/controller/products_controller.dar
 import 'package:sales_manager/widgets/header_center.dart';
 
 class ProductDetail extends StatefulWidget {
-  const ProductDetail({super.key});
+  ProductDetail({this.index, super.key});
+  int? index = 0;
 
   @override
   State<ProductDetail> createState() => _ProductDetailState();
 }
 
 class _ProductDetailState extends State<ProductDetail> {
+  void initState() {
+    ProductsController productsController = context.read<ProductsController>();
+    productsController.nameUpdateController.text = productsController
+        .resultProducts[productsController.indexProduct].productName;
+
+    productsController.priceUpdateController.text = productsController
+        .resultProducts[productsController.indexProduct].price
+        .toString();
+
+    productsController.importPriceUpdateController.text = productsController
+        .resultProducts[productsController.indexProduct].importPrice
+        .toString();
+
+    productsController.inventoryNumberUpdateController.text = productsController
+        .resultProducts[productsController.indexProduct].inventoryNumber
+        .toString();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
@@ -97,10 +118,15 @@ class _ProductDetailState extends State<ProductDetail> {
                               fontSize: 16, fontWeight: FontFamily.medium),
                         ),
                         SizedBox(
-                          height: 40,
+                          height: 45,
                           child: TextFormField(
                             controller: productsController.nameUpdateController,
                             decoration: InputDecoration(
+                              hintText: productsController
+                                  .resultProducts[
+                                      productsController.indexProduct]
+                                  .productName
+                                  .toString(),
                               isDense: true,
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -147,11 +173,16 @@ class _ProductDetailState extends State<ProductDetail> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 40,
+                                  height: 45,
                                   child: TextFormField(
                                     controller: productsController
                                         .priceUpdateController,
                                     decoration: InputDecoration(
+                                      hintText: productsController
+                                          .resultProducts[
+                                              productsController.indexProduct]
+                                          .price
+                                          .toString(),
                                       isDense: true,
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
@@ -207,11 +238,16 @@ class _ProductDetailState extends State<ProductDetail> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 40,
+                                  height: 45,
                                   child: TextFormField(
                                     controller: productsController
                                         .importPriceUpdateController,
                                     decoration: InputDecoration(
+                                      hintText: productsController
+                                          .resultProducts[
+                                              productsController.indexProduct]
+                                          .importPrice
+                                          .toString(),
                                       isDense: true,
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
@@ -267,11 +303,16 @@ class _ProductDetailState extends State<ProductDetail> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 40,
+                                  height: 45,
                                   child: TextFormField(
                                     controller: productsController
                                         .inventoryNumberUpdateController,
                                     decoration: InputDecoration(
+                                      hintText: productsController
+                                          .resultProducts[
+                                              productsController.indexProduct]
+                                          .inventoryNumber
+                                          .toString(),
                                       isDense: true,
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
@@ -320,10 +361,11 @@ class _ProductDetailState extends State<ProductDetail> {
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.green_006200),
-                              onPressed: () =>
-                                  productsController.updateProduct(),
+                              onPressed: () {
+                                productsController.updateProduct(context);
+                              },
                               child: Text('Cập nhật')),
-                        )
+                        ),
                       ],
                     ),
                   )
