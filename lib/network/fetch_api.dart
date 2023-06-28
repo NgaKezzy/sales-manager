@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:math';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -17,6 +17,10 @@ class NetworkApi {
       AppDomains.BASE_URL,
       AppDomains.AUTH_LOGIN,
     );
+    // var uri = Uri.http(
+    //   AppDomains.BASE_URL,
+    //   AppDomains.AUTH_LOGIN,
+    // );
     Map result = {};
     try {
       final response = await http.post(uri, body: {
@@ -42,7 +46,9 @@ class NetworkApi {
 
 // goij api  để đăng ký tài khoản
   static Future<Map> registerApi(String userName, String password) async {
-    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.AUTH_REGISTER);
+    // var uri = Uri.https(AppDomains.BASE_URL, AppDomains.AUTH_REGISTER);
+    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.AUTH_REGISTER);
+
     Map resultRegister = {};
     try {
       final response = await http.post(uri, body: {
@@ -69,6 +75,7 @@ class NetworkApi {
   static Future<Map> getProdcut(String idWarehouse) async {
     var uri =
         Uri.https(AppDomains.BASE_URL, AppDomains.WAREHOUSE + idWarehouse);
+    // var uri = Uri.http(AppDomains.BASE_URL, AppDomains.WAREHOUSE + idWarehouse);
     Map resultProducts = {};
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
@@ -97,6 +104,8 @@ class NetworkApi {
       int quantity) async {
     Map resultCreateProduct = {};
     var uri = Uri.https(AppDomains.BASE_URL, AppDomains.WAREHOUSE);
+    // var uri = Uri.http(AppDomains.BASE_URL, AppDomains.WAREHOUSE);
+
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
@@ -131,6 +140,7 @@ class NetworkApi {
   static Future<Map> deleteProduct(String productId) async {
     Map resultDeleteProduct = {};
     var uri = Uri.https(AppDomains.BASE_URL, AppDomains.DELETE);
+    // var uri = Uri.http(AppDomains.BASE_URL, AppDomains.DELETE);
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
@@ -169,6 +179,7 @@ class NetworkApi {
     Map resultUpdateProduct = {};
 
     var uri = Uri.https(AppDomains.BASE_URL, AppDomains.UPDATE_PRODUCT);
+    // var uri = Uri.http(AppDomains.BASE_URL, AppDomains.UPDATE_PRODUCT);
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
@@ -218,25 +229,35 @@ class NetworkApi {
       String customerName,
       String bill,
       String noteOrder,
-      Map listProduct) async {
+      List listProduct) async {
     Map resultCreateOrder = {};
-    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.ORDER);
+    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.ORDER);
+    // var uri = Uri.http(AppDomains.BASE_URL, AppDomains.ORDER);
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
 
+    Map put = {
+      "idWarehouse": idWarehouse,
+      "purchaseDate": purchaseDate,
+      "funds": funds,
+      "customerName": customerName,
+      "bill": bill,
+      "noteOrder": noteOrder,
+      "listProduct": jsonEncode(listProduct)
+    };
+
+    log(jsonEncode(put));
+
     try {
-      final response = await http.post(uri, headers: {
-        'token_access_authorization': accessToken ?? '',
-      }, body: {
-        "idWarehouse": idWarehouse,
-        "purchaseDate": purchaseDate,
-        "funds": funds,
-        "customerName": customerName,
-        "bill": bill,
-        "noteOrder": noteOrder,
-        "listProduct": listProduct,
-      });
+      final response = await http.post(
+        uri,
+        headers: {
+          'token_access_authorization': accessToken ?? '',
+          'content_type': 'application/x-www-form-urlencoded',
+        },
+        body: put,
+      );
       switch (response.statusCode) {
         case 200:
           {
@@ -257,7 +278,7 @@ class NetworkApi {
           }
       }
     } catch (e) {
-      printCyan('Đây là lỗi bắt ngoại lệ khi tạo đơn hàng${e}');
+      printCyan('Đây là lỗi bắt ngoại lệ khi tạo đơn hàng ${e}');
     }
     return resultCreateOrder;
   }

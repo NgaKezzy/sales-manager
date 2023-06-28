@@ -9,10 +9,13 @@ import '../config/app.font.dart';
 import '../config/app_color.dart';
 import '../config/app_size.dart';
 import '../screens/manager/controller/order_controller.dart';
+import '../screens/manager/controller/products_controller.dart';
 
 class ProductIsPurcharsed extends StatefulWidget {
-  ProductIsPurcharsed({required this.index, super.key});
+  ProductIsPurcharsed(
+      {required this.index, required this.indexTextField, super.key});
   final int index;
+  final int indexTextField;
 
   @override
   State<ProductIsPurcharsed> createState() => _ProductIsPurcharsedState();
@@ -20,15 +23,10 @@ class ProductIsPurcharsed extends StatefulWidget {
 
 class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
   @override
-  void initState() {
-    OrderController orderController = context.read<OrderController>();
-    orderController.quantityController.text = 1.toString();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     OrderController orderController = context.watch<OrderController>();
+    ProductsController productsController = context.read<ProductsController>();
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -51,14 +49,19 @@ class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
               Positioned(
                   top: -7,
                   left: -7,
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: AppDimens.dimens_20,
-                    width: AppDimens.dimens_20,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppColors.grey_8A8A8A),
-                    child: InkWell(
+                  child: InkWell(
+                    onTap: () {
+                      {
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: AppDimens.dimens_30,
+                      width: AppDimens.dimens_30,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: AppColors.grey_8A8A8A),
                       child: Icon(
                         Icons.close,
                         color: AppColors.white,
@@ -76,10 +79,10 @@ class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                orderController.selectedItemList[widget.index].productName,
+                productsController.resultProducts[widget.index].productName,
                 style: TextStyle(
                     fontWeight: FontFamily.medium,
-                    fontSize: AppDimens.dimens_15,
+                    fontSize: AppDimens.dimens_16,
                     overflow: TextOverflow.ellipsis),
               ),
               Container(
@@ -93,8 +96,12 @@ class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      onTap: () =>
-                          orderController.changeQuantityDown(widget.index),
+                      onTap: () {
+                        orderController
+                            .changeQuantityDown(widget.indexTextField);
+                        orderController
+                            .sumPrice(productsController.resultProducts);
+                      },
                       child: SizedBox(
                         width: AppDimens.dimens_33,
                         height: AppDimens.dimens_35,
@@ -107,8 +114,8 @@ class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
                     ),
                     Expanded(
                         child: TextField(
-                      controller:
-                          orderController.listQuantityController[widget.index],
+                      controller: orderController
+                          .listQuantityController[widget.indexTextField],
                       keyboardType: TextInputType.number,
                       style: TextStyle(
                           fontWeight: FontFamily.medium,
@@ -119,8 +126,11 @@ class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
                       ),
                     )),
                     InkWell(
-                      onTap: () =>
-                          orderController.changeQuantityUp(widget.index),
+                      onTap: () {
+                        orderController.changeQuantityUp(widget.indexTextField);
+                        orderController
+                            .sumPrice(productsController.resultProducts);
+                      },
                       child: SizedBox(
                         width: AppDimens.dimens_33,
                         height: AppDimens.dimens_35,
@@ -140,8 +150,8 @@ class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
               child: Container(
             alignment: Alignment.bottomRight,
             child: Text(
-              NumberFormat.decimalPattern()
-                  .format(orderController.selectedItemList[widget.index].price),
+              NumberFormat.decimalPattern().format(
+                  productsController.resultProducts[widget.index].price),
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontFamily.medium,

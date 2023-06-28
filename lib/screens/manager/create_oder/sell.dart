@@ -36,6 +36,7 @@ class _SellState extends State<Sell> {
     productsController = context.read<ProductsController>();
     productsController
         .getDataProducts(authController.userLogin?.idWarehouse ?? '');
+
     super.didChangeDependencies();
   }
 
@@ -69,7 +70,6 @@ class _SellState extends State<Sell> {
                           }
                           orderController.selectedItemList.clear();
 
-                          orderController.checkSelected = false;
                           orderController.totalMoney = 0;
                           Navigator.pop(context);
                         },
@@ -161,13 +161,17 @@ class _SellState extends State<Sell> {
                                 backgroundColor: AppColors.green_006200),
                             onPressed: () {
                               orderController.addQuantityController();
+
+                              orderController
+                                  .sumPrice(productsController.resultProducts);
+
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => OrderConfirmation(),
                                   ));
                               printRed(
-                                  '${orderController.totalMoney.toString()}');
+                                  'tổng tiền = ${orderController.totalMoney.toString()}');
                             },
                             child: Text('Xác nhận'),
                           ),
@@ -197,14 +201,16 @@ class ItemListProduct extends StatelessWidget {
     OrderController orderController = context.read<OrderController>();
     return InkWell(
       onTap: () {
-        if (productsController.checkProducts[element] == false) {
-          orderController.selectedItemList
-              .add(productsController.resultProducts[element]);
-        } else {
-          orderController.selectedItemList
-              .remove(productsController.resultProducts[element]);
-        }
         productsController.checkHide(element);
+        printRed(productsController.checkProducts.toString());
+        orderController.selectedItemList.clear();
+        for (var i = 0; i < productsController.checkProducts.length; i++) {
+          if (productsController.checkProducts[i] == true) {
+            orderController.selectedItemList.add(i);
+          }
+        }
+        printCyan(productsController.checkProducts.toString());
+        printBlue(orderController.selectedItemList.toString());
       },
       child: Stack(
         alignment: Alignment(0, -0.6),

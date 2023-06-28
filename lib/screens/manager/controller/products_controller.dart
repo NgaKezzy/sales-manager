@@ -13,6 +13,7 @@ class ProductsController extends ChangeNotifier {
   String idProduct = "";
   String nameProduct = "";
   int indexProduct = 0;
+  int indexProductChanged = 0;
   List<Product> resultProducts = [];
   List<bool> checkProducts = [];
 

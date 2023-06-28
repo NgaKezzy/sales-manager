@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:sales_manager/config/print_color.dart';
 import 'package:sales_manager/screens/manager/controller/order_controller.dart';
+import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 
 import '../config/app.font.dart';
 import '../config/app_color.dart';
 import '../config/app_size.dart';
 
 class Buttom_2 extends StatefulWidget {
-  Buttom_2({required this.txt_left, required this.txt_rightt, super.key});
+  Buttom_2({required this.txt_Left, required this.txt_Rightt, super.key});
 
-  final String txt_left;
-  final String txt_rightt;
+  final String txt_Left;
+  final String txt_Rightt;
 
   @override
   State<Buttom_2> createState() => _Buttom_2State();
@@ -23,6 +22,8 @@ class _Buttom_2State extends State<Buttom_2> {
   @override
   Widget build(BuildContext context) {
     OrderController orderController = context.read<OrderController>();
+    ProductsController productController = context.read<ProductsController>();
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       margin: EdgeInsets.only(top: 10, bottom: 20),
@@ -34,7 +35,7 @@ class _Buttom_2State extends State<Buttom_2> {
           child: OutlinedButton(
             onPressed: () {},
             child: Text(
-              widget.txt_left,
+              widget.txt_Left,
               style: TextStyle(color: AppColors.black),
             ),
           ),
@@ -44,6 +45,9 @@ class _Buttom_2State extends State<Buttom_2> {
           height: AppDimens.dimens_45,
           child: ElevatedButton(
             onPressed: () {
+              orderController
+                  .convertToListProduct(productController.resultProducts);
+              printBlue(orderController.itemPost.toString());
               showModalBottomSheet(
                   context: context,
                   shape: const RoundedRectangleBorder(
@@ -263,7 +267,15 @@ class _Buttom_2State extends State<Buttom_2> {
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: AppColors.green_006200),
-                                onPressed: () {},
+                                onPressed: () {
+                                  printBlue('click');
+                                  orderController.createOrder();
+                                  orderController
+                                      .customersOrderController.text = '';
+                                  orderController.noteOrderController.text = '';
+                                  orderController.funds = 'Tiền mặt';
+                                  Navigator.pop(context);
+                                },
                                 child: Text(
                                   'Xác nhận',
                                   style: TextStyle(
@@ -277,7 +289,7 @@ class _Buttom_2State extends State<Buttom_2> {
                   });
             },
             style: ElevatedButton.styleFrom(primary: AppColors.green_006200),
-            child: Text(widget.txt_rightt),
+            child: Text(widget.txt_Rightt),
           ),
         ),
       ]),

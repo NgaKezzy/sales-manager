@@ -18,37 +18,37 @@ class Passenger extends StatelessWidget {
       margin: EdgeInsets.only(top: 10),
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       width: MediaQuery.of(context).size.width,
-      height: AppDimens.dimens_80,
       decoration: BoxDecoration(color: AppColors.white),
       child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Khách hàng',
-              style: TextStyle(
-                  fontSize: AppDimens.dimens_16, fontWeight: FontFamily.medium),
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width - 40,
-                  height: AppDimens.dimens_40,
-                  child: TextField(
-                    controller: orderController.customersOrderController,
-                    textCapitalization: TextCapitalization.sentences,
-                    decoration: InputDecoration(
-                      hintText: 'Thông tin khách hàng',
-                      suffixIcon: Icon(Icons.account_circle),
-                      suffixIconColor: AppColors.green_04D0CA,
-                      hintStyle:
-                          TextStyle(fontSize: 15, color: AppColors.grey_8A8A8A),
-                    ),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'Khách hàng',
+            style: TextStyle(
+                fontSize: AppDimens.dimens_16, fontWeight: FontFamily.medium),
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 40,
+                height: AppDimens.dimens_40,
+                child: TextField(
+                  controller: orderController.customersOrderController,
+                  textCapitalization: TextCapitalization.sentences,
+                  decoration: InputDecoration(
+                    hintText: 'Thông tin khách hàng',
+                    suffixIcon: Icon(Icons.account_circle),
+                    suffixIconColor: AppColors.green_04D0CA,
+                    hintStyle:
+                        TextStyle(fontSize: 15, color: AppColors.grey_8A8A8A),
                   ),
                 ),
-              ],
-            )
-          ]),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
