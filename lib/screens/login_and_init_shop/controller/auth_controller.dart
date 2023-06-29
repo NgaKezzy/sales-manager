@@ -113,6 +113,9 @@ class AuthController extends ChangeNotifier {
       log(dataRegister.toString());
       if (dataRegister['status'] == 'success') {
         Fluttertoast.showToast(msg: dataRegister['message']);
+        userName.text = '';
+        passOne.text = '';
+        PassTwo.text = '';
       }
       if (dataRegister['status'] == 'error') {
         Fluttertoast.showToast(msg: dataRegister['message']);

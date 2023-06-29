@@ -18,200 +18,212 @@ class Register extends StatelessWidget {
 
     return Scaffold(
       body: SingleChildScrollView(
-        child: Form(
-          key: authController.formKeyRegister,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 50,
-              ),
-              Container(
-                width: 80,
-                height: 130,
-                child: Image.asset('assets/img/appstore.png'),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Đăng ký',
-                    style: TextStyle(
-                        color: AppColors.black,
-                        fontSize: 30,
-                        fontWeight: FontFamily.medium),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  SizedBox(
-                    height: 40,
-                  ),
-                  SizedBox(
-                    height: 70,
-                    width: MediaQuery.of(context).size.width * 0.85,
-                    child: TextFormField(
-                      controller: authController.userName,
-                      validator: authController.validator,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        labelText: 'Tên đăng nhập',
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: AppColors.grey_808080
-                                  .withOpacity(0.6)), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: AppColors.grey_808080), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: AppColors.red_FF5151), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1, color: AppColors.black), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 70,
-                    width: MediaQuery.of(context).size.width * 0.85,
-                    child: TextFormField(
-                      controller: authController.passOne,
-                      validator: authController.validator,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        labelText: 'Mật khẩu',
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: AppColors.grey_808080
-                                  .withOpacity(0.6)), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: AppColors.grey_808080), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: AppColors.red_FF5151), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1, color: AppColors.black), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 70,
-                    width: MediaQuery.of(context).size.width * 0.85,
-                    child: TextFormField(
-                      controller: authController.PassTwo,
-                      validator: authController.validator,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        labelText: 'Nhập lại mật khẩu',
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: AppColors.grey_808080
-                                  .withOpacity(0.6)), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: AppColors.grey_808080), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: AppColors.red_FF5151), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1, color: AppColors.black), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.85,
-                height: AppDimens.dimens_45,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.green_006200),
-                    onPressed: () => authController.submitRegister(context),
-                    child: Text(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/img/background.png'),
+                fit: BoxFit.cover),
+          ),
+          child: Form(
+            key: authController.formKeyRegister,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 50,
+                ),
+                Container(
+                  width: 80,
+                  height: 130,
+                  child: Image.asset('assets/img/appstore.png'),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
                       'Đăng ký',
-                      style: TextStyle(fontSize: AppDimens.dimens_16),
-                    )),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(10),
+                      style: TextStyle(
+                          color: AppColors.black,
+                          fontSize: 30,
+                          fontWeight: FontFamily.medium),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    SizedBox(
                       height: 40,
-                      child: Text(
-                        "Bạn dã có tài khoản ?",
-                        style: TextStyle(
-                          fontSize: 16,
+                    ),
+                    SizedBox(
+                      height: 70,
+                      width: MediaQuery.of(context).size.width * 0.85,
+                      child: TextFormField(
+                        controller: authController.userName,
+                        validator: authController.validator,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          labelText: 'Tên đăng nhập',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: AppColors.grey_808080
+                                    .withOpacity(0.6)), //<-- SEE HERE
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: AppColors.grey_808080), //<-- SEE HERE
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: AppColors.red_FF5151), //<-- SEE HERE
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: AppColors.black), //<-- SEE HERE
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
                         ),
-                      )),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => Login()),
-                        ModalRoute.withName('/late'),
-                      );
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(10),
-                      height: 40,
-                      child: Text(
-                        "Đăng nhập",
-                        style: TextStyle(
-                            color: AppColors.blue_0000ff,
-                            fontSize: 16,
-                            fontWeight: FontFamily.medium),
                       ),
                     ),
-                  ),
-                ],
-              )
-            ],
+                    SizedBox(
+                      height: 70,
+                      width: MediaQuery.of(context).size.width * 0.85,
+                      child: TextFormField(
+                        controller: authController.passOne,
+                        validator: authController.validator,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          labelText: 'Mật khẩu',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: AppColors.grey_808080
+                                    .withOpacity(0.6)), //<-- SEE HERE
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: AppColors.grey_808080), //<-- SEE HERE
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: AppColors.red_FF5151), //<-- SEE HERE
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: AppColors.black), //<-- SEE HERE
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 70,
+                      width: MediaQuery.of(context).size.width * 0.85,
+                      child: TextFormField(
+                        controller: authController.PassTwo,
+                        validator: authController.validator,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          labelText: 'Nhập lại mật khẩu',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: AppColors.grey_808080
+                                    .withOpacity(0.6)), //<-- SEE HERE
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: AppColors.grey_808080), //<-- SEE HERE
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: AppColors.red_FF5151), //<-- SEE HERE
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: AppColors.black), //<-- SEE HERE
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  height: AppDimens.dimens_45,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.green_006200),
+                      onPressed: () => authController.submitRegister(context),
+                      child: Text(
+                        'Đăng ký',
+                        style: TextStyle(fontSize: AppDimens.dimens_16),
+                      )),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(10),
+                        height: 40,
+                        child: Text(
+                          "Bạn dã có tài khoản ?",
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        )),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => Login()),
+                          ModalRoute.withName('/late'),
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(10),
+                        height: 40,
+                        child: Text(
+                          "Đăng nhập",
+                          style: TextStyle(
+                              color: AppColors.blue_0000ff,
+                              fontSize: 16,
+                              fontWeight: FontFamily.medium),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

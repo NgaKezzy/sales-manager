@@ -104,7 +104,7 @@ class OrderController extends ChangeNotifier {
     final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
 
     final createOrder = await NetworkApi.createOrder(idWarehouse ?? '',
-        dateOrder, funds, customerOrder, 'N', noteOrder, itemPost);
+        dateOrder, funds, customerOrder, 'X', noteOrder, itemPost);
     if (createOrder['status'] == 'success') {
       Fluttertoast.showToast(msg: '${createOrder['message']}');
     } else {
