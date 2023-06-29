@@ -51,13 +51,11 @@ class Register extends StatelessWidget {
                     height: 70,
                     width: MediaQuery.of(context).size.width * 0.85,
                     child: TextFormField(
-                      autofocus: true,
                       controller: authController.userName,
                       validator: authController.validator,
                       decoration: InputDecoration(
                         isDense: true,
-                        hintText: 'Tên đăng nhập',
-                        hintStyle: TextStyle(fontSize: 13),
+                        labelText: 'Tên đăng nhập',
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 1,
@@ -93,8 +91,7 @@ class Register extends StatelessWidget {
                       validator: authController.validator,
                       decoration: InputDecoration(
                         isDense: true,
-                        hintText: 'Mật khẩu',
-                        hintStyle: TextStyle(fontSize: 13),
+                        labelText: 'Mật khẩu',
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 1,
@@ -130,8 +127,7 @@ class Register extends StatelessWidget {
                       validator: authController.validator,
                       decoration: InputDecoration(
                         isDense: true,
-                        hintText: 'Nhập lại mật khẩu',
-                        hintStyle: TextStyle(fontSize: 13),
+                        labelText: 'Nhập lại mật khẩu',
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 1,

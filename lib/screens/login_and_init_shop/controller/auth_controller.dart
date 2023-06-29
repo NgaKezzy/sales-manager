@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_domain.dart';
 import 'package:sales_manager/models/user_login.dart';
 import 'package:sales_manager/network/fetch_api.dart';
@@ -69,6 +70,9 @@ class AuthController extends ChangeNotifier {
             UserLogin.fromJson(dataLogin['data']['dataUser']);
         _userLogin = userLogin;
         _isLogin = true;
+
+        userNameController.text = '';
+        passwordController.text = '';
       }
       if (dataLogin['status'] == 'error') {
         Fluttertoast.showToast(msg: dataLogin['message']);

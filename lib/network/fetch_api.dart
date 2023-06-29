@@ -47,7 +47,7 @@ class NetworkApi {
 // goij api  để đăng ký tài khoản
   static Future<Map> registerApi(String userName, String password) async {
     // var uri = Uri.https(AppDomains.BASE_URL, AppDomains.AUTH_REGISTER);
-    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.AUTH_REGISTER);
+    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.AUTH_REGISTER);
 
     Map resultRegister = {};
     try {

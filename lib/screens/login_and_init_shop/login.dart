@@ -59,8 +59,7 @@ class _LoginState extends State<Login> {
                       validator: authController.validator,
                       decoration: InputDecoration(
                         isDense: true,
-                        hintText: 'Tên đăng nhập',
-                        hintStyle: TextStyle(fontSize: 13),
+                        labelText: 'Tên đăng nhập',
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 1,
@@ -97,8 +96,9 @@ class _LoginState extends State<Login> {
                       obscureText: true,
                       decoration: InputDecoration(
                         isDense: true,
-                        hintText: 'Mật khẩu',
-                        hintStyle: TextStyle(fontSize: 13),
+                        labelText: 'Mật khẩu',
+                        // hintText: 'Mật khẩu',
+
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 1,
@@ -178,7 +178,7 @@ class _LoginState extends State<Login> {
                       child: Text(
                         "Đăng ký",
                         style: TextStyle(
-                            color: AppColors.blue_0000ff,
+                            color: AppColors.green_55b135,
                             fontSize: 16,
                             fontWeight: FontFamily.medium),
                       ),
