@@ -109,29 +109,6 @@ class _CreateProductState extends State<CreateProduct> {
                                 width: MediaQuery.of(context).size.width * 0.4,
                                 child: Column(children: [
                                   Text(
-                                    'Giá bán',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontFamily.medium,
-                                        color: AppColors.grey_8A8A8A),
-                                  ),
-                                  SizedBox(
-                                      height: 50,
-                                      child: TextFormField(
-                                        controller: productsController
-                                            .priceProductController,
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        validator: productsController.validator,
-                                        textAlign: TextAlign.center,
-                                        keyboardType: TextInputType.number,
-                                      )),
-                                ]),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.4,
-                                child: Column(children: [
-                                  Text(
                                     'Giá vốn',
                                     style: TextStyle(
                                         fontSize: 16,
@@ -145,6 +122,29 @@ class _CreateProductState extends State<CreateProduct> {
                                             InputDecoration(isDense: true),
                                         controller: productsController
                                             .importPriceProductController,
+                                        validator: productsController.validator,
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number,
+                                      )),
+                                ]),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                child: Column(children: [
+                                  Text(
+                                    'Giá bán',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontFamily.medium,
+                                        color: AppColors.grey_8A8A8A),
+                                  ),
+                                  SizedBox(
+                                      height: 50,
+                                      child: TextFormField(
+                                        controller: productsController
+                                            .priceProductController,
+                                        decoration:
+                                            InputDecoration(isDense: true),
                                         validator: productsController.validator,
                                         textAlign: TextAlign.center,
                                         keyboardType: TextInputType.number,

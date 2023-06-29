@@ -285,71 +285,71 @@ class _ProductDetailState extends State<ProductDetail> {
                                 ),
                               ]),
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width - 20,
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Tồn kho',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontFamily.medium,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 45,
-                                  child: TextFormField(
-                                    controller: productsController
-                                        .inventoryNumberUpdateController,
-                                    decoration: InputDecoration(
-                                      hintText: productsController
-                                          .resultProducts[
-                                              productsController.indexProduct]
-                                          .inventoryNumber
-                                          .toString(),
-                                      isDense: true,
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            width: 1,
-                                            color: AppColors.grey_808080
-                                                .withOpacity(
-                                                    0.6)), //<-- SEE HERE
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            width: 1,
-                                            color: AppColors
-                                                .grey_808080), //<-- SEE HERE
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            width: 1,
-                                            color: AppColors
-                                                .red_FF5151), //<-- SEE HERE
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            width: 1,
-                                            color:
-                                                AppColors.black), //<-- SEE HERE
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ]),
-                        ),
+                        // SizedBox(
+                        //   height: 20,
+                        // ),
+                        // Container(
+                        //   width: MediaQuery.of(context).size.width - 20,
+                        //   child: Column(
+                        //       crossAxisAlignment: CrossAxisAlignment.start,
+                        //       children: [
+                        //         Text(
+                        //           'Tồn kho',
+                        //           style: TextStyle(
+                        //             fontSize: 16,
+                        //             fontWeight: FontFamily.medium,
+                        //           ),
+                        //         ),
+                        //         SizedBox(
+                        //           height: 45,
+                        //           child: TextFormField(
+                        //             controller: productsController
+                        //                 .inventoryNumberUpdateController,
+                        //             decoration: InputDecoration(
+                        //               hintText: productsController
+                        //                   .resultProducts[
+                        //                       productsController.indexProduct]
+                        //                   .inventoryNumber
+                        //                   .toString(),
+                        //               isDense: true,
+                        //               enabledBorder: OutlineInputBorder(
+                        //                 borderSide: BorderSide(
+                        //                     width: 1,
+                        //                     color: AppColors.grey_808080
+                        //                         .withOpacity(
+                        //                             0.6)), //<-- SEE HERE
+                        //                 borderRadius:
+                        //                     BorderRadius.circular(10.0),
+                        //               ),
+                        //               border: OutlineInputBorder(
+                        //                 borderSide: BorderSide(
+                        //                     width: 1,
+                        //                     color: AppColors
+                        //                         .grey_808080), //<-- SEE HERE
+                        //                 borderRadius:
+                        //                     BorderRadius.circular(10.0),
+                        //               ),
+                        //               errorBorder: OutlineInputBorder(
+                        //                 borderSide: BorderSide(
+                        //                     width: 1,
+                        //                     color: AppColors
+                        //                         .red_FF5151), //<-- SEE HERE
+                        //                 borderRadius:
+                        //                     BorderRadius.circular(10.0),
+                        //               ),
+                        //               focusedBorder: OutlineInputBorder(
+                        //                 borderSide: BorderSide(
+                        //                     width: 1,
+                        //                     color:
+                        //                         AppColors.black), //<-- SEE HERE
+                        //                 borderRadius:
+                        //                     BorderRadius.circular(10.0),
+                        //               ),
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ]),
+                        // ),
                         SizedBox(
                           height: AppDimens.dimens_30,
                         ),
