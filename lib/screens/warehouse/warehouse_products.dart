@@ -155,7 +155,11 @@ class ItemWareHouseProduct extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ProductDetail()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => ProductDetail(
+                      index: element,
+                    )));
       },
       child: Container(
         padding: EdgeInsets.all(5),

@@ -10,7 +10,7 @@ import 'package:sales_manager/screens/manager/controller/products_controller.dar
 import 'package:sales_manager/widgets/header_center.dart';
 
 class ProductDetail extends StatefulWidget {
-  ProductDetail({this.index, super.key});
+  ProductDetail({required this.index, super.key});
   int? index = 0;
 
   @override
@@ -20,19 +20,17 @@ class ProductDetail extends StatefulWidget {
 class _ProductDetailState extends State<ProductDetail> {
   void initState() {
     ProductsController productsController = context.read<ProductsController>();
-    productsController.nameUpdateController.text = productsController
-        .resultProducts[productsController.indexProduct].productName;
+    productsController.nameUpdateController.text =
+        productsController.resultProducts[widget.index!].productName;
 
-    productsController.priceUpdateController.text = productsController
-        .resultProducts[productsController.indexProduct].price
-        .toString();
+    productsController.priceUpdateController.text =
+        productsController.resultProducts[widget.index!].price.toString();
 
-    productsController.importPriceUpdateController.text = productsController
-        .resultProducts[productsController.indexProduct].importPrice
-        .toString();
+    productsController.importPriceUpdateController.text =
+        productsController.resultProducts[widget.index!].importPrice.toString();
 
     productsController.inventoryNumberUpdateController.text = productsController
-        .resultProducts[productsController.indexProduct].inventoryNumber
+        .resultProducts[widget.index!].inventoryNumber
         .toString();
     super.initState();
   }

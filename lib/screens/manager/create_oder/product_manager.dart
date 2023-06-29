@@ -64,7 +64,11 @@ class ItemProductManager extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ProductDetail()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => ProductDetail(
+                      index: ele,
+                    )));
         productsController.idProduct =
             productsController.resultProducts[ele].id;
         productsController.indexProduct = ele;
