@@ -15,6 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../config/app.font.dart';
 import '../../config/app_domain.dart';
 import '../../widgets/drawer_app.dart';
+import 'controller/order_controller.dart';
 import 'create_oder/sell.dart';
 import 'oder/oder.dart';
 
@@ -29,6 +30,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
   @override
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
+    OrderController orderController = context.read<OrderController>();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.green_006200,
@@ -263,7 +265,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  InkWell(
+                                  GestureDetector(
                                     onTap: () {
                                       Navigator.push(
                                           context,
@@ -276,8 +278,10 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                         clIcon: AppColors.red_FF5151
                                             .withOpacity(0.9)),
                                   ),
-                                  InkWell(
+                                  GestureDetector(
                                     onTap: () {
+                                      orderController.getListOrder();
+
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -297,7 +301,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  InkWell(
+                                  GestureDetector(
                                     onTap: () {
                                       Navigator.push(
                                           context,
@@ -309,7 +313,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                         icon: Icons.local_mall,
                                         clIcon: AppColors.yellow_FAA810),
                                   ),
-                                  InkWell(
+                                  GestureDetector(
                                     onTap: () {
                                       Navigator.push(
                                           context,

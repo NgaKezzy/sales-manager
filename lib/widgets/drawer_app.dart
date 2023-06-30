@@ -129,6 +129,8 @@ Future<void> _showAlertDialog(BuildContext context) {
           ),
           TextButton(
             onPressed: () {
+              authController.userNameController.text = '';
+              authController.passwordController.text = '';
               authController.LogOut();
               Navigator.pop(context);
             },

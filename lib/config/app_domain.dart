@@ -14,6 +14,8 @@ class AppDomains {
   static const String DELETE = '/warehouse/delete';
   static const String UPDATE_PRODUCT = '/warehouse/modifier';
   static const String ORDER = '/order';
+  static const String GET_ORDER = '/order/';
+  static const String GET_DETAIL_ORDER = 'order-details/';
 
   static const String ID_WAREHOUSE = 'id_warehouse';
 }

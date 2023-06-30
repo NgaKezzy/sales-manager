@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:sales_manager/config/print_color.dart';
+import 'package:sales_manager/models/list_order_model.dart';
+import 'package:sales_manager/models/order_model.dart';
 import 'package:sales_manager/models/product_model.dart';
 import 'package:sales_manager/network/fetch_api.dart';
 import 'package:sales_manager/screens/manager/controller/products_controller.dart';
@@ -14,6 +16,7 @@ import '../../../config/app_domain.dart';
 class OrderController extends ChangeNotifier {
   List<int> selectedItemList = [];
   List itemPost = [];
+  List<ListOrder> listItemOrder = [];
   int indexProduct = 0;
   List<TextEditingController> listQuantityController = [];
 
@@ -110,5 +113,14 @@ class OrderController extends ChangeNotifier {
     } else {
       Fluttertoast.showToast(msg: '${createOrder['message']}');
     }
+  }
+
+  void getListOrder() async {
+    final listOrder = await NetworkApi.getListOrder();
+
+    final List<ListOrder> order =
+        ListOrder.convertToListOrder(listOrder['data']);
+    listItemOrder = order;
+    printYellow(listItemOrder.length.toString());
   }
 }

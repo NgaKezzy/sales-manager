@@ -8,7 +8,7 @@ class Order {
   String customerName;
   String bill;
   String noteOrder;
-  Map listProduct;
+  List listProduct;
 
   Order(
       {required this.idWarehouse,
@@ -27,7 +27,13 @@ class Order {
       customerName: json['customerName'],
       bill: json['bill'],
       noteOrder: json['noteOrder'],
-      listProduct: json['listProduct'],
+      listProduct: json['listProduct'].toList(),
     );
+  }
+
+  static List<Order> convertToOrder(List<dynamic> json) {
+    //json ở đây là data
+    return json.map<Order>((order) => Order.fromJson(order)).toList();
+    // post này là từng inten   ------------- post này là  để ấy vào trong fromjson trong factory rồi chuyển thành list
   }
 }

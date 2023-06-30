@@ -20,16 +20,17 @@ class Oder extends StatefulWidget {
 class _OderState extends State<Oder> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Sell()));
-        },
-        child: Icon(Icons.add),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Sell()));
+          },
+          child: Icon(Icons.add),
+        ),
+        body: Column(
           children: [
             HeaderCenter(
               txt_header: 'Đơn hàng',
@@ -52,10 +53,9 @@ class _OderState extends State<Oder> {
                       ),
                       hintText: 'Tìm kiếm đơn hàng')),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: DefaultTabController(
-                length: 4,
+            Expanded(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height - 120,
                 child: Column(
                   children: const [
                     TabBar(
@@ -88,7 +88,7 @@ class _OderState extends State<Oder> {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

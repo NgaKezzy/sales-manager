@@ -70,9 +70,6 @@ class AuthController extends ChangeNotifier {
             UserLogin.fromJson(dataLogin['data']['dataUser']);
         _userLogin = userLogin;
         _isLogin = true;
-
-        userNameController.text = '';
-        passwordController.text = '';
       }
       if (dataLogin['status'] == 'error') {
         Fluttertoast.showToast(msg: dataLogin['message']);

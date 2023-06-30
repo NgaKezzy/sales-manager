@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
+import 'package:sales_manager/screens/manager/controller/order_controller.dart';
 
 import '../config/app.font.dart';
 import '../config/app_color.dart';
@@ -8,10 +10,12 @@ import '../config/app_size.dart';
 import '../screens/manager/oder/widget/order_details.dart';
 
 class ItemOder extends StatelessWidget {
-  const ItemOder({super.key});
+  ItemOder({required this.element, super.key});
+  int element = 0;
 
   @override
   Widget build(BuildContext context) {
+    OrderController orderController = context.read<OrderController>();
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -44,8 +48,11 @@ class ItemOder extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Khách lẻ',
-                  style: TextStyle(fontSize: 15, fontWeight: FontFamily.medium),
+                  orderController.listItemOrder[element].customerName,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontFamily.medium,
+                  ),
                 ),
                 Container(
                   alignment: Alignment.center,
@@ -66,7 +73,7 @@ class ItemOder extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '19:11',
+                  orderController.listItemOrder[element].purchaseDate,
                   style: TextStyle(
                     color: AppColors.grey_8A8A8A,
                     fontSize: AppDimens.dimens_15,
@@ -75,22 +82,22 @@ class ItemOder extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Text(
-                  '12/05',
-                  style: TextStyle(
-                    fontSize: AppDimens.dimens_15,
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'CVDGJ',
-                  style: TextStyle(
-                    color: AppColors.red_FC0000,
-                    fontSize: AppDimens.dimens_15,
-                  ),
-                ),
+                // Text(
+                //   '12/05',
+                //   style: TextStyle(
+                //     fontSize: AppDimens.dimens_15,
+                //   ),
+                // ),
+                // SizedBox(
+                //   width: 10,
+                // ),
+                // Text(
+                //   'CVDGJ',
+                //   style: TextStyle(
+                //     color: AppColors.red_FC0000,
+                //     fontSize: AppDimens.dimens_15,
+                //   ),
+                // ),
               ],
             ),
             Divider(

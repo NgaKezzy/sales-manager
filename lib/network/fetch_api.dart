@@ -72,7 +72,7 @@ class NetworkApi {
   }
 
 // gọi api để lấy ra tất cả sản phẩm
-  static Future<Map> getProdcut(String idWarehouse) async {
+  static Future<Map> getProduct(String idWarehouse) async {
     var uri =
         Uri.https(AppDomains.BASE_URL, AppDomains.WAREHOUSE + idWarehouse);
     // var uri = Uri.http(AppDomains.BASE_URL, AppDomains.WAREHOUSE + idWarehouse);
@@ -281,5 +281,42 @@ class NetworkApi {
       printCyan('Đây là lỗi bắt ngoại lệ khi tạo đơn hàng ${e}');
     }
     return resultCreateOrder;
+  }
+
+  // gọi API để lấy ra danh sách các hóa đơn
+  static Future<Map> getListOrder() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+    final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
+
+    Map resultListOrder = {};
+
+    var uri = Uri.https(
+      AppDomains.BASE_URL,
+      AppDomains.GET_ORDER + idWarehouse!,
+    );
+
+    try {
+      final response = await http.get(uri, headers: {
+        'token_access_authorization': accessToken ?? '',
+      });
+      switch (response.statusCode) {
+        case 200:
+          {
+            var data = jsonDecode(response.body);
+            resultListOrder = data;
+          }
+
+          break;
+        default:
+          {
+            var data = jsonDecode(response.body);
+            resultListOrder = data;
+          }
+      }
+    } catch (e) {
+      printBlue('Đây là lỗi bắt ngoại lệ khi lấy danh sách hóa đơn xuống: $e ');
+    }
+    return resultListOrder;
   }
 }

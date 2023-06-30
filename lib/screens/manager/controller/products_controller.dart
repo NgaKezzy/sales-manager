@@ -33,11 +33,12 @@ class ProductsController extends ChangeNotifier {
   bool isLoading = false;
 
   void getDataProducts(String idWarehouse) async {
-    final dataProducts = await NetworkApi.getProdcut(idWarehouse);
+    final dataProducts = await NetworkApi.getProduct(idWarehouse);
 
     final List<Product> product =
         Product.convertToProduct(dataProducts['data']);
     resultProducts = product;
+
     for (var i = 0; i < resultProducts.length; i++) {
       checkProducts.add(false);
     }
