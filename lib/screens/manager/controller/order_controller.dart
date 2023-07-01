@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:sales_manager/config/print_color.dart';
 import 'package:sales_manager/models/list_order_model.dart';
+import 'package:sales_manager/models/order_detail_model.dart';
 import 'package:sales_manager/models/order_model.dart';
 import 'package:sales_manager/models/product_model.dart';
 import 'package:sales_manager/network/fetch_api.dart';
@@ -17,6 +18,8 @@ class OrderController extends ChangeNotifier {
   List<int> selectedItemList = [];
   List itemPost = [];
   List<ListOrder> listItemOrder = [];
+  List<OrderDetail> listItemOrderDetail = [];
+  List<Product> elementsProductOfOrderDetail = [];
   int indexProduct = 0;
   List<TextEditingController> listQuantityController = [];
 
@@ -25,6 +28,7 @@ class OrderController extends ChangeNotifier {
   var noteOrderController = TextEditingController();
 
   String funds = "Tiền mặt";
+  String idOrder = '';
 
   bool checkFunds = false;
 
@@ -121,6 +125,39 @@ class OrderController extends ChangeNotifier {
     final List<ListOrder> order =
         ListOrder.convertToListOrder(listOrder['data']);
     listItemOrder = order;
-    printYellow(listItemOrder.length.toString());
+    printYellow(listItemOrder.toString());
+    notifyListeners();
+  }
+
+  void getOrderDetail() async {
+    final listOrderDetail = await NetworkApi.getOrderDetail(idOrder);
+
+    final List<OrderDetail> orderDetail =
+        OrderDetail.convertToListOrderDetail(listOrderDetail['data']);
+    listItemOrderDetail = orderDetail;
+    printRed(listItemOrderDetail.toString());
+  }
+
+  void getProductInOrderDetail(List value) {
+    for (var j = 0; j < value.length; j++) {
+      for (var i = 0; i < listItemOrderDetail.length; i++) {
+        if (listItemOrderDetail[i].idProduct == value[j].id) {
+          elementsProductOfOrderDetail.add(value[j]);
+        }
+      }
+    }
+    printGreen(elementsProductOfOrderDetail.length.toString());
+  }
+
+  void deleteOrder() async {
+    final deleteOrder = await NetworkApi.deleteOrder(idOrder);
+
+    if (deleteOrder['status'] == 'success') {
+      Fluttertoast.showToast(msg: '${deleteOrder['message']}');
+      getListOrder();
+    } else {
+      Fluttertoast.showToast(msg: '${deleteOrder['message']}');
+    }
+    notifyListeners();
   }
 }

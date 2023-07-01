@@ -17,6 +17,14 @@ class All extends StatefulWidget {
 }
 
 class _AllState extends State<All> {
+  late OrderController orderController;
+  @override
+  void didChangeDependencies() {
+    orderController = context.read<OrderController>();
+    orderController.getListOrder();
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     OrderController orderController = context.read<OrderController>();

@@ -280,8 +280,6 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      orderController.getListOrder();
-
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(

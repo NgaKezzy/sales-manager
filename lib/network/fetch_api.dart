@@ -306,7 +306,18 @@ class NetworkApi {
             var data = jsonDecode(response.body);
             resultListOrder = data;
           }
-
+          break;
+        case 401:
+          {
+            var data = jsonDecode(response.body);
+            resultListOrder = data;
+          }
+          break;
+        case 400:
+          {
+            var data = jsonDecode(response.body);
+            resultListOrder = data;
+          }
           break;
         default:
           {
@@ -318,5 +329,96 @@ class NetworkApi {
       printBlue('Đây là lỗi bắt ngoại lệ khi lấy danh sách hóa đơn xuống: $e ');
     }
     return resultListOrder;
+  }
+
+  // call API get Order detail
+
+  static Future<Map> getOrderDetail(
+    String idOrder,
+  ) async {
+    Map resultOrderDetail = {};
+
+    var uri =
+        Uri.https(AppDomains.BASE_URL, AppDomains.GET_DETAIL_ORDER + idOrder);
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+
+    try {
+      final response = await http.get(uri, headers: {
+        'token_access_authorization': accessToken ?? '',
+      });
+      switch (response.statusCode) {
+        case 200:
+          {
+            var data = jsonDecode(response.body);
+            resultOrderDetail = data;
+          }
+          break;
+        case 400:
+          {
+            var data = jsonDecode(response.body);
+            resultOrderDetail = data;
+          }
+          break;
+        case 404:
+          {
+            var data = jsonDecode(response.body);
+            resultOrderDetail = data;
+          }
+          break;
+        default:
+          {
+            var data = jsonDecode(response.body);
+            resultOrderDetail = data;
+          }
+          break;
+      }
+    } catch (e) {
+      printRed('Ngoại lệ khi lấy chi tiết đơn hàng ${e}');
+    }
+    return resultOrderDetail;
+  }
+
+  // call API Delete order
+  static Future<Map> deleteOrder(String orderId) async {
+    Map resultDeleteOrder = {};
+    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.DELETE_ORDER);
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+
+    try {
+      final response = await http.post(uri, headers: {
+        'token_access_authorization': accessToken ?? '',
+      }, body: {
+        "orderId": orderId,
+      });
+
+      switch (response.statusCode) {
+        case 200:
+          {
+            var data = jsonDecode(response.body);
+            resultDeleteOrder = data;
+          }
+
+          break;
+        case 400:
+          {
+            var data = jsonDecode(response.body);
+            resultDeleteOrder = data;
+          }
+
+          break;
+        default:
+          {
+            var data = jsonDecode(response.body);
+            resultDeleteOrder = data;
+          }
+          break;
+      }
+    } catch (e) {
+      printBlue('Bắt ngoại lệ khi xóa đơn hàng ${e}');
+    }
+    return resultDeleteOrder;
   }
 }

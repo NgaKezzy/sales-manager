@@ -18,8 +18,14 @@ class ItemOder extends StatelessWidget {
     OrderController orderController = context.read<OrderController>();
     return InkWell(
       onTap: () {
+        orderController.idOrder = orderController.listItemOrder[element].id;
+        orderController.getOrderDetail();
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => OderDetail()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => OderDetail(
+                      index: element,
+                    )));
       },
       child: Container(
         margin: EdgeInsets.only(
@@ -80,7 +86,7 @@ class ItemOder extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 10,
+                  width: 20,
                 ),
                 // Text(
                 //   '12/05',
@@ -91,13 +97,13 @@ class ItemOder extends StatelessWidget {
                 // SizedBox(
                 //   width: 10,
                 // ),
-                // Text(
-                //   'CVDGJ',
-                //   style: TextStyle(
-                //     color: AppColors.red_FC0000,
-                //     fontSize: AppDimens.dimens_15,
-                //   ),
-                // ),
+                Text(
+                  orderController.listItemOrder[element].id.substring(18, 24),
+                  style: TextStyle(
+                    color: AppColors.red_FC0000,
+                    fontSize: AppDimens.dimens_15,
+                  ),
+                ),
               ],
             ),
             Divider(
