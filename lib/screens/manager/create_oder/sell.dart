@@ -115,17 +115,16 @@ class _SellState extends State<Sell> {
                 //     ),
                 //   ),
                 // ),
-                
               ],
             ),
             Stack(
               alignment: Alignment.bottomCenter,
               children: [
                 Container(
-                  padding: EdgeInsets.only(bottom: 80),
+                  padding: EdgeInsets.only(bottom: 60),
                   color: AppColors.grey_8A8A8A.withOpacity(0.2),
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height - 120,
+                  height: MediaQuery.of(context).size.height - 80,
                   child: SingleChildScrollView(
                     child: Wrap(
                       children: [
@@ -139,43 +138,37 @@ class _SellState extends State<Sell> {
                     ),
                   ),
                 ),
+                Positioned(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(color: AppColors.white),
+                      margin: EdgeInsets.only(bottom: 20),
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: AppDimens.dimens_40,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.green_006200),
+                        onPressed: () {
+                          orderController.addQuantityController();
 
-                // orderController.checkSelected == true
+                          orderController
+                              .sumPrice(productsController.resultProducts);
 
-                for (int i = 0;
-                    i < productsController.checkProducts.length;
-                    i++)
-                  if (productsController.checkProducts[i] == true)
-                    Positioned(
-                        child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(bottom: AppDimens.dimens_35),
-                          width: MediaQuery.of(context).size.width * 0.9,
-                          height: AppDimens.dimens_40,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.green_006200),
-                            onPressed: () {
-                              orderController.addQuantityController();
-
-                              orderController
-                                  .sumPrice(productsController.resultProducts);
-
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => OrderConfirmation(),
-                                  ));
-                              printRed(
-                                  'tổng tiền = ${orderController.totalMoney.toString()}');
-                            },
-                            child: Text('Xác nhận'),
-                          ),
-                        ),
-                      ],
-                    )),
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => OrderConfirmation(),
+                              ));
+                          printRed(
+                              'tổng tiền = ${orderController.totalMoney.toString()}');
+                        },
+                        child: Text('Xác nhận'),
+                      ),
+                    ),
+                  ],
+                )),
               ],
             ),
           ],
@@ -269,8 +262,8 @@ class _ItemListProductState extends State<ItemListProduct> {
                             overflow: TextOverflow.ellipsis),
                       ),
                       Text(
-                        NumberFormat.decimalPattern().format(
-                            productsController.resultProducts[widget.element].price),
+                        NumberFormat.decimalPattern().format(productsController
+                            .resultProducts[widget.element].price),
                         style: TextStyle(
                             fontSize: 13,
                             color: AppColors.black,
