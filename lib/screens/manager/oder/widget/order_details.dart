@@ -308,6 +308,7 @@ Future<void> _showAlertDialog(BuildContext context) {
             onPressed: () {
               orderController.deleteOrder();
               Navigator.pop(context);
+              Navigator.pop(context);
             },
             child: Text('Xóa'),
           ),

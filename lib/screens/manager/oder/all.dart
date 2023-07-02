@@ -28,6 +28,7 @@ class _AllState extends State<All> {
   @override
   Widget build(BuildContext context) {
     OrderController orderController = context.read<OrderController>();
+    context.watch<OrderController>().listItemOrder.length;
     return ListView.builder(
       padding: EdgeInsets.only(top: 0, bottom: 80),
       scrollDirection: Axis.vertical,
