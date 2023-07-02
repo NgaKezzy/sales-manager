@@ -27,7 +27,7 @@ class _LoginState extends State<Login> {
           decoration: BoxDecoration(
               image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('assets/img/background.png'),
+            image: AssetImage('assets/img/background.jpg'),
           )),
           child: Form(
             key: authController.formKey,

@@ -79,7 +79,10 @@ class _Buttom_2State extends State<Buttom_2> {
                               ),
                               InkWell(
                                 onTap: () {
+
                                   Navigator.pop(context);
+                                  
+
                                 },
                                 child: Icon(
                                   Icons.close,
@@ -274,6 +277,9 @@ class _Buttom_2State extends State<Buttom_2> {
                                       .customersOrderController.text = '';
                                   orderController.noteOrderController.text = '';
                                   orderController.funds = 'Tiền mặt';
+                                  Navigator.pop(context);
+                                  productController.addFalseProduct();
+                                  orderController.selectedItemList.clear();
                                   Navigator.pop(context);
                                 },
                                 child: Text(

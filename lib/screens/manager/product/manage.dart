@@ -50,24 +50,24 @@ class _MenageState extends State<Menage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    height: 40,
-                    child: const TextField(
-                        textCapitalization: TextCapitalization.sentences,
-                        cursorColor: AppColors.green_55b135,
-                        textAlignVertical: TextAlignVertical(y: 0.9),
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: AppColors.green_55b135, width: 1)),
-                            suffixIcon: Icon(
-                              Icons.search,
-                              color: AppColors.green_55b135,
-                            ),
-                            hintText: 'Tìm kiếm sản phẩm')),
-                  ),
+                  // Container(
+                  //   padding: EdgeInsets.symmetric(horizontal: 20),
+                  //   height: 40,
+                  //   child: const TextField(
+                  //       textCapitalization: TextCapitalization.sentences,
+                  //       cursorColor: AppColors.green_55b135,
+                  //       textAlignVertical: TextAlignVertical(y: 0.9),
+                  //       decoration: InputDecoration(
+                  //           border: OutlineInputBorder(),
+                  //           focusedBorder: OutlineInputBorder(
+                  //               borderSide: BorderSide(
+                  //                   color: AppColors.green_55b135, width: 1)),
+                  //           suffixIcon: Icon(
+                  //             Icons.search,
+                  //             color: AppColors.green_55b135,
+                  //           ),
+                  //           hintText: 'Tìm kiếm sản phẩm')),
+                  // ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height - 120,
                     child: DefaultTabController(

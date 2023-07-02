@@ -47,6 +47,13 @@ class ProductsController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addFalseProduct(){
+    for (var i = 0; i < resultProducts.length; i++) {
+      checkProducts.add(false);
+    }
+    printRed(checkProducts.toString());
+  }
+
   double totalValue() {
     double sum = 0;
     for (int i = 0; i < resultProducts.length; i++) {

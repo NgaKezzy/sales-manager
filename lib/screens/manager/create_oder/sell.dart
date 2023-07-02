@@ -97,27 +97,25 @@ class _SellState extends State<Sell> {
                     ],
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10),
-                  height: AppDimens.dimens_40,
-                  width: MediaQuery.of(context).size.width,
-                  child: const TextField(
-                    textCapitalization: TextCapitalization.sentences,
-                    textAlignVertical: TextAlignVertical(y: 0.9),
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      suffixIcon: Icon(
-                        Icons.search,
-                        color: AppColors.green_55b135,
-                      ),
-                      border: OutlineInputBorder(),
-                      hintText: 'Tìm theo tên sản phẩm',
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                )
+                // Container(
+                //   margin: EdgeInsets.symmetric(horizontal: 10),
+                //   height: AppDimens.dimens_40,
+                //   width: MediaQuery.of(context).size.width,
+                //   child: const TextField(
+                //     textCapitalization: TextCapitalization.sentences,
+                //     textAlignVertical: TextAlignVertical(y: 0.9),
+                //     obscureText: false,
+                //     decoration: InputDecoration(
+                //       suffixIcon: Icon(
+                //         Icons.search,
+                //         color: AppColors.green_55b135,
+                //       ),
+                //       border: OutlineInputBorder(),
+                //       hintText: 'Tìm theo tên sản phẩm',
+                //     ),
+                //   ),
+                // ),
+                
               ],
             ),
             Stack(
@@ -187,7 +185,7 @@ class _SellState extends State<Sell> {
   }
 }
 
-class ItemListProduct extends StatelessWidget {
+class ItemListProduct extends StatefulWidget {
   ItemListProduct({
     required this.element,
     super.key,
@@ -196,12 +194,18 @@ class ItemListProduct extends StatelessWidget {
   int element;
 
   @override
+  State<ItemListProduct> createState() => _ItemListProductState();
+}
+
+class _ItemListProductState extends State<ItemListProduct> {
+  @override
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
     OrderController orderController = context.read<OrderController>();
+    context.watch<ProductsController>().checkProducts[widget.element];
     return InkWell(
       onTap: () {
-        productsController.checkHide(element);
+        productsController.checkHide(widget.element);
         printRed(productsController.checkProducts.toString());
         orderController.selectedItemList.clear();
         for (var i = 0; i < productsController.checkProducts.length; i++) {
@@ -236,7 +240,7 @@ class ItemListProduct extends StatelessWidget {
                   color: Colors.green,
                 ),
                 child: Text(
-                  'Còn : ${productsController.resultProducts[element].inventoryNumber}',
+                  'Còn : ${productsController.resultProducts[widget.element].inventoryNumber}',
                   style: TextStyle(
                       fontSize: 13,
                       color: AppColors.white,
@@ -257,7 +261,7 @@ class ItemListProduct extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${productsController.resultProducts[element].productName}',
+                        '${productsController.resultProducts[widget.element].productName}',
                         style: TextStyle(
                             fontSize: 13,
                             color: AppColors.black,
@@ -266,7 +270,7 @@ class ItemListProduct extends StatelessWidget {
                       ),
                       Text(
                         NumberFormat.decimalPattern().format(
-                            productsController.resultProducts[element].price),
+                            productsController.resultProducts[widget.element].price),
                         style: TextStyle(
                             fontSize: 13,
                             color: AppColors.black,
@@ -276,7 +280,7 @@ class ItemListProduct extends StatelessWidget {
               )
             ]),
           ),
-          if (productsController.checkProducts[element])
+          if (productsController.checkProducts[widget.element])
             Positioned(
                 child: Container(
               width: AppDimens.dimens_30,
