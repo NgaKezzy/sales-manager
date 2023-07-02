@@ -47,7 +47,7 @@ class ProductsController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addFalseProduct(){
+  void addFalseProduct() {
     for (var i = 0; i < resultProducts.length; i++) {
       checkProducts.add(false);
     }
@@ -90,6 +90,7 @@ class ProductsController extends ChangeNotifier {
         Fluttertoast.showToast(msg: 'Tạo sản phẩm thất bại !');
       }
     }
+    notifyListeners();
   }
 
   void deleteProduct() async {
@@ -104,6 +105,7 @@ class ProductsController extends ChangeNotifier {
     } else {
       Fluttertoast.showToast(msg: '${deleteProduct['message']}');
     }
+    notifyListeners();
   }
 
   void updateProduct(BuildContext context) async {
@@ -138,5 +140,6 @@ class ProductsController extends ChangeNotifier {
     //   checkProducts[index] = false;
     // }
     checkProducts[index] = !checkProducts[index];
+    notifyListeners();
   }
 }

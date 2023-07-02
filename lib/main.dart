@@ -16,6 +16,7 @@ import 'package:sales_manager/screens/manager/oder/oder.dart';
 import 'package:sales_manager/screens/manager/create_oder/sell.dart';
 import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 import 'package:sales_manager/screens/manager/report/report.dart';
+import 'package:sales_manager/screens/spending/controller/spending_controller.dart';
 import 'package:sales_manager/screens/spending/expenses.dart';
 import 'package:sales_manager/screens/spending/spending_screen.dart';
 import 'package:sales_manager/screens/warehouse/product_details.dart';
@@ -45,6 +46,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (_) => OrderController(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => SpendingController(),
         ),
       ],
       child: MyApp(),

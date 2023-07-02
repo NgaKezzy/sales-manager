@@ -421,4 +421,58 @@ class NetworkApi {
     }
     return resultDeleteOrder;
   }
+
+  // CAll API create spendings
+  static Future<Map> createSpendings(
+      String idOrder,
+      String idWareHouse,
+      String revenueDate,
+      String revenueFund,
+      String revenueMoney,
+      String revenueNote,
+      String type) async {
+    Map resultCreateSpendings = {};
+
+    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.CREATE_SPENDINGS);
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+    try {
+      final response = await http.post(uri, headers: {
+        'token_access_authorization': accessToken ?? '',
+      }, body: {
+        "idOrder": idOrder,
+        "idWareHouse": idWareHouse,
+        "revenueDate": revenueDate,
+        "revenueFund": revenueFund,
+        "revenueMoney": revenueMoney,
+        "revenueNote": revenueNote,
+        "type": type,
+      });
+
+      switch (response.statusCode) {
+        case 200:
+          {
+            var data = jsonDecode(response.body);
+            resultCreateSpendings = data;
+          }
+          break;
+        case 400:
+          {
+            var data = jsonDecode(response.body);
+            resultCreateSpendings = data;
+          }
+          break;
+        default:
+          {
+            var data = jsonDecode(response.body);
+            resultCreateSpendings = data;
+          }
+          break;
+      }
+    } catch (e) {
+      printRed('Bắt ngoại lệ kgi tạo khoản thu chi ${e}');
+    }
+    return resultCreateSpendings;
+  }
 }

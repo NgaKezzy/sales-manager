@@ -60,6 +60,7 @@ class Register extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.85,
                       child: TextFormField(
                         controller: authController.userName,
+                        textInputAction: TextInputAction.next,
                         validator: authController.validator,
                         decoration: InputDecoration(
                           isDense: true,
@@ -97,6 +98,7 @@ class Register extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.85,
                       child: TextFormField(
                         controller: authController.passOne,
+                        textInputAction: TextInputAction.next,
                         validator: authController.validator,
                         decoration: InputDecoration(
                           isDense: true,
@@ -134,6 +136,7 @@ class Register extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.85,
                       child: TextFormField(
                         controller: authController.PassTwo,
+                        textInputAction: TextInputAction.done,
                         validator: authController.validator,
                         decoration: InputDecoration(
                           isDense: true,

@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../config/app_domain.dart';
+import '../../../network/fetch_api.dart';
 
 class SpendingController extends ChangeNotifier {
+  String revenueFund = 'Tiền mặt';
+  var revenueMoneyController = TextEditingController();
+  var revenueNoteController = TextEditingController();
+  var expendingMoneyController = TextEditingController();
+  var expendingNoteController = TextEditingController();
+
   String dateRevenue = DateFormat(
     'dd/MM/yyyy',
   ).format(DateTime.now());
@@ -26,5 +37,31 @@ class SpendingController extends ChangeNotifier {
       firstDate: DateTime(2020),
       lastDate: DateTime(2030),
     ).then((value) => {dateExpenses = value.toString().split(' ')[0]});
+  }
+
+  void createdExpending() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
+
+    final expendingMoney = expendingMoneyController.text;
+    final expendingNote = expendingNoteController.text;
+
+    final createdSpending = await NetworkApi.createSpendings(
+        idWarehouse.toString(),
+        idWarehouse.toString(),
+        dateRevenue,
+        revenueFund,
+        expendingMoney,
+        expendingNote,
+        'X');
+    if (createdSpending['status'] == 'success') {
+      Fluttertoast.showToast(msg: '${createdSpending['message']}');
+      expendingMoneyController.text = '';
+      expendingNoteController.text = '';
+    } else {
+      Fluttertoast.showToast(msg: '${createdSpending['message']}');
+    }
+
+    notifyListeners();
   }
 }

@@ -64,6 +64,7 @@ class _LoginState extends State<Login> {
                       width: MediaQuery.of(context).size.width * 0.85,
                       child: TextFormField(
                         controller: authController.userNameController,
+                        textInputAction: TextInputAction.next,
                         validator: authController.validator,
                         decoration: InputDecoration(
                           isDense: true,
@@ -100,6 +101,7 @@ class _LoginState extends State<Login> {
                       height: AppDimens.dimens_70,
                       width: MediaQuery.of(context).size.width * 0.85,
                       child: TextFormField(
+                        textInputAction: TextInputAction.done,
                         controller: authController.passwordController,
                         validator: authController.validator,
                         obscureText: true,

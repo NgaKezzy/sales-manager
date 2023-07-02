@@ -23,6 +23,7 @@ class _ProductManagerState extends State<ProductManager> {
   @override
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
+    context.watch<ProductsController>().resultProducts;
     return Container(
       color: AppColors.grey_8A8A8A.withOpacity(0.2),
       padding: EdgeInsets.symmetric(horizontal: 10),
