@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:sales_manager/screens/spending/controller/spending_controller.dart';
 import 'package:sales_manager/screens/spending/update_spending.dart';
 
 import '../../config/app.font.dart';
@@ -6,9 +9,12 @@ import '../../config/app_color.dart';
 import '../../config/app_size.dart';
 
 class DayTrading extends StatefulWidget {
-  const DayTrading({
+  DayTrading({
+    required this.item,
     super.key,
   });
+
+  int item = 0;
 
   @override
   State<DayTrading> createState() => _DayTradingState();
@@ -17,6 +23,7 @@ class DayTrading extends StatefulWidget {
 class _DayTradingState extends State<DayTrading> {
   @override
   Widget build(BuildContext context) {
+    SpendingController spendingController = context.read<SpendingController>();
     return GestureDetector(
       onTap: () {
         showModalBottomSheet(
@@ -29,144 +36,156 @@ class _DayTradingState extends State<DayTrading> {
               ),
             ),
             builder: (context) {
-              return Container(
-                height: MediaQuery.of(context).size.height * 0.45,
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
+              return Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Positioned(
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 30),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
+                          Container(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: AppColors.red_FC0000),
+                                  onPressed: () {},
+                                  child: Text('Xoá'))),
                           SizedBox(
-                            width: 24,
+                            width: AppDimens.dimens_30,
                           ),
-                          Text('Chi tiết khoản thu'),
-                          InkWell(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Icon(Icons.close))
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      children: [
-                        Column(
-                          children: [
-                            Icon(
-                              Icons.sync_alt,
-                              color: AppColors.red_FC0000,
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Hôm nay',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontFamily.medium),
-                            ),
-                            Text(
-                              '22/2/2012',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color:
-                                      AppColors.grey_808080.withOpacity(0.6)),
-                            )
-                          ],
-                        ),
-                        Expanded(child: SizedBox()),
-                        Column(
-                          children: [
-                            Text(
-                              '1243645756',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: AppColors.green_55b135,
-                                  fontWeight: FontFamily.medium),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                    Divider(
-                      color: AppColors.grey_808080.withOpacity(0.6),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Ghi chú',
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontFamily.medium),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'các ghi chú ở đây',
-                      style: TextStyle(color: AppColors.grey_808080),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      'Nguồn tiền',
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontFamily.medium),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'nguồn tiền ở đầy',
-                      style: TextStyle(color: AppColors.grey_808080),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
+                          SizedBox(
                             height: 50,
                             width: MediaQuery.of(context).size.width * 0.4,
                             child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        AppColors.grey_808080.withOpacity(0.3)),
-                                onPressed: () {},
-                                child: Text('Xoá'))),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              UpdateSpending()));
+                                },
+                                child: Text('Chỉnh sửa')),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                         SizedBox(
-                          width: AppDimens.dimens_30,
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: 24,
+                              ),
+                              Text('Chi tiết khoản thu'),
+                              InkWell(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Icon(Icons.close))
+                            ],
+                          ),
                         ),
                         SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            UpdateSpending()));
-                              },
-                              child: Text('Chỉnh sửa')),
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Column(
+                              children: [
+                                Icon(
+                                  Icons.sync_alt,
+                                  color: AppColors.red_FC0000,
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Date',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontFamily.medium),
+                                ),
+                                Text(
+                                  spendingController
+                                      .listSpending[widget.item].revenueDate,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: AppColors.grey_808080
+                                          .withOpacity(0.6)),
+                                )
+                              ],
+                            ),
+                            Expanded(child: SizedBox()),
+                            Column(
+                              children: [
+                                Text(
+                                  '${NumberFormat.decimalPattern().format(spendingController.listSpending[widget.item].revenueMoney)} đ',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: AppColors.green_55b135,
+                                      fontWeight: FontFamily.medium),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                        Divider(
+                          color: AppColors.grey_808080.withOpacity(0.6),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Ghi chú',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontFamily.medium),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          spendingController
+                              .listSpending[widget.item].revenueNote,
+                          style: TextStyle(color: AppColors.grey_808080),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          'Nguồn tiền',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontFamily.medium),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          spendingController
+                              .listSpending[widget.item].revenueFund,
+                          style: TextStyle(color: AppColors.grey_808080),
+                        ),
+                        SizedBox(
+                          height: 30,
                         ),
                       ],
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                ],
               );
             });
       },
@@ -183,31 +202,16 @@ class _DayTradingState extends State<DayTrading> {
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: Row(
             children: [
-              Container(
-                alignment: Alignment.center,
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                    color: AppColors.grey_8A8A8A.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(5)),
-                child: Text(
-                  '19',
-                  style: TextStyle(fontWeight: FontFamily.medium),
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Thứ sáu',
+                    'Date',
                     style:
                         TextStyle(fontSize: 16, fontWeight: FontFamily.medium),
                   ),
                   Text(
-                    'Tháng 5/23',
+                    spendingController.listSpending[widget.item].revenueDate,
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontFamily.light,
@@ -217,7 +221,7 @@ class _DayTradingState extends State<DayTrading> {
               ),
               Expanded(child: SizedBox()),
               Text(
-                '1.250.000',
+                '${NumberFormat.decimalPattern().format(spendingController.listSpending[widget.item].revenueMoney)} đ',
                 style: TextStyle(
                     color: AppColors.green_55b135,
                     fontSize: 18,

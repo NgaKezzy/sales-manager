@@ -153,9 +153,12 @@ class _RevenueAndExpenditureContentState
         ),
         Expanded(
             child: ListView.builder(
+          padding: EdgeInsets.only(bottom: 60),
           itemCount: spendingController.listSpending.length,
           itemBuilder: (context, index) {
-            return DayTrading();
+            return DayTrading(
+              item: index,
+            );
           },
         ))
       ],

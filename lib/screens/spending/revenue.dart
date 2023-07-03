@@ -57,7 +57,6 @@ class _RevenueState extends State<Revenue> {
               ),
             ),
             Container(
-              height: AppDimens.dimens_90,
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.all(10),
               color: AppColors.white,
@@ -129,46 +128,87 @@ class _RevenueState extends State<Revenue> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          alignment: Alignment.center,
-                          width: AppDimens.dimens_100,
-                          height: AppDimens.dimens_35,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color: AppColors.blue_0000ff, width: 1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Text(
-                            'Tiền mặt',
-                            style: TextStyle(color: AppColors.blue_0000ff),
+                        GestureDetector(
+                          onTap: () {
+                            spendingController.revenueFund = 'Tiền mặt';
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: AppDimens.dimens_100,
+                            height: AppDimens.dimens_35,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: spendingController.revenueFund ==
+                                          'Tiền mặt'
+                                      ? AppColors.blue_0000ff
+                                      : AppColors.grey_8A8A8A,
+                                  width: 1),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Text(
+                              'Tiền mặt',
+                              style: TextStyle(
+                                color:
+                                    spendingController.revenueFund == 'Tiền mặt'
+                                        ? AppColors.blue_0000ff
+                                        : AppColors.grey_8A8A8A,
+                              ),
+                            ),
                           ),
                         ),
-                        Container(
-                          alignment: Alignment.center,
-                          width: AppDimens.dimens_100,
-                          height: AppDimens.dimens_35,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color: AppColors.grey_8A8A8A, width: 1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Text(
-                            'Ví điện tử',
-                            style: TextStyle(color: AppColors.grey_8A8A8A),
+                        GestureDetector(
+                          onTap: () {
+                            spendingController.revenueFund = 'Ví điện tử';
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: AppDimens.dimens_100,
+                            height: AppDimens.dimens_35,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: spendingController.revenueFund ==
+                                          'Ví điện tử'
+                                      ? AppColors.blue_0000ff
+                                      : AppColors.grey_8A8A8A,
+                                  width: 1),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Text(
+                              'Ví điện tử',
+                              style: TextStyle(
+                                  color: spendingController.revenueFund ==
+                                          'Ví điện tử'
+                                      ? AppColors.blue_0000ff
+                                      : AppColors.grey_8A8A8A),
+                            ),
                           ),
                         ),
-                        Container(
-                          alignment: Alignment.center,
-                          width: AppDimens.dimens_100,
-                          height: AppDimens.dimens_35,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color: AppColors.grey_8A8A8A, width: 1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Text(
-                            'Ngân hàng',
-                            style: TextStyle(color: AppColors.grey_8A8A8A),
+                        GestureDetector(
+                          onTap: () {
+                            spendingController.revenueFund = 'Ngân hàng';
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: AppDimens.dimens_100,
+                            height: AppDimens.dimens_35,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: spendingController.revenueFund ==
+                                          'Ngân hàng'
+                                      ? AppColors.blue_0000ff
+                                      : AppColors.grey_8A8A8A,
+                                  width: 1),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Text(
+                              'Ngân hàng',
+                              style: TextStyle(
+                                color: spendingController.revenueFund ==
+                                        'Ngân hàng'
+                                    ? AppColors.blue_0000ff
+                                    : AppColors.grey_8A8A8A,
+                              ),
+                            ),
                           ),
                         )
                       ],
@@ -231,7 +271,9 @@ class _RevenueState extends State<Revenue> {
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: AppColors.green_006200),
-                                onPressed: () {},
+                                onPressed: () {
+                                  spendingController.createRevenue();
+                                },
                                 child: Text('Tạo'))),
                       ],
                     )

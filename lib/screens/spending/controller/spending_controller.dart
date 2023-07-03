@@ -56,6 +56,32 @@ class SpendingController extends ChangeNotifier {
         revenueFund,
         expendingMoney,
         expendingNote,
+        'N');
+    if (createdSpending['status'] == 'success') {
+      Fluttertoast.showToast(msg: '${createdSpending['message']}');
+      expendingMoneyController.text = '';
+      expendingNoteController.text = '';
+    } else {
+      Fluttertoast.showToast(msg: '${createdSpending['message']}');
+    }
+
+    notifyListeners();
+  }
+
+  void createRevenue() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
+
+    final revenueMoney = revenueMoneyController.text;
+    final revenueNote = revenueNoteController.text;
+
+    final createdSpending = await NetworkApi.createSpendings(
+        idWarehouse.toString(),
+        idWarehouse.toString(),
+        dateRevenue,
+        revenueFund,
+        revenueMoney,
+        revenueNote,
         'X');
     if (createdSpending['status'] == 'success') {
       Fluttertoast.showToast(msg: '${createdSpending['message']}');
