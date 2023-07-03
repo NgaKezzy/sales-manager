@@ -21,11 +21,6 @@ class Register extends StatelessWidget {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/img/background.jpg'),
-                fit: BoxFit.cover),
-          ),
           child: Form(
             key: authController.formKeyRegister,
             child: Column(

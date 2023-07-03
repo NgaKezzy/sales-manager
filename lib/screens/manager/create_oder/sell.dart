@@ -44,6 +44,7 @@ class _SellState extends State<Sell> {
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
     OrderController orderController = context.read<OrderController>();
+    context.watch<ProductsController>().resultProducts.length;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -138,37 +139,40 @@ class _SellState extends State<Sell> {
                     ),
                   ),
                 ),
-                Positioned(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(color: AppColors.white),
-                      margin: EdgeInsets.only(bottom: 20),
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      height: AppDimens.dimens_40,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.green_006200),
-                        onPressed: () {
-                          orderController.addQuantityController();
+                for (int i = 0;
+                    i < productsController.checkProducts.length;
+                    i++)
+                  if (productsController.checkProducts[i] == true)
+                    Positioned(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(bottom: 20),
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          height: AppDimens.dimens_40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.green_006200),
+                            onPressed: () {
+                              orderController.addQuantityController();
 
-                          orderController
-                              .sumPrice(productsController.resultProducts);
+                              orderController
+                                  .sumPrice(productsController.resultProducts);
 
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => OrderConfirmation(),
-                              ));
-                          printRed(
-                              'tổng tiền = ${orderController.totalMoney.toString()}');
-                        },
-                        child: Text('Xác nhận'),
-                      ),
-                    ),
-                  ],
-                )),
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => OrderConfirmation(),
+                                  ));
+                              printRed(
+                                  'tổng tiền = ${orderController.totalMoney.toString()}');
+                            },
+                            child: Text('Xác nhận'),
+                          ),
+                        ),
+                      ],
+                    )),
               ],
             ),
           ],

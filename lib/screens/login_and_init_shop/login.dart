@@ -24,11 +24,6 @@ class _LoginState extends State<Login> {
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage('assets/img/background.jpg'),
-          )),
           child: Form(
             key: authController.formKey,
             child: Column(

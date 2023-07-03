@@ -5,8 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:sales_manager/models/data_app.dart';
 import 'package:sales_manager/screens/login_and_init_shop/controller/auth_controller.dart';
 import 'package:sales_manager/screens/login_and_init_shop/login.dart';
-
-import 'package:sales_manager/screens/login_and_init_shop/login_screen.dart';
 import 'package:sales_manager/screens/login_and_init_shop/register.dart';
 import 'package:sales_manager/screens/manager/controller/order_controller.dart';
 import 'package:sales_manager/screens/manager/oder/all.dart';
