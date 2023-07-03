@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:sales_manager/screens/spending/controller/spending_controller.dart';
 import 'package:sales_manager/screens/spending/revenue.dart';
 import 'package:sales_manager/screens/spending/revenue_and_expenditure_content.dart';
 
@@ -20,6 +22,7 @@ class SpendingScreen extends StatefulWidget {
 
 class _SpendingScreenState extends State<SpendingScreen> {
   late PageController _controller;
+  late SpendingController spendingController;
   int _index = 0;
   @override
   void initState() {

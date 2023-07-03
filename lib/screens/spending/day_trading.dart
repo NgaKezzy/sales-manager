@@ -44,7 +44,11 @@ class _DayTradingState extends State<DayTrading> {
                             width: 24,
                           ),
                           Text('Chi tiết khoản thu'),
-                          Icon(Icons.close)
+                          InkWell(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Icon(Icons.close))
                         ],
                       ),
                     ),

@@ -4,9 +4,12 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../config/app_domain.dart';
+import '../../../config/print_color.dart';
+import '../../../models/revenue_expenditure_model.dart';
 import '../../../network/fetch_api.dart';
 
 class SpendingController extends ChangeNotifier {
+  List<RevenueExpenditure> listSpending = [];
   String revenueFund = 'Tiền mặt';
   var revenueMoneyController = TextEditingController();
   var revenueNoteController = TextEditingController();
@@ -61,6 +64,17 @@ class SpendingController extends ChangeNotifier {
     } else {
       Fluttertoast.showToast(msg: '${createdSpending['message']}');
     }
+
+    notifyListeners();
+  }
+
+  void getListSpendings() async {
+    final getDataSpending = await NetworkApi.getListSpendings();
+
+    final List<RevenueExpenditure> dataSpending =
+        RevenueExpenditure.convertToList(getDataSpending['message']);
+    listSpending = dataSpending;
+    printRed('số lượng khoản thu chi ${listSpending.length}');
 
     notifyListeners();
   }

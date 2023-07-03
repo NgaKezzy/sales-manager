@@ -1,18 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
+import 'package:sales_manager/screens/spending/controller/spending_controller.dart';
 import 'package:sales_manager/screens/spending/spending_screen.dart';
 
 import '../../config/app.font.dart';
 import '../../config/app_color.dart';
 import '../../config/app_size.dart';
-import 'day_tra_ding.dart';
+import 'day_trading.dart';
 
-class RevenueAndExpenditureContent extends StatelessWidget {
+class RevenueAndExpenditureContent extends StatefulWidget {
   const RevenueAndExpenditureContent({super.key});
 
   @override
+  State<RevenueAndExpenditureContent> createState() =>
+      _RevenueAndExpenditureContentState();
+}
+
+class _RevenueAndExpenditureContentState
+    extends State<RevenueAndExpenditureContent> {
+  late SpendingController spendingController;
+  @override
+  void didChangeDependencies() {
+    spendingController = context.read<SpendingController>();
+
+    spendingController.getListSpendings();
+
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    SpendingController spendingController = context.read<SpendingController>();
     return Column(
       children: [
         Container(
@@ -132,24 +152,12 @@ class RevenueAndExpenditureContent extends StatelessWidget {
           height: 10,
         ),
         Expanded(
-          child: SingleChildScrollView(
-            child: Column(children: [
-              DayTrading(),
-              DayTrading(),
-              DayTrading(),
-              DayTrading(),
-              DayTrading(),
-              DayTrading(),
-              DayTrading(),
-              DayTrading(),
-              DayTrading(),
-              DayTrading(),
-              SizedBox(
-                height: AppDimens.dimens_50,
-              )
-            ]),
-          ),
-        )
+            child: ListView.builder(
+          itemCount: spendingController.listSpending.length,
+          itemBuilder: (context, index) {
+            return DayTrading();
+          },
+        ))
       ],
     );
   }

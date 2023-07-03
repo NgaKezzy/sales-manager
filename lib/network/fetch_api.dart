@@ -475,4 +475,45 @@ class NetworkApi {
     }
     return resultCreateSpendings;
   }
+
+  // call api get list spendings
+
+  static Future<Map> getListSpendings() async {
+    Map resuGetListSpendings = {};
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+    final idWareHouse = prefs.getString(AppDomains.ID_WAREHOUSE).toString();
+    var uri = Uri.https(
+        AppDomains.BASE_URL, AppDomains.GET_LIST_SPENDING + idWareHouse);
+
+    try {
+      final response = await http.get(uri, headers: {
+        'token_access_authorization': accessToken ?? '',
+      });
+      switch (response.statusCode) {
+        case 200:
+          {
+            var data = jsonDecode(response.body);
+            resuGetListSpendings = data;
+          }
+          break;
+        case 400:
+          {
+            var data = jsonDecode(response.body);
+            resuGetListSpendings = data;
+          }
+          break;
+        default:
+          {
+            var data = jsonDecode(response.body);
+            resuGetListSpendings = data;
+          }
+          break;
+      }
+    } catch (e) {
+      printCyan('Ngoại lệ khi lấy list spending ${e}');
+    }
+    return resuGetListSpendings;
+  }
 }
