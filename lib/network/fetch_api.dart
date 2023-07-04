@@ -516,4 +516,6 @@ class NetworkApi {
     }
     return resuGetListSpendings;
   }
+
+  // call api del
 }
