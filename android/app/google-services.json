@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "227082213498",
+    "project_id": "sale-note",
+    "storage_bucket": "sale-note.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227082213498:android:07b1d8302b7bd2de2003c3",
+        "android_client_info": {
+          "package_name": "com.example.sales_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "227082213498-kk676f75d94mrjcrpnuhk3ug00a0s6el.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCubM7fQS8KqMVJwk-tmv7jXR6-ML6XQBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "227082213498-kk676f75d94mrjcrpnuhk3ug00a0s6el.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

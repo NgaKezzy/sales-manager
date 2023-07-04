@@ -1,10 +1,16 @@
+import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
+import 'package:sales_manager/config/print_color.dart';
 import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 import 'package:sales_manager/widgets/header_center.dart';
 
@@ -16,6 +22,23 @@ class CreateProduct extends StatefulWidget {
 }
 
 class _CreateProductState extends State<CreateProduct> {
+  File? image;
+
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) {
+        return;
+      }
+      final imageTemporary = File(image.path);
+      setState(() => this.image = imageTemporary);
+    } on PlatformException catch (e) {
+      printRed('failed to pick image : $e');
+    }
+  }
+
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
@@ -37,11 +60,55 @@ class _CreateProductState extends State<CreateProduct> {
                       padding: EdgeInsets.all(10),
                       child: Row(
                         children: [
-                          Container(
-                            height: AppDimens.dimens_90,
-                            width: AppDimens.dimens_90,
-                            color: AppColors.blue_028f76,
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              InkWell(
+                                  onTap: () {
+                                    pickImage();
+                                  },
+                                  child: image != null
+                                      ? SizedBox()
+                                      : Container(
+                                          padding: EdgeInsets.all(5),
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.4,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              border: Border.all(
+                                                  color: AppColors.black,
+                                                  width: 1)),
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                Icons.add_a_photo,
+                                                size: 30,
+                                                color: AppColors.blue_028f76,
+                                              ),
+                                              Expanded(child: SizedBox()),
+                                              Text(
+                                                'Upload image',
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontFamily.medium),
+                                              )
+                                            ],
+                                          ),
+                                        )),
+                            ],
                           ),
+                          image != null
+                              ? Image.file(
+                                  image!,
+                                  width: AppDimens.dimens_100,
+                                  height: AppDimens.dimens_100,
+                                  fit: BoxFit.cover,
+                                )
+                              : SizedBox(),
                         ],
                       ),
                     ),

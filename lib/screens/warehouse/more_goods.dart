@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
+import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 import 'package:sales_manager/widgets/header_center.dart';
 
 import '../../config/app.font.dart';
@@ -14,6 +16,7 @@ class MoreGoods extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProductsController productsController = context.read<ProductsController>();
     return Scaffold(
       body: Column(
         children: [
@@ -74,38 +77,35 @@ class MoreGoods extends StatelessWidget {
           Expanded(
             child: Stack(
               children: [
-                Positioned(
-                    child: Container(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 20),
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.green_006200),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CreateImportGoods()));
-                      },
-                      child: Text('Tiếp tục'),
-                    ),
-                  ),
-                )),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  height: MediaQuery.of(context).size.height - 80,
-                  child: Column(
-                    children: [
-                      ItemMoreGoods(),
-                      ItemMoreGoods(),
-                    ],
-                  ),
-                )
+                Expanded(
+                    child: ListView.builder(
+                        padding: EdgeInsets.all(0),
+                        itemCount: productsController.resultProducts.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ItemMoreGoods();
+                        }))
               ],
             ),
-          )
+          ),
+          Positioned(
+              child: Container(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              margin: EdgeInsets.only(bottom: 20),
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.green_006200),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CreateImportGoods()));
+                },
+                child: Text('Tiếp tục'),
+              ),
+            ),
+          )),
         ],
       ),
     );
