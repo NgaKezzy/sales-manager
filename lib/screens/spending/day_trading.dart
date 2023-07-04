@@ -62,6 +62,8 @@ class _DayTradingState extends State<DayTrading> {
                             width: MediaQuery.of(context).size.width * 0.4,
                             child: ElevatedButton(
                                 onPressed: () {
+                                  spendingController.indexSpending =
+                                      widget.item;
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(

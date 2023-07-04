@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,19 +11,29 @@ import '../../../models/revenue_expenditure_model.dart';
 import '../../../network/fetch_api.dart';
 
 class SpendingController extends ChangeNotifier {
+  int indexSpending = 0;
   List<GetSpending> listSpending = [];
   String idSpending = '';
   String revenueFund = 'Tiền mặt';
+  String fundUpdate = '';
+  String idSpendingUpdate = '';
+
   var revenueMoneyController = TextEditingController();
   var revenueNoteController = TextEditingController();
   var expendingMoneyController = TextEditingController();
   var expendingNoteController = TextEditingController();
+  var moneyUpdateCOntroller = TextEditingController();
+  var noteUpdateController = TextEditingController();
 
   String dateRevenue = DateFormat(
     'dd/MM/yyyy',
   ).format(DateTime.now());
 
   String dateExpenses = DateFormat(
+    'dd/MM/yyyy',
+  ).format(DateTime.now());
+
+  String dateUpdate = DateFormat(
     'dd/MM/yyyy',
   ).format(DateTime.now());
 
@@ -33,6 +44,15 @@ class SpendingController extends ChangeNotifier {
       firstDate: DateTime(2020),
       lastDate: DateTime(2030),
     ).then((value) => {dateRevenue = value.toString().split(' ')[0]});
+  }
+
+  void setDateTimeUpdate(BuildContext context) {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2030),
+    ).then((value) => {dateUpdate = value.toString().split(' ')[0]});
   }
 
   void setDateTimeExpenses(BuildContext context) {
@@ -116,5 +136,24 @@ class SpendingController extends ChangeNotifier {
       Fluttertoast.showToast(msg: '${deleteSpending['message']}');
     }
     notifyListeners();
+  }
+
+  void updateSpending() async {
+    final moneyUpdate = moneyUpdateCOntroller.text;
+    final noteUpdate = noteUpdateController.text;
+    final updateSpending = await NetworkApi.updateSpendings(
+        idSpending,
+        dateUpdate,
+        fundUpdate,
+        moneyUpdate,
+        noteUpdate,
+        listSpending[indexSpending].type == 1 ? 'N' : 'X');
+
+    if (updateSpending['status'] == 'success') {
+      getListSpendings();
+      Fluttertoast.showToast(msg: '${updateSpending['message']}');
+    } else {
+      Fluttertoast.showToast(msg: '${updateSpending['message']}');
+    }
   }
 }

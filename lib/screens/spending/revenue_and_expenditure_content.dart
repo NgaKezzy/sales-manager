@@ -32,6 +32,11 @@ class _RevenueAndExpenditureContentState
   @override
   Widget build(BuildContext context) {
     SpendingController spendingController = context.read<SpendingController>();
+    // context.watch<SpendingController>().listSpending;
+    context
+        .watch<SpendingController>()
+        .listSpending[spendingController.indexSpending];
+
     return Column(
       children: [
         Container(
@@ -147,20 +152,22 @@ class _RevenueAndExpenditureContentState
             ],
           ),
         ),
-        SizedBox(
-          height: 10,
-        ),
-        Expanded(
-            child: ListView.builder(
-          physics: BouncingScrollPhysics(),
-          padding: EdgeInsets.only(bottom: 60),
-          itemCount: spendingController.listSpending.length,
-          itemBuilder: (context, index) {
-            return DayTrading(
-              item: index,
-            );
-          },
-        ))
+        spendingController.listSpending.isEmpty
+            ? Expanded(
+                child: Center(
+                child: Text('Không có thu chi nào!'),
+              ))
+            : Expanded(
+                child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                padding: EdgeInsets.only(bottom: 60),
+                itemCount: spendingController.listSpending.length,
+                itemBuilder: (context, index) {
+                  return DayTrading(
+                    item: index,
+                  );
+                },
+              ))
       ],
     );
   }

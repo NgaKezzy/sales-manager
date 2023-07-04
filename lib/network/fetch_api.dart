@@ -521,8 +521,7 @@ class NetworkApi {
   static Future<Map> deleteSpendings(String idRevenue) async {
     Map resultDeleteSpendings = {};
 
-    var uri =
-        Uri.https(AppDomains.BASE_URL, AppDomains.DELETE_SPENDING + idRevenue);
+    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.DELETE_SPENDING);
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
@@ -570,5 +569,64 @@ class NetworkApi {
       printRed('Bắt ngoại lệ khi call api xoá thu chi : $e');
     }
     return resultDeleteSpendings;
+  }
+
+  // call api update spending
+  static Future<Map> updateSpendings(
+      String idRevenue,
+      String revenueDate,
+      String revenueFund,
+      String revenueMoney,
+      String revenueNote,
+      String type) async {
+    Map resultUpdateSpending = {};
+
+    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.UPDATE_SPENDING);
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+
+    try {
+      final response = await http.post(uri, headers: {
+        'token_access_authorization': accessToken ?? '',
+      }, body: {
+        "idRevenue": idRevenue,
+        "revenueDate": revenueDate,
+        "revenueFund": revenueFund,
+        "revenueMoney": revenueMoney,
+        "revenueNote": revenueNote,
+        "type": type,
+      });
+
+      switch (response.statusCode) {
+        case 200:
+          {
+            var data = jsonDecode(response.body);
+            resultUpdateSpending = data;
+          }
+          break;
+        case 400:
+          {
+            var data = jsonDecode(response.body);
+            resultUpdateSpending = data;
+          }
+          break;
+        case 401:
+          {
+            var data = jsonDecode(response.body);
+            resultUpdateSpending = data;
+          }
+          break;
+        default:
+          {
+            var data = jsonDecode(response.body);
+            resultUpdateSpending = data;
+          }
+          break;
+      }
+    } catch (e) {
+      printRed('Bắt ngoại lệ khi update thu chi: $e');
+    }
+    return resultUpdateSpending;
   }
 }
