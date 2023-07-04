@@ -26,6 +26,8 @@ class _DayTradingState extends State<DayTrading> {
     SpendingController spendingController = context.read<SpendingController>();
     return GestureDetector(
       onTap: () {
+        spendingController.idSpending =
+            spendingController.listSpending[widget.item].id;
         showModalBottomSheet(
             context: context,
             shape: const RoundedRectangleBorder(
@@ -43,7 +45,7 @@ class _DayTradingState extends State<DayTrading> {
                     child: Container(
                       margin: EdgeInsets.only(bottom: 30),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Container(
                               height: 50,
@@ -51,11 +53,10 @@ class _DayTradingState extends State<DayTrading> {
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: AppColors.red_FC0000),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    _showAlertDialog(context);
+                                  },
                                   child: Text('Xoá'))),
-                          SizedBox(
-                            width: AppDimens.dimens_30,
-                          ),
                           SizedBox(
                             height: 50,
                             width: MediaQuery.of(context).size.width * 0.4,
@@ -86,7 +87,12 @@ class _DayTradingState extends State<DayTrading> {
                               SizedBox(
                                 width: 24,
                               ),
-                              Text('Chi tiết khoản thu'),
+                              Text(
+                                'Chi tiết khoản thu',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontFamily.medium),
+                              ),
                               InkWell(
                                   onTap: () {
                                     Navigator.pop(context);
@@ -96,7 +102,7 @@ class _DayTradingState extends State<DayTrading> {
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 20,
                         ),
                         Row(
                           children: [
@@ -190,7 +196,7 @@ class _DayTradingState extends State<DayTrading> {
             });
       },
       child: Container(
-          // margin: EdgeInsets.only(top: 5),
+          margin: EdgeInsets.only(top: 5),
           decoration: BoxDecoration(
               color: AppColors.white,
               border: Border(
@@ -231,4 +237,33 @@ class _DayTradingState extends State<DayTrading> {
           )),
     );
   }
+}
+
+Future<void> _showAlertDialog(BuildContext context) {
+  SpendingController spendingController = context.read<SpendingController>();
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Xóa khoản thu ?'),
+        content: Text('Bạn có chắc rằng muốn xóa khoản thu ?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('Hủy'),
+          ),
+          TextButton(
+            onPressed: () {
+              spendingController.deleteSpending(spendingController.idSpending);
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            child: Text('Xóa'),
+          ),
+        ],
+      );
+    },
+  );
 }

@@ -26,13 +26,4 @@ class RevenueExpenditure {
         revenueNote: json['revenueNote'],
         type: json['type']);
   }
-
-  static List<RevenueExpenditure> convertToList(List<dynamic> json) {
-    //json ở đây là data
-    return json
-        .map<RevenueExpenditure>(
-            (spending) => RevenueExpenditure.fromJson(spending))
-        .toList();
-    // post này là từng inten   ------------- post này là  để ấy vào trong fromjson trong factory rồi chuyển thành list
-  }
 }

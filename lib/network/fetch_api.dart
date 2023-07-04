@@ -479,7 +479,7 @@ class NetworkApi {
   // call api get list spendings
 
   static Future<Map> getListSpendings() async {
-    Map resuGetListSpendings = {};
+    Map resultGetListSpendings = {};
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
@@ -495,27 +495,80 @@ class NetworkApi {
         case 200:
           {
             var data = jsonDecode(response.body);
-            resuGetListSpendings = data;
+            resultGetListSpendings = data;
           }
           break;
         case 400:
           {
             var data = jsonDecode(response.body);
-            resuGetListSpendings = data;
+            resultGetListSpendings = data;
           }
           break;
         default:
           {
             var data = jsonDecode(response.body);
-            resuGetListSpendings = data;
+            resultGetListSpendings = data;
           }
           break;
       }
     } catch (e) {
       printCyan('Ngoại lệ khi lấy list spending ${e}');
     }
-    return resuGetListSpendings;
+    return resultGetListSpendings;
   }
 
-  // call api del
+  // call api dellte spending
+  static Future<Map> deleteSpendings(String idRevenue) async {
+    Map resultDeleteSpendings = {};
+
+    var uri =
+        Uri.https(AppDomains.BASE_URL, AppDomains.DELETE_SPENDING + idRevenue);
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+
+    try {
+      final response = await http.post(uri, headers: {
+        'token_access_authorization': accessToken ?? '',
+      }, body: {
+        "idRevenue": idRevenue,
+      });
+
+      switch (response.statusCode) {
+        case 200:
+          {
+            var data = jsonDecode(response.body);
+            resultDeleteSpendings = data;
+          }
+          break;
+        case 400:
+          {
+            var data = jsonDecode(response.body);
+            resultDeleteSpendings = data;
+          }
+          break;
+        case 401:
+          {
+            var data = jsonDecode(response.body);
+            resultDeleteSpendings = data;
+          }
+          break;
+        case 404:
+          {
+            var data = jsonDecode(response.body);
+            resultDeleteSpendings = data;
+          }
+          break;
+        default:
+          {
+            var data = jsonDecode(response.body);
+            resultDeleteSpendings = data;
+          }
+          break;
+      }
+    } catch (e) {
+      printRed('Bắt ngoại lệ khi call api xoá thu chi : $e');
+    }
+    return resultDeleteSpendings;
+  }
 }

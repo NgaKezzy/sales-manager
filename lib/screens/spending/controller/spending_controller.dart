@@ -5,11 +5,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../config/app_domain.dart';
 import '../../../config/print_color.dart';
+import '../../../models/get_spending_model.dart';
 import '../../../models/revenue_expenditure_model.dart';
 import '../../../network/fetch_api.dart';
 
 class SpendingController extends ChangeNotifier {
-  List<RevenueExpenditure> listSpending = [];
+  List<GetSpending> listSpending = [];
+  String idSpending = '';
   String revenueFund = 'Tiền mặt';
   var revenueMoneyController = TextEditingController();
   var revenueNoteController = TextEditingController();
@@ -97,11 +99,22 @@ class SpendingController extends ChangeNotifier {
   void getListSpendings() async {
     final getDataSpending = await NetworkApi.getListSpendings();
 
-    final List<RevenueExpenditure> dataSpending =
-        RevenueExpenditure.convertToList(getDataSpending['message']);
+    final List<GetSpending> dataSpending =
+        GetSpending.convertToList(getDataSpending['message']);
     listSpending = dataSpending;
     printRed('số lượng khoản thu chi ${listSpending.length}');
 
+    notifyListeners();
+  }
+
+  void deleteSpending(String idSpending) async {
+    final deleteSpending = await NetworkApi.deleteSpendings(idSpending);
+    if (deleteSpending['status'] == 'success') {
+      Fluttertoast.showToast(msg: '${deleteSpending['message']}');
+      getListSpendings();
+    } else {
+      Fluttertoast.showToast(msg: '${deleteSpending['message']}');
+    }
     notifyListeners();
   }
 }

@@ -26,7 +26,6 @@ class _RevenueAndExpenditureContentState
     spendingController = context.read<SpendingController>();
 
     spendingController.getListSpendings();
-
     super.didChangeDependencies();
   }
 
@@ -153,6 +152,7 @@ class _RevenueAndExpenditureContentState
         ),
         Expanded(
             child: ListView.builder(
+          physics: BouncingScrollPhysics(),
           padding: EdgeInsets.only(bottom: 60),
           itemCount: spendingController.listSpending.length,
           itemBuilder: (context, index) {
