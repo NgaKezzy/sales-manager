@@ -35,7 +35,6 @@ class _OderState extends State<Oder> {
     productsController
         .getDataProducts(authController.userLogin?.idWarehouse ?? '');
 
-    orderController.getProductInOrderDetail(productsController.resultProducts);
     super.didChangeDependencies();
   }
 

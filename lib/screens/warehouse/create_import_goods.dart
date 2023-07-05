@@ -38,6 +38,7 @@ class _CreateImportGoodsState extends State<CreateImportGoods> {
 
     orderController.itemPost
         .add(productsController.resultProducts[widget.item]);
+    productsController.totalProduct = 0;
 
     super.didChangeDependencies();
   }
@@ -210,7 +211,6 @@ class _CreateImportGoodsState extends State<CreateImportGoods> {
                                 orderController.addItemPost(
                                     productsController.resultProducts,
                                     widget.item);
-                                printBlue(orderController.itemPost.toString());
 
                                 productsController.totalProduct =
                                     productsController
@@ -221,6 +221,7 @@ class _CreateImportGoodsState extends State<CreateImportGoods> {
 
                                 productsController.importProduct();
                                 orderController.createOrderImportProduct();
+                                Navigator.pop(context);
                               },
                               child: Text('Thanh toán'),
                             ),

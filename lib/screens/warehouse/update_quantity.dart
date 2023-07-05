@@ -212,6 +212,7 @@ class _UpdateQuantityState extends State<UpdateQuantity> {
                                         int.parse(productsController
                                             .reduceInventory.text);
                                 productsController.reduceQuantity();
+                                Navigator.pop(context);
                               },
                               child: Text('Cập nhật')),
                         ),
