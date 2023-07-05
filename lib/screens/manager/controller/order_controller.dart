@@ -30,6 +30,7 @@ class OrderController extends ChangeNotifier {
   String funds = "Tiền mặt";
   String idOrder = '';
 
+
   bool checkFunds = false;
 
   int totalMoney = 0;

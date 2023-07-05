@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../config/app_domain.dart';
 
 class ProductsController extends ChangeNotifier {
+    String url= '';
   String idProduct = "";
   String nameProduct = "";
   int indexProduct = 0;
