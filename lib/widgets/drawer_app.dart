@@ -29,7 +29,9 @@ Drawer DrawerApp(BuildContext context) {
                     height: 80,
                     width: 80,
                     decoration: BoxDecoration(
-                        color: AppColors.yellow_FAA810,
+                        image: DecorationImage(
+                            image: AssetImage('assets/img/avatar.png'),
+                            fit: BoxFit.cover),
                         borderRadius: BorderRadius.all(Radius.circular(40))),
                   ),
                   SizedBox(

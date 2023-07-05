@@ -123,7 +123,7 @@ class _OderDetailState extends State<OderDetail> {
                     children: [
                       CircleAvatar(
                         maxRadius: AppDimens.dimens_30,
-                        backgroundImage: AssetImage('assets/img/ngoc.jpg'),
+                        backgroundImage: AssetImage('assets/img/avatar.png'),
                       ),
                       SizedBox(
                         width: 10,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 import 'package:sales_manager/widgets/header_center.dart';
@@ -83,7 +84,8 @@ class _UpdateQuantityState extends State<UpdateQuantity> {
                         Text(
                           productsController
                               .resultProducts[widget.index].productName,
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(
+                              fontSize: 16, color: AppColors.green_006200),
                         ),
                         SizedBox(
                           height: 20,
@@ -97,9 +99,11 @@ class _UpdateQuantityState extends State<UpdateQuantity> {
                           height: 5,
                         ),
                         Text(
-                          productsController.resultProducts[widget.index].price
-                              .toString(),
-                          style: TextStyle(fontSize: 16),
+                          '${NumberFormat.decimalPattern().format(productsController.resultProducts[widget.index].price)}  đ',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: AppColors.green_006200,
+                              fontWeight: FontFamily.medium),
                         ),
                         SizedBox(
                           height: 20,
@@ -113,10 +117,11 @@ class _UpdateQuantityState extends State<UpdateQuantity> {
                           height: 5,
                         ),
                         Text(
-                          productsController
-                              .resultProducts[widget.index].importPrice
-                              .toString(),
-                          style: TextStyle(fontSize: 16),
+                          '${NumberFormat.decimalPattern().format(productsController.resultProducts[widget.index].importPrice)}  đ',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: AppColors.red_FC0000,
+                              fontWeight: FontFamily.medium),
                         ),
                         SizedBox(
                           height: 20,

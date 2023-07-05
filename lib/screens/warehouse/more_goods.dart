@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 import 'package:sales_manager/widgets/header_center.dart';
@@ -17,6 +19,8 @@ class MoreGoods extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
+    context.watch<ProductsController>().resultProducts.length;
+
     return Scaffold(
       body: Column(
         children: [
@@ -79,126 +83,85 @@ class MoreGoods extends StatelessWidget {
                   padding: EdgeInsets.all(0),
                   itemCount: productsController.resultProducts.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ItemMoreGoods();
+                    return ItemMoreGoods(
+                      element: index,
+                    );
                   })),
-          Container(
-            margin: EdgeInsets.only(bottom: 20),
-            width: MediaQuery.of(context).size.width * 0.8,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.green_006200),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CreateImportGoods()));
-              },
-              child: Text('Tiếp tục'),
-            ),
-          ),
         ],
       ),
     );
   }
 }
 
-class ItemMoreGoods extends StatelessWidget {
-  const ItemMoreGoods({
+class ItemMoreGoods extends StatefulWidget {
+  ItemMoreGoods({
+    required this.element,
     super.key,
   });
 
+  int element = 0;
+
+  @override
+  State<ItemMoreGoods> createState() => _ItemMoreGoodsState();
+}
+
+class _ItemMoreGoodsState extends State<ItemMoreGoods> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
-      padding: EdgeInsets.all(10),
-      height: AppDimens.dimens_100,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: AppColors.white,
-      ),
-      child: Row(
-        children: [
-          Container(
-            margin: EdgeInsets.only(right: 10),
-            height: AppDimens.dimens_60,
-            width: AppDimens.dimens_60,
-            decoration: BoxDecoration(
-                color: AppColors.pink_FA4881,
-                borderRadius: BorderRadius.circular(5)),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Tai nghe',
-                style: TextStyle(fontSize: 15, fontWeight: FontFamily.medium),
-              ),
-              Row(
-                children: [
-                  Text(
-                    'SP00011',
-                    style: TextStyle(color: AppColors.grey_8A8A8A),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
-                    height: AppDimens.dimens_20,
-                    width: 1,
-                    color: AppColors.grey_8A8A8A,
-                  ),
-                  Text(
-                    'Còn: 180',
-                    style: TextStyle(color: AppColors.grey_8A8A8A),
-                  ),
-                ],
-              )
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                padding: EdgeInsets.all(5),
-                height: 40,
-                width: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(
-                      color: AppColors.grey_8A8A8A.withOpacity(0.6), width: 1),
+    ProductsController productsController = context.read<ProductsController>();
+    return InkWell(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => CreateImportGoods()));
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 5),
+        padding: EdgeInsets.all(10),
+        height: AppDimens.dimens_90,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: AppColors.white,
+        ),
+        child: Row(
+          children: [
+            Container(
+              margin: EdgeInsets.only(right: 10),
+              height: AppDimens.dimens_60,
+              width: AppDimens.dimens_60,
+              decoration: BoxDecoration(
+                  color: AppColors.pink_FA4881,
+                  borderRadius: BorderRadius.circular(5)),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  productsController.resultProducts[widget.element].productName,
+                  style: TextStyle(fontSize: 15, fontWeight: FontFamily.medium),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Icon(
-                        Icons.remove,
-                        color: AppColors.black,
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      width: 30,
-                      height: 30,
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Icon(Icons.add),
-                    )
-                  ],
+                Text(
+                  'Còn: ${productsController.resultProducts[widget.element].inventoryNumber} Sp',
+                  style: TextStyle(color: AppColors.grey_8A8A8A),
                 ),
-              ),
-            ],
-          )
-        ],
+              ],
+            ),
+            Expanded(child: SizedBox()),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  'Giá bán : ${NumberFormat.decimalPattern().format(productsController.resultProducts[widget.element].price)} đ',
+                  style: TextStyle(color: AppColors.green_006200),
+                ),
+                Text(
+                  'Giá nhập : ${NumberFormat.decimalPattern().format(productsController.resultProducts[widget.element].importPrice)} đ',
+                  style: TextStyle(color: AppColors.red_FC0000),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

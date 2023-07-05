@@ -114,6 +114,10 @@ class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
                     ),
                     Expanded(
                         child: TextField(
+                      onChanged: (value) {
+                        orderController
+                            .sumPrice(productsController.resultProducts);
+                      },
                       controller: orderController
                           .listQuantityController[widget.indexTextField],
                       keyboardType: TextInputType.number,

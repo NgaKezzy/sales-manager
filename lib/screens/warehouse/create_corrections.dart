@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_color.dart';
@@ -58,12 +59,15 @@ class _ItemSelectProductState extends State<ItemSelectProduct> {
     ProductsController productsController = context.read<ProductsController>();
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: ((context) => UpdateQuantity(
-                      index: widget.item,
-                    ))));
+        productsController.resultProducts[widget.item].inventoryNumber <= 0
+            ? Fluttertoast.showToast(
+                msg: 'Số lượng đạt tối thiểu không thể giảm')
+            : Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: ((context) => UpdateQuantity(
+                          index: widget.item,
+                        ))));
       },
       child: Container(
         margin: EdgeInsets.only(top: 5),

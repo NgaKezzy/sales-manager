@@ -30,14 +30,19 @@ class InofmationShop extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      CircleAvatar(
-                          minRadius: AppDimens.dimens_40,
-                          backgroundColor: AppColors.violet_ac4147),
-                      SvgPicture.asset(
-                        "assets/svg/upload.svg",
-                        color: AppColors.green_55b135,
-                        height: 30,
-                      )
+                      Stack(
+                        children: [
+                          CircleAvatar(
+                              minRadius: AppDimens.dimens_40,
+                              backgroundImage:
+                                  AssetImage('assets/img/avatar.png')),
+                          Positioned(
+                            bottom: 0,
+                            right: 5,
+                            child: Icon(Icons.add_a_photo),
+                          )
+                        ],
+                      ),
                     ],
                   ),
                   SizedBox(
