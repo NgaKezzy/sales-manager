@@ -22,6 +22,9 @@ class ProductsController extends ChangeNotifier {
   int importPriceReduce = 0;
   int sumMoneyBefore = 0;
   int sumMoneyReduce = 0;
+  int priceProduct = 0;
+  int priceImportProduct= 0;
+  int totalProduct = 0;
 
   int sumImporPrice = 0;
   int sumImporPriceReduce = 0;
@@ -36,6 +39,8 @@ class ProductsController extends ChangeNotifier {
   final quantityProductController = TextEditingController();
   final priceProductController = TextEditingController();
   final importPriceProductController = TextEditingController();
+
+  
 
   var nameUpdateController = TextEditingController();
   var priceUpdateController = TextEditingController();
@@ -139,6 +144,21 @@ class ProductsController extends ChangeNotifier {
     } else {
       Fluttertoast.showToast(msg: 'Cập nhật sản phẩm thất bại !');
     }
+    notifyListeners();
+  }
+
+void importProduct() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
+
+    final importProduct = await NetworkApi.updateProduct(idProduct, nameProduct, '', priceImportProduct, priceProduct, totalProduct);
+    if(importProduct['status'] =='success') {
+      getDataProducts(idWarehouse!);
+ Fluttertoast.showToast(msg: 'Nhập hàng thành công');
+    }else{
+      Fluttertoast.showToast(msg: 'Nhập hàng thất bại');
+    }
+
     notifyListeners();
   }
 

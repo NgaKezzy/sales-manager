@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:sales_manager/screens/manager/controller/order_controller.dart';
 import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 import 'package:sales_manager/widgets/header_center.dart';
 
@@ -109,10 +110,17 @@ class _ItemMoreGoodsState extends State<ItemMoreGoods> {
   @override
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
+    OrderController orderController = context.read<OrderController>();
+
     return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => CreateImportGoods()));
+        orderController.itemPost.clear();
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CreateImportGoods(
+                      item: widget.element,
+                    )));
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 5),

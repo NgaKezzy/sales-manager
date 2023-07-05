@@ -26,10 +26,11 @@ class OrderController extends ChangeNotifier {
   var quantityController = TextEditingController();
   var customersOrderController = TextEditingController();
   var noteOrderController = TextEditingController();
+  var quantityImportProduct = TextEditingController();
 
   String funds = "Tiền mặt";
   String idOrder = '';
-
+  int sumMoneyImportProduct = 0;
 
   bool checkFunds = false;
 
@@ -65,6 +66,19 @@ class OrderController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addItemPost(List<Product> value, int index) {
+    itemPost.clear();
+    for (var i = 0; i < value.length; i++) {
+      if (i == index) {
+        itemPost.add({
+          "productId": value[index].id.toString(),
+          "quantityOrder": quantityImportProduct.text,
+          "price": value[index].price.toString()
+        });
+      }
+    }
+  }
+
 // hàm tính tổng tiền của đơn hàng
 
   void sumPrice(List<Product> value) {
@@ -94,6 +108,24 @@ class OrderController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void downQuantity() {
+    if (int.parse(quantityImportProduct.text) >= 1) {
+      quantityImportProduct.text =
+          (int.parse(quantityImportProduct.text) - 1).toString();
+    }
+  }
+
+  void upQuantity() {
+    if (int.parse(quantityImportProduct.text) < 10) {
+      quantityImportProduct.text =
+          (int.parse(quantityImportProduct.text) + 1).toString();
+    }
+  }
+
+  void sumMoney(int value) {
+    sumMoneyImportProduct = int.parse(quantityImportProduct.text) * value;
+  }
+
   void addQuantityController() {
     listQuantityController.clear();
     for (var i = 0; i < selectedItemList.length; i++) {
@@ -118,6 +150,26 @@ class OrderController extends ChangeNotifier {
     } else {
       Fluttertoast.showToast(msg: '${createOrder['message']}');
     }
+  }
+
+  void createOrderImportProduct() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
+
+    final createOrderImportProduct = await NetworkApi.createOrder(
+        idWarehouse ?? '',
+        dateOrder,
+        'Tiền mặt',
+        'Khách lẻ',
+        'N',
+        'Nhập hàng',
+        itemPost);
+    if (createOrderImportProduct['status'] == 'success') {
+      Fluttertoast.showToast(msg: '${createOrderImportProduct['message']}');
+    } else {
+      Fluttertoast.showToast(msg: '${createOrderImportProduct['message']}');
+    }
+    notifyListeners();
   }
 
   void getListOrder() async {
