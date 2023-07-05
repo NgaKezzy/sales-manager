@@ -236,8 +236,22 @@ class _CreateProductState extends State<CreateProduct> {
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor:
                                               AppColors.green_006200),
-                                      onPressed: () =>
-                                          productsController.createProduct(),
+                                      onPressed: () {
+                                        productsController.createProduct();
+                                        productsController
+                                            .priceProductController.text = '';
+                                        productsController
+                                            .importPriceProductController
+                                            .text = '';
+
+                                        productsController
+                                            .quantityProductController
+                                            .text = '';
+                                        productsController
+                                            .nameProductController.text = '';
+
+                                        Navigator.pop(context);
+                                      },
                                       child: Text('Tạo'))),
                             ],
                           )

@@ -47,41 +47,7 @@ class _WareHouseScreenState extends State<WareHouseScreen> {
           Column(
             children: [
               HeaderCenterNoBack(txt_header: 'Kho hàng'),
-              SizedBox(
-                height: MediaQuery.of(context).size.height - 136,
-                child: DefaultTabController(
-                  length: 2,
-                  child: Column(
-                    children: [
-                      TabBar(
-                          isScrollable: true,
-                          labelColor: AppColors.green_55b135,
-                          unselectedLabelColor: AppColors.black,
-                          indicatorColor: AppColors.green_55b135,
-                          tabs: [
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.41,
-                              child: Tab(
-                                text: 'Sản phẩm',
-                              ),
-                            ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.41,
-                              child: Tab(
-                                text: 'Sổ kho',
-                              ),
-                            ),
-                          ]),
-                      Expanded(
-                        child: TabBarView(children: [
-                          WarehouseProducts(),
-                          InventoryBook(),
-                        ]),
-                      ),
-                    ],
-                  ),
-                ),
-              )
+              Expanded(child: WarehouseProducts()),
             ],
           ),
           Positioned(

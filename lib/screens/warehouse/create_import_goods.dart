@@ -40,6 +40,8 @@ class _CreateImportGoodsState extends State<CreateImportGoods> {
         .add(productsController.resultProducts[widget.item]);
     productsController.totalProduct = 0;
 
+    orderController.addItemPost(productsController.resultProducts, widget.item);
+
     super.didChangeDependencies();
   }
 
