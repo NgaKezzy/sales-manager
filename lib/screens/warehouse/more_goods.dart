@@ -75,37 +75,27 @@ class MoreGoods extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Stack(
-              children: [
-                Expanded(
-                    child: ListView.builder(
-                        padding: EdgeInsets.all(0),
-                        itemCount: productsController.resultProducts.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return ItemMoreGoods();
-                        }))
-              ],
+              child: ListView.builder(
+                  padding: EdgeInsets.all(0),
+                  itemCount: productsController.resultProducts.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ItemMoreGoods();
+                  })),
+          Container(
+            margin: EdgeInsets.only(bottom: 20),
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.green_006200),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CreateImportGoods()));
+              },
+              child: Text('Tiếp tục'),
             ),
           ),
-          Positioned(
-              child: Container(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              margin: EdgeInsets.only(bottom: 20),
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.green_006200),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CreateImportGoods()));
-                },
-                child: Text('Tiếp tục'),
-              ),
-            ),
-          )),
         ],
       ),
     );
@@ -165,7 +155,6 @@ class ItemMoreGoods extends StatelessWidget {
               )
             ],
           ),
-          Expanded(child: SizedBox()),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

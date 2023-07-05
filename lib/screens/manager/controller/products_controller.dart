@@ -10,11 +10,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../config/app_domain.dart';
 
 class ProductsController extends ChangeNotifier {
-    String url= '';
+  String url = '';
   String idProduct = "";
   String nameProduct = "";
   int indexProduct = 0;
   int indexProductChanged = 0;
+  int quantityReduce = 0;
+
+  String nameReduce = "";
+  int priceReduce = 0;
+  int importPriceReduce = 0;
+
   List<Product> resultProducts = [];
   List<bool> checkProducts = [];
 
@@ -30,6 +36,7 @@ class ProductsController extends ChangeNotifier {
   var priceUpdateController = TextEditingController();
   var importPriceUpdateController = TextEditingController();
   var inventoryNumberUpdateController = TextEditingController();
+  var reduceInventory = TextEditingController();
 
   bool isLoading = false;
 
@@ -119,18 +126,33 @@ class ProductsController extends ChangeNotifier {
     final int inventoryNumber = int.parse(inventoryNumberUpdateController.text);
 
     final updateProduct = await NetworkApi.updateProduct(
-        idProduct, productName, '', importPrice, price, inventoryNumber);
+        idProduct, nameReduce, '', importPrice, price, inventoryNumber);
     if (updateProduct['status'] == 'success') {
       getDataProducts(idWarehouse!);
-      // nameUpdateController.text = '';
-      // priceUpdateController.text = '';
-      // importPriceUpdateController.text = '';
-      // inventoryNumberUpdateController.text = '';
+
       Fluttertoast.showToast(msg: '${updateProduct['message']}');
     } else {
       Fluttertoast.showToast(msg: 'Cập nhật sản phẩm thất bại !');
     }
+    notifyListeners();
+  }
 
+  void reduceQuantity() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
+    print('hehehehe');
+    final int inventoryNumber =
+        quantityReduce - int.parse(reduceInventory.text);
+
+    final updateProduct = await NetworkApi.updateProduct(idProduct, nameReduce,
+        '', importPriceReduce, priceReduce, inventoryNumber);
+    if (updateProduct['status'] == 'success') {
+      getDataProducts(idWarehouse!);
+
+      Fluttertoast.showToast(msg: 'Điều chỉnh giảm thành công');
+    } else {
+      Fluttertoast.showToast(msg: 'Điều chỉnh giảm thất bại !');
+    }
     notifyListeners();
   }
 

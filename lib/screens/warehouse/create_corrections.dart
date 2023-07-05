@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
+import 'package:sales_manager/screens/manager/controller/products_controller.dart';
+import 'package:sales_manager/screens/warehouse/update_quantity.dart';
 import 'package:sales_manager/widgets/header_center.dart';
 
 import 'create_a_decrease_adjustment.dart';
@@ -13,48 +16,21 @@ class CreateCorrections extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProductsController productsController = context.read<ProductsController>();
     return Scaffold(
       body: Container(
         child: Column(
           children: [
             HeaderCenter(txt_header: 'Chọn sản phẩm giảm'),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height - 80,
-              child: Stack(
-                children: [
-                  Positioned(
-                    child: Container(
-                      alignment: Alignment.bottomCenter,
-                      width: double.infinity,
-                      // color: Colors.red,
-                      child: Container(
-                          height: AppDimens.dimens_40,
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          // color: AppColors.black,
-                          margin: EdgeInsets.only(bottom: 20),
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColors.green_006200),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            CreateADecreaseAdjustment()));
-                              },
-                              child: Text('Tiếp tục'))),
-                    ),
-                  ),
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        ItemSelectProduct(),
-                        ItemSelectProduct(),
-                      ],
-                    ),
-                  ),
-                ],
+            Expanded(
+              child: ListView.builder(
+                padding: EdgeInsets.only(top: 0, bottom: 20),
+                itemCount: productsController.resultProducts.length,
+                itemBuilder: (context, index) {
+                  return ItemSelectProduct(
+                    item: index,
+                  );
+                },
               ),
             ),
           ],
@@ -64,113 +40,65 @@ class CreateCorrections extends StatelessWidget {
   }
 }
 
-class ItemSelectProduct extends StatelessWidget {
-  const ItemSelectProduct({
+class ItemSelectProduct extends StatefulWidget {
+  ItemSelectProduct({
+    required this.item,
     super.key,
   });
 
+  int item = 0;
+
+  @override
+  State<ItemSelectProduct> createState() => _ItemSelectProductState();
+}
+
+class _ItemSelectProductState extends State<ItemSelectProduct> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      height: AppDimens.dimens_100,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
+    ProductsController productsController = context.read<ProductsController>();
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: ((context) => UpdateQuantity(
+                      index: widget.item,
+                    ))));
+      },
+      child: Container(
+        margin: EdgeInsets.only(top: 5),
+        padding: EdgeInsets.all(10),
+        height: AppDimens.dimens_100,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
           color: AppColors.white,
-          border: Border(
-              top: BorderSide(
-                  color: AppColors.grey_8A8A8A.withOpacity(0.5),
-                  width: AppDimens.dimens_1))),
-      child: Row(
-        children: [
-          Container(
-            margin: EdgeInsets.only(right: 10),
-            height: AppDimens.dimens_80,
-            width: AppDimens.dimens_80,
-            decoration: BoxDecoration(
-                color: AppColors.pink_FA4881,
-                borderRadius: BorderRadius.circular(5)),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Tai nghe',
-                style: TextStyle(fontSize: 15, fontWeight: FontFamily.medium),
-              ),
-              Text(
-                'SP00011',
-                style: TextStyle(color: AppColors.grey_8A8A8A),
-              )
-            ],
-          ),
-          Expanded(child: SizedBox()),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                'Tồn kho: 13',
-                style: TextStyle(color: AppColors.grey_8A8A8A),
-              ),
-              Container(
-                height: AppDimens.dimens_40,
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                        height: AppDimens.dimens_26,
-                        width: AppDimens.dimens_26,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(13),
-                          color: AppColors.blue_028f76,
-                        ),
-                        child: Icon(
-                          Icons.remove,
-                          size: 16,
-                          color: AppColors.white,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      margin:
-                          EdgeInsets.symmetric(horizontal: AppDimens.dimens_10),
-                      height: AppDimens.dimens_25,
-                      width: AppDimens.dimens_50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(
-                              color: AppColors.grey_8A8A8A, width: 1)),
-                      child: Text(
-                        '1',
-                        style: TextStyle(color: AppColors.grey_8A8A8A),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                        height: AppDimens.dimens_26,
-                        width: AppDimens.dimens_26,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(13),
-                          color: AppColors.blue_028f76,
-                        ),
-                        child: Icon(
-                          Icons.add,
-                          size: 16,
-                          color: AppColors.white,
-                        ),
-                      ),
-                    ),
-                  ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              margin: EdgeInsets.only(right: 10),
+              height: AppDimens.dimens_80,
+              width: AppDimens.dimens_80,
+              decoration: BoxDecoration(
+                  color: AppColors.pink_FA4881,
+                  borderRadius: BorderRadius.circular(5)),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  productsController.resultProducts[widget.item].productName,
+                  style: TextStyle(fontSize: 15, fontWeight: FontFamily.medium),
                 ),
-              )
-            ],
-          )
-        ],
+                Text(
+                  'Tồn kho : ${productsController.resultProducts[widget.item].inventoryNumber}',
+                  style: TextStyle(color: AppColors.grey_8A8A8A),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
