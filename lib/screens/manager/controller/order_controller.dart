@@ -37,6 +37,8 @@ class OrderController extends ChangeNotifier {
   int totalMoney = 0;
   int sumProduct = 0;
   int indexProductDelete = 0;
+  int sumMoneyOrderDetail = 0;
+  int totalPriceOrderDetail = 0;
 
   String dateOrder = DateFormat(
     'dd/MM/yyyy',
@@ -64,6 +66,13 @@ class OrderController extends ChangeNotifier {
     }
 
     notifyListeners();
+  }
+
+  void sumPriceOrderDetail() {
+    totalPriceOrderDetail = 0;
+    for (var i = 0; i < listItemOrderDetail.length; i++) {
+      totalPriceOrderDetail += listItemOrderDetail[i].totalPrice;
+    }
   }
 
   void addItemPost(List<Product> value, int index) {
@@ -188,18 +197,13 @@ class OrderController extends ChangeNotifier {
     final List<OrderDetail> orderDetail =
         OrderDetail.convertToListOrderDetail(listOrderDetail['data']);
     listItemOrderDetail = orderDetail;
-    printRed(listItemOrderDetail.toString());
+    printRed(listItemOrderDetail.length.toString());
   }
 
-  void getProductInOrderDetail(List value) {
-    for (var j = 0; j < value.length; j++) {
-      for (var i = 0; i < listItemOrderDetail.length; i++) {
-        if (listItemOrderDetail[i].idProduct == value[j].id) {
-          elementsProductOfOrderDetail.add(value[j]);
-        }
-      }
+  void sumTotalOrderDetail() {
+    for (var i = 0; i < listItemOrderDetail.length; i++) {
+      sumMoneyOrderDetail += listItemOrderDetail[i].totalPrice;
     }
-    printGreen(elementsProductOfOrderDetail.length.toString());
   }
 
   void deleteOrder() async {

@@ -1,23 +1,35 @@
 class OrderDetail {
   String id;
-  String idOrder;
-  String idProduct;
-  int quantityOrder;
+  String idWarehouse;
+  String productName;
+  String productImage;
+  int importPrice;
+  int price;
+  int inventoryNumber;
+  int quantity;
   int totalPrice;
 
   OrderDetail(
       {required this.id,
-      required this.idOrder,
-      required this.idProduct,
-      required this.quantityOrder,
+      required this.idWarehouse,
+      required this.productName,
+      required this.productImage,
+      required this.importPrice,
+      required this.price,
+      required this.inventoryNumber,
+      required this.quantity,
       required this.totalPrice});
 
   factory OrderDetail.fromJson(Map<String, dynamic> json) {
     return OrderDetail(
         id: json['_id'],
-        idOrder: json['idOrder'],
-        idProduct: json['idProduct'],
-        quantityOrder: json['quantityOrder'],
+        idWarehouse: json['idWarehouse'],
+        productName: json['productName'],
+        productImage: json['productImage'],
+        importPrice: json['importPrice'],
+        price: json['price'],
+        inventoryNumber: json['inventoryNumber'],
+        quantity: json['quantity'],
         totalPrice: json['totalPrice']);
   }
 

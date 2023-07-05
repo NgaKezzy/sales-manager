@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_color.dart';
@@ -20,203 +21,212 @@ class OderDetail extends StatefulWidget {
 }
 
 class _OderDetailState extends State<OderDetail> {
+  late OrderController orderController;
+  late ProductsController productsController;
+  void didChangeDependencies() {
+    orderController = context.read<OrderController>();
+    productsController = context.read<ProductsController>();
+    orderController.idOrder = orderController.listItemOrder[widget.index].id;
+    orderController.sumPriceOrderDetail();
+
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     OrderController orderController = context.read<OrderController>();
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            alignment: Alignment.bottomCenter,
-            padding: EdgeInsets.all(10),
-            width: MediaQuery.of(context).size.width,
-            height: AppDimens.dimens_80,
-            decoration: BoxDecoration(color: AppColors.white),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () {
-                    orderController.elementsProductOfOrderDetail.clear();
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                      margin: EdgeInsets.only(left: 10),
+      body: Container(
+        color: AppColors.white,
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.bottomCenter,
+              padding: EdgeInsets.all(10),
+              width: MediaQuery.of(context).size.width,
+              height: AppDimens.dimens_80,
+              decoration: BoxDecoration(color: AppColors.white),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      orderController.elementsProductOfOrderDetail.clear();
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                        margin: EdgeInsets.only(left: 10),
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          size: 24,
+                        )),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 10, left: 10),
+                    child: Text(
+                      'Chi tiết đơn hàng',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: AppColors.black,
+                        fontWeight: FontFamily.medium,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _showAlertDialog(context);
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      width: AppDimens.dimens_24,
                       child: Icon(
-                        Icons.arrow_back_ios,
+                        Icons.delete,
                         size: 24,
-                      )),
-                ),
-                Container(
-                  margin: EdgeInsets.only(right: 10, left: 10),
-                  child: Text(
-                    'Chi tiết đơn hàng',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: AppColors.black,
-                      fontWeight: FontFamily.medium,
+                        color: AppColors.red_FC0000,
+                      ),
                     ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    _showAlertDialog(context);
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: 10),
-                    width: AppDimens.dimens_24,
-                    child: Icon(
-                      Icons.delete,
-                      size: 24,
-                      color: AppColors.red_FC0000,
-                    ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(top: 10),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: AppDimens.dimens_10,
-                      vertical: AppDimens.dimens_10),
-                  color: AppColors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.symmetric(
+                  horizontal: AppDimens.dimens_10,
+                  vertical: AppDimens.dimens_10),
+              color: AppColors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            orderController.listItemOrder[widget.index].id
-                                .substring(18, 24)
-                                .toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontFamily.medium,
-                                color: AppColors.red_FC0000),
-                          ),
-                          Text(orderController
-                              .listItemOrder[widget.index].purchaseDate)
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            '300.0000',
-                            style: TextStyle(
-                                fontSize: 30, fontWeight: FontFamily.medium),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  color: AppColors.white,
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.only(top: 10, bottom: 10),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        maxRadius: AppDimens.dimens_30,
-                        backgroundImage: AssetImage('assets/img/avatar.png'),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
                       Text(
-                        'Khách lẻ',
+                        orderController.listItemOrderDetail[widget.index].id
+                            .substring(18, 24)
+                            .toString(),
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontFamily.medium),
+                            fontSize: 16,
+                            fontWeight: FontFamily.medium,
+                            color: AppColors.red_FC0000),
+                      ),
+                      Text(orderController
+                          .listItemOrder[widget.index].purchaseDate)
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        '${NumberFormat.decimalPattern().format(orderController.totalPriceOrderDetail)}',
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontFamily.medium),
                       )
                     ],
-                  ),
-                ),
-                for (int i = 0;
-                    i < orderController.elementsProductOfOrderDetail.length;
-                    i++)
-                  ProductOfDetailOrder(
-                    element: i,
-                  ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  color: AppColors.white,
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.only(top: 10),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 30,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Tổng 1 sản phẩm'),
-                            Text(
-                              '300.000',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Phí vận chuyển'),
-                            Text('300.000'),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Chiết khấu'),
-                            Text('300.000'),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Tổng cộng',
-                              style: TextStyle(
-                                  fontWeight: FontFamily.medium, fontSize: 18),
-                            ),
-                            Text(
-                              '300.000',
-                              style: TextStyle(
-                                  color: AppColors.red_FF5151,
-                                  fontWeight: FontFamily.medium,
-                                  fontSize: 18),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                // Container(
-                //     margin: EdgeInsets.only(top: 20),
-                //     width: MediaQuery.of(context).size.width * 0.7,
-                //     child: ElevatedButton(
-                //         style: ElevatedButton.styleFrom(
-                //             backgroundColor: AppColors.red_FC0000),
-                //         onPressed: () {},
-                //         child: Text("Xóa đơn hàng")))
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+            Container(
+              color: AppColors.white,
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.only(top: 10, bottom: 10),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    maxRadius: AppDimens.dimens_30,
+                    backgroundImage: AssetImage('assets/img/avatar.png'),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Khách lẻ',
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontFamily.medium),
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                padding: EdgeInsets.all(0),
+                itemCount: orderController.listItemOrderDetail.length,
+                itemBuilder: (context, index) {
+                  return ProductOfDetailOrder(
+                    element: index,
+                  );
+                },
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              color: AppColors.white,
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.only(top: 10),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 30,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                            'Tổng ${orderController.listItemOrderDetail.length} sản phẩm'),
+                        Text(
+                          '${NumberFormat.decimalPattern().format(orderController.totalPriceOrderDetail)}',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Phí vận chuyển'),
+                        Text('0'),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Chiết khấu'),
+                        Text('0'),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Tổng cộng',
+                          style: TextStyle(
+                              fontWeight: FontFamily.medium, fontSize: 18),
+                        ),
+                        Text(
+                          '${NumberFormat.decimalPattern().format(orderController.totalPriceOrderDetail)}',
+                          style: TextStyle(
+                              color: AppColors.red_FF5151,
+                              fontWeight: FontFamily.medium,
+                              fontSize: 18),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 100,
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -259,8 +269,7 @@ class ProductOfDetailOrder extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  orderController
-                      .elementsProductOfOrderDetail[element].productName,
+                  orderController.listItemOrderDetail[element].productName,
                   style: TextStyle(fontWeight: FontFamily.medium),
                 ),
                 SizedBox(
@@ -270,11 +279,12 @@ class ProductOfDetailOrder extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'SL: 1',
+                      'SL: ${orderController.listItemOrderDetail[element].quantity}',
                       style: TextStyle(),
                     ),
                     Text(
-                      '300.000',
+                      orderController.listItemOrderDetail[element].price
+                          .toString(),
                       style: TextStyle(
                           fontSize: 18, fontWeight: FontFamily.medium),
                     ),

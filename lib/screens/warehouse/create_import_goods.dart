@@ -39,6 +39,8 @@ class _CreateImportGoodsState extends State<CreateImportGoods> {
     orderController.itemPost
         .add(productsController.resultProducts[widget.item]);
     productsController.totalProduct = 0;
+    orderController.sumMoneyImportProduct =
+        productsController.resultProducts[widget.item].price;
 
     orderController.addItemPost(productsController.resultProducts, widget.item);
 
@@ -222,7 +224,7 @@ class _CreateImportGoodsState extends State<CreateImportGoods> {
                                             .quantityImportProduct.text);
 
                                 productsController.importProduct();
-                                orderController.createOrderImportProduct();
+                                // orderController.createOrderImportProduct();
                                 Navigator.pop(context);
                               },
                               child: Text('Thanh toán'),
