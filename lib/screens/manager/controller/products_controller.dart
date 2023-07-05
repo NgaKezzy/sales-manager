@@ -20,6 +20,11 @@ class ProductsController extends ChangeNotifier {
   String nameReduce = "";
   int priceReduce = 0;
   int importPriceReduce = 0;
+  int sumMoneyBefore = 0;
+  int sumMoneyReduce = 0;
+
+  int sumImporPrice = 0;
+  int sumImporPriceReduce = 0;
 
   List<Product> resultProducts = [];
   List<bool> checkProducts = [];
@@ -140,12 +145,19 @@ class ProductsController extends ChangeNotifier {
   void reduceQuantity() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
-    print('hehehehe');
     final int inventoryNumber =
         quantityReduce - int.parse(reduceInventory.text);
 
+    int sum = sumMoneyBefore + sumMoneyReduce;
+    int totalMoney = (sum / inventoryNumber).toInt();
+
+    int sumImport = sumImporPriceReduce + sumImporPrice;
+    int totalMoneyImportPrice = (sumImport / inventoryNumber).toInt();
+
+    printRed('hôhohohoh ${totalMoneyImportPrice}');
+
     final updateProduct = await NetworkApi.updateProduct(idProduct, nameReduce,
-        '', importPriceReduce, priceReduce, inventoryNumber);
+        '', totalMoneyImportPrice, totalMoney, inventoryNumber);
     if (updateProduct['status'] == 'success') {
       getDataProducts(idWarehouse!);
 

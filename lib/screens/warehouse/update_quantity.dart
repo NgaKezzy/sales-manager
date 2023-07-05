@@ -30,6 +30,12 @@ class _UpdateQuantityState extends State<UpdateQuantity> {
         productsController.resultProducts[widget.index].id;
     productsController.quantityReduce =
         productsController.resultProducts[widget.index].inventoryNumber;
+    productsController.sumMoneyBefore =
+        productsController.resultProducts[widget.index].inventoryNumber *
+            productsController.resultProducts[widget.index].price;
+    productsController.sumImporPrice =
+        productsController.resultProducts[widget.index].inventoryNumber *
+            productsController.resultProducts[widget.index].importPrice;
 
     super.didChangeDependencies();
   }
@@ -187,6 +193,19 @@ class _UpdateQuantityState extends State<UpdateQuantity> {
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.green_006200),
                               onPressed: () {
+                                productsController.sumMoneyReduce =
+                                    productsController
+                                            .resultProducts[widget.index]
+                                            .price *
+                                        int.parse(productsController
+                                            .reduceInventory.text);
+
+                                productsController.sumImporPriceReduce =
+                                    productsController
+                                            .resultProducts[widget.index]
+                                            .importPrice *
+                                        int.parse(productsController
+                                            .reduceInventory.text);
                                 productsController.reduceQuantity();
                               },
                               child: Text('Cập nhật')),
