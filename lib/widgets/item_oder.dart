@@ -9,22 +9,28 @@ import '../config/app_color.dart';
 import '../config/app_size.dart';
 import '../screens/manager/oder/widget/order_details.dart';
 
-class ItemOder extends StatelessWidget {
+class ItemOder extends StatefulWidget {
   ItemOder({required this.element, super.key});
   int element = 0;
 
+  @override
+  State<ItemOder> createState() => _ItemOderState();
+}
+
+class _ItemOderState extends State<ItemOder> {
   @override
   Widget build(BuildContext context) {
     OrderController orderController = context.read<OrderController>();
     return InkWell(
       onTap: () {
-        orderController.idOrder = orderController.listItemOrder[element].id;
+        orderController.idOrder =
+            orderController.listItemOrder[widget.element].id;
         orderController.getOrderDetail();
         Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => OderDetail(
-                      index: element,
+                      index: widget.element,
                     )));
       },
       child: Container(
@@ -54,7 +60,7 @@ class ItemOder extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  orderController.listItemOrder[element].customerName,
+                  orderController.listItemOrder[widget.element].customerName,
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontFamily.medium,
@@ -79,7 +85,7 @@ class ItemOder extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  orderController.listItemOrder[element].purchaseDate,
+                  orderController.listItemOrder[widget.element].purchaseDate,
                   style: TextStyle(
                     color: AppColors.grey_8A8A8A,
                     fontSize: AppDimens.dimens_15,
@@ -98,7 +104,8 @@ class ItemOder extends StatelessWidget {
                 //   width: 10,
                 // ),
                 Text(
-                  orderController.listItemOrder[element].id.substring(18, 24),
+                  orderController.listItemOrder[widget.element].id
+                      .substring(18, 24),
                   style: TextStyle(
                     color: AppColors.red_FC0000,
                     fontSize: AppDimens.dimens_15,

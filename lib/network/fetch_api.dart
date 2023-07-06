@@ -629,4 +629,57 @@ class NetworkApi {
     }
     return resultUpdateSpending;
   }
+
+  // call api update store information
+  static Future<Map> updateStoreInformation(String idUser, String shopName,
+      String address, String description, String phone, String avatar) async {
+    Map resultUpdateStoreInformation = {};
+
+    var uri =
+        Uri.https(AppDomains.BASE_URL, AppDomains.UPDATE_STORE_INFORMATION);
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+
+    try {
+      final response = await http.post(uri, headers: {
+        'token_access_authorization': accessToken ?? '',
+      }, body: {
+        "idUser": idUser,
+        "shopName": shopName,
+        "address": address,
+        "description": description,
+        "phone": phone,
+        "avatar": avatar
+      });
+      switch (response.statusCode) {
+        case 200:
+          {
+            var data = jsonDecode(response.body);
+            resultUpdateStoreInformation = data;
+          }
+          break;
+        case 400:
+          {
+            var data = jsonDecode(response.body);
+            resultUpdateStoreInformation = data;
+          }
+          break;
+        case 401:
+          {
+            var data = jsonDecode(response.body);
+            resultUpdateStoreInformation = data;
+          }
+          break;
+        default:
+          {
+            var data = jsonDecode(response.body);
+            resultUpdateStoreInformation = data;
+          }
+          break;
+      }
+    } catch (e) {
+      printRed('bắt ngoại lệ call api update store information $e');
+    }
+    return resultUpdateStoreInformation;
+  }
 }

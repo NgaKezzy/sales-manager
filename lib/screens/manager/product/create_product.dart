@@ -1,5 +1,6 @@
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -22,6 +23,11 @@ class CreateProduct extends StatefulWidget {
 }
 
 class _CreateProductState extends State<CreateProduct> {
+  late ProductsController productsController;
+  void didChangeDependencies() {
+    productsController = context.read<ProductsController>();
+  }
+
   File? image;
 
   Future pickImage() async {
@@ -37,7 +43,14 @@ class _CreateProductState extends State<CreateProduct> {
     }
   }
 
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  Future uploadFile() async {
+    final storageRef =
+        FirebaseStorage.instance.ref().child("images").child("${image}");
+    final uploadTask = storageRef.putFile(image!);
+    final snapshot = await uploadTask.whenComplete(() {});
+    productsController.url = await snapshot.ref.getDownloadURL();
+    printCyan(productsController.url);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -237,7 +250,9 @@ class _CreateProductState extends State<CreateProduct> {
                                           backgroundColor:
                                               AppColors.green_006200),
                                       onPressed: () {
-                                        productsController.createProduct();
+                                        uploadFile();
+                                        productsController.createProduct(
+                                            productsController.url);
                                         productsController
                                             .priceProductController.text = '';
                                         productsController

@@ -35,6 +35,7 @@ class _OderDetailState extends State<OderDetail> {
   @override
   Widget build(BuildContext context) {
     OrderController orderController = context.read<OrderController>();
+    context.watch<OrderController>().listItemOrderDetail;
     return Scaffold(
       body: Container(
         color: AppColors.white,
@@ -51,7 +52,6 @@ class _OderDetailState extends State<OderDetail> {
                 children: [
                   InkWell(
                     onTap: () {
-                      orderController.elementsProductOfOrderDetail.clear();
                       Navigator.pop(context);
                     },
                     child: Container(
@@ -102,7 +102,7 @@ class _OderDetailState extends State<OderDetail> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        orderController.listItemOrderDetail[widget.index].id
+                        orderController.listItemOrder[widget.index].id
                             .substring(18, 24)
                             .toString(),
                         style: TextStyle(

@@ -26,15 +26,15 @@ class SpendingController extends ChangeNotifier {
   var noteUpdateController = TextEditingController();
 
   String dateRevenue = DateFormat(
-    'dd/MM/yyyy',
+    'yyyy/MM/dd',
   ).format(DateTime.now());
 
   String dateExpenses = DateFormat(
-    'dd/MM/yyyy',
+    'yyyy/MM/dd',
   ).format(DateTime.now());
 
   String dateUpdate = DateFormat(
-    'dd/MM/yyyy',
+    'yyyy/MM/dd',
   ).format(DateTime.now());
 
   void setDateTimeRevenue(BuildContext context) {

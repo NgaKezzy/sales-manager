@@ -87,7 +87,7 @@ class ProductsController extends ChangeNotifier {
     return null;
   }
 
-  void createProduct() async {
+  void createProduct(String image) async {
     if (keyCreateProduct.currentState!.validate()) {
       final String productName = nameProductController.text;
       final int importPrice = int.parse(importPriceProductController.text);
@@ -100,7 +100,7 @@ class ProductsController extends ChangeNotifier {
       log('Đây là id warehouse : ' + idWarehouse.toString());
 
       final createOneProduct = await NetworkApi.createProduct(idWarehouse ?? '',
-          productName, '', importPrice, price, inventoryNumber, 0);
+          productName, image, importPrice, price, inventoryNumber, 0);
       if (createOneProduct['status'] == 'success') {
         getDataProducts(idWarehouse!);
         Fluttertoast.showToast(msg: 'Tạo thành công sản phẩm.');

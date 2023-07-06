@@ -14,12 +14,17 @@ import '../../../config/print_color.dart';
 class AuthController extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
   final formKeyRegister = GlobalKey<FormState>();
+  final formKeyUpdateStore = GlobalKey<FormState>();
 
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
   final userName = TextEditingController();
   final passOne = TextEditingController();
   final PassTwo = TextEditingController();
+  var shopNameController = TextEditingController();
+  var phoneController = TextEditingController();
+  var addressController = TextEditingController();
+  var descriptionController = TextEditingController();
 
   UserLogin? _userLogin;
   UserLogin? get userLogin => _userLogin;
@@ -119,6 +124,19 @@ class AuthController extends ChangeNotifier {
       } else {
         Fluttertoast.showToast(msg: 'Đăng ký thất bại !');
       }
+    }
+  }
+
+  Future<void> updateStoreInformation() async {
+    if (formKeyUpdateStore.currentState!.validate()) {
+      
+      final shopName = shopNameController.text;
+      final address = addressController.text;
+      final description = descriptionController.text;
+      final phone = phoneController.text;
+      final avatar = '';
+
+      // final updateStoreInformation = await NetworkApi.updateStoreInformation(idUser, shopName, address, description, phone, avatar)
     }
   }
 }

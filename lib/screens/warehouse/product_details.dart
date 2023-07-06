@@ -396,6 +396,7 @@ Future<void> _showAlertDialog(BuildContext context) {
             onPressed: () {
               productsController.deleteProduct();
               Navigator.pop(context);
+              Navigator.pop(context);
             },
             child: Text('Xóa'),
           ),

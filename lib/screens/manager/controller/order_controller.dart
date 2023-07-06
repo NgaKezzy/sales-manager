@@ -41,7 +41,7 @@ class OrderController extends ChangeNotifier {
   int totalPriceOrderDetail = 0;
 
   String dateOrder = DateFormat(
-    'dd/MM/yyyy',
+    'yyyy/MM/dd',
   ).format(DateTime.now());
 
   void setDateTimeOrder(BuildContext context) {
