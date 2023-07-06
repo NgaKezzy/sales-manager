@@ -99,7 +99,14 @@ class _ProductDetailState extends State<ProductDetail> {
                         Container(
                           height: AppDimens.dimens_90,
                           width: AppDimens.dimens_90,
-                          color: AppColors.blue_028f76,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(productsController
+                                    .resultProducts[
+                                        productsController.indexProduct]
+                                    .productImage),
+                                fit: BoxFit.cover),
+                          ),
                         ),
                       ],
                     ),
@@ -360,7 +367,12 @@ class _ProductDetailState extends State<ProductDetail> {
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.green_006200),
                               onPressed: () {
-                                productsController.updateProduct(context);
+                                productsController.updateProduct(
+                                    context,
+                                    productsController
+                                        .resultProducts[
+                                            productsController.indexProduct]
+                                        .productImage);
                               },
                               child: Text('Cập nhật')),
                         ),

@@ -137,7 +137,10 @@ class _ItemMoreGoodsState extends State<ItemMoreGoods> {
               height: AppDimens.dimens_60,
               width: AppDimens.dimens_60,
               decoration: BoxDecoration(
-                  color: AppColors.pink_FA4881,
+                  image: DecorationImage(
+                      image: NetworkImage(productsController
+                          .resultProducts[widget.element].productImage),
+                      fit: BoxFit.cover),
                   borderRadius: BorderRadius.circular(5)),
             ),
             Column(

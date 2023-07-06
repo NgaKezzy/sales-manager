@@ -257,7 +257,12 @@ class ProductOfDetailOrder extends StatelessWidget {
           Container(
             width: AppDimens.dimens_70,
             height: AppDimens.dimens_60,
-            color: AppColors.blue_028f76,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(orderController
+                      .listItemOrderDetail[element].productImage),
+                  fit: BoxFit.cover),
+            ),
           ),
           SizedBox(
             width: 10,

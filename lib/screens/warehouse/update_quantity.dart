@@ -62,7 +62,12 @@ class _UpdateQuantityState extends State<UpdateQuantity> {
                         Container(
                           height: AppDimens.dimens_90,
                           width: AppDimens.dimens_90,
-                          color: AppColors.blue_028f76,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(productsController
+                                    .resultProducts[widget.index].productImage),
+                                fit: BoxFit.cover),
+                          ),
                         ),
                       ],
                     ),
@@ -211,7 +216,10 @@ class _UpdateQuantityState extends State<UpdateQuantity> {
                                             .importPrice *
                                         int.parse(productsController
                                             .reduceInventory.text);
-                                productsController.reduceQuantity();
+                                productsController.reduceQuantity(
+                                    productsController
+                                        .resultProducts[widget.index]
+                                        .productImage);
                                 Navigator.pop(context);
                               },
                               child: Text('Cập nhật')),

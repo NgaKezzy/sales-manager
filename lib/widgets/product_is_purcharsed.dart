@@ -44,7 +44,12 @@ class _ProductIsPurcharsedState extends State<ProductIsPurcharsed> {
               Container(
                 width: AppDimens.dimens_70,
                 height: AppDimens.dimens_70,
-                color: AppColors.pink_FA4881,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(productsController
+                          .resultProducts[widget.index].productImage),
+                      fit: BoxFit.cover),
+                ),
               ),
               Positioned(
                   top: -7,

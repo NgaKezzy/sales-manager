@@ -223,7 +223,10 @@ class _CreateImportGoodsState extends State<CreateImportGoods> {
                                         int.parse(orderController
                                             .quantityImportProduct.text);
 
-                                productsController.importProduct();
+                                productsController.importProduct(
+                                    productsController
+                                        .resultProducts[widget.item]
+                                        .productImage);
                                 // orderController.createOrderImportProduct();
                                 Navigator.pop(context);
                               },
@@ -283,7 +286,10 @@ class _SelectedItemState extends State<SelectedItem> {
             height: AppDimens.dimens_60,
             width: AppDimens.dimens_60,
             decoration: BoxDecoration(
-                color: AppColors.pink_FA4881,
+                image: DecorationImage(
+                    image: NetworkImage(productsController
+                        .resultProducts[widget.index].productImage),
+                    fit: BoxFit.cover),
                 borderRadius: BorderRadius.circular(5)),
           ),
           Column(

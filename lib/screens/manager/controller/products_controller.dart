@@ -23,7 +23,7 @@ class ProductsController extends ChangeNotifier {
   int sumMoneyBefore = 0;
   int sumMoneyReduce = 0;
   int priceProduct = 0;
-  int priceImportProduct= 0;
+  int priceImportProduct = 0;
   int totalProduct = 0;
 
   int sumImporPrice = 0;
@@ -39,8 +39,6 @@ class ProductsController extends ChangeNotifier {
   final quantityProductController = TextEditingController();
   final priceProductController = TextEditingController();
   final importPriceProductController = TextEditingController();
-
-  
 
   var nameUpdateController = TextEditingController();
   var priceUpdateController = TextEditingController();
@@ -126,7 +124,7 @@ class ProductsController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateProduct(BuildContext context) async {
+  void updateProduct(BuildContext context, String image) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
 
@@ -136,7 +134,7 @@ class ProductsController extends ChangeNotifier {
     final int inventoryNumber = int.parse(inventoryNumberUpdateController.text);
 
     final updateProduct = await NetworkApi.updateProduct(
-        idProduct, nameReduce, '', importPrice, price, inventoryNumber);
+        idProduct, nameReduce, image, importPrice, price, inventoryNumber);
     if (updateProduct['status'] == 'success') {
       getDataProducts(idWarehouse!);
 
@@ -147,22 +145,23 @@ class ProductsController extends ChangeNotifier {
     notifyListeners();
   }
 
-void importProduct() async {
+  void importProduct(String image) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
 
-    final importProduct = await NetworkApi.updateProduct(idProduct, nameProduct, '', priceImportProduct, priceProduct, totalProduct);
-    if(importProduct['status'] =='success') {
+    final importProduct = await NetworkApi.updateProduct(idProduct, nameProduct,
+        image, priceImportProduct, priceProduct, totalProduct);
+    if (importProduct['status'] == 'success') {
       getDataProducts(idWarehouse!);
- Fluttertoast.showToast(msg: 'Nhập hàng thành công');
-    }else{
+      Fluttertoast.showToast(msg: 'Nhập hàng thành công');
+    } else {
       Fluttertoast.showToast(msg: 'Nhập hàng thất bại');
     }
 
     notifyListeners();
   }
 
-  void reduceQuantity() async {
+  void reduceQuantity(String image) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
     final int inventoryNumber =
@@ -177,7 +176,7 @@ void importProduct() async {
     printRed('hôhohohoh ${totalMoneyImportPrice}');
 
     final updateProduct = await NetworkApi.updateProduct(idProduct, nameReduce,
-        '', totalMoneyImportPrice, totalMoney, inventoryNumber);
+        image, totalMoneyImportPrice, totalMoney, inventoryNumber);
     if (updateProduct['status'] == 'success') {
       getDataProducts(idWarehouse!);
 

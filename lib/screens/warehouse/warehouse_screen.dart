@@ -72,7 +72,7 @@ class _WareHouseScreenState extends State<WareHouseScreen> {
                               MaterialPageRoute(
                                   builder: (context) => CreateCorrections()));
                         },
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Icon(
@@ -98,7 +98,7 @@ class _WareHouseScreenState extends State<WareHouseScreen> {
                               MaterialPageRoute(
                                   builder: (context) => MoreGoods()));
                         },
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Icon(

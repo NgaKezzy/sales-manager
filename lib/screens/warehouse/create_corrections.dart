@@ -80,11 +80,14 @@ class _ItemSelectProductState extends State<ItemSelectProduct> {
         child: Row(
           children: [
             Container(
-              margin: EdgeInsets.only(right: 10),
+              margin: EdgeInsets.only(right: 30),
               height: AppDimens.dimens_80,
               width: AppDimens.dimens_80,
               decoration: BoxDecoration(
-                  color: AppColors.pink_FA4881,
+                  image: DecorationImage(
+                      image: NetworkImage(productsController
+                          .resultProducts[widget.item].productImage),
+                      fit: BoxFit.cover),
                   borderRadius: BorderRadius.circular(5)),
             ),
             Column(

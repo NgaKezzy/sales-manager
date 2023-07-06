@@ -234,7 +234,10 @@ class _ItemListProductState extends State<ItemListProduct> {
                     topRight: Radius.circular(10),
                     topLeft: Radius.circular(10),
                   ),
-                  color: Colors.green,
+                  image: DecorationImage(
+                      image: NetworkImage(productsController
+                          .resultProducts[widget.element].productImage),
+                      fit: BoxFit.cover),
                 ),
                 child: Text(
                   'Còn : ${productsController.resultProducts[widget.element].inventoryNumber}',

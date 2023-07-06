@@ -176,7 +176,10 @@ class ItemWareHouseProduct extends StatelessWidget {
               height: 50,
               width: 50,
               decoration: BoxDecoration(
-                  color: AppColors.red_FC0000,
+                  image: DecorationImage(
+                      image: NetworkImage(productsController
+                          .resultProducts[element].productImage),
+                      fit: BoxFit.cover),
                   borderRadius: BorderRadius.circular(5)),
             ),
             Column(

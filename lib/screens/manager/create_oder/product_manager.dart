@@ -82,9 +82,12 @@ class ItemProductManager extends StatelessWidget {
           children: [
             Container(
               height: AppDimens.dimens_60,
-              width: AppDimens.dimens_60,
+              width: AppDimens.dimens_80,
               decoration: BoxDecoration(
-                  color: AppColors.green_006200,
+                  image: DecorationImage(
+                      image: NetworkImage(
+                          productsController.resultProducts[ele].productImage),
+                      fit: BoxFit.cover),
                   borderRadius: BorderRadius.circular(8)),
             ),
             SizedBox(
