@@ -316,7 +316,7 @@ class _UpdateSpendingState extends State<UpdateSpending> {
                         },
                         child: Text('Cập nhật'),
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.green_006200),
+                            backgroundColor: AppColors.blue_028f76),
                       ),
                     ),
                   ],

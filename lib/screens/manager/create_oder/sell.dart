@@ -153,7 +153,7 @@ class _SellState extends State<Sell> {
                           height: AppDimens.dimens_40,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.green_006200),
+                                backgroundColor: AppColors.blue_028f76),
                             onPressed: () {
                               orderController.addQuantityController();
 
@@ -262,7 +262,7 @@ class _ItemListProductState extends State<ItemListProduct> {
                     children: [
                       Text(
                         '${productsController.resultProducts[widget.element].productName}',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 13,
                             color: AppColors.black,
                             fontWeight: FontFamily.medium,
@@ -271,7 +271,7 @@ class _ItemListProductState extends State<ItemListProduct> {
                       Text(
                         NumberFormat.decimalPattern().format(productsController
                             .resultProducts[widget.element].price),
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 13,
                             color: AppColors.black,
                             fontWeight: FontFamily.medium),

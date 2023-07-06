@@ -72,14 +72,14 @@ class CreateADecreaseAdjustment extends StatelessWidget {
                                         children: [
                                           Icon(
                                             Icons.add,
-                                            color: AppColors.green_006200,
+                                            color: AppColors.blue_028f76,
                                           ),
                                           Text(
                                             'Thêm sản phẩm',
                                             style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontFamily.medium,
-                                                color: AppColors.green_006200),
+                                                color: AppColors.blue_028f76),
                                           )
                                         ],
                                       ),

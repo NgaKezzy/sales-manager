@@ -172,7 +172,7 @@ class ItemWareHouseProduct extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              margin: EdgeInsets.only(right: 5),
+              margin: EdgeInsets.only(right: 20),
               height: 50,
               width: 50,
               decoration: BoxDecoration(
@@ -189,7 +189,9 @@ class ItemWareHouseProduct extends StatelessWidget {
                 Text(
                   '${productsController.resultProducts[element].productName}',
                   style: TextStyle(
-                      fontSize: AppDimens.dimens_14, color: AppColors.black),
+                      fontSize: AppDimens.dimens_14,
+                      color: AppColors.black,
+                      fontWeight: FontFamily.medium),
                 ),
               ],
             ),

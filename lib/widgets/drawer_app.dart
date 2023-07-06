@@ -168,7 +168,7 @@ class ItemDrawer extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: AppColors.green_006200,
+            color: AppColors.blue_028f76,
           ),
           SizedBox(
             width: AppDimens.dimens_10,

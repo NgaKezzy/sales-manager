@@ -33,7 +33,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
     OrderController orderController = context.read<OrderController>();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.green_006200,
+        backgroundColor: AppColors.blue_028f76,
         title: Text('Tên shop'),
         // actions: [
         //   Row(

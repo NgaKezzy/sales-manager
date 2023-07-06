@@ -101,19 +101,19 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
-                                        color: AppColors.green_006200,
+                                        color: AppColors.blue_028f76,
                                         width: 1)),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: const [
                                     Icon(
                                       Icons.add,
-                                      color: AppColors.green_006200,
+                                      color: AppColors.blue_028f76,
                                     ),
                                     Text(
                                       'Thêm sản phẩm',
                                       style: TextStyle(
-                                          color: AppColors.green_006200,
+                                          color: AppColors.blue_028f76,
                                           fontSize: AppDimens.dimens_16,
                                           fontWeight: FontFamily.medium),
                                     ),

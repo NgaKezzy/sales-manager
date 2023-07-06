@@ -163,7 +163,7 @@ class _ItemMoreGoodsState extends State<ItemMoreGoods> {
               children: [
                 Text(
                   'Giá bán : ${NumberFormat.decimalPattern().format(productsController.resultProducts[widget.element].price)} đ',
-                  style: TextStyle(color: AppColors.green_006200),
+                  style: TextStyle(color: AppColors.blue_028f76),
                 ),
                 Text(
                   'Giá nhập : ${NumberFormat.decimalPattern().format(productsController.resultProducts[widget.element].importPrice)} đ',

@@ -168,7 +168,7 @@ class _InofmationShopState extends State<InofmationShop> {
                             padding: EdgeInsets.only(top: AppDimens.dimens_40),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColors.green_006200),
+                                  backgroundColor: AppColors.blue_028f76),
                               onPressed: () {
                                 authController.updateStoreInformation();
                               },

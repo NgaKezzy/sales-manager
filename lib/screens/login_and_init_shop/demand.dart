@@ -36,7 +36,7 @@ class Demand extends StatelessWidget {
                           height: AppDimens.dimens_5,
                           width: MediaQuery.of(context).size.width * 0.2,
                           decoration: BoxDecoration(
-                              color: AppColors.green_006200,
+                              color: AppColors.blue_028f76,
                               borderRadius: BorderRadius.circular(3)),
                         ),
                         Container(
@@ -44,7 +44,7 @@ class Demand extends StatelessWidget {
                           height: AppDimens.dimens_5,
                           width: MediaQuery.of(context).size.width * 0.2,
                           decoration: BoxDecoration(
-                              color: AppColors.green_006200,
+                              color: AppColors.blue_028f76,
                               borderRadius: BorderRadius.circular(3)),
                         ),
                         Container(
@@ -52,7 +52,7 @@ class Demand extends StatelessWidget {
                           height: AppDimens.dimens_5,
                           width: MediaQuery.of(context).size.width * 0.2,
                           decoration: BoxDecoration(
-                              color: AppColors.green_006200,
+                              color: AppColors.blue_028f76,
                               borderRadius: BorderRadius.circular(3)),
                         ),
                       ],

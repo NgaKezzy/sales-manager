@@ -134,7 +134,7 @@ class ProductsController extends ChangeNotifier {
     final int inventoryNumber = int.parse(inventoryNumberUpdateController.text);
 
     final updateProduct = await NetworkApi.updateProduct(
-        idProduct, nameReduce, image, importPrice, price, inventoryNumber);
+        idProduct, productName, image, importPrice, price, inventoryNumber);
     if (updateProduct['status'] == 'success') {
       getDataProducts(idWarehouse!);
 

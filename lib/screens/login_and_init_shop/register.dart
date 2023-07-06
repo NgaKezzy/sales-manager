@@ -174,7 +174,7 @@ class Register extends StatelessWidget {
                   height: AppDimens.dimens_45,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.green_006200),
+                          backgroundColor: AppColors.blue_028f76),
                       onPressed: () => authController.submitRegister(context),
                       child: Text(
                         'Đăng ký',

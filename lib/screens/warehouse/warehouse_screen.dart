@@ -91,7 +91,7 @@ class _WareHouseScreenState extends State<WareHouseScreen> {
                     width: MediaQuery.of(context).size.width * 0.45,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.green_006200),
+                            backgroundColor: AppColors.blue_028f76),
                         onPressed: () {
                           Navigator.push(
                               context,

@@ -365,7 +365,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           width: MediaQuery.of(context).size.width,
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColors.green_006200),
+                                  backgroundColor: AppColors.blue_028f76),
                               onPressed: () {
                                 productsController.updateProduct(
                                     context,

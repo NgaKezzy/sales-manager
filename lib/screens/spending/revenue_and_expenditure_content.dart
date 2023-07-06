@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -35,7 +32,7 @@ class _RevenueAndExpenditureContentState
   @override
   Widget build(BuildContext context) {
     SpendingController spendingController = context.read<SpendingController>();
-    // context.watch<SpendingController>().listSpending;
+
     context
         .watch<SpendingController>()
         .listSpending[spendingController.indexSpending];
@@ -49,7 +46,7 @@ class _RevenueAndExpenditureContentState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              const Row(
                 children: [
                   Text(
                     'Số dư : ',
@@ -81,7 +78,7 @@ class _RevenueAndExpenditureContentState
                       decoration: BoxDecoration(
                           color: AppColors.grey_8A8A8A.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(10)),
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
@@ -155,22 +152,17 @@ class _RevenueAndExpenditureContentState
             ],
           ),
         ),
-        spendingController.listSpending.isEmpty
-            ? Expanded(
-                child: Center(
-                child: Text('Không có thu chi nào!'),
-              ))
-            : Expanded(
-                child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                padding: EdgeInsets.only(bottom: 60),
-                itemCount: spendingController.listSpending.length,
-                itemBuilder: (context, index) {
-                  return DayTrading(
-                    item: index,
-                  );
-                },
-              ))
+        Expanded(
+            child: ListView.builder(
+          physics: BouncingScrollPhysics(),
+          padding: EdgeInsets.only(bottom: 60),
+          itemCount: spendingController.listSpending.length,
+          itemBuilder: (context, index) {
+            return DayTrading(
+              item: index,
+            );
+          },
+        ))
       ],
     );
   }

@@ -290,7 +290,7 @@ class _RevenueState extends State<Revenue> {
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             backgroundColor:
-                                                AppColors.green_006200),
+                                                AppColors.blue_028f76),
                                         onPressed: () {
                                           spendingController.createRevenue();
                                         },

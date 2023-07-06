@@ -34,7 +34,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.green_006200,
+        backgroundColor: AppColors.blue_028f76,
         title: Text('Tên shop'),
         // actions: [
         // Row(
@@ -241,7 +241,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                     width: MediaQuery.of(context).size.width * 0.45,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.green_006200),
+                            backgroundColor: AppColors.blue_028f76),
                         onPressed: () {
                           Navigator.push(
                               context,

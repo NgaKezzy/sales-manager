@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:sales_manager/config/app_color.dart';
 
 import '../warehouse/warehouse_screen.dart';
 import '../manager/manager_screen.dart';
@@ -32,8 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
           type: BottomNavigationBarType.fixed,
           currentIndex: pageIndex,
           unselectedIconTheme: const IconThemeData(color: Colors.grey),
-          selectedIconTheme: const IconThemeData(color: Colors.green),
-          selectedItemColor: Colors.green,
+          selectedIconTheme: const IconThemeData(color: AppColors.blue_028f76),
+          selectedItemColor: AppColors.blue_028f76,
           showUnselectedLabels: true,
           showSelectedLabels: true,
           unselectedItemColor: Colors.grey,

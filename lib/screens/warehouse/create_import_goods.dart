@@ -210,7 +210,7 @@ class _CreateImportGoodsState extends State<CreateImportGoods> {
                             width: MediaQuery.of(context).size.width * 0.8,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColors.green_006200),
+                                  backgroundColor: AppColors.blue_028f76),
                               onPressed: () {
                                 orderController.addItemPost(
                                     productsController.resultProducts,

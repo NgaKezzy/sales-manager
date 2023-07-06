@@ -108,13 +108,13 @@ class InventoryBook extends StatelessWidget {
                   width: 1,
                 ),
               )),
-              // color: AppColors.green_006200,
+              // color: AppColors.blue_028f76,
               child: Row(
                 children: [
                   Container(
                     alignment: Alignment.centerLeft,
                     width: MediaQuery.of(context).size.width * 0.4,
-                    // color: AppColors.green_006200,
+                    // color: AppColors.blue_028f76,
                     height: AppDimens.dimens_40,
 
                     child: Text(
@@ -160,7 +160,7 @@ class InventoryBook extends StatelessWidget {
                   Container(
                     alignment: Alignment.centerLeft,
                     width: MediaQuery.of(context).size.width * 0.4,
-                    // color: AppColors.green_006200,
+                    // color: AppColors.blue_028f76,
                     height: AppDimens.dimens_60,
 
                     child: Column(

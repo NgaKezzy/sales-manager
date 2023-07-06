@@ -269,7 +269,7 @@ class _Buttom_2State extends State<Buttom_2> {
                             height: AppDimens.dimens_45,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppColors.green_006200),
+                                    backgroundColor: AppColors.blue_028f76),
                                 onPressed: () {
                                   printBlue('click');
                                   orderController.createOrder();
@@ -294,7 +294,7 @@ class _Buttom_2State extends State<Buttom_2> {
                     );
                   });
             },
-            style: ElevatedButton.styleFrom(primary: AppColors.green_006200),
+            style: ElevatedButton.styleFrom(primary: AppColors.blue_028f76),
             child: Text(widget.txt_Rightt),
           ),
         ),

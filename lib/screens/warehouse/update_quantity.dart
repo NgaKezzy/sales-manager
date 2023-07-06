@@ -90,7 +90,7 @@ class _UpdateQuantityState extends State<UpdateQuantity> {
                           productsController
                               .resultProducts[widget.index].productName,
                           style: TextStyle(
-                              fontSize: 16, color: AppColors.green_006200),
+                              fontSize: 16, color: AppColors.blue_028f76),
                         ),
                         SizedBox(
                           height: 20,
@@ -107,7 +107,7 @@ class _UpdateQuantityState extends State<UpdateQuantity> {
                           '${NumberFormat.decimalPattern().format(productsController.resultProducts[widget.index].price)}  đ',
                           style: TextStyle(
                               fontSize: 16,
-                              color: AppColors.green_006200,
+                              color: AppColors.blue_028f76,
                               fontWeight: FontFamily.medium),
                         ),
                         SizedBox(
@@ -201,7 +201,7 @@ class _UpdateQuantityState extends State<UpdateQuantity> {
                           width: MediaQuery.of(context).size.width,
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColors.green_006200),
+                                  backgroundColor: AppColors.blue_028f76),
                               onPressed: () {
                                 productsController.sumMoneyReduce =
                                     productsController

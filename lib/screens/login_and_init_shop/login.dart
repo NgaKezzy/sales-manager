@@ -147,7 +147,7 @@ class _LoginState extends State<Login> {
                   width: MediaQuery.of(context).size.width * 0.85,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.green_006200),
+                          backgroundColor: AppColors.blue_028f76),
                       onPressed: () => authController.logIn(context),
                       child: Text(
                         'Đăng nhập',
