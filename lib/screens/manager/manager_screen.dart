@@ -16,6 +16,7 @@ import '../../config/app.font.dart';
 import '../../config/app_domain.dart';
 import '../../widgets/drawer_app.dart';
 import 'controller/order_controller.dart';
+import 'controller/statistical_controller.dart';
 import 'create_oder/sell.dart';
 import 'oder/oder.dart';
 
@@ -31,6 +32,8 @@ class _ManagerScreenState extends State<ManagerScreen> {
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
     OrderController orderController = context.read<OrderController>();
+    StatisticalController statisticalController =
+        context.read<StatisticalController>();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.blue_028f76,
@@ -313,6 +316,8 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
+                                      statisticalController
+                                          .getStatisticalDateNow();
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(

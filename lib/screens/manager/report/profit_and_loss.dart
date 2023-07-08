@@ -149,9 +149,15 @@ class _ProfitAndLossState extends State<ProfitAndLoss> {
                 _index = index;
               }),
               children: [
-                ProfitAndLossContent(),
-                ProfitAndLossContent(),
-                ProfitAndLossContent(),
+                ProfitAndLossContent(
+                  item: _index,
+                ),
+                ProfitAndLossContent(
+                  item: _index,
+                ),
+                ProfitAndLossContent(
+                  item: _index,
+                ),
               ],
             ),
           ),

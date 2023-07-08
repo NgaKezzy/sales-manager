@@ -212,7 +212,7 @@ class Register extends StatelessWidget {
                         child: Text(
                           "Đăng nhập",
                           style: TextStyle(
-                              color: AppColors.blue_0000ff,
+                              color: AppColors.green_55b135,
                               fontSize: 16,
                               fontWeight: FontFamily.medium),
                         ),

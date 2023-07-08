@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sales_manager/screens/manager/report/warehouse.dart';
 
 import '../../../../config/app.font.dart';
 import '../../../../config/app_color.dart';
 import '../../../../config/app_size.dart';
+import '../../controller/statistical_controller.dart';
 import 'item_productIs_out.dart';
 
 class ProductIsOut extends StatelessWidget {
@@ -13,6 +15,8 @@ class ProductIsOut extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    StatisticalController statisticalController = context.read<StatisticalController>();
+    context.watch<StatisticalController>().resultStatisticalDateNow;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       width: MediaQuery.of(context).size.width,

@@ -8,6 +8,7 @@ import 'package:sales_manager/screens/login_and_init_shop/controller/auth_contro
 import 'package:sales_manager/screens/login_and_init_shop/login.dart';
 import 'package:sales_manager/screens/login_and_init_shop/register.dart';
 import 'package:sales_manager/screens/manager/controller/order_controller.dart';
+import 'package:sales_manager/screens/manager/controller/statistical_controller.dart';
 import 'package:sales_manager/screens/manager/oder/all.dart';
 import 'package:sales_manager/screens/manager/create_oder/order_confirmation.dart';
 import 'package:sales_manager/screens/manager/product/manage.dart';
@@ -26,9 +27,8 @@ import 'screens/login_and_init_shop/demand.dart';
 import 'screens/login_and_init_shop/first_product.dart';
 
 void main() async {
-   WidgetsFlutterBinding.ensureInitialized();
-   await Firebase.initializeApp(
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent, // status bar color
@@ -51,6 +51,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (_) => SpendingController(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => StatisticalController(),
         ),
       ],
       child: MyApp(),
@@ -78,7 +81,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.teal,
       ),
       home: authController.isLogin ? HomeScreen() : Login(),
     );

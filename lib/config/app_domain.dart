@@ -22,6 +22,7 @@ class AppDomains {
   static const String DELETE_SPENDING = '/revenue/delete';
   static const String UPDATE_SPENDING = '/revenue/modifier';
   static const String UPDATE_STORE_INFORMATION = '/user/shop';
+  static const String GET_STATISTICAL = '/warehouse/statistic';
 
   static const String ID_WAREHOUSE = 'id_warehouse';
 }

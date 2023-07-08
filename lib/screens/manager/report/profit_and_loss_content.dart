@@ -1,14 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sales_manager/screens/manager/report/profit_and_loss.dart';
 
 import '../../../config/app.font.dart';
 import '../../../config/app_color.dart';
 import '../../../config/app_size.dart';
+import '../controller/statistical_controller.dart';
 
-class ProfitAndLossContent extends StatelessWidget {
-  const ProfitAndLossContent({
+class ProfitAndLossContent extends StatefulWidget {
+  ProfitAndLossContent({
+    required this.item,
     super.key,
   });
+  int item;
+
+  @override
+  State<ProfitAndLossContent> createState() => _ProfitAndLossContentState();
+}
+
+class _ProfitAndLossContentState extends State<ProfitAndLossContent> {
+  late StatisticalController statisticalController;
+
+  void didChangeDependencies() {
+    statisticalController = context.read<StatisticalController>();
+
+    if (widget.item == 0) {
+      statisticalController.getStatisticalDateNow();
+    }
+    if (widget.item == 1) {
+      statisticalController.getStatisticalThisMonth();
+    } else {
+      statisticalController.getStatisticalLastMonth();
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +78,7 @@ class ProfitAndLossContent extends StatelessWidget {
                         width: 15,
                       ),
                       Text(
-                        '900.000',
+                        '10000',
                         style: TextStyle(
                             fontSize: AppDimens.dimens_30,
                             color: AppColors.green_55b135,

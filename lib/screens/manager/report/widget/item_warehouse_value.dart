@@ -1,107 +1,94 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 
 import '../../../../config/app.font.dart';
 import '../../../../config/app_color.dart';
 import '../../../../config/app_size.dart';
 
 class ItemWarehouseValue extends StatelessWidget {
-  const ItemWarehouseValue({
+  ItemWarehouseValue({
+    required this.element,
     super.key,
   });
 
+  int element;
+
   @override
   Widget build(BuildContext context) {
+    ProductsController productsController = context.read<ProductsController>();
     return Container(
       margin: EdgeInsets.only(top: 10),
       padding: EdgeInsets.only(left: 10, right: 10, top: 10),
       width: MediaQuery.of(context).size.width,
       height: AppDimens.dimens_80,
       color: AppColors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Row(
         children: [
-          Row(
-            children: [
-              Text(
-                '1',
-                style: TextStyle(
-                    fontWeight: FontFamily.medium,
-                    fontSize: AppDimens.dimens_16,
-                    color: AppColors.black),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 5),
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: AppColors.grey_A49797),
-              ),
-              Expanded(
-                  child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Loa',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_16,
-                            fontWeight: FontFamily.medium),
-                      ),
-                      Text(
-                        '52.005.666',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_16,
-                            color: AppColors.red_FC0000,
-                            fontWeight: FontFamily.medium),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Mã : ',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_16,
-                            color: AppColors.grey_8A8A8A),
-                      ),
-                      Text(
-                        'SP0001',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_16,
-                            color: AppColors.grey_8A8A8A),
-                      ),
-                      Expanded(child: SizedBox()),
-                      Text(
-                        'SL :',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_16,
-                            color: AppColors.grey_8A8A8A),
-                      ),
-                      Text(
-                        '50',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_16,
-                            color: AppColors.grey_8A8A8A),
-                      )
-                    ],
-                  ),
-                ],
-              ))
-            ],
+          Text(
+            '${element + 1}',
+            style: TextStyle(
+                fontWeight: FontFamily.medium,
+                fontSize: AppDimens.dimens_16,
+                color: AppColors.black),
           ),
           Container(
-            height: 1,
-            width: MediaQuery.of(context).size.width,
-            color: AppColors.grey_8A8A8A,
-          )
+            margin: EdgeInsets.symmetric(horizontal: 5),
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                image: DecorationImage(
+                    image: NetworkImage(
+                        '${productsController.resultProducts[element].productImage}'),
+                    fit: BoxFit.cover)),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Expanded(
+              child: Row(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    productsController.resultProducts[element].productName,
+                    style: TextStyle(
+                        fontSize: AppDimens.dimens_16,
+                        fontWeight: FontFamily.medium),
+                  ),
+                ],
+              ),
+              Expanded(child: SizedBox()),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    '${productsController.resultProducts[element].inventoryNumber * productsController.resultProducts[element].price}',
+                    style: TextStyle(
+                        fontSize: AppDimens.dimens_16,
+                        color: AppColors.blue_028f76,
+                        fontWeight: FontFamily.medium),
+                  ),
+                  Text(
+                    'SL :${productsController.resultProducts[element].inventoryNumber}',
+                    style: TextStyle(
+                        fontSize: AppDimens.dimens_16,
+                        color: AppColors.grey_8A8A8A),
+                  )
+                ],
+              ),
+            ],
+          ))
         ],
       ),
+      // Container(
+      //   height: 1,
+      //   width: MediaQuery.of(context).size.width,
+      //   color: AppColors.grey_8A8A8A,
+      // )
     );
   }
 }

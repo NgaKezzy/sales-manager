@@ -682,4 +682,60 @@ class NetworkApi {
     }
     return resultUpdateStoreInformation;
   }
+
+  // call api lấy thống kê cửa hàng
+  static Future<Map> getStatistical(
+      String idWareHouse, String timeFirst, String timeEnd) async {
+    Map resultGetStatistical = {};
+
+    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.GET_STATISTICAL);
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+
+    try {
+      final response = await http.post(uri, headers: {
+        'token_access_authorization': accessToken ?? '',
+      }, body: {
+        "idWareHouse": idWareHouse,
+        "timeFirst": timeFirst,
+        "timeEnd": timeEnd,
+      });
+
+      switch (response.statusCode) {
+        case 200:
+          {
+            var data = jsonDecode(response.body);
+            resultGetStatistical = data;
+          }
+          break;
+        case 400:
+          {
+            var data = jsonDecode(response.body);
+            resultGetStatistical = data;
+          }
+          break;
+        case 401:
+          {
+            var data = jsonDecode(response.body);
+            resultGetStatistical = data;
+          }
+          break;
+        case 404:
+          {
+            var data = jsonDecode(response.body);
+            resultGetStatistical = data;
+          }
+          break;
+        default:
+          {
+            var data = jsonDecode(response.body);
+            resultGetStatistical = data;
+          }
+          break;
+      }
+    } catch (e) {
+      printRed('Lỗi bắt ngoại lệ lấy thống kê $e');
+    }
+    return resultGetStatistical;
+  }
 }
