@@ -91,7 +91,7 @@ class _RevenueAndExpenditureContentState
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                '1.250.000 ',
+                                '1.250.000 đ ',
                                 style: TextStyle(
                                     color: AppColors.red_FC0000,
                                     fontWeight: FontFamily.semiBold,
