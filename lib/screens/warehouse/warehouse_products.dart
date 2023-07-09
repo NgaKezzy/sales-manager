@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app.font.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
+import 'package:sales_manager/screens/manager/controller/statistical_controller.dart';
 import 'package:sales_manager/screens/warehouse/product_details.dart';
 
 import '../manager/controller/products_controller.dart';
@@ -25,6 +26,8 @@ class _WarehouseProductsState extends State<WarehouseProducts> {
   @override
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
+    StatisticalController statisticalController =
+        context.read<StatisticalController>();
     // context.watch<ProductsController>().resultProducts.length;
 
     return Container(
@@ -74,9 +77,7 @@ class _WarehouseProductsState extends State<WarehouseProducts> {
                             ],
                           ),
                           Text(
-                            NumberFormat.decimalPattern().format(
-                              context.watch<ProductsController>().totalValue(),
-                            ),
+                            '${NumberFormat.decimalPattern().format(statisticalController.resultStatisticalDateNow!.totalPriceWareHouse)} đ',
                             style: TextStyle(
                                 color: AppColors.green_55b135,
                                 fontWeight: FontFamily.semiBold,
@@ -107,7 +108,7 @@ class _WarehouseProductsState extends State<WarehouseProducts> {
                             ],
                           ),
                           Text(
-                            '15',
+                            '${statisticalController.resultStatisticalDateNow!.slProduct}',
                             style: TextStyle(
                                 color: AppColors.green_55b135,
                                 fontWeight: FontFamily.semiBold,

@@ -269,11 +269,10 @@ class _ItemListProductState extends State<ItemListProduct> {
                             overflow: TextOverflow.ellipsis),
                       ),
                       Text(
-                        NumberFormat.decimalPattern().format(productsController
-                            .resultProducts[widget.element].price),
+                        '${NumberFormat.decimalPattern().format(productsController.resultProducts[widget.element].price)} đ',
                         style: const TextStyle(
                             fontSize: 13,
-                            color: AppColors.black,
+                            color: AppColors.grey_808080,
                             fontWeight: FontFamily.medium),
                       ),
                     ]),
