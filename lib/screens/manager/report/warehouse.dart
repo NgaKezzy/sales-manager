@@ -109,12 +109,19 @@ class _HeaderWarehouseReportState extends State<HeaderWarehouseReport> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            '${NumberFormat.decimalPattern().format(statisticalController.resultStatisticalDateNow!.totalPriceWareHouse)} đ',
-                            style: TextStyle(
-                                fontSize: AppDimens.dimens_18,
-                                fontWeight: FontFamily.semiBold),
-                          ),
+                          statisticalController.resultStatisticalDateNow == null
+                              ? Text(
+                                  '0 đ',
+                                  style: TextStyle(
+                                      fontSize: AppDimens.dimens_18,
+                                      fontWeight: FontFamily.semiBold),
+                                )
+                              : Text(
+                                  '${NumberFormat.decimalPattern().format(statisticalController.resultStatisticalDateNow!.totalPriceWareHouse)} đ',
+                                  style: TextStyle(
+                                      fontSize: AppDimens.dimens_18,
+                                      fontWeight: FontFamily.semiBold),
+                                ),
                         ],
                       ),
                       Text(
@@ -145,12 +152,19 @@ class _HeaderWarehouseReportState extends State<HeaderWarehouseReport> {
                     children: [
                       SvgPicture.asset('assets/svg/container.svg',
                           height: 25, color: AppColors.red_FF5151),
-                      Text(
-                        '${statisticalController.resultStatisticalDateNow!.slProduct}',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_18,
-                            fontWeight: FontFamily.semiBold),
-                      ),
+                      statisticalController.resultStatisticalDateNow == null
+                          ? Text(
+                              '0 ',
+                              style: TextStyle(
+                                  fontSize: AppDimens.dimens_18,
+                                  fontWeight: FontFamily.semiBold),
+                            )
+                          : Text(
+                              '${statisticalController.resultStatisticalDateNow!.slProduct}',
+                              style: TextStyle(
+                                  fontSize: AppDimens.dimens_18,
+                                  fontWeight: FontFamily.semiBold),
+                            ),
                       Text(
                         'Số lượng',
                         style: TextStyle(
@@ -187,12 +201,19 @@ class _HeaderWarehouseReportState extends State<HeaderWarehouseReport> {
                     children: [
                       SvgPicture.asset('assets/svg/cart-check.svg',
                           height: 25, color: AppColors.blue_0000ff),
-                      Text(
-                        '${statisticalController.resultStatisticalDateNow!.slProduct}',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_18,
-                            fontWeight: FontFamily.semiBold),
-                      ),
+                      statisticalController.resultStatisticalDateNow == null
+                          ? Text(
+                              '0 ',
+                              style: TextStyle(
+                                  fontSize: AppDimens.dimens_18,
+                                  fontWeight: FontFamily.semiBold),
+                            )
+                          : Text(
+                              '${statisticalController.resultStatisticalDateNow!.slProduct}',
+                              style: TextStyle(
+                                  fontSize: AppDimens.dimens_18,
+                                  fontWeight: FontFamily.semiBold),
+                            ),
                       Text(
                         'Sản phẩm còn bán',
                         style: TextStyle(
@@ -221,12 +242,19 @@ class _HeaderWarehouseReportState extends State<HeaderWarehouseReport> {
                     children: [
                       SvgPicture.asset('assets/svg/cart-close.svg',
                           height: 25, color: AppColors.red_d31900),
-                      Text(
-                        '${statisticalController.resultStatisticalDateNow!.sProductEmpty}',
-                        style: TextStyle(
-                            fontSize: AppDimens.dimens_18,
-                            fontWeight: FontFamily.semiBold),
-                      ),
+                      statisticalController.resultStatisticalDateNow == null
+                          ? Text(
+                              '0 ',
+                              style: TextStyle(
+                                  fontSize: AppDimens.dimens_18,
+                                  fontWeight: FontFamily.semiBold),
+                            )
+                          : Text(
+                              '${statisticalController.resultStatisticalDateNow!.sProductEmpty}',
+                              style: TextStyle(
+                                  fontSize: AppDimens.dimens_18,
+                                  fontWeight: FontFamily.semiBold),
+                            ),
                       Text(
                         'Sản phẩm hết hàng',
                         style: TextStyle(

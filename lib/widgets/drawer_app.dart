@@ -10,6 +10,7 @@ import '../screens/login_and_init_shop/infomation_shop.dart';
 
 Drawer DrawerApp(BuildContext context) {
   AuthController authController = context.read<AuthController>();
+  context.watch<AuthController>().userLogin;
 
   return Drawer(
     backgroundColor: AppColors.blue_028f76,
@@ -29,10 +30,22 @@ Drawer DrawerApp(BuildContext context) {
                     height: 80,
                     width: 80,
                     decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/img/avatar.png'),
-                            fit: BoxFit.cover),
-                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                      borderRadius: BorderRadius.circular(50),
+                      image: authController.userLogin == null
+                          ? DecorationImage(
+                              image: AssetImage('assets/img/avatar.png'),
+                              fit: BoxFit.cover,
+                            )
+                          : authController.userLogin!.avatar == ''
+                              ? DecorationImage(
+                                  image: AssetImage('assets/img/avatar.png'),
+                                  fit: BoxFit.cover,
+                                )
+                              : DecorationImage(
+                                  image: NetworkImage(
+                                      authController.userLogin!.avatar),
+                                  fit: BoxFit.cover),
+                    ),
                   ),
                   SizedBox(
                     width: 10,
@@ -40,23 +53,33 @@ Drawer DrawerApp(BuildContext context) {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Ngà kezzy',
-                        style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: AppDimens.dimens_20,
-                            fontWeight: FontFamily.medium),
-                      ),
+                      authController.userLogin == null
+                          ? Text(
+                              'Tên shop',
+                              style: TextStyle(
+                                  color: AppColors.white,
+                                  fontSize: AppDimens.dimens_20,
+                                  fontWeight: FontFamily.medium),
+                            )
+                          : Text(
+                              authController.userLogin!.shopName,
+                              style: TextStyle(
+                                  color: AppColors.white,
+                                  fontSize: AppDimens.dimens_20,
+                                  fontWeight: FontFamily.medium),
+                            ),
                       SizedBox(
                         height: 10,
                       ),
-                      Text(
-                        '00346846446',
-                        style: TextStyle(
-                          color: AppColors.white,
-                          fontSize: AppDimens.dimens_16,
-                        ),
-                      )
+                      authController.userLogin == null
+                          ? Text('')
+                          : Text(
+                              authController.userLogin!.phone,
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontSize: AppDimens.dimens_16,
+                              ),
+                            )
                     ],
                   )
                 ],

@@ -26,6 +26,8 @@ class AuthController extends ChangeNotifier {
   var addressController = TextEditingController();
   var descriptionController = TextEditingController();
 
+  String networkAvatar = '';
+  String urlAvatar = '';
   UserLogin? _userLogin;
   UserLogin? get userLogin => _userLogin;
 
@@ -71,6 +73,11 @@ class AuthController extends ChangeNotifier {
         await prefs.setString(AppDomains.ID_WAREHOUSE,
             dataLogin['data']['dataUser']['idWarehouse']);
 
+        await prefs.setString(
+            AppDomains.ID_User, dataLogin['data']['dataUser']['userId']);
+
+        networkAvatar = dataLogin['data']['dataUser']['avatar'];
+
         final UserLogin userLogin =
             UserLogin.fromJson(dataLogin['data']['dataUser']);
         _userLogin = userLogin;
@@ -92,6 +99,10 @@ class AuthController extends ChangeNotifier {
     await prefs.remove(AppDomains.ACCESS_TOKEN);
     await prefs.remove(AppDomains.REFRESH_TOKEN);
     await prefs.remove(AppDomains.ID_WAREHOUSE);
+    await prefs.remove(AppDomains.ID_User);
+    urlAvatar = '';
+    networkAvatar = '';
+
     notifyListeners();
   }
 
@@ -127,16 +138,23 @@ class AuthController extends ChangeNotifier {
     }
   }
 
-  Future<void> updateStoreInformation() async {
+  Future<void> updateStoreInformation(String linkImg) async {
     if (formKeyUpdateStore.currentState!.validate()) {
-      
       final shopName = shopNameController.text;
       final address = addressController.text;
       final description = descriptionController.text;
       final phone = phoneController.text;
-      final avatar = '';
 
-      // final updateStoreInformation = await NetworkApi.updateStoreInformation(idUser, shopName, address, description, phone, avatar)
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final String? idWarehouse = prefs.getString(AppDomains.ID_User);
+
+      final updateStoreInformation = await NetworkApi.updateStoreInformation(
+          idWarehouse ?? '', shopName, address, description, phone, linkImg);
+      if (updateStoreInformation['status'] == 'success') {
+        Fluttertoast.showToast(msg: updateStoreInformation['message']);
+      } else {
+        Fluttertoast.showToast(msg: updateStoreInformation['message']);
+      }
     }
   }
 }

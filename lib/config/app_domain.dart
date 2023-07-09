@@ -25,4 +25,6 @@ class AppDomains {
   static const String GET_STATISTICAL = '/warehouse/statistic';
 
   static const String ID_WAREHOUSE = 'id_warehouse';
+  static const String ID_User = 'id_warehouse';
+
 }

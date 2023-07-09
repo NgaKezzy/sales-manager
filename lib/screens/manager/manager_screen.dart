@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
+import 'package:sales_manager/screens/login_and_init_shop/controller/auth_controller.dart';
 import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 import 'package:sales_manager/screens/manager/product/manage.dart';
 import 'package:sales_manager/screens/manager/report/report.dart';
@@ -30,6 +31,7 @@ class ManagerScreen extends StatefulWidget {
 class _ManagerScreenState extends State<ManagerScreen> {
   @override
   Widget build(BuildContext context) {
+    AuthController authController = context.read<AuthController>();
     ProductsController productsController = context.read<ProductsController>();
     OrderController orderController = context.read<OrderController>();
     StatisticalController statisticalController =
@@ -37,27 +39,9 @@ class _ManagerScreenState extends State<ManagerScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.blue_028f76,
-        title: Text('Tên shop'),
-        // actions: [
-        //   Row(
-        //     children: const [
-        //       Icon(
-        //         Icons.qr_code_scanner,
-        //         color: Colors.white,
-        //       ),
-        //       SizedBox(
-        //         width: AppDimens.dimens_20,
-        //       ),
-        //       Icon(
-        //         Icons.messenger,
-        //         color: Colors.white,
-        //       ),
-        //       SizedBox(
-        //         width: 10,
-        //       )
-        //     ],
-        //   ),
-        // ],
+        title: authController.userLogin != null
+            ? Text(authController.userLogin!.shopName)
+            : Text('Tên shop'),
       ),
       drawer: DrawerApp(context),
       body: SingleChildScrollView(

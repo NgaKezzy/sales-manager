@@ -1,27 +1,33 @@
-import 'package:flutter/material.dart';
-
 class UserLogin {
   String username;
   String avatar;
   String fullname;
   String address;
   String idWarehouse;
+  String shopName;
+  String phone;
+  String description;
 
   UserLogin(
       {required this.username,
       required this.avatar,
       required this.fullname,
       required this.address,
-      required this.idWarehouse});
+      required this.idWarehouse,
+      required this.shopName,
+      required this.phone,
+      required this.description});
 
   factory UserLogin.fromJson(Map<String, dynamic> json) {
     return UserLogin(
-      username: json['username'],
-      avatar: json["avatar"],
-      fullname: json['fullname'],
-      address: json['address'],
-      idWarehouse: json['idWarehouse'],
-    );
+        username: json['username'],
+        avatar: json["avatar"],
+        fullname: json['fullname'],
+        address: json['address'],
+        idWarehouse: json['idWarehouse'],
+        shopName: json['shopName'],
+        phone: json['phone'],
+        description: json['description']);
   }
 
   // static List<UserLogin> convertToListPost(List<dynamic> json) {
