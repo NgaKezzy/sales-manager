@@ -109,7 +109,7 @@ class _SellState extends State<Sell> {
                 //     decoration: InputDecoration(
                 //       suffixIcon: Icon(
                 //         Icons.search,
-                //         color: AppColors.green_55b135,
+                //         color: AppColors.blue_028f76,
                 //       ),
                 //       border: OutlineInputBorder(),
                 //       hintText: 'Tìm theo tên sản phẩm',
@@ -289,7 +289,7 @@ class _ItemListProductState extends State<ItemListProduct> {
                   borderRadius: BorderRadius.circular(15)),
               child: Icon(
                 Icons.check,
-                color: AppColors.green_55b135,
+                color: AppColors.blue_028f76,
               ),
             )),
         ],

@@ -62,7 +62,7 @@ class InventoryBook extends StatelessWidget {
                                 '4.500.000 đ',
                                 style: TextStyle(
                                     fontSize: 18,
-                                    color: AppColors.green_55b135,
+                                    color: AppColors.blue_028f76,
                                     fontWeight: FontFamily.semiBold),
                               ),
                             ],
@@ -189,7 +189,7 @@ class InventoryBook extends StatelessWidget {
                       '4.555.222',
                       style: TextStyle(
                         fontSize: 15,
-                        color: AppColors.green_55b135,
+                        color: AppColors.blue_028f76,
                         fontWeight: FontFamily.semiBold,
                       ),
                     ),
@@ -368,7 +368,7 @@ class ProductDelivery extends StatelessWidget {
                   '300.000',
                   style: TextStyle(
                       fontSize: AppDimens.dimens_15,
-                      color: AppColors.green_55b135,
+                      color: AppColors.blue_028f76,
                       fontWeight: FontFamily.medium),
                 ),
                 Text(

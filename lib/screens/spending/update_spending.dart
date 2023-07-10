@@ -115,7 +115,7 @@ class _UpdateSpendingState extends State<UpdateSpending> {
                         'Nhập số tiền',
                         style: TextStyle(
                             fontSize: 18,
-                            color: AppColors.green_55b135,
+                            color: AppColors.blue_028f76,
                             fontWeight: FontFamily.medium),
                       ),
                       SizedBox(

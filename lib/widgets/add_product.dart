@@ -23,12 +23,12 @@ class AddProduct extends StatelessWidget {
         children: [
           Icon(
             Icons.add,
-            color: AppColors.green_55b135,
+            color: AppColors.blue_028f76,
           ),
           Text(
             'Thêm sản phẩm',
             style: TextStyle(
-                color: AppColors.green_55b135,
+                color: AppColors.blue_028f76,
                 fontWeight: FontFamily.medium,
                 fontSize: AppDimens.dimens_11),
           )

@@ -43,7 +43,7 @@ class ImportDetails extends StatelessWidget {
                       ),
                       Text(
                         'Đã thanh toán',
-                        style: TextStyle(color: AppColors.green_55b135),
+                        style: TextStyle(color: AppColors.blue_028f76),
                       )
                     ],
                   ),

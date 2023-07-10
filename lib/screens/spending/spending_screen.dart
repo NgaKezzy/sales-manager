@@ -63,7 +63,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
         children: [
           Container(
             height: MediaQuery.of(context).size.height,
-            color: AppColors.grey_8A8A8A.withOpacity(0.2),
+            color: AppColors.grey_808080.withOpacity(0.1),
             // padding: EdgeInsets.symmetric(vertical: 10),
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -110,7 +110,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                                     style: TextStyle(
                                         fontSize: AppDimens.dimens_13,
                                         color: _index == 0
-                                            ? AppColors.green_55b135
+                                            ? AppColors.blue_028f76
                                             : AppColors.black,
                                         fontWeight: FontFamily.medium),
                                   ),
@@ -140,7 +140,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                                     style: TextStyle(
                                         fontSize: AppDimens.dimens_13,
                                         color: _index == 1
-                                            ? AppColors.green_55b135
+                                            ? AppColors.blue_028f76
                                             : AppColors.black,
                                         fontWeight: FontFamily.medium),
                                   ),
@@ -170,7 +170,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                                     style: TextStyle(
                                         fontSize: AppDimens.dimens_13,
                                         color: _index == 2
-                                            ? AppColors.green_55b135
+                                            ? AppColors.blue_028f76
                                             : AppColors.black,
                                         fontWeight: FontFamily.medium),
                                   ),

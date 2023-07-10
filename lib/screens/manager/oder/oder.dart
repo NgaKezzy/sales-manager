@@ -62,9 +62,9 @@ class _OderState extends State<Oder> {
                   children: const [
                     TabBar(
                         isScrollable: true,
-                        labelColor: AppColors.green_55b135,
+                        labelColor: AppColors.blue_028f76,
                         unselectedLabelColor: AppColors.black,
-                        indicatorColor: AppColors.green_55b135,
+                        indicatorColor: AppColors.blue_028f76,
                         tabs: [
                           Tab(
                             text: 'Tất cả',

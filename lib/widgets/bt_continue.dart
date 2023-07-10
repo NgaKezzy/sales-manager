@@ -17,7 +17,7 @@ class BtContinue extends StatelessWidget {
           height: 55,
           child: ElevatedButton(
             onPressed: () {},
-            style: ElevatedButton.styleFrom(primary: AppColors.green_55b135),
+            style: ElevatedButton.styleFrom(primary: AppColors.blue_028f76),
             child: Text('Tiếp tục'),
           ),
         ),

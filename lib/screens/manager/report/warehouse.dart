@@ -105,7 +105,7 @@ class _HeaderWarehouseReportState extends State<HeaderWarehouseReport> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SvgPicture.asset('assets/svg/money.svg',
-                          height: 25, color: AppColors.green_55b135),
+                          height: 25, color: AppColors.blue_028f76),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

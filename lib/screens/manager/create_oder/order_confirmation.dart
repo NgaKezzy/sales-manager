@@ -148,14 +148,14 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
                                         width: AppDimens.dimens_120,
                                         height: AppDimens.dimens_30,
                                         decoration: BoxDecoration(
-                                            color: AppColors.green_55b135
+                                            color: AppColors.blue_028f76
                                                 .withOpacity(0.1),
                                             borderRadius:
                                                 BorderRadius.circular(10)),
                                         child: const Text(
                                           'Chọn khuyễn mãi',
                                           style: TextStyle(
-                                              color: AppColors.green_55b135,
+                                              color: AppColors.blue_028f76,
                                               fontSize: AppDimens.dimens_13),
                                         ),
                                       )

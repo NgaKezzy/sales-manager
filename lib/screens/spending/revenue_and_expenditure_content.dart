@@ -33,9 +33,9 @@ class _RevenueAndExpenditureContentState
   Widget build(BuildContext context) {
     SpendingController spendingController = context.read<SpendingController>();
 
-    context
-        .watch<SpendingController>()
-        .listSpending[spendingController.indexSpending];
+    // context
+    //     .watch<SpendingController>()
+    //     .listSpending[spendingController.indexSpending];
 
     return Column(
       children: [
@@ -57,7 +57,7 @@ class _RevenueAndExpenditureContentState
                   Text(
                     '61.524.000',
                     style: TextStyle(
-                        color: AppColors.green_55b135,
+                        color: AppColors.blue_028f76,
                         fontSize: AppDimens.dimens_16,
                         fontWeight: FontFamily.medium),
                   ),
@@ -130,14 +130,14 @@ class _RevenueAndExpenditureContentState
                               Text(
                                 '1.250.000 ',
                                 style: TextStyle(
-                                    color: AppColors.green_55b135,
+                                    color: AppColors.blue_028f76,
                                     fontWeight: FontFamily.semiBold,
                                     fontSize: AppDimens.dimens_16),
                               ),
                               Text(
                                 ' đ',
                                 style: TextStyle(
-                                    color: AppColors.green_55b135,
+                                    color: AppColors.blue_028f76,
                                     fontWeight: FontFamily.semiBold,
                                     fontSize: AppDimens.dimens_16),
                               ),
@@ -152,17 +152,39 @@ class _RevenueAndExpenditureContentState
             ],
           ),
         ),
-        Expanded(
-            child: ListView.builder(
-          physics: BouncingScrollPhysics(),
-          padding: EdgeInsets.only(bottom: 60),
-          itemCount: spendingController.listSpending.length,
-          itemBuilder: (context, index) {
-            return DayTrading(
-              item: index,
-            );
-          },
-        ))
+        spendingController.listSpending.isEmpty
+            ? const Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.error,
+                      size: 40,
+                      color: AppColors.yellow_FAA810,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Không có khoản thu chi nào',
+                      style: TextStyle(
+                          fontSize: AppDimens.dimens_16,
+                          fontWeight: FontFamily.medium),
+                    ),
+                  ],
+                ),
+              )
+            : Expanded(
+                child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                padding: EdgeInsets.only(bottom: 60),
+                itemCount: spendingController.listSpending.length,
+                itemBuilder: (context, index) {
+                  return DayTrading(
+                    item: index,
+                  );
+                },
+              ))
       ],
     );
   }

@@ -67,7 +67,7 @@ class MoreGoods extends StatelessWidget {
                     margin: EdgeInsets.only(right: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      color: AppColors.green_55b135,
+                      color: AppColors.blue_028f76,
                     ),
                     width: AppDimens.dimens_24,
                     child: Icon(

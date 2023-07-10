@@ -71,12 +71,12 @@ class _ItemOderState extends State<ItemOder> {
                   height: AppDimens.dimens_20,
                   width: AppDimens.dimens_60,
                   decoration: BoxDecoration(
-                      color: AppColors.green_55b135.withOpacity(0.2),
+                      color: AppColors.blue_028f76.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(5)),
                   child: Text(
                     'Đã giao',
                     style: TextStyle(
-                        color: AppColors.green_55b135,
+                        color: AppColors.blue_028f76,
                         fontSize: AppDimens.dimens_13),
                   ),
                 )
@@ -138,7 +138,7 @@ class _ItemOderState extends State<ItemOder> {
                 Text(
                   'Đã thanh toán',
                   style: TextStyle(
-                    color: AppColors.green_55b135,
+                    color: AppColors.blue_028f76,
                   ),
                 )
               ],

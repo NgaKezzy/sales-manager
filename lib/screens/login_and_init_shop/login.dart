@@ -185,7 +185,7 @@ class _LoginState extends State<Login> {
                         child: Text(
                           "Đăng ký",
                           style: TextStyle(
-                              color: AppColors.green_55b135,
+                              color: AppColors.blue_028f76,
                               fontSize: 16,
                               fontWeight: FontFamily.medium),
                         ),

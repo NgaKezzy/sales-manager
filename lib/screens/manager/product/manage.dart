@@ -55,16 +55,16 @@ class _MenageState extends State<Menage> {
                   //   height: 40,
                   //   child: const TextField(
                   //       textCapitalization: TextCapitalization.sentences,
-                  //       cursorColor: AppColors.green_55b135,
+                  //       cursorColor: AppColors.blue_028f76,
                   //       textAlignVertical: TextAlignVertical(y: 0.9),
                   //       decoration: InputDecoration(
                   //           border: OutlineInputBorder(),
                   //           focusedBorder: OutlineInputBorder(
                   //               borderSide: BorderSide(
-                  //                   color: AppColors.green_55b135, width: 1)),
+                  //                   color: AppColors.blue_028f76, width: 1)),
                   //           suffixIcon: Icon(
                   //             Icons.search,
-                  //             color: AppColors.green_55b135,
+                  //             color: AppColors.blue_028f76,
                   //           ),
                   //           hintText: 'Tìm kiếm sản phẩm')),
                   // ),
@@ -76,9 +76,9 @@ class _MenageState extends State<Menage> {
                         children: [
                           TabBar(
                               isScrollable: true,
-                              labelColor: AppColors.green_55b135,
+                              labelColor: AppColors.blue_028f76,
                               unselectedLabelColor: AppColors.black,
-                              indicatorColor: AppColors.green_55b135,
+                              indicatorColor: AppColors.blue_028f76,
                               tabs: [
                                 SizedBox(
                                   width:

@@ -71,18 +71,26 @@ class _WarehouseProductsState extends State<WarehouseProducts> {
                               Icon(
                                 Icons.attach_money,
                                 size: 18,
-                                color: AppColors.green_55b135,
+                                color: AppColors.blue_028f76,
                               ),
                               Text('Giá trị tồn')
                             ],
                           ),
-                          Text(
-                            '${NumberFormat.decimalPattern().format(statisticalController.resultStatisticalDateNow!.totalPriceWareHouse)} đ',
-                            style: TextStyle(
-                                color: AppColors.green_55b135,
-                                fontWeight: FontFamily.semiBold,
-                                fontSize: AppDimens.dimens_20),
-                          )
+                          statisticalController.resultStatisticalDateNow == null
+                              ? Text(
+                                  '0 đ',
+                                  style: TextStyle(
+                                      color: AppColors.blue_028f76,
+                                      fontWeight: FontFamily.semiBold,
+                                      fontSize: AppDimens.dimens_20),
+                                )
+                              : Text(
+                                  '${NumberFormat.decimalPattern().format(statisticalController.resultStatisticalDateNow!.totalPriceWareHouse)} đ',
+                                  style: TextStyle(
+                                      color: AppColors.blue_028f76,
+                                      fontWeight: FontFamily.semiBold,
+                                      fontSize: AppDimens.dimens_20),
+                                )
                         ],
                       ),
                     ),
@@ -102,18 +110,26 @@ class _WarehouseProductsState extends State<WarehouseProducts> {
                               Icon(
                                 Icons.token,
                                 size: 18,
-                                color: AppColors.green_55b135,
+                                color: AppColors.blue_028f76,
                               ),
                               Text(' Số lượng')
                             ],
                           ),
-                          Text(
-                            '${statisticalController.resultStatisticalDateNow!.slProduct}',
-                            style: TextStyle(
-                                color: AppColors.green_55b135,
-                                fontWeight: FontFamily.semiBold,
-                                fontSize: AppDimens.dimens_16),
-                          )
+                          statisticalController.resultStatisticalDateNow == null
+                              ? Text(
+                                  '0',
+                                  style: TextStyle(
+                                      color: AppColors.blue_028f76,
+                                      fontWeight: FontFamily.semiBold,
+                                      fontSize: AppDimens.dimens_20),
+                                )
+                              : Text(
+                                  '${statisticalController.resultStatisticalDateNow!.slProduct}',
+                                  style: TextStyle(
+                                      color: AppColors.blue_028f76,
+                                      fontWeight: FontFamily.semiBold,
+                                      fontSize: AppDimens.dimens_16),
+                                )
                         ],
                       ),
                     )
@@ -122,21 +138,43 @@ class _WarehouseProductsState extends State<WarehouseProducts> {
               ],
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.only(top: 0, bottom: 60),
-              physics: BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: productsController.resultProducts.length,
-              itemBuilder: (context, index) {
-                return productsController.isLoading
-                    ? ItemWareHouseProduct(
-                        element: index,
-                      )
-                    : CircularProgressIndicator();
-              },
-            ),
-          ),
+          productsController.resultProducts.isEmpty
+              ? const Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.error,
+                        size: 40,
+                        color: AppColors.yellow_FAA810,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Không có sản phẩm nào',
+                        style: TextStyle(
+                            fontSize: AppDimens.dimens_16,
+                            fontWeight: FontFamily.medium),
+                      ),
+                    ],
+                  ),
+                )
+              : Expanded(
+                  child: ListView.builder(
+                    padding: EdgeInsets.only(top: 0, bottom: 60),
+                    physics: BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: productsController.resultProducts.length,
+                    itemBuilder: (context, index) {
+                      return productsController.isLoading
+                          ? ItemWareHouseProduct(
+                              element: index,
+                            )
+                          : CircularProgressIndicator();
+                    },
+                  ),
+                ),
         ],
       ),
     );

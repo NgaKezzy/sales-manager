@@ -81,7 +81,7 @@ class _ProfitAndLossContentState extends State<ProfitAndLossContent> {
                         '10000',
                         style: TextStyle(
                             fontSize: AppDimens.dimens_30,
-                            color: AppColors.green_55b135,
+                            color: AppColors.blue_028f76,
                             fontWeight: FontFamily.semiBold),
                       ),
                       SizedBox(
@@ -91,7 +91,7 @@ class _ProfitAndLossContentState extends State<ProfitAndLossContent> {
                         'đ',
                         style: TextStyle(
                             fontSize: AppDimens.dimens_30,
-                            color: AppColors.green_55b135,
+                            color: AppColors.blue_028f76,
                             fontWeight: FontFamily.semiBold),
                       ),
                     ],
@@ -141,7 +141,7 @@ class _ProfitAndLossContentState extends State<ProfitAndLossContent> {
                         "500.000",
                         style: TextStyle(
                             fontSize: AppDimens.dimens_16,
-                            color: AppColors.green_55b135),
+                            color: AppColors.blue_028f76),
                       ),
                     ],
                   ),

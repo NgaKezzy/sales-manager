@@ -310,7 +310,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                     child: ItemManager(
                                       nameManager: 'Báo cáo',
                                       icon: Icons.bar_chart,
-                                      clIcon: AppColors.green_55b135,
+                                      clIcon: AppColors.blue_028f76,
                                     ),
                                   )
                                 ],

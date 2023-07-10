@@ -145,7 +145,7 @@ class _DayTradingState extends State<DayTrading> {
                                   '${NumberFormat.decimalPattern().format(spendingController.listSpending[widget.item].revenueMoney)} đ',
                                   style: TextStyle(
                                       fontSize: 18,
-                                      color: AppColors.green_55b135,
+                                      color: AppColors.blue_028f76,
                                       fontWeight: FontFamily.medium),
                                 )
                               ],
@@ -198,25 +198,24 @@ class _DayTradingState extends State<DayTrading> {
             });
       },
       child: Container(
-          margin: EdgeInsets.only(top: 5),
+          margin: const EdgeInsets.only(top: 5, right: 10, left: 10),
           decoration: BoxDecoration(
-              color: AppColors.white,
-              border: Border(
-                  bottom: BorderSide(
-                      width: 1,
-                      color: AppColors.grey_8A8A8A.withOpacity(0.3)))),
+            borderRadius: BorderRadius.circular(10),
+            color: AppColors.white,
+          ),
           height: 50,
           width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: Row(
             children: [
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Date',
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontFamily.medium),
+                  const Text(
+                    'Ngày phát sinh',
+                    style: TextStyle(
+                      fontSize: 13,
+                    ),
                   ),
                   Text(
                     spendingController.listSpending[widget.item].revenueDate,
@@ -231,7 +230,7 @@ class _DayTradingState extends State<DayTrading> {
               Text(
                 '${NumberFormat.decimalPattern().format(spendingController.listSpending[widget.item].revenueMoney)} đ',
                 style: TextStyle(
-                    color: AppColors.green_55b135,
+                    color: AppColors.blue_028f76,
                     fontSize: 18,
                     fontWeight: FontFamily.semiBold),
               )

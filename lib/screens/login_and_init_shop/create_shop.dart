@@ -46,7 +46,7 @@ class CreateShop extends StatelessWidget {
                           alignment: Alignment.center,
                           margin: EdgeInsets.only(top: 30, bottom: 25),
                           child: SvgPicture.asset('assets/svg/shop.svg',
-                              color: AppColors.green_55b135,
+                              color: AppColors.blue_028f76,
                               height: AppDimens.dimens_80),
                         ),
                         Column(

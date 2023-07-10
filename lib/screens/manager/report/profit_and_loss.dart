@@ -73,7 +73,7 @@ class _ProfitAndLossState extends State<ProfitAndLoss> {
                           style: TextStyle(
                               fontSize: AppDimens.dimens_13,
                               color: _index == 0
-                                  ? AppColors.green_55b135
+                                  ? AppColors.blue_028f76
                                   : AppColors.black,
                               fontWeight: FontFamily.medium),
                         ),
@@ -102,7 +102,7 @@ class _ProfitAndLossState extends State<ProfitAndLoss> {
                           style: TextStyle(
                               fontSize: AppDimens.dimens_13,
                               color: _index == 1
-                                  ? AppColors.green_55b135
+                                  ? AppColors.blue_028f76
                                   : AppColors.black,
                               fontWeight: FontFamily.medium),
                         ),
@@ -131,7 +131,7 @@ class _ProfitAndLossState extends State<ProfitAndLoss> {
                           style: TextStyle(
                               fontSize: AppDimens.dimens_13,
                               color: _index == 2
-                                  ? AppColors.green_55b135
+                                  ? AppColors.blue_028f76
                                   : AppColors.black,
                               fontWeight: FontFamily.medium),
                         ),

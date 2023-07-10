@@ -41,9 +41,9 @@ class _ReportState extends State<Report> {
                       TabBar(
                           physics: const NeverScrollableScrollPhysics(),
                           isScrollable: true,
-                          labelColor: AppColors.green_55b135,
+                          labelColor: AppColors.blue_028f76,
                           unselectedLabelColor: AppColors.black,
-                          indicatorColor: AppColors.green_55b135,
+                          indicatorColor: AppColors.blue_028f76,
                           tabs: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.24,

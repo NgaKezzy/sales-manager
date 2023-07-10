@@ -73,20 +73,20 @@ class RevenueAndExpenditure extends StatelessWidget {
                                 color: AppColors.grey_8A8A8A,
                                 fontSize: AppDimens.dimens_15),
                           ),
-                          Row(
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 '64.452.000',
                                 style: TextStyle(
-                                    color: AppColors.green_55b135,
+                                    color: AppColors.blue_028f76,
                                     fontSize: AppDimens.dimens_18,
                                     fontWeight: FontFamily.semiBold),
                               ),
                               Text(
                                 '  đ',
                                 style: TextStyle(
-                                    color: AppColors.green_55b135,
+                                    color: AppColors.blue_028f76,
                                     fontSize: AppDimens.dimens_18,
                                     fontWeight: FontFamily.semiBold),
                               ),
@@ -95,7 +95,7 @@ class RevenueAndExpenditure extends StatelessWidget {
                           Container(
                             height: 2,
                             width: MediaQuery.of(context).size.width * 0.35,
-                            color: AppColors.green_55b135,
+                            color: AppColors.blue_028f76,
                           )
                         ],
                       ),
