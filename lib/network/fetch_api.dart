@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -13,14 +14,11 @@ class NetworkApi {
 
   // gọi api để đăng nhập
   static Future<Map> logInApi(String userName, String password) async {
-    var uri = Uri.https(
+    var uri = Uri.http(
       AppDomains.BASE_URL,
       AppDomains.AUTH_LOGIN,
     );
-    // var uri = Uri.http(
-    //   AppDomains.BASE_URL,
-    //   AppDomains.AUTH_LOGIN,
-    // );
+
     Map result = {};
     try {
       final response = await http.post(uri, body: {
@@ -39,7 +37,7 @@ class NetworkApi {
 
       return result;
     } catch (e) {
-      print(e);
+      printRed('Bắt lỗi khi đăng nhập: $e');
       return result;
     }
   }
@@ -47,7 +45,7 @@ class NetworkApi {
 // goij api  để đăng ký tài khoản
   static Future<Map> registerApi(String userName, String password) async {
     // var uri = Uri.https(AppDomains.BASE_URL, AppDomains.AUTH_REGISTER);
-    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.AUTH_REGISTER);
+    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.AUTH_REGISTER);
 
     Map resultRegister = {};
     try {
@@ -66,15 +64,14 @@ class NetworkApi {
       }
       return resultRegister;
     } catch (e) {
-      print('Đây là lỗi : $e');
+      printRed('Đây là lỗi đăng ký : $e');
       return resultRegister;
     }
   }
 
 // gọi api để lấy ra tất cả sản phẩm
   static Future<Map> getProduct(String idWarehouse) async {
-    var uri =
-        Uri.https(AppDomains.BASE_URL, AppDomains.WAREHOUSE + idWarehouse);
+    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.WAREHOUSE + idWarehouse);
     // var uri = Uri.http(AppDomains.BASE_URL, AppDomains.WAREHOUSE + idWarehouse);
     Map resultProducts = {};
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -88,7 +85,7 @@ class NetworkApi {
         resultProducts = data;
       }
     } catch (e) {
-      print(e);
+      printRed('Đây là lỗi lấy sản phẩm $e');
     }
     return resultProducts;
   }
@@ -103,7 +100,7 @@ class NetworkApi {
       int inventoryNumber,
       int quantity) async {
     Map resultCreateProduct = {};
-    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.WAREHOUSE);
+    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.WAREHOUSE);
     // var uri = Uri.http(AppDomains.BASE_URL, AppDomains.WAREHOUSE);
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -139,7 +136,7 @@ class NetworkApi {
   // gọi api để xóa sản phẩm
   static Future<Map> deleteProduct(String productId) async {
     Map resultDeleteProduct = {};
-    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.DELETE);
+    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.DELETE);
     // var uri = Uri.http(AppDomains.BASE_URL, AppDomains.DELETE);
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -163,7 +160,7 @@ class NetworkApi {
         resultDeleteProduct = data;
       }
     } catch (e) {
-      printBlue('Đây là lỗi bắt ngoại lệ xóa sản phẩm: + ${e}');
+      printRed('Đây là lỗi bắt ngoại lệ xóa sản phẩm: + ${e}');
     }
     return resultDeleteProduct;
   }
@@ -178,7 +175,7 @@ class NetworkApi {
       int inventoryNumber) async {
     Map resultUpdateProduct = {};
 
-    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.UPDATE_PRODUCT);
+    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.UPDATE_PRODUCT);
     // var uri = Uri.http(AppDomains.BASE_URL, AppDomains.UPDATE_PRODUCT);
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -231,7 +228,7 @@ class NetworkApi {
       String noteOrder,
       List listProduct) async {
     Map resultCreateOrder = {};
-    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.ORDER);
+    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.ORDER);
     // var uri = Uri.http(AppDomains.BASE_URL, AppDomains.ORDER);
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -291,7 +288,7 @@ class NetworkApi {
 
     Map resultListOrder = {};
 
-    var uri = Uri.https(
+    var uri = Uri.http(
       AppDomains.BASE_URL,
       AppDomains.GET_ORDER + idWarehouse!,
     );
@@ -326,7 +323,7 @@ class NetworkApi {
           }
       }
     } catch (e) {
-      printBlue('Đây là lỗi bắt ngoại lệ khi lấy danh sách hóa đơn xuống: $e ');
+      printRed('Đây là lỗi bắt ngoại lệ khi lấy danh sách hóa đơn xuống: $e ');
     }
     return resultListOrder;
   }
@@ -339,7 +336,7 @@ class NetworkApi {
     Map resultOrderDetail = {};
 
     var uri =
-        Uri.https(AppDomains.BASE_URL, AppDomains.GET_DETAIL_ORDER + idOrder);
+        Uri.http(AppDomains.BASE_URL, AppDomains.GET_DETAIL_ORDER + idOrder);
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
@@ -383,7 +380,7 @@ class NetworkApi {
   // call API Delete order
   static Future<Map> deleteOrder(String orderId) async {
     Map resultDeleteOrder = {};
-    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.DELETE_ORDER);
+    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.DELETE_ORDER);
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
 
@@ -417,7 +414,7 @@ class NetworkApi {
           break;
       }
     } catch (e) {
-      printBlue('Bắt ngoại lệ khi xóa đơn hàng ${e}');
+      printRed('Bắt ngoại lệ khi xóa đơn hàng ${e}');
     }
     return resultDeleteOrder;
   }
@@ -433,7 +430,7 @@ class NetworkApi {
       String type) async {
     Map resultCreateSpendings = {};
 
-    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.CREATE_SPENDINGS);
+    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.CREATE_SPENDINGS);
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
@@ -484,7 +481,7 @@ class NetworkApi {
 
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
     final idWareHouse = prefs.getString(AppDomains.ID_WAREHOUSE).toString();
-    var uri = Uri.https(
+    var uri = Uri.http(
         AppDomains.BASE_URL, AppDomains.GET_LIST_SPENDING + idWareHouse);
 
     try {
@@ -512,7 +509,7 @@ class NetworkApi {
           break;
       }
     } catch (e) {
-      printCyan('Ngoại lệ khi lấy list spending ${e}');
+      printRed('Ngoại lệ khi lấy list spending ${e}');
     }
     return resultGetListSpendings;
   }
@@ -521,7 +518,7 @@ class NetworkApi {
   static Future<Map> deleteSpendings(String idRevenue) async {
     Map resultDeleteSpendings = {};
 
-    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.DELETE_SPENDING);
+    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.DELETE_SPENDING);
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
@@ -581,7 +578,7 @@ class NetworkApi {
       String type) async {
     Map resultUpdateSpending = {};
 
-    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.UPDATE_SPENDING);
+    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.UPDATE_SPENDING);
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
@@ -636,7 +633,7 @@ class NetworkApi {
     Map resultUpdateStoreInformation = {};
 
     var uri =
-        Uri.https(AppDomains.BASE_URL, AppDomains.UPDATE_STORE_INFORMATION);
+        Uri.http(AppDomains.BASE_URL, AppDomains.UPDATE_STORE_INFORMATION);
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
 
@@ -688,7 +685,7 @@ class NetworkApi {
       String idWareHouse, String timeFirst, String timeEnd) async {
     Map resultGetStatistical = {};
 
-    var uri = Uri.https(AppDomains.BASE_URL, AppDomains.GET_STATISTICAL);
+    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.GET_STATISTICAL);
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
 

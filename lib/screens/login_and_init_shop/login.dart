@@ -20,6 +20,8 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     AuthController authController = context.read<AuthController>();
     return Scaffold(
+      backgroundColor: Colors.white,
+      // appBar: AppBar(),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,

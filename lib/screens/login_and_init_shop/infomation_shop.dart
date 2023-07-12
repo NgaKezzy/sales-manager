@@ -28,6 +28,7 @@ class _InofmationShopState extends State<InofmationShop> {
   late AuthController authController;
   void didChangeDependencies() {
     authController = context.read<AuthController>();
+
     super.didChangeDependencies();
   }
 
@@ -57,6 +58,7 @@ class _InofmationShopState extends State<InofmationShop> {
   @override
   Widget build(BuildContext context) {
     AuthController authController = context.read<AuthController>();
+
     return Scaffold(
       body: Column(
         children: [
@@ -222,7 +224,7 @@ class _InofmationShopState extends State<InofmationShop> {
                                   backgroundColor: AppColors.blue_028f76),
                               onPressed: () async {
                                 await uploadFile();
-                                authController.updateStoreInformation(
+                                await authController.updateStoreInformation(
                                     authController.urlAvatar);
 
                                 _showAlertDialog(context);

@@ -12,6 +12,7 @@ import 'package:sales_manager/widgets/header_center.dart';
 import 'package:sales_manager/widgets/header_center_no_back.dart';
 
 import '../../config/app_color.dart';
+import '../../widgets/drawer_app.dart';
 import '../login_and_init_shop/controller/auth_controller.dart';
 import '../manager/controller/products_controller.dart';
 import '../spending/expenses.dart';
@@ -41,82 +42,90 @@ class _WareHouseScreenState extends State<WareHouseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          Column(
-            children: [
-              HeaderCenterNoBack(txt_header: 'Kho hàng'),
-              Expanded(child: WarehouseProducts()),
-            ],
-          ),
-          Positioned(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              width: MediaQuery.of(context).size.width,
-              color: AppColors.white,
-              height: 50,
-              // color: AppColors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    height: 45,
-                    width: MediaQuery.of(context).size.width * 0.44,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.red_FF5151),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CreateCorrections()));
-                        },
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Icon(
-                              Icons.arrow_downward,
-                              size: 20,
-                            ),
-                            Text(
-                              'Chỉnh giảm',
-                              style: TextStyle(fontSize: 15),
-                            )
-                          ],
-                        )),
-                  ),
-                  SizedBox(
-                    height: 45,
-                    width: MediaQuery.of(context).size.width * 0.45,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.blue_028f76),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MoreGoods()));
-                        },
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Icon(
-                              Icons.arrow_upward,
-                              size: 20,
-                            ),
-                            Text(
-                              'Nhập hàng',
-                              style: TextStyle(fontSize: 15),
-                            )
-                          ],
-                        )),
-                  )
-                ],
+      appBar: AppBar(
+        backgroundColor: AppColors.blue_028f76,
+        title: authController.userLogin != null
+            ? Text(authController.userLogin!.shopName)
+            : Text('Tên shop'),
+      ),
+      drawer: DrawerApp(context),
+      body: SafeArea(
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Column(
+              children: [
+                Expanded(child: WarehouseProducts()),
+              ],
+            ),
+            Positioned(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                width: MediaQuery.of(context).size.width,
+                color: AppColors.white,
+                height: 50,
+                // color: AppColors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      height: 45,
+                      width: MediaQuery.of(context).size.width * 0.44,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.red_FF5151),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CreateCorrections()));
+                          },
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(
+                                Icons.arrow_downward,
+                                size: 20,
+                              ),
+                              Text(
+                                'Chỉnh giảm',
+                                style: TextStyle(fontSize: 15),
+                              )
+                            ],
+                          )),
+                    ),
+                    SizedBox(
+                      height: 45,
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.blue_028f76),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MoreGoods()));
+                          },
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(
+                                Icons.arrow_upward,
+                                size: 20,
+                              ),
+                              Text(
+                                'Nhập hàng',
+                                style: TextStyle(fontSize: 15),
+                              )
+                            ],
+                          )),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 
 class AppDomains {
   AppDomains._();
-  static const String BASE_URL = 'streamvideo-dev.onrender.com';
-  // static const String BASE_URL = '192.168.0.106\:3000';
+
+  // static const String BASE_URL = 'streamvideo-dev.onrender.com';
+
+  static const String BASE_URL = '192.168.0.101:3000';
+  // static const String BASE_URL = 'localhost\:3000';
   static const String AUTH_LOGIN = '/auth/login';
   static const String AUTH_REGISTER = '/auth/register';
   static const String ACCESS_TOKEN = 'access_token';
@@ -26,5 +29,4 @@ class AppDomains {
 
   static const String ID_WAREHOUSE = 'id_warehouse';
   static const String ID_User = 'id_warehouse';
-
 }
