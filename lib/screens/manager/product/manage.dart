@@ -25,13 +25,13 @@ class _MenageState extends State<Menage> {
   void didChangeDependencies() {
     authController = context.read<AuthController>();
     productsController = context.read<ProductsController>();
-    productsController
-        .getDataProducts(authController.userLogin?.idWarehouse ?? '');
+    productsController.getDataProducts();
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
+    context.watch<ProductsController>().resultProducts;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {

@@ -249,8 +249,8 @@ class _CreateProductState extends State<CreateProduct> {
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor:
                                               AppColors.blue_028f76),
-                                      onPressed: () {
-                                        uploadFile();
+                                      onPressed: () async {
+                                        await uploadFile();
                                         productsController.createProduct(
                                             productsController.url);
                                         productsController

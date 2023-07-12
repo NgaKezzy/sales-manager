@@ -34,8 +34,7 @@ class _SellState extends State<Sell> {
   void didChangeDependencies() {
     authController = context.read<AuthController>();
     productsController = context.read<ProductsController>();
-    productsController
-        .getDataProducts(authController.userLogin?.idWarehouse ?? '');
+    productsController.getDataProducts();
 
     super.didChangeDependencies();
   }
@@ -44,7 +43,7 @@ class _SellState extends State<Sell> {
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
     OrderController orderController = context.read<OrderController>();
-    context.watch<ProductsController>().resultProducts.length;
+    context.watch<ProductsController>().resultProducts;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

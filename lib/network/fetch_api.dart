@@ -70,17 +70,22 @@ class NetworkApi {
   }
 
 // gọi api để lấy ra tất cả sản phẩm
-  static Future<Map> getProduct(String idWarehouse) async {
-    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.WAREHOUSE + idWarehouse);
+  static Future<Map> getProduct(String idUser) async {
+     final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+   
+    var uri = Uri.http(AppDomains.BASE_URL, AppDomains.WAREHOUSE + idUser);
     // var uri = Uri.http(AppDomains.BASE_URL, AppDomains.WAREHOUSE + idWarehouse);
     Map resultProducts = {};
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String? accessToken = prefs.getString(AppDomains.ACCESS_TOKEN);
+   
 
     try {
       final response = await http
           .get(uri, headers: {'token_access_authorization': accessToken ?? ''});
       if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        resultProducts = data;
+      } else {
         var data = jsonDecode(response.body);
         resultProducts = data;
       }

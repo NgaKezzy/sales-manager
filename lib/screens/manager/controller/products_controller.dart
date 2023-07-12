@@ -48,8 +48,10 @@ class ProductsController extends ChangeNotifier {
 
   bool isLoading = false;
 
-  void getDataProducts(String idWarehouse) async {
-    final dataProducts = await NetworkApi.getProduct(idWarehouse);
+  void getDataProducts() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? userId = prefs.getString(AppDomains.ID_User);
+    final dataProducts = await NetworkApi.getProduct(userId ?? '');
 
     final List<Product> product =
         Product.convertToProduct(dataProducts['data']);
@@ -100,7 +102,7 @@ class ProductsController extends ChangeNotifier {
       final createOneProduct = await NetworkApi.createProduct(idWarehouse ?? '',
           productName, image, importPrice, price, inventoryNumber, 0);
       if (createOneProduct['status'] == 'success') {
-        getDataProducts(idWarehouse!);
+        getDataProducts();
         Fluttertoast.showToast(msg: 'Tạo thành công sản phẩm.');
       } else {
         Fluttertoast.showToast(msg: 'Tạo sản phẩm thất bại !');
@@ -116,7 +118,7 @@ class ProductsController extends ChangeNotifier {
     final deleteProduct = await NetworkApi.deleteProduct(idProduct);
 
     if (deleteProduct['status'] == 'success') {
-      getDataProducts(idWarehouse!);
+      getDataProducts();
       Fluttertoast.showToast(msg: '${deleteProduct['message']}');
     } else {
       Fluttertoast.showToast(msg: '${deleteProduct['message']}');
@@ -136,7 +138,7 @@ class ProductsController extends ChangeNotifier {
     final updateProduct = await NetworkApi.updateProduct(
         idProduct, productName, image, importPrice, price, inventoryNumber);
     if (updateProduct['status'] == 'success') {
-      getDataProducts(idWarehouse!);
+      getDataProducts();
 
       Fluttertoast.showToast(msg: '${updateProduct['message']}');
     } else {
@@ -152,7 +154,7 @@ class ProductsController extends ChangeNotifier {
     final importProduct = await NetworkApi.updateProduct(idProduct, nameProduct,
         image, priceImportProduct, priceProduct, totalProduct);
     if (importProduct['status'] == 'success') {
-      getDataProducts(idWarehouse!);
+      getDataProducts();
       Fluttertoast.showToast(msg: 'Nhập hàng thành công');
     } else {
       Fluttertoast.showToast(msg: 'Nhập hàng thất bại');
@@ -178,7 +180,7 @@ class ProductsController extends ChangeNotifier {
     final updateProduct = await NetworkApi.updateProduct(idProduct, nameReduce,
         image, totalMoneyImportPrice, totalMoney, inventoryNumber);
     if (updateProduct['status'] == 'success') {
-      getDataProducts(idWarehouse!);
+      getDataProducts();
 
       Fluttertoast.showToast(msg: 'Điều chỉnh giảm thành công');
     } else {

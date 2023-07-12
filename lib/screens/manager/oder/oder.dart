@@ -33,7 +33,7 @@ class _OderState extends State<Oder> {
 
     orderController.getListOrder();
     productsController
-        .getDataProducts(authController.userLogin?.idWarehouse ?? '');
+        .getDataProducts();
 
     super.didChangeDependencies();
   }
