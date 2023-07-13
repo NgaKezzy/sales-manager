@@ -70,6 +70,7 @@ class AuthController extends ChangeNotifier {
             AppDomains.ACCESS_TOKEN, dataLogin['data']['accessToken']);
         await prefs.setString(
             AppDomains.REFRESH_TOKEN, dataLogin['data']['refreshToken']);
+            
         await prefs.setString(AppDomains.ID_WAREHOUSE,
             dataLogin['data']['dataUser']['idWarehouse']);
 

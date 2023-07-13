@@ -50,8 +50,8 @@ class ProductsController extends ChangeNotifier {
 
   void getDataProducts() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String? userId = prefs.getString(AppDomains.ID_User);
-    final dataProducts = await NetworkApi.getProduct(userId ?? '');
+    final String? idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
+    final dataProducts = await NetworkApi.getProduct(idWarehouse ?? '');
 
     final List<Product> product =
         Product.convertToProduct(dataProducts['data']);

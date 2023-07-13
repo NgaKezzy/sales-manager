@@ -69,7 +69,7 @@ class _MenageState extends State<Menage> {
                   //           hintText: 'Tìm kiếm sản phẩm')),
                   // ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height - 120,
+                    height: MediaQuery.of(context).size.height - 80,
                     child: DefaultTabController(
                       length: 2,
                       child: Column(

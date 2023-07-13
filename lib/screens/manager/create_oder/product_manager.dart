@@ -32,7 +32,7 @@ class _ProductManagerState extends State<ProductManager> {
           Expanded(
               child: ListView.builder(
             physics: BouncingScrollPhysics(),
-            padding: EdgeInsets.all(0),
+            padding: EdgeInsets.only(top: 5, bottom: 50),
             itemCount:
                 context.watch<ProductsController>().resultProducts.length,
             itemBuilder: (context, index) {

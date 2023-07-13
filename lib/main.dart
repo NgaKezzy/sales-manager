@@ -69,9 +69,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+    late AuthController authController;
   @override
   void didChangeDependencies() {
     context.read<AuthController>().checkLogin();
+    authController = context.read<AuthController>();
+    
     super.didChangeDependencies();
   }
 
