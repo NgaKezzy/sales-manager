@@ -20,7 +20,7 @@ class MoreGoods extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
-    context.watch<ProductsController>().resultProducts.length;
+    // context.watch<ProductsController>().resultProducts.length;
 
     return Scaffold(
       body: Column(

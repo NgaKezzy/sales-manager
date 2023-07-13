@@ -26,10 +26,15 @@ class AuthController extends ChangeNotifier {
   var addressController = TextEditingController();
   var descriptionController = TextEditingController();
 
+  String dataUserName='';
+  String dataPassword='';
   String networkAvatar = '';
   String urlAvatar = '';
   UserLogin? _userLogin;
   UserLogin? get userLogin => _userLogin;
+  UserLogin? dataAutoLogin;
+
+
 
   bool _isLogin = false;
 
@@ -58,6 +63,9 @@ class AuthController extends ChangeNotifier {
       final String userName = userNameController.text.trim();
       final String password = passwordController.text;
 
+       dataUserName = userNameController.text.trim();
+      dataPassword = passwordController.text;
+
       final dataLogin = await NetworkApi.logInApi(userName, password);
 
       log(dataLogin.toString());
@@ -70,7 +78,7 @@ class AuthController extends ChangeNotifier {
             AppDomains.ACCESS_TOKEN, dataLogin['data']['accessToken']);
         await prefs.setString(
             AppDomains.REFRESH_TOKEN, dataLogin['data']['refreshToken']);
-            
+
         await prefs.setString(AppDomains.ID_WAREHOUSE,
             dataLogin['data']['dataUser']['idWarehouse']);
 
@@ -83,13 +91,21 @@ class AuthController extends ChangeNotifier {
             UserLogin.fromJson(dataLogin['data']['dataUser']);
         _userLogin = userLogin;
         _isLogin = true;
+        dataAutoLogin = userLogin;
       }
       if (dataLogin['status'] == 'error') {
         Fluttertoast.showToast(msg: dataLogin['message']);
       }
     }
-
     notifyListeners();
+  }
+
+  void autoLogin()async{
+      final dataLogin = await NetworkApi.logInApi(dataUserName, dataPassword);
+       if (dataLogin['status'] == 'success') {
+
+        
+       }
   }
 
   void LogOut() async {

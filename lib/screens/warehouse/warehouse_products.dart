@@ -23,12 +23,12 @@ class WarehouseProducts extends StatefulWidget {
 }
 
 class _WarehouseProductsState extends State<WarehouseProducts> {
+ 
   @override
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
     StatisticalController statisticalController =
         context.read<StatisticalController>();
-    // context.watch<ProductsController>().resultProducts.length;
 
     return Container(
       color: AppColors.grey_8A8A8A.withOpacity(0.1),

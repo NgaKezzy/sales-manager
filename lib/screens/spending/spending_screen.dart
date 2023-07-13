@@ -36,26 +36,6 @@ class _SpendingScreenState extends State<SpendingScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.blue_028f76,
         title: Text('Tên shop'),
-        // actions: [
-        // Row(
-        //   children: const [
-        //     Icon(
-        //       Icons.qr_code_scanner,
-        //       color: Colors.white,
-        //     ),
-        //     SizedBox(
-        //       width: AppDimens.dimens_20,
-        //     ),
-        //     Icon(
-        //       Icons.messenger,
-        //       color: Colors.white,
-        //     ),
-        //     SizedBox(
-        //       width: 10,
-        //     )
-        //   ],
-        // ),
-        // ],
       ),
       drawer: DrawerApp(context),
       body: Stack(
@@ -69,130 +49,8 @@ class _SpendingScreenState extends State<SpendingScreen> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  padding: EdgeInsets.all(5),
-                  width: MediaQuery.of(context).size.width,
-                  height: AppDimens.dimens_60,
-                  color: AppColors.white,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: AppDimens.dimens_40,
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          decoration: BoxDecoration(
-                              color: AppColors.grey_8A8A8A.withOpacity(0.4),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  _controller.animateToPage(
-                                    0,
-                                    curve: Curves.fastOutSlowIn,
-                                    duration: Duration(milliseconds: 400),
-                                  );
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.23,
-                                  height: AppDimens.dimens_30,
-                                  decoration: BoxDecoration(
-                                    color: _index == 0
-                                        ? AppColors.white
-                                        : Colors.transparent,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Text(
-                                    'Hôm nay',
-                                    style: TextStyle(
-                                        fontSize: AppDimens.dimens_13,
-                                        color: _index == 0
-                                            ? AppColors.blue_028f76
-                                            : AppColors.black,
-                                        fontWeight: FontFamily.medium),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  _controller.animateToPage(
-                                    1,
-                                    curve: Curves.fastOutSlowIn,
-                                    duration: Duration(milliseconds: 400),
-                                  );
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.23,
-                                  height: AppDimens.dimens_30,
-                                  decoration: BoxDecoration(
-                                    color: _index == 1
-                                        ? AppColors.white
-                                        : Colors.transparent,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Text(
-                                    'Tháng này',
-                                    style: TextStyle(
-                                        fontSize: AppDimens.dimens_13,
-                                        color: _index == 1
-                                            ? AppColors.blue_028f76
-                                            : AppColors.black,
-                                        fontWeight: FontFamily.medium),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  _controller.animateToPage(
-                                    2,
-                                    curve: Curves.fastOutSlowIn,
-                                    duration: Duration(milliseconds: 400),
-                                  );
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.23,
-                                  height: AppDimens.dimens_30,
-                                  decoration: BoxDecoration(
-                                    color: _index == 2
-                                        ? AppColors.white
-                                        : Colors.transparent,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Text(
-                                    'Tháng trước',
-                                    style: TextStyle(
-                                        fontSize: AppDimens.dimens_13,
-                                        color: _index == 2
-                                            ? AppColors.blue_028f76
-                                            : AppColors.black,
-                                        fontWeight: FontFamily.medium),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ]),
-                ),
                 Expanded(
-                  child: PageView(
-                    controller: _controller,
-                    onPageChanged: (index) => setState(() {
-                      _index = index;
-                    }),
-                    children: [
-                      RevenueAndExpenditureContent(),
-                      RevenueAndExpenditureContent(),
-                      RevenueAndExpenditureContent(),
-                    ],
-                  ),
+                  child: RevenueAndExpenditureContent(),
                 )
               ],
             ),

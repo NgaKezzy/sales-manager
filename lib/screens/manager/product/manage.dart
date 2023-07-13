@@ -19,19 +19,25 @@ class Menage extends StatefulWidget {
 }
 
 class _MenageState extends State<Menage> {
+  bool isLoad = true;
   late ProductsController productsController;
   late AuthController authController;
   @override
   void didChangeDependencies() {
-    authController = context.read<AuthController>();
-    productsController = context.read<ProductsController>();
-    productsController.getDataProducts();
+    if (isLoad) {
+      authController = context.read<AuthController>();
+      productsController = context.read<ProductsController>();
+      productsController.getDataProducts();
+    }
+    setState(() {
+      isLoad = false;
+    });
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    context.watch<ProductsController>().resultProducts;
+    // context.watch<ProductsController>().resultProducts;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {

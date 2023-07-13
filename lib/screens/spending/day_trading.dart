@@ -230,7 +230,10 @@ class _DayTradingState extends State<DayTrading> {
               Text(
                 '${NumberFormat.decimalPattern().format(spendingController.listSpending[widget.item].revenueMoney)} đ',
                 style: TextStyle(
-                    color: AppColors.blue_028f76,
+                    color:
+                        spendingController.listSpending[widget.item].type == 1
+                            ? AppColors.blue_028f76
+                            : AppColors.red_FC0000,
                     fontSize: 18,
                     fontWeight: FontFamily.semiBold),
               )

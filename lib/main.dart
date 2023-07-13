@@ -69,18 +69,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-    late AuthController authController;
+  late AuthController authController;
   @override
   void didChangeDependencies() {
-    context.read<AuthController>().checkLogin();
+    context.watch<AuthController>().checkLogin();
     authController = context.read<AuthController>();
-    
+
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    AuthController authController = context.watch<AuthController>();
+    AuthController authController = context.read<AuthController>();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

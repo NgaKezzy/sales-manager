@@ -20,23 +20,23 @@ class RevenueAndExpenditureContent extends StatefulWidget {
 
 class _RevenueAndExpenditureContentState
     extends State<RevenueAndExpenditureContent> {
+  bool isLoad = true;
   late SpendingController spendingController;
   @override
   void didChangeDependencies() {
-    spendingController = context.read<SpendingController>();
-
-    spendingController.getListSpendings();
+    context.watch<SpendingController>().listSpending;
+    if (isLoad) {
+      spendingController = context.read<SpendingController>();
+      spendingController.getListSpendings();
+    }
+    setState(() {
+      isLoad = false;
+    });
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    SpendingController spendingController = context.read<SpendingController>();
-
-    // context
-    //     .watch<SpendingController>()
-    //     .listSpending[spendingController.indexSpending];
-
     return Column(
       children: [
         Container(

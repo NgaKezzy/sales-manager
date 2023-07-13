@@ -35,7 +35,6 @@ class _OderDetailState extends State<OderDetail> {
   @override
   Widget build(BuildContext context) {
     OrderController orderController = context.read<OrderController>();
-    context.watch<OrderController>().listItemOrderDetail;
     return Scaffold(
       body: Container(
         color: AppColors.white,

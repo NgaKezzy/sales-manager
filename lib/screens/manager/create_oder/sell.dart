@@ -28,13 +28,20 @@ class Sell extends StatefulWidget {
 }
 
 class _SellState extends State<Sell> {
+  bool isLoad = true;
   late ProductsController productsController;
   late AuthController authController;
   @override
   void didChangeDependencies() {
-    authController = context.read<AuthController>();
-    productsController = context.read<ProductsController>();
-    productsController.getDataProducts();
+    if (isLoad) {
+      authController = context.read<AuthController>();
+      productsController = context.read<ProductsController>();
+      productsController.getDataProducts();
+
+      setState(() {
+        isLoad = false;
+      });
+    }
 
     super.didChangeDependencies();
   }

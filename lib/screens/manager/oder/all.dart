@@ -18,17 +18,23 @@ class All extends StatefulWidget {
 
 class _AllState extends State<All> {
   late OrderController orderController;
+  bool isLoad = true;
+
   @override
   void didChangeDependencies() {
-    orderController = context.read<OrderController>();
-    orderController.getListOrder();
+    if (isLoad) {
+      orderController = context.read<OrderController>();
+      orderController.getListOrder();
+    }
+    setState(() {
+      isLoad = false;
+    });
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    OrderController orderController = context.read<OrderController>();
-    context.watch<OrderController>().listItemOrder.length;
+    OrderController orderController = context.watch<OrderController>();
     return ListView.builder(
       padding: EdgeInsets.only(top: 0, bottom: 80),
       scrollDirection: Axis.vertical,

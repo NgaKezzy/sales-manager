@@ -256,27 +256,6 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
                                       )
                                     ],
                                   ),
-                                  OutlinedButton(
-                                      onPressed: () {},
-                                      style: OutlinedButton.styleFrom(
-                                          side: BorderSide(
-                                              color: AppColors.blue_0000ff,
-                                              width: 1)),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.account_balance_wallet,
-                                            color: AppColors.blue_0000ff,
-                                          ),
-                                          Text(
-                                            'Thanh toán trước',
-                                            style: TextStyle(
-                                                color: AppColors.blue_0000ff),
-                                          ),
-                                        ],
-                                      ))
                                 ],
                               ),
                             ),

@@ -81,8 +81,10 @@ class SpendingController extends ChangeNotifier {
         'N');
     if (createdSpending['status'] == 'success') {
       Fluttertoast.showToast(msg: '${createdSpending['message']}');
+
       expendingMoneyController.text = '';
       expendingNoteController.text = '';
+      getListSpendings();
     } else {
       Fluttertoast.showToast(msg: '${createdSpending['message']}');
     }
@@ -109,6 +111,7 @@ class SpendingController extends ChangeNotifier {
       Fluttertoast.showToast(msg: '${createdSpending['message']}');
       expendingMoneyController.text = '';
       expendingNoteController.text = '';
+      getListSpendings();
     } else {
       Fluttertoast.showToast(msg: '${createdSpending['message']}');
     }

@@ -28,7 +28,6 @@ class _InofmationShopState extends State<InofmationShop> {
   late AuthController authController;
   void didChangeDependencies() {
     authController = context.read<AuthController>();
-
     super.didChangeDependencies();
   }
 
@@ -87,6 +86,10 @@ class _InofmationShopState extends State<InofmationShop> {
                                       height: 100,
                                       width: 100,
                                       decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: AppColors.blue_028f76,
+                                          width: 1,
+                                        ),
                                         borderRadius: BorderRadius.circular(50),
                                         image:
                                             authController.networkAvatar == ''
