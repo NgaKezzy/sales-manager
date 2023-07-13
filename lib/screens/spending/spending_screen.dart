@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:sales_manager/screens/login_and_init_shop/controller/auth_controller.dart';
 import 'package:sales_manager/screens/spending/controller/spending_controller.dart';
 import 'package:sales_manager/screens/spending/revenue.dart';
 import 'package:sales_manager/screens/spending/revenue_and_expenditure_content.dart';
@@ -21,21 +22,15 @@ class SpendingScreen extends StatefulWidget {
 }
 
 class _SpendingScreenState extends State<SpendingScreen> {
-  late PageController _controller;
-  late SpendingController spendingController;
-  int _index = 0;
-  @override
-  void initState() {
-    _controller = PageController(initialPage: 0, keepPage: true);
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    AuthController authController = context.read<AuthController>();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.blue_028f76,
-        title: Text('Tên shop'),
+        title: authController.userLogin != null
+            ? Text(authController.userLogin!.shopName)
+            : Text('Tên shop'),
       ),
       drawer: DrawerApp(context),
       body: Stack(

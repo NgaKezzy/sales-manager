@@ -26,15 +26,13 @@ class AuthController extends ChangeNotifier {
   var addressController = TextEditingController();
   var descriptionController = TextEditingController();
 
-  String dataUserName='';
-  String dataPassword='';
+  String dataUserName = '';
+  String dataPassword = '';
   String networkAvatar = '';
   String urlAvatar = '';
   UserLogin? _userLogin;
   UserLogin? get userLogin => _userLogin;
   UserLogin? dataAutoLogin;
-
-
 
   bool _isLogin = false;
 
@@ -63,7 +61,7 @@ class AuthController extends ChangeNotifier {
       final String userName = userNameController.text.trim();
       final String password = passwordController.text;
 
-       dataUserName = userNameController.text.trim();
+      dataUserName = userNameController.text.trim();
       dataPassword = passwordController.text;
 
       final dataLogin = await NetworkApi.logInApi(userName, password);
@@ -100,12 +98,27 @@ class AuthController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void autoLogin()async{
-      final dataLogin = await NetworkApi.logInApi(dataUserName, dataPassword);
-       if (dataLogin['status'] == 'success') {
+  void refreshDataLogin() async {
+    final dataLogin = await NetworkApi.logInApi(dataUserName, dataPassword);
+    if (dataLogin['status'] == 'success') {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString(
+          AppDomains.ACCESS_TOKEN, dataLogin['data']['accessToken']);
+      await prefs.setString(
+          AppDomains.REFRESH_TOKEN, dataLogin['data']['refreshToken']);
 
-        
-       }
+      await prefs.setString(AppDomains.ID_WAREHOUSE,
+          dataLogin['data']['dataUser']['idWarehouse']);
+
+      await prefs.setString(
+          AppDomains.ID_User, dataLogin['data']['dataUser']['userId']);
+
+      networkAvatar = dataLogin['data']['dataUser']['avatar'];
+
+      final UserLogin userLogin =
+          UserLogin.fromJson(dataLogin['data']['dataUser']);
+      _userLogin = userLogin;
+    }
   }
 
   void LogOut() async {
@@ -137,20 +150,24 @@ class AuthController extends ChangeNotifier {
     }
     if (passOne.text == PassTwo.text) {
       printYellow('Mật khẩu giống nhau');
-
-      final dataRegister =
-          await NetworkApi.registerApi(userNameRegister, passwordRegister);
-      log(dataRegister.toString());
-      if (dataRegister['status'] == 'success') {
-        Fluttertoast.showToast(msg: dataRegister['message']);
-        userName.text = '';
-        passOne.text = '';
-        PassTwo.text = '';
-      }
-      if (dataRegister['status'] == 'error') {
-        Fluttertoast.showToast(msg: dataRegister['message']);
+      if (passwordRegister.length >= 4 && userNameRegister.length >= 4) {
+        final dataRegister =
+            await NetworkApi.registerApi(userNameRegister, passwordRegister);
+        log(dataRegister.toString());
+        if (dataRegister['status'] == 'success') {
+          Fluttertoast.showToast(msg: dataRegister['message']);
+          userName.text = '';
+          passOne.text = '';
+          PassTwo.text = '';
+        }
+        if (dataRegister['status'] == 'error') {
+          Fluttertoast.showToast(msg: dataRegister['message']);
+        } else {
+          Fluttertoast.showToast(msg: 'Đăng ký thất bại !');
+        }
       } else {
-        Fluttertoast.showToast(msg: 'Đăng ký thất bại !');
+        Fluttertoast.showToast(
+            msg: 'Tài khoản và mật khẩu phải lớn hơn 4 ký tự');
       }
     }
   }

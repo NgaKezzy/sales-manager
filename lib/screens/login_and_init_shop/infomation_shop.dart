@@ -107,7 +107,7 @@ class _InofmationShopState extends State<InofmationShop> {
                                     ),
                                     Positioned(
                                       bottom: 0,
-                                      right: 0,
+                                      right: 8,
                                       child: InkWell(
                                           onTap: () {
                                             pickImage();
@@ -229,8 +229,7 @@ class _InofmationShopState extends State<InofmationShop> {
                                 await uploadFile();
                                 await authController.updateStoreInformation(
                                     authController.urlAvatar);
-
-                                _showAlertDialog(context);
+                                authController.refreshDataLogin();
                               },
                               child: Text('Cập nhật'),
                             ),
@@ -247,24 +246,4 @@ class _InofmationShopState extends State<InofmationShop> {
       ),
     );
   }
-}
-
-Future<void> _showAlertDialog(BuildContext context) {
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Thông báo'),
-        content: Text('Hãy đăng nhập lại để hiển thị giao diện'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text('Ok'),
-          ),
-        ],
-      );
-    },
-  );
 }
