@@ -40,7 +40,7 @@ class _CreateImportGoodsState extends State<CreateImportGoods> {
         .add(productsController.resultProducts[widget.item]);
     productsController.totalProduct = 0;
     orderController.sumMoneyImportProduct =
-        productsController.resultProducts[widget.item].price;
+        productsController.resultProducts[widget.item].importPrice;
 
     orderController.addItemPost(productsController.resultProducts, widget.item);
 
@@ -369,7 +369,7 @@ class _SelectedItemState extends State<SelectedItem> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                  'Giá: ${productsController.resultProducts[widget.index].price} x 1'),
+                  'Giá: ${productsController.resultProducts[widget.index].importPrice} x 1'),
             ],
           )
         ],

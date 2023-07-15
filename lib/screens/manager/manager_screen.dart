@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/config/app_color.dart';
 import 'package:sales_manager/config/app_size.dart';
@@ -29,6 +30,21 @@ class ManagerScreen extends StatefulWidget {
 }
 
 class _ManagerScreenState extends State<ManagerScreen> {
+  late StatisticalController statisticalController;
+  bool isLoad = true;
+  @override
+  void didChangeDependencies() {
+    if (isLoad) {
+      statisticalController = context.read<StatisticalController>();
+      statisticalController.getStatisticalDateNow();
+    }
+    setState(() {
+      isLoad = false;
+    });
+
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     AuthController authController = context.read<AuthController>();
@@ -153,12 +169,25 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                           SizedBox(
                                             height: 20,
                                           ),
-                                          Text(
-                                            '0',
-                                            style: TextStyle(
-                                                fontSize: AppDimens.dimens_16,
-                                                fontWeight: FontFamily.medium),
-                                          )
+                                          statisticalController
+                                                      .resultStatisticalDateNow ==
+                                                  null
+                                              ? Text(
+                                                  '0',
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          AppDimens.dimens_16,
+                                                      fontWeight:
+                                                          FontFamily.medium),
+                                                )
+                                              : Text(
+                                                  '${NumberFormat.decimalPattern().format(statisticalController.resultStatisticalDateNow!.totalPrice)}',
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          AppDimens.dimens_16,
+                                                      fontWeight:
+                                                          FontFamily.medium),
+                                                )
                                         ],
                                       ),
                                       Container(
@@ -193,12 +222,25 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                           SizedBox(
                                             height: 20,
                                           ),
-                                          Text(
-                                            '0',
-                                            style: TextStyle(
-                                                fontSize: AppDimens.dimens_16,
-                                                fontWeight: FontFamily.medium),
-                                          )
+                                          statisticalController
+                                                      .resultStatisticalDateNow ==
+                                                  null
+                                              ? Text(
+                                                  '0',
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          AppDimens.dimens_16,
+                                                      fontWeight:
+                                                          FontFamily.medium),
+                                                )
+                                              : Text(
+                                                  '${NumberFormat.decimalPattern().format(statisticalController.resultStatisticalDateNow!.soLuongDonDuocTao)}',
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          AppDimens.dimens_16,
+                                                      fontWeight:
+                                                          FontFamily.medium),
+                                                )
                                         ],
                                       ),
                                       Container(
@@ -233,12 +275,25 @@ class _ManagerScreenState extends State<ManagerScreen> {
                                           SizedBox(
                                             height: 20,
                                           ),
-                                          Text(
-                                            '0',
-                                            style: TextStyle(
-                                                fontSize: AppDimens.dimens_16,
-                                                fontWeight: FontFamily.medium),
-                                          )
+                                          statisticalController
+                                                      .resultStatisticalDateNow ==
+                                                  null
+                                              ? Text(
+                                                  '0',
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          AppDimens.dimens_16,
+                                                      fontWeight:
+                                                          FontFamily.medium),
+                                                )
+                                              : Text(
+                                                  '${NumberFormat.decimalPattern().format(statisticalController.resultStatisticalDateNow!.loiNhuan)}',
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          AppDimens.dimens_16,
+                                                      fontWeight:
+                                                          FontFamily.medium),
+                                                )
                                         ],
                                       ),
                                     ],

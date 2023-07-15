@@ -27,9 +27,7 @@ class _WarehouseState extends State<Warehouse> {
 
   void didChangeDependencies() {
     statisticalController = context.read<StatisticalController>();
-
     statisticalController.getStatisticalDateNow();
-
     super.didChangeDependencies();
   }
 

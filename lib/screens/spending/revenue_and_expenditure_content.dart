@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/screens/spending/controller/spending_controller.dart';
 import 'package:sales_manager/screens/spending/spending_screen.dart';
@@ -28,6 +29,7 @@ class _RevenueAndExpenditureContentState
     if (isLoad) {
       spendingController = context.read<SpendingController>();
       spendingController.getListSpendings();
+      spendingController.sumSpending();
     }
     setState(() {
       isLoad = false;
@@ -48,19 +50,19 @@ class _RevenueAndExpenditureContentState
             children: [
               const Row(
                 children: [
-                  Text(
-                    'Số dư : ',
-                    style: TextStyle(
-                        fontSize: AppDimens.dimens_16,
-                        fontWeight: FontFamily.medium),
-                  ),
-                  Text(
-                    '61.524.000',
-                    style: TextStyle(
-                        color: AppColors.blue_028f76,
-                        fontSize: AppDimens.dimens_16,
-                        fontWeight: FontFamily.medium),
-                  ),
+                  // Text(
+                  //   'Số dư : ',
+                  //   style: TextStyle(
+                  //       fontSize: AppDimens.dimens_16,
+                  //       fontWeight: FontFamily.medium),
+                  // ),
+                  // Text(
+                  //   '61.524.000',
+                  //   style: TextStyle(
+                  //       color: AppColors.blue_028f76,
+                  //       fontSize: AppDimens.dimens_16,
+                  //       fontWeight: FontFamily.medium),
+                  // ),
                 ],
               ),
               SizedBox(
@@ -78,7 +80,7 @@ class _RevenueAndExpenditureContentState
                       decoration: BoxDecoration(
                           color: AppColors.grey_8A8A8A.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(10)),
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
@@ -91,7 +93,7 @@ class _RevenueAndExpenditureContentState
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                '1.250.000 đ ',
+                                '${NumberFormat.decimalPattern().format(context.watch<SpendingController>().tongChi)}',
                                 style: TextStyle(
                                     color: AppColors.red_FC0000,
                                     fontWeight: FontFamily.semiBold,
@@ -128,7 +130,7 @@ class _RevenueAndExpenditureContentState
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                '1.250.000 ',
+                                '${NumberFormat.decimalPattern().format(context.watch<SpendingController>().tongThu)}',
                                 style: TextStyle(
                                     color: AppColors.blue_028f76,
                                     fontWeight: FontFamily.semiBold,

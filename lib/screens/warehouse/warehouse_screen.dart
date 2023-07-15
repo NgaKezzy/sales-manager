@@ -30,12 +30,18 @@ class WareHouseScreen extends StatefulWidget {
 class _WareHouseScreenState extends State<WareHouseScreen> {
   late ProductsController productsController;
   late AuthController authController;
+  bool isLoad = true;
   @override
   void didChangeDependencies() {
-    authController = context.read<AuthController>();
-    productsController = context.read<ProductsController>();
-    productsController
-        .getDataProducts();
+    if (isLoad) {
+      authController = context.read<AuthController>();
+      productsController = context.read<ProductsController>();
+      productsController.getDataProducts();
+    }
+    setState(() {
+      isLoad = false;
+    });
+
     super.didChangeDependencies();
   }
 

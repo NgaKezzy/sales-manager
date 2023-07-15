@@ -35,7 +35,7 @@ class _ReportState extends State<Report> {
               SizedBox(
                 height: MediaQuery.of(context).size.height - 80,
                 child: DefaultTabController(
-                  length: 3,
+                  length: 2,
                   child: Column(
                     children: [
                       TabBar(
@@ -46,21 +46,15 @@ class _ReportState extends State<Report> {
                           indicatorColor: AppColors.blue_028f76,
                           tabs: [
                             SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.24,
+                              width: MediaQuery.of(context).size.width * 0.4,
                               child: Tab(
                                 text: 'Lãi lỗ',
                               ),
                             ),
                             SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.24,
+                              width: MediaQuery.of(context).size.width * 0.4,
                               child: Tab(
                                 text: 'Kho hàng',
-                              ),
-                            ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.24,
-                              child: Tab(
-                                text: 'Thu chi',
                               ),
                             ),
                           ]),
@@ -68,7 +62,6 @@ class _ReportState extends State<Report> {
                         child: TabBarView(children: [
                           ProfitAndLoss(),
                           Warehouse(),
-                          RevenueAndExpenditure(),
                         ]),
                       ),
                     ],

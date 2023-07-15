@@ -121,7 +121,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
                                 ),
                               ),
                             ),
-                            Passenger(),
+                            // Passenger(),
                             Container(
                               padding: EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 20),

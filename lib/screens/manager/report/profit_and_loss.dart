@@ -8,6 +8,7 @@ import 'package:sales_manager/models/data_app.dart';
 import 'package:sales_manager/screens/manager/report/profit_and_loss_content.dart';
 
 import '../../../config/app_size.dart';
+import '../controller/statistical_controller.dart';
 
 class ProfitAndLoss extends StatefulWidget {
   const ProfitAndLoss({super.key});
@@ -18,6 +19,35 @@ class ProfitAndLoss extends StatefulWidget {
 
 class _ProfitAndLossState extends State<ProfitAndLoss> {
   late final PageController _controller;
+  late StatisticalController statisticalController;
+  int x = 0;
+  int y = 0;
+  int z = 0;
+  int a = 0;
+
+  void didChangeDependencies() {
+    statisticalController = context.read<StatisticalController>();
+    statisticalController.getStatisticalDateNow();
+    statisticalController.getStatisticalThisMonth();
+    statisticalController.getStatisticalLastMonth();
+
+    statisticalController.resultStatisticalDateNow == null
+        ? x = 0
+        : x = statisticalController.resultStatisticalDateNow!.loiNhuan;
+    statisticalController.resultStatisticalDateNow == null
+        ? a = 0
+        : a = statisticalController.resultStatisticalDateNow!.totalPrice;
+
+    statisticalController.resultStatisticalDateNow == null
+        ? y = 0
+        : y = statisticalController.resultStatisticalThisMonth!.loiNhuan;
+    statisticalController.resultStatisticalDateNow == null
+        ? z = 0
+        : z = statisticalController.resultStatisticalLastMonth!.loiNhuan;
+
+    super.didChangeDependencies();
+  }
+
   int _index = 0;
   @override
   void initState() {
@@ -151,12 +181,18 @@ class _ProfitAndLossState extends State<ProfitAndLoss> {
               children: [
                 ProfitAndLossContent(
                   item: _index,
+                  money: x,
+                  doanhthu: a,
                 ),
                 ProfitAndLossContent(
                   item: _index,
+                  money: y,
+                  doanhthu: a,
                 ),
                 ProfitAndLossContent(
                   item: _index,
+                  money: z,
+                  doanhthu: a,
                 ),
               ],
             ),

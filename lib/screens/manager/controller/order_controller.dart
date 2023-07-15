@@ -41,7 +41,7 @@ class OrderController extends ChangeNotifier {
   int totalPriceOrderDetail = 0;
 
   String dateOrder = DateFormat(
-    'yyyy/MM/dd',
+    'yyyy-MM-dd',
   ).format(DateTime.now());
 
   void setDateTimeOrder(BuildContext context) {
@@ -153,7 +153,7 @@ class OrderController extends ChangeNotifier {
     final idWarehouse = prefs.getString(AppDomains.ID_WAREHOUSE);
 
     final createOrder = await NetworkApi.createOrder(idWarehouse ?? '',
-        dateOrder, funds, customerOrder, 'X', noteOrder, itemPost);
+        dateOrder, funds, 'Khách lẻ', 'X', noteOrder, itemPost);
     if (createOrder['status'] == 'success') {
       Fluttertoast.showToast(msg: '${createOrder['message']}');
     } else {

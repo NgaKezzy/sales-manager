@@ -100,17 +100,20 @@ class _OderDetailState extends State<OderDetail> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // Text(
+                      //   orderController.listItemOrder[widget.index].id
+                      //       .substring(18, 24)
+                      //       .toString(),
+                      //   style: TextStyle(
+                      //       fontSize: 16,
+                      //       fontWeight: FontFamily.medium,
+                      //       color: AppColors.red_FC0000),
+                      // ),
                       Text(
-                        orderController.listItemOrder[widget.index].id
-                            .substring(18, 24)
-                            .toString(),
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontFamily.medium,
-                            color: AppColors.red_FC0000),
-                      ),
-                      Text(orderController
-                          .listItemOrder[widget.index].purchaseDate)
+                        orderController
+                            .listItemOrder[widget.index].purchaseDate,
+                        style: TextStyle(fontSize: 16),
+                      )
                     ],
                   ),
                   Column(
@@ -126,7 +129,7 @@ class _OderDetailState extends State<OderDetail> {
               ),
             ),
             Container(
-              color: AppColors.white,
+              color: AppColors.grey_808080.withOpacity(0.1),
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.only(top: 10, bottom: 10),
               child: Row(
@@ -146,26 +149,15 @@ class _OderDetailState extends State<OderDetail> {
                 ],
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.all(0),
-                itemCount: orderController.listItemOrderDetail.length,
-                itemBuilder: (context, index) {
-                  return ProductOfDetailOrder(
-                    element: index,
-                  );
-                },
-              ),
-            ),
             Container(
               width: MediaQuery.of(context).size.width,
-              color: AppColors.white,
+              color: AppColors.grey_808080.withOpacity(0.1),
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.only(top: 10),
               child: Column(
                 children: [
                   SizedBox(
-                    height: 30,
+                    height: 35,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -179,7 +171,7 @@ class _OderDetailState extends State<OderDetail> {
                     ),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 35,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -189,7 +181,7 @@ class _OderDetailState extends State<OderDetail> {
                     ),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 35,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -199,7 +191,7 @@ class _OderDetailState extends State<OderDetail> {
                     ),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 35,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -218,10 +210,18 @@ class _OderDetailState extends State<OderDetail> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 100,
-                  )
                 ],
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                padding: EdgeInsets.all(0),
+                itemCount: orderController.listItemOrderDetail.length,
+                itemBuilder: (context, index) {
+                  return ProductOfDetailOrder(
+                    element: index,
+                  );
+                },
               ),
             ),
           ],

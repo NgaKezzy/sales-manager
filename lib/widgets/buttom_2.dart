@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sales_manager/config/print_color.dart';
 import 'package:sales_manager/screens/manager/controller/order_controller.dart';
 import 'package:sales_manager/screens/manager/controller/products_controller.dart';
+import 'package:sales_manager/screens/manager/controller/statistical_controller.dart';
 
 import '../config/app.font.dart';
 import '../config/app_color.dart';
@@ -23,6 +24,8 @@ class _Buttom_2State extends State<Buttom_2> {
   Widget build(BuildContext context) {
     OrderController orderController = context.read<OrderController>();
     ProductsController productController = context.read<ProductsController>();
+    StatisticalController statisticalController =
+        context.read<StatisticalController>();
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -79,10 +82,7 @@ class _Buttom_2State extends State<Buttom_2> {
                               ),
                               InkWell(
                                 onTap: () {
-
                                   Navigator.pop(context);
-                                  
-
                                 },
                                 child: Icon(
                                   Icons.close,
@@ -280,6 +280,7 @@ class _Buttom_2State extends State<Buttom_2> {
                                   Navigator.pop(context);
                                   productController.addFalseProduct();
                                   orderController.selectedItemList.clear();
+                                  statisticalController.getStatisticalDateNow();
                                   Navigator.pop(context);
                                 },
                                 child: Text(

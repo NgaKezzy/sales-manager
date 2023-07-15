@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/screens/manager/report/profit_and_loss.dart';
 
@@ -10,31 +11,19 @@ import '../controller/statistical_controller.dart';
 class ProfitAndLossContent extends StatefulWidget {
   ProfitAndLossContent({
     required this.item,
+    required this.money,
+    required this.doanhthu,
     super.key,
   });
   int item;
+  int money;
+  int doanhthu;
 
   @override
   State<ProfitAndLossContent> createState() => _ProfitAndLossContentState();
 }
 
 class _ProfitAndLossContentState extends State<ProfitAndLossContent> {
-  late StatisticalController statisticalController;
-
-  void didChangeDependencies() {
-    statisticalController = context.read<StatisticalController>();
-
-    if (widget.item == 0) {
-      statisticalController.getStatisticalDateNow();
-    }
-    if (widget.item == 1) {
-      statisticalController.getStatisticalThisMonth();
-    } else {
-      statisticalController.getStatisticalLastMonth();
-    }
-    super.didChangeDependencies();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -78,7 +67,7 @@ class _ProfitAndLossContentState extends State<ProfitAndLossContent> {
                         width: 15,
                       ),
                       Text(
-                        '10000',
+                        ' ${NumberFormat.decimalPattern().format(widget.money)}',
                         style: TextStyle(
                             fontSize: AppDimens.dimens_30,
                             color: AppColors.blue_028f76,
@@ -138,7 +127,7 @@ class _ProfitAndLossContentState extends State<ProfitAndLossContent> {
                         style: TextStyle(fontSize: AppDimens.dimens_16),
                       ),
                       Text(
-                        "500.000",
+                        '${NumberFormat.decimalPattern().format(widget.doanhthu)} đ',
                         style: TextStyle(
                             fontSize: AppDimens.dimens_16,
                             color: AppColors.blue_028f76),

@@ -12,6 +12,8 @@ import '../../../network/fetch_api.dart';
 
 class SpendingController extends ChangeNotifier {
   int indexSpending = 0;
+  int tongThu = 0;
+  int tongChi = 0;
   List<GetSpending> listSpending = [];
   String idSpending = '';
   String revenueFund = 'Tiền mặt';
@@ -127,6 +129,19 @@ class SpendingController extends ChangeNotifier {
     listSpending = dataSpending;
     printRed('số lượng khoản thu chi ${listSpending.length}');
 
+    notifyListeners();
+  }
+
+  void sumSpending() {
+    tongChi = 0;
+    tongThu = 0;
+    for (var i = 0; i < listSpending.length; i++) {
+      if (listSpending[i].type == 1) {
+        tongThu += listSpending[i].revenueMoney;
+      } else {
+        tongChi += listSpending[i].revenueMoney;
+      }
+    }
     notifyListeners();
   }
 

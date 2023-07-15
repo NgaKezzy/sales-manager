@@ -281,6 +281,8 @@ class _ExpensesState extends State<Expenses> {
                                               AppColors.red_FC0000),
                                       onPressed: () {
                                         spendingController.createdExpending();
+                                        Navigator.pop(context);
+                                        spendingController.sumSpending();
                                       },
                                       child: Text('Tạo'))),
                             ],

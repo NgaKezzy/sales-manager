@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/screens/manager/controller/order_controller.dart';
 
@@ -91,26 +92,6 @@ class _ItemOderState extends State<ItemOder> {
                     fontSize: AppDimens.dimens_15,
                   ),
                 ),
-                SizedBox(
-                  width: 20,
-                ),
-                // Text(
-                //   '12/05',
-                //   style: TextStyle(
-                //     fontSize: AppDimens.dimens_15,
-                //   ),
-                // ),
-                // SizedBox(
-                //   width: 10,
-                // ),
-                Text(
-                  orderController.listItemOrder[widget.element].id
-                      .substring(18, 24),
-                  style: TextStyle(
-                    color: AppColors.red_FC0000,
-                    fontSize: AppDimens.dimens_15,
-                  ),
-                ),
               ],
             ),
             Divider(
@@ -124,7 +105,7 @@ class _ItemOderState extends State<ItemOder> {
                   'Tổng cộng',
                 ),
                 Text(
-                  '300.000',
+                  '${NumberFormat.decimalPattern().format(orderController.listItemOrder[widget.element].totalPrice)}',
                   style: TextStyle(
                       color: AppColors.black,
                       fontSize: AppDimens.dimens_20,

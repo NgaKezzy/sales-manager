@@ -23,6 +23,13 @@ class WarehouseProducts extends StatefulWidget {
 }
 
 class _WarehouseProductsState extends State<WarehouseProducts> {
+   late StatisticalController statisticalController;
+
+  void didChangeDependencies() {
+    statisticalController = context.read<StatisticalController>();
+    statisticalController.getStatisticalDateNow();
+    super.didChangeDependencies();
+  }
  
   @override
   Widget build(BuildContext context) {

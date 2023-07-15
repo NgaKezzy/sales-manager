@@ -7,7 +7,7 @@ class AppDomains {
 
   // static const String BASE_URL = 'streamvideo-dev.onrender.com';
 
-  static const String BASE_URL = '192.168.0.104:3000';
+  static const String BASE_URL = '192.168.0.103:3000';
   // static const String BASE_URL = 'localhost\:3000';
   static const String AUTH_LOGIN = '/auth/login';
   static const String AUTH_REGISTER = '/auth/register';

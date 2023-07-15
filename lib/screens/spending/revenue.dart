@@ -293,6 +293,8 @@ class _RevenueState extends State<Revenue> {
                                                 AppColors.blue_028f76),
                                         onPressed: () {
                                           spendingController.createRevenue();
+                                          spendingController.sumSpending();
+                                          Navigator.pop(context);
                                         },
                                         child: Text('Tạo'))),
                               ],

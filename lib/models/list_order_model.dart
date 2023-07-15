@@ -6,6 +6,7 @@ class ListOrder {
   String funds;
   String customerName;
   String bill;
+  int totalPrice;
 
   ListOrder(
       {required this.id,
@@ -14,7 +15,8 @@ class ListOrder {
       required this.noteOrder,
       required this.funds,
       required this.customerName,
-      required this.bill});
+      required this.bill,
+      required this.totalPrice});
 
   factory ListOrder.fromJson(Map<String, dynamic> json) {
     return ListOrder(
@@ -25,6 +27,8 @@ class ListOrder {
       funds: json['funds'],
       customerName: json['customerName'],
       bill: json['bill'],
+      
+      totalPrice: json['totalPrice']
     );
   }
 
