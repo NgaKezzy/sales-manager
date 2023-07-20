@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sales_manager/screens/manager/controller/products_controller.dart';
 
@@ -44,7 +45,7 @@ class ItemWarehouseValue extends StatelessWidget {
                     fit: BoxFit.cover)),
           ),
           SizedBox(
-            width: 20,
+            width: 10,
           ),
           Expanded(
               child: Row(
@@ -54,8 +55,9 @@ class ItemWarehouseValue extends StatelessWidget {
                 children: [
                   Text(
                     productsController.resultProducts[element].productName,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                        fontSize: AppDimens.dimens_16,
+                        fontSize: AppDimens.dimens_13,
                         fontWeight: FontFamily.medium),
                   ),
                 ],
@@ -66,16 +68,16 @@ class ItemWarehouseValue extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    '${productsController.resultProducts[element].inventoryNumber * productsController.resultProducts[element].price}',
+                    '${NumberFormat.decimalPattern().format(productsController.resultProducts[element].inventoryNumber * productsController.resultProducts[element].price)} đ',
                     style: TextStyle(
-                        fontSize: AppDimens.dimens_16,
+                        fontSize: AppDimens.dimens_13,
                         color: AppColors.blue_028f76,
                         fontWeight: FontFamily.medium),
                   ),
                   Text(
                     'SL :${productsController.resultProducts[element].inventoryNumber}',
                     style: TextStyle(
-                        fontSize: AppDimens.dimens_16,
+                        fontSize: AppDimens.dimens_14,
                         color: AppColors.grey_8A8A8A),
                   )
                 ],

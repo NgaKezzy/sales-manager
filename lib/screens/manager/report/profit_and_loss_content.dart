@@ -146,9 +146,7 @@ class _ProfitAndLossContentState extends State<ProfitAndLossContent> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: const [
                         ItemProfitAndLossStatement(
-                            txt: 'Tổng giá bán', number: '60000'),
-                        ItemProfitAndLossStatement(
-                            txt: 'Thu phí vận chuyển', number: '20.000'),
+                            txt: 'Thu phí vận chuyển', number: '0'),
                         ItemProfitAndLossStatement(
                             txt: 'Khuyến mãi', number: '0'),
                         ItemProfitAndLossStatement(
@@ -178,7 +176,7 @@ class _ProfitAndLossContentState extends State<ProfitAndLossContent> {
                     style: TextStyle(fontSize: AppDimens.dimens_16),
                   ),
                   Text(
-                    '480.000',
+                   '${NumberFormat.decimalPattern().format(widget.doanhthu - widget.money)} đ',
                     style: TextStyle(
                         fontSize: AppDimens.dimens_16,
                         color: AppColors.red_FC0000),

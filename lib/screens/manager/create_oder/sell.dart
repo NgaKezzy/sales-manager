@@ -249,7 +249,7 @@ class _ItemListProductState extends State<ItemListProduct> {
                   'Còn : ${productsController.resultProducts[widget.element].inventoryNumber}',
                   style: TextStyle(
                       fontSize: 13,
-                      color: AppColors.white,
+                      color: AppColors.green_00FF99,
                       fontWeight: FontFamily.medium),
                 ),
               ),

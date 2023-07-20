@@ -75,7 +75,7 @@ class _ItemSelectProductState extends State<ItemSelectProduct> {
         height: AppDimens.dimens_100,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: AppColors.grey_808080.withOpacity(0.1),
         ),
         child: Row(
           children: [

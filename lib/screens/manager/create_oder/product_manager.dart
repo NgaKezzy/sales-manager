@@ -76,7 +76,8 @@ class ItemProductManager extends StatelessWidget {
         height: AppDimens.dimens_80,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-            color: AppColors.white, borderRadius: BorderRadius.circular(10)),
+            color: AppColors.green_006200.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(10)),
         padding: EdgeInsets.all(8),
         child: Row(
           children: [

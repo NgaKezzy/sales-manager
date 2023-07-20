@@ -30,6 +30,8 @@ class _RevenueAndExpenditureContentState
       spendingController = context.read<SpendingController>();
       spendingController.getListSpendings();
       spendingController.sumSpending();
+      context.watch<SpendingController>().tongThu;
+      context.watch<SpendingController>().tongChi;
     }
     setState(() {
       isLoad = false;

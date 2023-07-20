@@ -131,6 +131,24 @@ class _UpdateQuantityState extends State<UpdateQuantity> {
                         SizedBox(
                           height: 20,
                         ),
+                        Text(
+                          'Tồn kho',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontFamily.medium),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          '${NumberFormat.decimalPattern().format(productsController.resultProducts[widget.index].inventoryNumber)}',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: AppColors.grey_808080,
+                              fontWeight: FontFamily.medium),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
                         Container(
                           width: MediaQuery.of(context).size.width - 20,
                           child: Column(

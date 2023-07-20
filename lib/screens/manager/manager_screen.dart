@@ -602,7 +602,7 @@ class ItemManager extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: AppColors.grey_8A8A8A,
-            blurRadius: 2,
+            blurRadius: 1,
             // spreadRadius: 2,
             offset: Offset(0, 2),
           ),

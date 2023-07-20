@@ -23,14 +23,14 @@ class WarehouseProducts extends StatefulWidget {
 }
 
 class _WarehouseProductsState extends State<WarehouseProducts> {
-   late StatisticalController statisticalController;
+  late StatisticalController statisticalController;
 
   void didChangeDependencies() {
     statisticalController = context.read<StatisticalController>();
     statisticalController.getStatisticalDateNow();
     super.didChangeDependencies();
   }
- 
+
   @override
   Widget build(BuildContext context) {
     ProductsController productsController = context.read<ProductsController>();
@@ -214,7 +214,8 @@ class ItemWareHouseProduct extends StatelessWidget {
         height: 60,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-            color: AppColors.white, borderRadius: BorderRadius.circular(5)),
+            color: AppColors.green_006200.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(5)),
         child: Row(
           children: [
             Container(

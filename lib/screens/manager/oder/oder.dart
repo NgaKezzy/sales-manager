@@ -32,8 +32,7 @@ class _OderState extends State<Oder> {
     authController = context.read<AuthController>();
 
     orderController.getListOrder();
-    productsController
-        .getDataProducts();
+    productsController.getDataProducts();
 
     super.didChangeDependencies();
   }

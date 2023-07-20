@@ -81,7 +81,7 @@ class MoreGoods extends StatelessWidget {
           ),
           Expanded(
               child: ListView.builder(
-                  padding: EdgeInsets.all(0),
+                  padding: EdgeInsets.all(10),
                   itemCount: productsController.resultProducts.length,
                   itemBuilder: (BuildContext context, int index) {
                     return ItemMoreGoods(
@@ -128,7 +128,8 @@ class _ItemMoreGoodsState extends State<ItemMoreGoods> {
         height: AppDimens.dimens_90,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          color: AppColors.white,
+          borderRadius: BorderRadius.circular(10),
+          color: AppColors.green_006200.withOpacity(0.1),
         ),
         child: Row(
           children: [
@@ -149,7 +150,8 @@ class _ItemMoreGoodsState extends State<ItemMoreGoods> {
               children: [
                 Text(
                   productsController.resultProducts[widget.element].productName,
-                  style: TextStyle(fontSize: 15, fontWeight: FontFamily.medium),
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 13, fontWeight: FontFamily.medium),
                 ),
                 Text(
                   'Còn: ${productsController.resultProducts[widget.element].inventoryNumber} Sp',
@@ -162,11 +164,11 @@ class _ItemMoreGoodsState extends State<ItemMoreGoods> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  'Giá bán : ${NumberFormat.decimalPattern().format(productsController.resultProducts[widget.element].price)} đ',
+                  'Bán : ${NumberFormat.decimalPattern().format(productsController.resultProducts[widget.element].price)} đ',
                   style: TextStyle(color: AppColors.blue_028f76),
                 ),
                 Text(
-                  'Giá nhập : ${NumberFormat.decimalPattern().format(productsController.resultProducts[widget.element].importPrice)} đ',
+                  'Nhập : ${NumberFormat.decimalPattern().format(productsController.resultProducts[widget.element].importPrice)} đ',
                   style: TextStyle(color: AppColors.red_FC0000),
                 ),
               ],
